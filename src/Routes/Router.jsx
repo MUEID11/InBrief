@@ -17,18 +17,19 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />
       },
-      {
-        path: "/latest-news",
-        element: <LatestNewsSection />
-      },
-      {
-        path: "/business",
-        element: <BusinessNewsSection />
-      },
-      {
-        path: "/sports",
-        element: <SportsNewsSection />
-      },
+
+      // {
+      //   path: "/latest-news",
+      //   element: <LatestNewsSection />
+      // },
+      // {
+      //   path: "/business",
+      //   element: <BusinessNewsSection />
+      // },
+      // {
+      //   path: "/sports",
+      //   element: <SportsNewsSection />
+      // },
     ]
   },
 ]);
