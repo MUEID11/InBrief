@@ -1,3 +1,4 @@
+import TopCreators from "../Components/TopCreators";
 
 
 const Home = () => {
@@ -11,7 +12,7 @@ const Home = () => {
       {/* editor pick banner */}
       {/* cards under editors pick */}
       {/* business & sports */}
-      {/* top creators */}
+      {/* <TopCreators></TopCreators> */}
       {/* newslatter subscription */}
     </div>
   );
