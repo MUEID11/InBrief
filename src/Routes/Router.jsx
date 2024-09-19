@@ -1,24 +1,24 @@
-
+/* eslint-disable no-unused-vars */
 
 import React from 'react';
-import { createBrowserRouter } from "react-router-dom";
-import Main from "../Layouts/Main";
+import { createBrowserRouter } from 'react-router-dom';
+import Main from '../Layouts/Main';
 import Home from '../Pages/Home';
 import LatestNewsSection from '../Components/LatestNewsSection';
 import BusinessNewsSection from '../Components/BusinessNewsSection';
 import SportsNewsSection from '../Components/SportsNewsSection';
-import Home from "../Pages/Home";
-import SignUp from "../Pages/SignUp";
-import SignIn from "../Pages/SignIn";
+// import Home from '../Pages/Home';
+import SignUp from '../Pages/SignUp';
+import SignIn from '../Pages/SignIn';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Main />,
     children: [
       {
-        path: "/",
-        element: <Home />
+        path: '/',
+        element: <Home />,
       },
       // {
       //   path: "/latest-news",
@@ -33,14 +33,14 @@ const router = createBrowserRouter([
       //   element: <SportsNewsSection />
       // },
       {
-        path:'signup',
-        element: <SignUp />
+        path: 'signup',
+        element: <SignUp />,
       },
       {
-        path:'signin',
-        element: <SignIn />
-      }
-    ]
+        path: 'signin',
+        element: <SignIn />,
+      },
+    ],
   },
 ]);
 
