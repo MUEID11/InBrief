@@ -1,6 +1,8 @@
+
 // import LatestNewsSection from '../Components/LatestNewsSection';
 // import BusinessNewsSection from '../Components/BusinessNewsSection';
 // import SportsNewsSection from '../Components/SportsNewsSection';
+import TopCreators from "../Components/TopCreator
 const Home = () => {
   return (
     <div className="text-2xl">
@@ -24,6 +26,7 @@ const Home = () => {
         </div>
       </div> */}
       {/* top creators */}
+      {/* <TopCreators></TopCreators> */}
       {/* newslatter subscription */}
       {/* something */}
     </div>

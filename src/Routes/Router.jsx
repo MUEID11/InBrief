@@ -1,4 +1,4 @@
-// src/router/router.jsx
+
 
 import React from 'react';
 import { createBrowserRouter } from "react-router-dom";
@@ -7,6 +7,8 @@ import Home from '../Pages/Home';
 import LatestNewsSection from '../Components/LatestNewsSection';
 import BusinessNewsSection from '../Components/BusinessNewsSection';
 import SportsNewsSection from '../Components/SportsNewsSection';
+import Home from "../Pages/Home";
+import SignUp from "../Pages/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +19,6 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />
       },
-
       // {
       //   path: "/latest-news",
       //   element: <LatestNewsSection />
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       //   path: "/sports",
       //   element: <SportsNewsSection />
       // },
+      {
+        path:'signup',
+        element: <SignUp />
+      }
     ]
   },
 ]);
