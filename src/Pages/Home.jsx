@@ -13,7 +13,6 @@ import Newsletter from "../Components/Newsletter";
 const Home = () => {
   return (
     <div>
-      hellow from home CodeWarrirors .....
       <Banner />
       {/* welcome message and the card under it */}
       {/* latest news */}

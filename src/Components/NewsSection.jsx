@@ -1,6 +1,5 @@
 // src/Components/NewsSection.jsx
 
-import React from 'react';
 import PropTypes from 'prop-types';
 import NewsCard from './NewsCard';
 import { FaArrowRight } from 'react-icons/fa';
@@ -21,10 +20,10 @@ const NewsSection = ({ title, articles, link }) => {
   };
 
   return (
-    <div className="p-4">
+    <div className="mt-14">
       {/* Header with Title and "View All" Link */}
       <div className="flex justify-between items-center mb-4">
-        <h2 className="font-bold text-xl">{title}</h2>
+        <h2 className="font-bold text-3xl">{title}</h2>
         <Link
           to={link}
           className="flex items-center gap-1 font-bold text-blue-500 hover:text-blue-700 transition-colors duration-300"

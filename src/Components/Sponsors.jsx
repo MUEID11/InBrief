@@ -48,9 +48,9 @@ const sponsorData = [
 
 const Sponsors = () => {
   return (
-    <section className="mt-10">
+    <section className="mt-14">
       <header className="mb-8">
-        <h3 className="text-3xl font-bold ml-2">SPONSORS</h3>
+        <h3 className="text-3xl font-bold ml-2">Sponsors</h3>
       </header>
       <main>
         <Marquee pauseOnHover={true}>

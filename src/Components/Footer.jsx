@@ -1,10 +1,11 @@
-import React from "react";
+
 import { FaFacebook, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 import logo from "../assets/logo.png";
 
 const Footer = () => {
   return (
     <div className="container mx-auto  p-6  rounded-lg mt-10 ">
+       <hr className="px-3 mx-2 my-4" />
       {/* footer upper part start */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 gap-y-2 md:gap-y-5 text-center">
         <div>
