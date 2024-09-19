@@ -1,6 +1,6 @@
 // src/Components/NewsCard.jsx
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const NewsCard = ({ article }) => {

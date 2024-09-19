@@ -1,14 +1,9 @@
-import Navbar from "./Navbar";
+
 
 
 const Banner = () => {
     return (
         <section className="w-full mx-auto p-">
-    {/* Navbnar*/}
-    <Navbar></Navbar>
-
-
-    {/* Bulletin */}
     <div className="w-full mt-2 mx-auto p-4 bg-gray-200 rounded-2xl border bg-repeat bg-cover" style={{backgroundImage: 'url(https://i.ibb.co.com/hH3Gj9n/preview.jpg)'}}>
       <div className="text-sm font-extralight text-center mb-4">📋Welcome to the Bulletin</div>
       <div className="space-y-4">

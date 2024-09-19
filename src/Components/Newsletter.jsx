@@ -1,5 +1,3 @@
-import React from "react";
-
 const Newsletter = () => {
   return (
     <div className="bg-gray-200 container mx-auto rounded-lg p-10 mt-12 flex flex-col md:flex-row items-center justify-between gap-4">

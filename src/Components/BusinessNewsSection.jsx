@@ -1,6 +1,6 @@
 // src/Components/BusinessNewsSection.jsx
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import NewsSection from './NewsSection';
 
 const BusinessNewsSection = () => {
