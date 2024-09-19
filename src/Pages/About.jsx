@@ -123,8 +123,8 @@ const About = () => {
         </main>
       </section>
 
-      <section className="mt-28 flex gap-10 items-center justify-center">
-        <div className="w-1/2">
+      <section className="mt-28 flex max-sm:flex-col gap-10 items-center justify-center">
+        <div className="w-1/2 max-sm:w-full">
           <h2 className="font-bold text-5xl uppercase">Join with Us</h2>
           <p className="mt-5 text-stone-600 max-w-[500px] font-medium">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio assumenda quisquam in eveniet. Vitae, recusandae quibusdam omnis voluptas aspernatur beatae amet
@@ -137,7 +137,7 @@ const About = () => {
             <button className="bg-red-600 text-white font-semibold py-3 px-10 rounded-lg transition-all duration-500 hover:bg-red-700 mt-6">Join Us Now</button>
           </Link>
         </div>
-        <div className="w-1/2">
+        <div className="w-1/2 max-sm:w-full">
           <img src={about3} alt="" />
         </div>
       </section>
