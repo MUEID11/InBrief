@@ -7,7 +7,9 @@ import Home from '../Pages/Home';
 import LatestNewsSection from '../Components/LatestNewsSection';
 import BusinessNewsSection from '../Components/BusinessNewsSection';
 import SportsNewsSection from '../Components/SportsNewsSection';
+// import Home from '../Pages/Home';
 import SignUp from '../Pages/SignUp';
+import SignIn from '../Pages/SignIn';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: 'signup',
         element: <SignUp />,
+      },
+      {
+        path: 'signin',
+        element: <SignIn />,
       },
     ],
   },
