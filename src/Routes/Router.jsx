@@ -1,27 +1,44 @@
-import { createBrowserRouter } from "react-router-dom";
-import Main from "../Layouts/Main";
-import Home from "../Pages/Home";
-import SignUp from "../Pages/SignUp";
-import SignIn from "../Pages/SignIn";
+
+import React from 'react';
+import { createBrowserRouter } from 'react-router-dom';
+import Main from '../Layouts/Main';
+import Home from '../Pages/Home';
+import LatestNewsSection from '../Components/LatestNewsSection';
+import BusinessNewsSection from '../Components/BusinessNewsSection';
+import SportsNewsSection from '../Components/SportsNewsSection';
+import SignUp from '../Pages/SignUp';
+import SignIn from '../Pages/SignIn';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Main />,
     children: [
       {
         path: '/',
-        element: <Home />
+        element: <Home />,
+      },
+      // {
+      //   path: "/latest-news",
+      //   element: <LatestNewsSection />
+      // },
+      // {
+      //   path: "/business",
+      //   element: <BusinessNewsSection />
+      // },
+      // {
+      //   path: "/sports",
+      //   element: <SportsNewsSection />
+      // },
+      {
+        path: 'signup',
+        element: <SignUp />,
       },
       {
-        path:'signup',
-        element: <SignUp />
+        path: 'signin',
+        element: <SignIn />,
       },
-      {
-        path:'signin',
-        element: <SignIn />
-      }
-    ]
+    ],
   },
 ]);
 
