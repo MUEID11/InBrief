@@ -12,7 +12,7 @@ const Home = () => {
       {/* editor pick banner */}
       {/* cards under editors pick */}
       {/* business & sports */}
-      {/* <TopCreators></TopCreators> */}
+      <TopCreators></TopCreators>
       {/* newslatter subscription */}
     </div>
   );
