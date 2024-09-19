@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
@@ -7,7 +6,6 @@ import Home from '../Pages/Home';
 import LatestNewsSection from '../Components/LatestNewsSection';
 import BusinessNewsSection from '../Components/BusinessNewsSection';
 import SportsNewsSection from '../Components/SportsNewsSection';
-// import Home from '../Pages/Home';
 import SignUp from '../Pages/SignUp';
 import SignIn from '../Pages/SignIn';
 
