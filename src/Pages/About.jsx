@@ -137,6 +137,8 @@ const About = () => {
             <button className="bg-red-600 text-white font-semibold py-3 px-10 rounded-lg transition-all duration-500 hover:bg-red-700 mt-6">Join Us Now</button>
           </Link>
         </div>
+
+        {/* JOIN US CTA */}
         <div className="w-1/2 max-sm:w-full">
           <img src={about3} alt="" />
         </div>
