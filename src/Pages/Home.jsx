@@ -1,4 +1,3 @@
-import Newsletter from "../Components/Newsletter";
 import TopCreators from "../Components/TopCreators";
 
 
@@ -14,7 +13,7 @@ const Home = () => {
       {/* cards under editors pick */}
       {/* business & sports */}
       {/* <TopCreators></TopCreators> */}
-      {/* <Newsletter></Newsletter> */}
+      {/* newslatter subscription */}
     </div>
   );
 };
