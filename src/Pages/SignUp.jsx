@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "./../assets/logo.png";
 import whitelogo from "./../assets/whitelogo.png";
 import { FcGoogle } from "react-icons/fc";
@@ -130,12 +131,12 @@ const SignUp = () => {
           {/* Sign Up Link */}
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
-            <a
-              href="#"
+            <Link
+              to='/signin'
               className="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline"
             >
               or sign in
-            </a>
+            </Link>
             <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
           </div>
         </div>
