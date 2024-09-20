@@ -1,4 +1,6 @@
+import { FaArrowRight } from 'react-icons/fa6';
 import TopLatestNewsCard from './TopLatestNewsCard';
+import { Link } from 'react-router-dom';
 
 const fakeData = [
   {
@@ -64,7 +66,12 @@ const TopLatestNews = () => {
     <section className='mt-14'>
       <header className="flex items-center justify-between mb-3">
         <h3 className="text-3xl font-bold ml-2 my-2">Top Latest News</h3>
-        <span className="text-red-600 font-semibold mr-2">See All -&gt;</span>
+        <Link
+          to={'/toplatest'}
+          className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300"
+        >
+          See All <FaArrowRight />
+        </Link>
       </header>
 
       <main>

@@ -1,5 +1,6 @@
 import { FaArrowRight } from "react-icons/fa";
 import editorimage from "../assets/editorPick.jpg";
+import { Link } from "react-router-dom";
 
 const EditorPicks = () => {
   return (
@@ -7,10 +8,12 @@ const EditorPicks = () => {
       {/* editor's picks title */}
       <div className="flex justify-between items-center">
         <h2 className="font-semibold text-3xl font-inter">Editor's Pick</h2>
-        <button className="text-red-600 text-lg font-semibold flex items-center gap-2">
-          {" "}
-          See all <FaArrowRight className="text-lg" />
-        </button>
+        <Link
+          to={'/editorpick'}
+          className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300"
+        >
+          See All <FaArrowRight />
+        </Link>
       </div>
 
       {/* editor picks banner  */}

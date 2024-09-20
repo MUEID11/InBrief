@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const TopCreators = () => {
   const fakeData = [
@@ -37,10 +38,12 @@ const TopCreators = () => {
     <div className="container mx-auto my-4">
       <div className="flex justify-between items-center">
         <h2 className="font-bold text-3xl font-inter">Top Creator</h2>
-        <button className="text-red-600 text-lg font-semibold flex items-center gap-2">
-          {" "}
-          See all <FaArrowRight className="text-lg" />
-        </button>
+        <Link
+          to={'/topcreator'}
+          className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300"
+        >
+          See All <FaArrowRight />
+        </Link>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-6">
         {creators.map((creator, index) => (

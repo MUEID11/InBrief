@@ -26,9 +26,9 @@ const NewsSection = ({ title, articles, link }) => {
         <h2 className="font-bold text-3xl">{title}</h2>
         <Link
           to={link}
-          className="flex items-center gap-1 font-bold text-blue-500 hover:text-blue-700 transition-colors duration-300"
+          className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300"
         >
-          View All <FaArrowRight />
+          See All <FaArrowRight />
         </Link>
       </div>
 
