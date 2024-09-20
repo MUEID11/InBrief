@@ -10,6 +10,7 @@ import SportsNewsSection from "../Components/SportsNewsSection";
 import TopCreators from "../Components/TopCreators";
 import Banner from "../Components/Banner";
 import Newsletter from "../Components/Newsletter";
+import MustRead from "../Components/MustRead";
 const Home = () => {
   return (
     <div>
@@ -19,7 +20,7 @@ const Home = () => {
       <TopLatestNews />
       {/* bulletin news/sponsors */}
       <Sponsors />
-      {/* must read */}
+      {/* must read */}<MustRead></MustRead>
       {/* editor pick banner */}
       {/* cards under editors pick */}
       <LatestNewsSection />
