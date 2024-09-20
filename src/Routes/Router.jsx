@@ -1,4 +1,3 @@
-
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../Layouts/Main';
 import Home from '../Pages/Home';
@@ -7,6 +6,7 @@ import Home from '../Pages/Home';
 // import SportsNewsSection from '../Components/SportsNewsSection';
 import SignUp from '../Pages/SignUp';
 import SignIn from '../Pages/SignIn';
+import About from '../Pages/About';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/about',
+        element: <About />,
       },
       // {
       //   path: "/latest-news",
