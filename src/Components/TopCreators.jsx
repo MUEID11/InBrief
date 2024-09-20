@@ -36,7 +36,7 @@ const TopCreators = () => {
   return (
     <div className="container mx-auto my-4">
       <div className="flex justify-between items-center">
-        <h2 className="font-semibold text-3xl font-inter">Top Creator</h2>
+        <h2 className="font-bold text-3xl font-inter">Top Creator</h2>
         <button className="text-red-600 text-lg font-semibold flex items-center gap-2">
           {" "}
           See all <FaArrowRight className="text-lg" />

@@ -1,5 +1,4 @@
 import whiteLogo from './../assets/whiteLogo.png'
- 
 const SignIn = () => {
   return (
     <section className="contianer mx-auto h-screen flex items-center justify-center">

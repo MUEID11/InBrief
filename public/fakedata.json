@@ -1,0 +1,141 @@
+{
+    "latestNews": [
+      {
+        "headline": "Global Climate Summit 2024 Begins",
+        "summary": "World leaders gather to discuss new policies on climate change in a summit that promises to bring major global reforms.",
+        "description": "The Global Climate Summit 2024 has kicked off with leaders from over 100 countries convening to address pressing environmental issues. Key topics include reducing carbon emissions, promoting renewable energy sources, and implementing sustainable practices across various industries. Experts anticipate significant policy announcements aimed at combating climate change and fostering international cooperation.",
+        "author": "John Doe",
+        "date": "2024-09-18",
+        "source": "Global News",
+        "region": "International",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/climate-summit"
+      },
+      {
+        "headline": "Breakthrough in Cancer Research",
+        "summary": "Scientists announce a major breakthrough in cancer research, bringing hope to millions of patients worldwide.",
+        "description": "A team of researchers has developed a new treatment that shows promising results in targeting and eliminating cancer cells without harming healthy tissue. This breakthrough could revolutionize cancer therapy, offering more effective and less invasive options for patients. Clinical trials are set to begin next year, with the potential to significantly improve survival rates.",
+        "author": "Maria Garcia",
+        "date": "2024-09-17",
+        "source": "Health Times",
+        "region": "International",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/cancer-research"
+      },
+      {
+        "headline": "Wildfires Continue to Ravage California",
+        "summary": "California faces one of its worst wildfire seasons, with thousands of residents forced to evacuate.",
+        "description": "The state of California is battling an intense wildfire season, with numerous fires spreading rapidly due to dry conditions and high winds. Emergency services are stretched thin as they work tirelessly to contain the blazes and protect communities. Residents are advised to stay informed, follow evacuation orders, and take necessary precautions to ensure their safety.",
+        "author": "Anna Williams",
+        "date": "2024-09-16",
+        "source": "USA Today",
+        "region": "North America",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/california-wildfires"
+      },
+      {
+        "headline": "New COVID-19 Variant Detected in Europe",
+        "summary": "A new variant of COVID-19 has been detected in Europe, prompting concerns of a potential new wave of infections.",
+        "description": "Health authorities in Europe have identified a new variant of the COVID-19 virus, which appears to be more transmissible. Researchers are closely monitoring its spread and assessing the effectiveness of existing vaccines against it. Governments are considering reintroducing certain public health measures to curb the potential rise in cases and prevent overwhelming healthcare systems.",
+        "author": "James Lee",
+        "date": "2024-09-15",
+        "source": "BBC News",
+        "region": "Europe",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/covid-variant"
+      }
+    ],
+    "businessNews": [
+      {
+        "headline": "Tech Giants Post Record Profits in Q3",
+        "summary": "Leading tech companies report unprecedented profits in the third quarter, driven by growth in AI and cloud services.",
+        "description": "In the third quarter of 2024, major technology firms have reported record-breaking profits, surpassing analyst expectations. The surge is attributed to advancements in artificial intelligence, increased demand for cloud computing solutions, and successful product launches. Investors are optimistic about continued growth in the tech sector, despite ongoing global economic uncertainties.",
+        "author": "Jane Smith",
+        "date": "2024-09-18",
+        "source": "Business Insider",
+        "region": "International",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/tech-profits"
+      },
+      {
+        "headline": "Stock Markets Show Signs of Recovery",
+        "summary": "Global stock markets rebound as investor confidence grows following a turbulent period of economic uncertainty.",
+        "description": "After several months of volatility and downturns, global stock markets are beginning to show signs of recovery. Key indices in North America, Europe, and Asia have posted gains, driven by positive economic data, easing geopolitical tensions, and increased corporate earnings. Analysts suggest that sustained investor confidence could lead to a more stable market environment in the coming months.",
+        "author": "Chris Lee",
+        "date": "2024-09-16",
+        "source": "MarketWatch",
+        "region": "North America",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/stock-market"
+      },
+      {
+        "headline": "Amazon Expands Drone Delivery Service",
+        "summary": "Amazon announces the expansion of its drone delivery service to new cities, aiming to revolutionize online shopping.",
+        "description": "In a bold move to enhance its logistics capabilities, Amazon has unveiled plans to expand its drone delivery service to additional urban areas across the United States. This initiative aims to reduce delivery times, decrease carbon emissions, and improve overall customer satisfaction. The company is collaborating with local authorities to ensure compliance with aviation regulations and public safety standards.",
+        "author": "Emily Turner",
+        "date": "2024-09-15",
+        "source": "The Verge",
+        "region": "North America",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/amazon-drones"
+      },
+      {
+        "headline": "China’s Economic Growth Slows in 2024",
+        "summary": "China's economy shows signs of slowing, raising concerns about the global economic outlook for the coming year.",
+        "description": "Recent economic indicators suggest that China's growth rate has decelerated in the first half of 2024. Factors contributing to this slowdown include reduced consumer spending, challenges in the real estate sector, and ongoing trade tensions with key international partners. Economists are monitoring the situation closely, as China's economic performance has significant implications for the global market.",
+        "author": "Kevin Zhang",
+        "date": "2024-09-14",
+        "source": "Financial Times",
+        "region": "Asia",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/china-growth"
+      }
+    ],
+    "sportsNews": [
+      {
+        "headline": "UEFA Champions League Kicks Off",
+        "summary": "Europe’s top football clubs are set to clash as the highly anticipated UEFA Champions League season starts this week.",
+        "description": "The UEFA Champions League has officially begun, featuring intense matchups between Europe's elite football clubs. Fans are eagerly anticipating thrilling games, standout performances, and potential upsets as teams vie for the prestigious title. Key players from top leagues are expected to make significant impacts, adding excitement to the tournament.",
+        "author": "Alex Johnson",
+        "date": "2024-09-18",
+        "source": "Sports Today",
+        "region": "Europe",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/uefa-champions"
+      },
+      {
+        "headline": "Olympic Games 2024: Preparation in Full Swing",
+        "summary": "Countries around the world ramp up preparations for the upcoming Olympic Games in Paris.",
+        "description": "As the Olympic Games 2024 approach, host city Paris is finalizing venue preparations, while participating nations are intensifying their training programs. The event promises to showcase exceptional athleticism, cultural exchanges, and innovative event management. Organizers are implementing sustainable practices to ensure a memorable and environmentally responsible Games.",
+        "author": "Liam Brown",
+        "date": "2024-09-15",
+        "source": "Olympics Daily",
+        "region": "Global",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/olympic-preparations"
+      },
+      {
+        "headline": "Tennis: US Open Final Sees Historic Victory",
+        "summary": "A thrilling US Open final ends with a historic victory for the underdog, making headlines worldwide.",
+        "description": "In an exhilarating final match at the US Open, an underdog player clinched the championship title against the reigning champion. The match was marked by intense rallies, strategic plays, and remarkable resilience, captivating audiences both in the stadium and globally through live broadcasts. This victory is celebrated as a significant milestone in the player's career and the sport's history.",
+        "author": "Sara Thompson",
+        "date": "2024-09-12",
+        "source": "ESPN",
+        "region": "North America",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/us-open-final"
+      },
+      {
+        "headline": "F1: Hamilton Takes Pole Position in Italian GP",
+        "summary": "Lewis Hamilton claims pole position at the Italian Grand Prix, setting up an exciting race weekend.",
+        "description": "Lewis Hamilton secured the pole position at the Italian Grand Prix, demonstrating exceptional skill and speed during qualifying rounds. This achievement sets the stage for a highly anticipated race, with competitors strategizing to challenge for the top spot. Fans are looking forward to witnessing a competitive and action-packed Grand Prix event.",
+        "author": "Tom Harris",
+        "date": "2024-09-10",
+        "source": "Formula1 News",
+        "region": "Europe",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/italian-gp"
+      }
+    ]
+  }
+  
