@@ -1,5 +1,3 @@
-// src/Components/BusinessNewsSection.jsx
-
 import { useEffect, useState } from "react";
 import NewsSection from "./NewsSection";
 

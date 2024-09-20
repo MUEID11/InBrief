@@ -22,7 +22,7 @@ const NewsSection = ({ title, articles, link }) => {
   return (
     <div className="sm:mt-14 mt-6">
       {/* Header with Title and "View All" Link */}
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center">
         <h2 className="font-bold text-3xl">{title}</h2>
         <Link
           to={link}

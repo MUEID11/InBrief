@@ -1,8 +1,5 @@
-
-
 import { useEffect, useState } from "react";
 import NewsSection from "./NewsSection";
-
 
 const SportsNewsSection = () => {
   const [articles, setArticles] = useState([]);
@@ -47,7 +44,15 @@ const SportsNewsSection = () => {
     );
   }
 
-  return <NewsSection title="Sports" articles={articles} link="/sports" />;
+  return (
+    <div className="m-2 sm:m-0">
+      <NewsSection
+        title="Sports News"
+        articles={articles}
+        link="/sports-news"
+      />
+    </div>
+  );
 };
 
 export default SportsNewsSection;
