@@ -114,7 +114,7 @@ const MustRead = () => {
             <button className="bg-blue-500 text-white rounded-full w-[23px]   text-[9px]">
             BNN
             </button>
-            <p>.</p>
+            <p>Goal.</p>
             <p>10 hours ago</p>
           </div>
 
@@ -122,7 +122,7 @@ const MustRead = () => {
             Inside Qatar's city of the future...
           </h3>
           <div className="flex gap-2 text-sm  text-gray-600 font-medium">
-            <p className="text-red-600 text-sm">Travel.</p>
+            <p className="text-red-600 text-sm">Sports.</p>
 
             <p>8 min read</p>
           </div>
