@@ -7,9 +7,11 @@ const EditorPicks = () => {
     <div className="p-2 container mx-auto rounded-lg">
       {/* editor's picks title */}
       <div className="flex justify-between items-center">
-        <h2 className="font-semibold text-3xl font-inter">Editor's Pick</h2>
+        <h2 className="font-bold sm:text-3xl text-2xl font-inter">
+          Editor's Pick
+        </h2>
         <Link
-          to={'/editorpick'}
+          to={"/editorpick"}
           className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300"
         >
           See All <FaArrowRight />
@@ -24,7 +26,7 @@ const EditorPicks = () => {
           alt="news image"
         />
         <div className="relative p-10 pt-32  ">
-        <div className="flex gap-2 text-[16px] text-white opacity-50">
+          <div className="flex gap-2 text-[16px] text-white opacity-50">
             <p>MacRumors :</p>
             <p>5 hours ago</p>
           </div>

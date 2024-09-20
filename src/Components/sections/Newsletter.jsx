@@ -1,6 +1,7 @@
 const Newsletter = () => {
   return (
-    <div className="bg-gray-200 container mx-auto rounded-lg p-10 mt-12 flex flex-col md:flex-row items-center justify-between gap-4">
+    <section className="sm:m-0 m-2">
+      <div className="bg-violet-200 container mx-auto rounded-lg sm:p-10 p-4 mt-12 flex flex-col md:flex-row items-center justify-between gap-4 ">
       <div className="w-full text-center md:w-1/2 ">
         <p className="text-gray-600 font-semibold font-inter text-lg text-star">
           {" "}
@@ -19,6 +20,7 @@ const Newsletter = () => {
         </button>
       </div>
     </div>
+    </section>
   );
 };
 

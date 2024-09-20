@@ -37,9 +37,11 @@ const TopCreators = () => {
   return (
     <div className="container mx-auto my-4 p-2">
       <div className="flex justify-between items-center">
-        <h2 className="font-bold text-3xl font-inter">Top Creator</h2>
+        <h2 className="font-bold sm:text-3xl text-2xl font-inter mb-4">
+          Top Creator
+        </h2>
         <Link
-          to={'/topcreator'}
+          to={"/topcreator"}
           className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300"
         >
           See All <FaArrowRight />
@@ -51,12 +53,12 @@ const TopCreators = () => {
             <div>
               <img
                 src={creator.image}
-                className="rounded-full size-20"
+                className="rounded-full size-14 sm:size-20"
               />
             </div>
             <div>
-              <h3 className="text-xl font-semibold">{creator.name}</h3>
-              <p className="text-red-600 text-lg font-medium">{creator.channel}</p>
+              <h3 className="sm:text-xl font-semibold">{creator.name}</h3>
+              <p className="text-red-600 font-bold">{creator.channel}</p>
             </div>
           </div>
         ))}

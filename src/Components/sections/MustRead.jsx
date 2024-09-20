@@ -6,9 +6,9 @@ const MustRead = () => {
     <div className="my-2 p-2 container mx-auto mt-4 sm:mt-12">
       {/* Must read title */}
       <div className="flex justify-between items-center">
-        <h2 className="font-bold text-3xl font-inter">Must read</h2>
+        <h2 className="font-bold sm:text-3xl text-2xl font-inter">Must read</h2>
         <Link
-          to={'/mustread'}
+          to={"/mustread"}
           className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300"
         >
           See All <FaArrowRight />
@@ -55,85 +55,84 @@ const MustRead = () => {
             src="https://static.vecteezy.com/system/resources/previews/029/630/494/non_2x/handsome-young-male-singer-holds-a-microphone-stand-and-performs-on-a-concert-stage-free-photo.jpeg"
             alt="singer"
           />
-          
+
           <div className="relative p-4 h-full flex items-end">
             <div>
-            <div className="flex gap-2 text-sm my-2 text-white">
-              <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">
-                CNN
-              </button>
-              <p className="opacity-70">CNN.</p>
-              <p className="opacity-70">10 hours ago</p>
-            </div>
-            <h2 className="text-2xl font-serif font-semibold text-white">
-              John Legend is sending a poweful message to woman on the Eras ...
-            </h2>
-            <p className="text-white  text-[13px] line-clamp-2  ">
-              My first singing of discomfort at jhon legend show in Las vegas
-              hit after the infected beast faded from fan favourite crual
-              summer the...
-            </p>
-            <div className="flex gap-2 text-[13px] text-white opacity-50">
-              <p>Entertainment :</p>
-              <p>10 min read</p>
+              <div className="flex gap-2 text-sm my-2 text-white">
+                <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">
+                  CNN
+                </button>
+                <p className="opacity-70">CNN.</p>
+                <p className="opacity-70">10 hours ago</p>
+              </div>
+              <h2 className="text-2xl font-serif font-semibold text-white">
+                John Legend is sending a poweful message to woman on the Eras
+                ...
+              </h2>
+              <p className="text-white  text-[13px] line-clamp-2  ">
+                My first singing of discomfort at jhon legend show in Las vegas
+                hit after the infected beast faded from fan favourite crual
+                summer the...
+              </p>
+              <div className="flex gap-2 text-[13px] text-white opacity-50">
+                <p>Entertainment :</p>
+                <p>10 min read</p>
+              </div>
             </div>
           </div>
-            </div>
         </div>
         {/* 3rd part */}
         <div className="h-[460px] space-y-3">
-            <div className="h-1/2 flex flex-col justify-between gap-2">
+          <div className="h-1/2 flex flex-col justify-between gap-2">
             <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgqWjWGH35qJaMXEyu0TR0fElmLTm7Ktq3uNLfrq-R-6djDAyybB5SxNfXH4e0X9eJ5Mg&usqp=CAU"
-            className=" rounded-lg h-1/2 w-full flex-1"
-            alt=""
-          />
-          <div>
-            <div className="flex gap-2 text-sm mt-1 text-gray-600 font-medium">
-            <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">
-            BNN
-            </button>
-            <p>BNN NEWS.</p>
-            <p>10 hours ago</p>
-          </div>
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgqWjWGH35qJaMXEyu0TR0fElmLTm7Ktq3uNLfrq-R-6djDAyybB5SxNfXH4e0X9eJ5Mg&usqp=CAU"
+              className=" rounded-lg h-1/2 w-full flex-1"
+              alt=""
+            />
+            <div>
+              <div className="flex gap-2 text-sm mt-1 text-gray-600 font-medium">
+                <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">
+                  BNN
+                </button>
+                <p>BNN NEWS.</p>
+                <p>10 hours ago</p>
+              </div>
 
-          <h3 className="text-lg font-medium font-inter">
-            Inside Qatar's city of the future...
-          </h3>
-          <div className="flex gap-2 text-sm  text-gray-600 font-medium">
-            <p className="text-red-600 text-sm">Travel.</p>
+              <h3 className="text-lg font-medium font-inter">
+                Inside Qatar's city of the future...
+              </h3>
+              <div className="flex gap-2 text-sm  text-gray-600 font-medium">
+                <p className="text-red-600 text-sm">Travel.</p>
 
-            <p>8 min read</p>
-          </div>
-          </div>
-
+                <p>8 min read</p>
+              </div>
             </div>
-            <div className="h-1/2 flex flex-col justify-between gap-2">
+          </div>
+          <div className="h-1/2 flex flex-col justify-between gap-2">
             <img
-            src="https://st2.depositphotos.com/1000423/11236/i/450/depositphotos_112364010-stock-photo-soccer-game-in-action.jpg"
-            className=" rounded-lg h-1/2 w-full flex-1"
-            alt=""
-          />
-          <div>
-            <div className="flex gap-2 text-sm mt-1 text-gray-600 font-medium">
-            <button className="bg-blue-500 text-white rounded-full size-6   text-[9px]">
-            BNN
-            </button>
-            <p>Goal.</p>
-            <p>10 hours ago</p>
-          </div>
+              src="https://st2.depositphotos.com/1000423/11236/i/450/depositphotos_112364010-stock-photo-soccer-game-in-action.jpg"
+              className=" rounded-lg h-1/2 w-full flex-1"
+              alt=""
+            />
+            <div>
+              <div className="flex gap-2 text-sm mt-1 text-gray-600 font-medium">
+                <button className="bg-blue-500 text-white rounded-full size-6   text-[9px]">
+                  BNN
+                </button>
+                <p>Goal.</p>
+                <p>10 hours ago</p>
+              </div>
 
-          <h3 className="text-lg font-medium font-inter">
-            Inside Qatar's city of the future...
-          </h3>
-          <div className="flex gap-2 text-sm  text-gray-600 font-medium">
-            <p className="text-red-600 text-sm">Sports.</p>
+              <h3 className="text-lg font-medium font-inter">
+                Inside Qatar's city of the future...
+              </h3>
+              <div className="flex gap-2 text-sm  text-gray-600 font-medium">
+                <p className="text-red-600 text-sm">Sports.</p>
 
-            <p>8 min read</p>
-          </div>
-          </div>
-
+                <p>8 min read</p>
+              </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
