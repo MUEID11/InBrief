@@ -53,7 +53,7 @@ const NewsCard = ({ article }) => {
         </div>
 
         {/* Description */}
-        <p className="text-gray-700 dark:text-gray-300 mb-4">
+        <p className="text-gray-700 mb-4">
           {isExpanded
             ? article.description
             : `${article.description.substring(0, 100)}...`}

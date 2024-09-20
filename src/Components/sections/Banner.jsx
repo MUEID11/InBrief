@@ -2,7 +2,7 @@ const Banner = () => {
   return (
     <section className="w-full mx-auto md:my-8 my-4">
       <div
-        className="w-full mx-auto p-2 sm:p-6 bg-violet-100 rounded-2xl border bg-repeat bg-cover"
+        className="w-full mx-auto p-2 sm:p-6 bg-violet-100 rounded-2xl border bg-repeat bg-cover sm:mb-8 mb-4"
         // style={{
         //   backgroundImage: "url(https://i.ibb.co.com/hH3Gj9n/preview.jpg)",
         // }}
