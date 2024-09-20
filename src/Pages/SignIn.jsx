@@ -1,4 +1,5 @@
-import whiteLogo from './../assets/whiteLogo.png'
+import { Link } from 'react-router-dom';
+import Logo from './../assets/logo.png'
 const SignIn = () => {
   return (
     <section className="contianer mx-auto h-screen flex items-center justify-center">
@@ -16,7 +17,7 @@ const SignIn = () => {
     <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
       {/* Logo */}
       <div className="flex justify-center mx-auto">
-        <img className="w-auto h-7 sm:h-8" src={whiteLogo} alt="Logo" />
+        <img className="w-auto h-7 sm:h-8" src={Logo} alt="Logo" />
       </div>
 
       <p className="mt-3 text-xl text-center text-gray-600 dark:text-gray-200">
@@ -121,12 +122,12 @@ const SignIn = () => {
       {/* Sign Up Link */}
       <div className="flex items-center justify-between mt-4">
         <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
-        <a
-          href="#"
+        <Link
+          to='/signup'
           className="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline"
         >
-          or sign in
-        </a>
+          or sign up
+        </Link>
         <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
       </div>
     </div>
