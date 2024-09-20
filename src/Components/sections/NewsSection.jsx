@@ -1,26 +1,26 @@
 // src/Components/NewsSection.jsx
 
-import PropTypes from 'prop-types';
-import NewsCard from './NewsCard';
-import { FaArrowRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
+import NewsCard from "../Component/NewsCard";
+import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const NewsSection = ({ title, articles, link }) => {
   // Function to determine grid columns based on the section title
   const getGridColumns = () => {
     switch (title) {
-      case 'Latest News':
-        return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4';
-      case 'Business':
-      case 'Sports':
-        return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-2';
+      case "Latest News":
+        return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+      case "Business":
+      case "Sports":
+        return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2";
       default:
-        return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-2';
+        return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2";
     }
   };
 
   return (
-    <div className="mt-14">
+    <div className="sm:mt-14 mt-6">
       {/* Header with Title and "View All" Link */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="font-bold text-3xl">{title}</h2>
@@ -33,7 +33,7 @@ const NewsSection = ({ title, articles, link }) => {
       </div>
 
       {/* Grid of News Cards */}
-      <div className={`grid ${getGridColumns()} gap-4`}>
+      <div className={`grid ${getGridColumns()} gap-6`}>
         {Array.isArray(articles) && articles.length > 0 ? (
           articles.map((article, index) => (
             <NewsCard key={index} article={article} />

@@ -1,7 +1,7 @@
 // src/Components/BusinessNewsSection.jsx
 
-import { useEffect, useState } from 'react';
-import NewsSection from './NewsSection';
+import { useEffect, useState } from "react";
+import NewsSection from "./NewsSection";
 
 const BusinessNewsSection = () => {
   const [articles, setArticles] = useState([]);
@@ -10,19 +10,19 @@ const BusinessNewsSection = () => {
 
   // Fetch Business News data from fakedata.json
   useEffect(() => {
-    fetch('/fakedata.json')
-      .then(response => {
+    fetch("/fakedata.json")
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         setArticles(data.businessNews);
         setLoading(false);
       })
-      .catch(err => {
-        console.error('Error fetching Business News:', err);
+      .catch((err) => {
+        console.error("Error fetching Business News:", err);
         setError(true);
         setLoading(false);
       });
@@ -39,17 +39,17 @@ const BusinessNewsSection = () => {
   if (error) {
     return (
       <div className="flex items-center justify-center p-4">
-        <p className="text-xl text-red-500">Failed to load Business News. Please try again later.</p>
+        <p className="text-xl text-red-500">
+          Failed to load Business News. Please try again later.
+        </p>
       </div>
     );
   }
 
   return (
-    <NewsSection
-      title="Business"
-      articles={articles}
-      link="/business"
-    />
+    <div className="m-2 sm:m-0">
+      <NewsSection title="Business" articles={articles} link="/business" />
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ const Banner = () => {
   return (
     <section className="w-full mx-auto md:my-8 my-4">
       <div
-        className="w-full mx-auto p-4 bg-gray-200 rounded-2xl border bg-repeat bg-cover"
+        className="w-full mx-auto p-2 sm:p-6 bg-violet-100 rounded-2xl border bg-repeat bg-cover"
         // style={{
         //   backgroundImage: "url(https://i.ibb.co.com/hH3Gj9n/preview.jpg)",
         // }}
@@ -22,7 +22,7 @@ const Banner = () => {
       </div>
 
       {/* Banner */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 m-2 sm:m-0">
         {/* Image Section */}
         <div className="rounded-xl">
           <div

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FaRegPenToSquare } from 'react-icons/fa6';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import MyImageSvg from '../assets/digital-news.gif';
+import MyImageSvg from '../../assets/digital-news.gif';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

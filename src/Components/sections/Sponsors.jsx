@@ -48,7 +48,7 @@ const sponsorData = [
 
 const Sponsors = () => {
   return (
-    <section className="mt-14">
+    <section className="sm:mt-14 mt-6">
       <header className="mb-8">
         <h3 className="text-3xl font-bold ml-2">Sponsors</h3>
       </header>

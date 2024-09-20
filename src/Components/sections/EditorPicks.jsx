@@ -1,10 +1,10 @@
 import { FaArrowRight } from "react-icons/fa";
-import editorimage from "../assets/editorPick.jpg";
+import editorimage from "../../assets/editorPick.jpg";
 import { Link } from "react-router-dom";
 
 const EditorPicks = () => {
   return (
-    <div className="p-3 container mx-auto rounded-lg">
+    <div className="p-2 container mx-auto rounded-lg">
       {/* editor's picks title */}
       <div className="flex justify-between items-center">
         <h2 className="font-semibold text-3xl font-inter">Editor's Pick</h2>

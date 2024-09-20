@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const MustRead = () => {
   return (
-    <div className="my-6 container mx-auto p-4 mt-4 sm:mt-12">
+    <div className="my-2 p-2 container mx-auto mt-4 sm:mt-12">
       {/* Must read title */}
       <div className="flex justify-between items-center">
         <h2 className="font-bold text-3xl font-inter">Must read</h2>
