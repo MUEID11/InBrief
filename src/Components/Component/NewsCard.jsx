@@ -53,7 +53,7 @@ const NewsCard = ({ article }) => {
         </div>
 
         {/* Description */}
-        <p className="text-gray-700 mb-4">
+        <p className="text-sm text-gray-600  mb-4">
           {isExpanded
             ? article.description
             : `${article.description.substring(0, 100)}...`}
@@ -62,7 +62,7 @@ const NewsCard = ({ article }) => {
         {/* Read More Button */}
         <button
           onClick={toggleDescription}
-          className="mt-auto text-red-500 text-sm hover:underline"
+          className="mt-auto text-red-500 text-sm hover:underline "
         >
           {isExpanded ? "Show Less" : "Read More"}
         </button>

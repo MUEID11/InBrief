@@ -23,7 +23,7 @@ const NewsSection = ({ title, articles, link }) => {
     <div className="sm:mt-14 mt-6">
       {/* Header with Title and "View All" Link */}
       <div className="flex justify-between items-center">
-        <h2 className="font-bold sm:text-3xl text-2xl mb-4">{title}</h2>
+        <h2 className="text-2xl md:text-3xl font-inter font-semibold  mb-4">{title}</h2>
         <Link
           to={link}
           className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300"
