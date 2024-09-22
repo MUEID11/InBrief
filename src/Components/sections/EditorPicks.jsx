@@ -7,12 +7,12 @@ const EditorPicks = () => {
     <div className="p-2 container mx-auto rounded-lg">
       {/* editor's picks title */}
       <div className="flex justify-between items-center">
-        <h2 className="font-bold sm:text-3xl text-2xl font-inter">
+        <h2 className="text-2xl md:text-3xl font-inter font-semibold ">
           Editor's Pick
         </h2>
         <Link
           to={"/editorpick"}
-          className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300"
+          className="flex items-center gap-1 font-bold text-red-500 hover:text-red-600 transition-colors duration-300"
         >
           See All <FaArrowRight />
         </Link>
