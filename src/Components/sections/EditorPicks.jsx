@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 const EditorPicks = () => {
   return (
-    <div className="p-2 container mx-auto rounded-lg">
+    <div className=" container mx-auto rounded-lg mt-4 sm:mt-14">
       {/* editor's picks title */}
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl md:text-3xl font-inter font-semibold ">
+      <div className="flex justify-between items-center my-4">
+        <h2 className="font-bold sm:text-3xl text-2xl font-inter">
           Editor's Pick
         </h2>
         <Link
