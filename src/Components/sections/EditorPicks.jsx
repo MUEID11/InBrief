@@ -12,7 +12,7 @@ const EditorPicks = () => {
         </h2>
         <Link
           to={"/editorpick"}
-          className="flex items-center gap-1 font-bold text-red-500 hover:text-red-600 transition-colors duration-300"
+          className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300"
         >
           See All <FaArrowRight />
         </Link>

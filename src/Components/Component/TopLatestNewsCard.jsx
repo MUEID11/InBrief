@@ -15,7 +15,7 @@ const TopLatestNewsCard = ({ data }) => {
                 <span className="text-sm">{item.source?.name}</span>
               </div>
               <h4 className="font-bold my-2">{item.title}</h4>
-              <p className="text-sm mb-1">{item.description.slice(0, 100)}...</p>
+              <p className="text-sm text-gray-600 mb-1">{item.description.slice(0, 100)}...</p>
 
               <div className="flex gap-3 items-center">
                 <p className="text-red-500 font-semibold">{item.category}</p>

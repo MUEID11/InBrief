@@ -8,15 +8,15 @@ const Banner = () => {
         // }}
       >
         <div className="text-center p-4 bg-gray-50 rounded-lg shadow-lg">
-          <h1 className="text-xl font-semibold text-gray-800">
+          <h1 className="text-xl font-semibold text-gray-600">
             Welcome to InsightFlow
           </h1>
-          <p className="text-lg mt-2 text-gray-600">
+          <p className="text-lg mt-2 text-gray-800 font-bold">
             Crafting stories ✍️ that spark{" "}
             <span className="text-yellow-500 font-bold">inspiration</span> 💡,
             deliver <span className="text-blue-500 font-bold">knowledge</span>{" "}
             📘, and entertain with
-            <span className="text-red-500 font-bold">creativity</span> 🎥.
+            <span className="text-red-500 font-bold"> creativity</span> 🎥.
           </p>
         </div>
       </div>
@@ -46,7 +46,7 @@ const Banner = () => {
             </h2>
             <h2 className="mt-2 text-xl sm:text-2xl font-bold text-gray-900">
               Awami League is coming again
-            </h2>
+            </h2>   
             <p className="mt-2 text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
               convallis libero id lorem commodo, vel vehicula dui suscipit.
@@ -55,7 +55,7 @@ const Banner = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
             <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
-              <span className="text-red-700">Movies</span>
+              <span className="font-semibold text-red-700">Movies</span>
               <span>· 4 min read</span>
             </div>
           </div>
