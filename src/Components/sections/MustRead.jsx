@@ -6,7 +6,7 @@ const MustRead = () => {
     <div className="my-2 p-2 container mx-auto mt-4 sm:mt-12">
       {/* Must read title */}
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl md:text-3xl font-inter font-semibold  ">Must read</h2>
+        <h2 className="font-semibold  text-2xl md:text-3xl font-inter ">Must read</h2>
         <Link
           to={"/mustread"}
           className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300"
