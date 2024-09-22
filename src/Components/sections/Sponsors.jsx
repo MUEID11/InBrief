@@ -50,7 +50,7 @@ const Sponsors = () => {
   return (
     <section className="sm:mt-14 mt-6">
       <header className="mb-8">
-        <h3 className="sm:text-3xl text-2xl font-bold ml-2">Sponsors</h3>
+        <h3 className="text-2xl md:text-3xl font-inter font-semibold  ml-2">Sponsors</h3>
       </header>
       <main>
         <Marquee pauseOnHover={true}>

@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 gap-y-2 md:gap-y-5 text-center">
         <div>
           <h3 className="font-semibold text-xl">Business</h3>
-          <div className="text-slate-500 font-medium text-[17px]">
+          <div className="text-gray-600 font-medium ">
             <p>startup</p>
             <p>Employee</p>
             <p>Success</p>
@@ -19,7 +19,7 @@ const Footer = () => {
         </div>
         <div>
           <h3 className="font-semibold text-xl">Technology</h3>
-          <div className="text-slate-500 font-medium text-[17px]">
+          <div className="text-gray-600 font-medium">
             <p>Innovate</p>
             <p>Gadget</p>
             <p>Future Tech</p>
@@ -28,7 +28,7 @@ const Footer = () => {
         </div>
         <div>
           <h3 className="font-semibold text-xl">Travel</h3>
-          <div className="text-slate-500 font-medium text-[17px]">
+          <div className="text-gray-600 font-medium">
             <p>Destinations</p>
             <p>Food & Drink</p>
             <p>Stay</p>
@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
         <div>
           <h3 className="font-semibold text-xl">Sports</h3>
-          <div className="text-slate-500 font-medium text-[17px]">
+          <div className="text-gray-600 font-medium">
             <p>Football</p>
             <p>Tennis</p>
             <p>Golf</p>
@@ -46,7 +46,7 @@ const Footer = () => {
         </div>
         <div>
           <h3 className="font-semibold text-xl">Entertainment</h3>
-          <div className="text-slate-500 font-medium text-[17px]">
+          <div className="text-gray-600 font-medium">
             <p>Movies</p>
             <p>Artist</p>
             <p>Television</p>
@@ -55,7 +55,7 @@ const Footer = () => {
         </div>
         <div>
           <h3 className="font-semibold text-xl">Features</h3>
-          <div className="text-slate-500 font-medium text-[17px]">
+          <div className="text-gray-600 font-medium">
             <p>Call of Eart</p>
             <p>Freedom Project</p>
             <p>Inside Asia</p>
@@ -64,7 +64,7 @@ const Footer = () => {
         </div>
         <div>
           <h3 className="font-semibold text-xl">Weather</h3>
-          <div className="text-slate-500 font-medium text-[17px]">
+          <div className="text-gray-600 font-medium">
             <p>Climate</p>
             <p>Earthquake</p>
             <p>strom Tracker</p>
@@ -73,7 +73,7 @@ const Footer = () => {
         </div>
         <div>
           <h3 className="font-semibold text-xl">More</h3>
-          <div className="text-slate-500 font-medium text-[17px]">
+          <div className="text-gray-600 font-medium">
             <p>Design</p>
             <p>Invesment</p>
             <p>Worl for InBrief</p>

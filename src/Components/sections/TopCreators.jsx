@@ -38,6 +38,7 @@ const TopCreators = () => {
     <div className="container mx-auto my-4 sm:mt-14">
       <div className="flex justify-between items-center">
         <h2 className="font-bold sm:text-3xl text-2xl font-inter mb-4">
+
           Top Creator
         </h2>
         <Link
