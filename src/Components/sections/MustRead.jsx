@@ -1,16 +1,13 @@
-import { FaArrowRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const MustRead = () => {
   return (
-    <div className="my-2 p-2 container mx-auto mt-4 sm:mt-12">
+    <div className="my-2 p-2 container mx-auto mt-4 sm:mt-12 max-sm:px-2">
       {/* Must read title */}
       <div className="flex justify-between items-center">
         <h2 className="text-2xl md:text-3xl font-inter font-semibold  ">Must read</h2>
-        <Link
-          to={"/mustread"}
-          className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300"
-        >
+        <Link to={'/mustread'} className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300">
           See All <FaArrowRight />
         </Link>
       </div>
@@ -18,29 +15,18 @@ const MustRead = () => {
       <div className="my-6 grid grid-cols-1   md:grid-cols-3 gap-4">
         {/* 1st part */}
         <div className="">
-          <img
-            src="https://images.pexels.com/photos/20258/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
-            className=" rounded-lg "
-            alt=""
-          />
+          <img src="https://images.pexels.com/photos/20258/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600" className=" rounded-lg " alt="" />
 
           <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
-            <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">
-              CNN
-            </button>
+            <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">CNN</button>
             <p>CNN.</p>
             <p>10 hours ago</p>
           </div>
 
-          <h3 className="text-xl font-semibold font-inter">
-            Ukraine`s slience along southern front fuels counteroffensive...
-          </h3>
-          <p className="text-sm mt-1 text-gray-600 font-medium">
-            Ukraine CNN -
-          </p>
+          <h3 className="text-xl font-semibold font-inter">Ukraine`s slience along southern front fuels counteroffensive...</h3>
+          <p className="text-sm mt-1 text-gray-600 font-medium">Ukraine CNN -</p>
           <p className="text-[13px] mb-1 text-gray-600 font-medium">
-            Miles of empty feilds where ou might expect a build up of army Tanks
-            tracks that emerge in the mud frome nowhere...
+            Miles of empty feilds where ou might expect a build up of army Tanks tracks that emerge in the mud frome nowhere...
           </p>
           <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
             <p className="text-red-600 text-sm">War.</p>
@@ -59,20 +45,13 @@ const MustRead = () => {
           <div className="relative p-4 h-full flex items-end">
             <div>
               <div className="flex gap-2 text-sm my-2 text-white">
-                <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">
-                  CNN
-                </button>
+                <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">CNN</button>
                 <p className="opacity-70">CNN.</p>
                 <p className="opacity-70">10 hours ago</p>
               </div>
-              <h2 className="text-2xl font-serif font-semibold text-white">
-                John Legend is sending a poweful message to woman on the Eras
-                ...
-              </h2>
+              <h2 className="text-2xl font-serif font-semibold text-white">John Legend is sending a poweful message to woman on the Eras ...</h2>
               <p className="text-white  text-[13px] line-clamp-2  ">
-                My first singing of discomfort at jhon legend show in Las vegas
-                hit after the infected beast faded from fan favourite crual
-                summer the...
+                My first singing of discomfort at jhon legend show in Las vegas hit after the infected beast faded from fan favourite crual summer the...
               </p>
               <div className="flex gap-2 text-[13px] text-white opacity-50">
                 <p>Entertainment :</p>
@@ -91,16 +70,12 @@ const MustRead = () => {
             />
             <div>
               <div className="flex gap-2 text-sm mt-1 text-gray-600 font-medium">
-                <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">
-                  BNN
-                </button>
+                <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">BNN</button>
                 <p>BNN NEWS.</p>
                 <p>10 hours ago</p>
               </div>
 
-              <h3 className="text-lg font-medium font-inter">
-                Inside Qatar's city of the future...
-              </h3>
+              <h3 className="text-lg font-medium font-inter">Inside Qatar&lsquo;s city of the future...</h3>
               <div className="flex gap-2 text-sm  text-gray-600 font-medium">
                 <p className="text-red-600 text-sm">Travel.</p>
 
@@ -116,16 +91,12 @@ const MustRead = () => {
             />
             <div>
               <div className="flex gap-2 text-sm mt-1 text-gray-600 font-medium">
-                <button className="bg-blue-500 text-white rounded-full size-6   text-[9px]">
-                  BNN
-                </button>
+                <button className="bg-blue-500 text-white rounded-full size-6   text-[9px]">BNN</button>
                 <p>Goal.</p>
                 <p>10 hours ago</p>
               </div>
 
-              <h3 className="text-lg font-medium font-inter">
-                Inside Qatar's city of the future...
-              </h3>
+              <h3 className="text-lg font-medium font-inter">Inside Qatar&lsquo;s city of the future...</h3>
               <div className="flex gap-2 text-sm  text-gray-600 font-medium">
                 <p className="text-red-600 text-sm">Sports.</p>
 
