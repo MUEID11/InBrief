@@ -31,7 +31,7 @@ const TopLatestNewsCard = ({ data }) => {
         {data.map((item) => (
           <article key={item.url} className="shadow-lg p-4 rounded-3xl">
             <Link to={item.url}>
-              <div className="flex gap-2">
+              <div className="flex gap-4">
                 <div className="w-1/2">
                   <img src={item.image} alt={item.title} className="rounded-2xl h-full object-cover" />
                 </div>
