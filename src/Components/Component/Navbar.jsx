@@ -29,7 +29,9 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center py-3 sm:py-5">
         {/* Logo */}
         <div>
-          <img src={logo} alt=" Image Svg" className="w-28 sm:w-44" />
+          <Link to={'/'}>
+            <img src={logo} alt=" Image Svg" className="w-28 sm:w-44" />
+          </Link>
         </div>
 
         {/* Hamburger Icon */}
