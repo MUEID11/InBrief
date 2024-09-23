@@ -4,9 +4,9 @@ import React from 'react';
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layouts/Main";
 import Home from '../Pages/Home';
-import LatestNewsSection from '../Components/LatestNewsSection';
-import BusinessNewsSection from '../Components/BusinessNewsSection';
-import SportsNewsSection from '../Components/SportsNewsSection';
+// import LatestNewsSection from '../Components/LatestNewsSection';
+// import BusinessNewsSection from '../Components/BusinessNewsSection';
+// import SportsNewsSection from '../Components/SportsNewsSection';
 
 const router = createBrowserRouter([
   {
