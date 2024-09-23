@@ -5,9 +5,12 @@ import logo from './../../assets/logo.png';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
   const navLinks = (
     <>
       <Link to="/" className="hover:text-neutral-700 transition-all duration-500">
@@ -30,7 +33,7 @@ const Navbar = () => {
         {/* Logo */}
         <div>
           <Link to={'/'}>
-            <img src={logo} alt=" Image Svg" className="w-28 sm:w-44" />
+            <img src={logo} alt=" Image Svg" className="w-36 sm:w-44" />
           </Link>
         </div>
 
@@ -49,9 +52,52 @@ const Navbar = () => {
             <h2 className="lg:mr-4 text-red-600 font-medium text-lg">Write</h2>
           </div>
 
-          <div className="hidden sm:flex">
+          {/* <div className="hidden sm:flex">
             <input type="text" placeholder="Search..." className="px-4 py-2 rounded-md text-gray-700  focus:ring-rose-300 focus:ring focus:outline-none border border-rose-300" />
+          </div> */}
+
+          <div className="relative">
+            <img
+              onClick={() => setIsDropDownOpen((prev) => !prev)}
+              className="w-[52px] h-[52px] rounded-full border p-[2px] border-red-500 cursor-pointer"
+              src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
+              alt="Medium avatar"
+            />
+            <div
+              id="dropdown"
+              className={`absolute right-3 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ${
+                isDropDownOpen ? 'opacity-0 cursor pointer-events-none select-none' : 'opacity-100'
+              } transition-all duration-300`}>
+              <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+                <li>
+                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Profile
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Dashboard
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Settings
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Sign out
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
+
+          <a className="group max-sm:hidden relative inline-block text-sm font-medium text-red-600 focus:outline-none focus:ring active:text-red-500" href="#">
+            <span className="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-red-600 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>
+
+            <span className="relative block border border-current bg-white px-8 py-3"> REGISTER </span>
+          </a>
 
           {/* Hamburger Icon (for tablet view) */}
           <div className="lg:hidden">
