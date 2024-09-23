@@ -43,7 +43,7 @@ const Navbar = () => {
         </div> */}
 
         {/* Links */}
-        <div className="hidden lg:flex space-x-3 sm:space-x-5 mr-0  text-red-600 text-lg font-bold uppercase">{navLinks}</div>
+        <div className="hidden lg:flex space-x-3 sm:space-x-5 mr-0  text-red-600 text-lg font-bold ">{navLinks}</div>
 
         {/* Write Icon and Search Input */}
         <div className="flex gap-2 items-center justify-center">
