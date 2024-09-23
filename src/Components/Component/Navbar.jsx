@@ -43,13 +43,13 @@ const Navbar = () => {
         </div> */}
 
         {/* Links */}
-        <div className="hidden lg:flex space-x-3 sm:space-x-5 mr-0  text-red-600 text-lg font-bold ">{navLinks}</div>
+        <div className="hidden lg:flex space-x-3 sm:space-x-5 mr-0 text-red-600 text-base font-bold uppercase">{navLinks}</div>
 
         {/* Write Icon and Search Input */}
         <div className="flex gap-2 items-center justify-center">
           <div className="hidden sm:flex items-center">
             <FaRegPenToSquare className="text-lg sm:text-xl" />
-            <h2 className="lg:mr-4 text-red-600 font-medium text-lg">Write</h2>
+            <h2 className="lg:mr-4 text-red-600 font-medium text-base">Write</h2>
           </div>
 
           {/* <div className="hidden sm:flex">
