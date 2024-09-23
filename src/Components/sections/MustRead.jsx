@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const MustRead = () => {
   return (
-    <section className="mt-6 sm:mt-12">
+    <div className="my-2 p-2 container mx-auto mt-4 sm:mt-12">
       {/* Must read title */}
-      <div className="flex justify-between items-center my-4">
-        <h2 className="font-semibold sm:text-3xl text-2xl font-inter">Must read</h2>
+      <div className="flex justify-between items-center">
+        <h2 className="font-bold sm:text-3xl text-2xl font-inter">Must read</h2>
         <Link
           to={"/mustread"}
           className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300"
@@ -14,88 +14,18 @@ const MustRead = () => {
           See All <FaArrowRight />
         </Link>
       </div>
-      <div className="grid grid-cols-12 gap-4 h-[700px]">
-        {/* Left large column */}
-        <div className="col-span-4 h-full">
-          {/* Content for the first column */}
-          <img
-            src="https://images.pexels.com/photos/20258/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
-            className=" rounded-lg "
-            alt=""
-          />
-
-          <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
-            <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">
-              CNN
-            </button>
-            <p>CNN.</p>
-            <p>10 hours ago</p>
-          </div>
-          <h3 className="text-xl font-semibold font-inter">
-            Ukraine`s slience along southern front fuels counteroffensive...
-          </h3>
-          <p className="text-sm mt-1 text-gray-600 font-medium">
-            Ukraine CNN -
-          </p>
-          <p className="text-[13px] mb-1 text-gray-600 font-medium">
-            Miles of empty feilds where ou might expect a build up of army Tanks
-            tracks that emerge in the mud frome nowhere...
-          </p>
-          <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
-            <p className="text-red-600 text-sm">War.</p>
-            <p>8 min read</p>
-          </div>
+      {/* must read cards */}
+      <div>
+        {/* left part */}
+        <div>
+          
         </div>
-
-        {/* Center large column */}
-        <div className="col-span-4 bg-gray-400 h-full">
-          {/* Content for the second column */}
-          <div className=" rounded-lg bg-gray-800 shadow-xl relative ">
-//           <img
-            className="absolute  inset-0 w-full h-full object-cover opacity-40 rounded-lg"
-            src="https://static.vecteezy.com/system/resources/previews/029/630/494/non_2x/handsome-young-male-singer-holds-a-microphone-stand-and-performs-on-a-concert-stage-free-photo.jpeg"
-            alt="singer"
-          />
-
-          <div className="relative p-4 h-full flex items-end">
-            <div>
-              <div className="flex gap-2 text-sm my-2 text-white">
-                <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">
-                  CNN
-                </button>
-                <p className="opacity-70">CNN.</p>
-                <p className="opacity-70">10 hours ago</p>
-              </div>
-              <h2 className="text-2xl font-serif font-semibold text-white">
-                John Legend is sending a poweful message to woman on the Eras
-                ...
-              </h2>
-              <p className="text-white  text-[13px] line-clamp-2  ">
-                My first singing of discomfort at jhon legend show in Las vegas
-                hit after the infected beast faded from fan favourite crual
-                summer the...
-              </p>
-              <div className="flex gap-2 text-[13px] text-white opacity-50">
-                <p>Entertainment :</p>
-                <p>10 min read</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-
-        {/* Right two smaller columns */}
-        <div className="col-span-4 grid grid-rows-2 gap-4">
-          {/* Top right */}
-          <div className="bg-gray-300">{/* Content for the top right */}</div>
-
-          {/* Bottom right */}
-          <div className="bg-gray-400">
-            {/* Content for the bottom right */}
-          </div>
-        </div>
+        {/* center part */}
+        <div></div>
+        {/* right part */}
+        <div></div>
       </div>
-    </section>
+    </div>
   );
 };
 

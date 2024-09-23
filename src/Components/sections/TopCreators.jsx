@@ -35,7 +35,7 @@ const TopCreators = () => {
   console.log(creators);
 
   return (
-    <div className="container mx-auto my-4 sm:mt-14">
+    <div className="container mx-auto my-4 sm:mt-14 px-2">
       <div className="flex justify-between items-center">
         <h2 className="font-bold sm:text-3xl text-2xl font-inter mb-4">
 
