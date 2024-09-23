@@ -35,7 +35,7 @@ const TopCreators = () => {
   console.log(creators);
 
   return (
-    <div className="container mx-auto my-4 sm:mt-14 px-2">
+    <div className="container mx-auto my-4 sm:mt-14 px-3">
       <div className="flex justify-between items-center">
         <h2 className="font-bold sm:text-3xl text-2xl font-inter mb-4">
 
@@ -48,7 +48,7 @@ const TopCreators = () => {
           See All <FaArrowRight />
         </Link>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-4 pl-2">
         {creators.map((creator, index) => (
           <div key={index} className="flex gap-3 items-center ">
             <div>
