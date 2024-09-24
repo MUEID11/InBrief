@@ -1,36 +1,50 @@
-// src/router/router.jsx
-
-import React from 'react';
-import { createBrowserRouter } from "react-router-dom";
-import Main from "../Layouts/Main";
+import { createBrowserRouter } from 'react-router-dom';
+import Main from '../Layouts/Main';
 import Home from '../Pages/Home';
-// import LatestNewsSection from '../Components/LatestNewsSection';
-// import BusinessNewsSection from '../Components/BusinessNewsSection';
-// import SportsNewsSection from '../Components/SportsNewsSection';
+import SignUp from '../Pages/SignUp';
+import SignIn from '../Pages/SignIn';
+import About from '../Pages/About';
+import ErrorPage from '../Pages/ErrorPage';
+import LatestNewsSection from '../Components/sections/LatestNewsSection';
+import BusinessNewsSection from '../Components/sections/BusinessNewsSection';
+import SportsNewsSection from '../Components/sections/SportsNewsSection';
+
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Main />,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: "/",
-        element: <Home />
+        path: '/',
+        element: <Home />,
       },
-
-      // {
-      //   path: "/latest-news",
-      //   element: <LatestNewsSection />
-      // },
-      // {
-      //   path: "/business",
-      //   element: <BusinessNewsSection />
-      // },
-      // {
-      //   path: "/sports",
-      //   element: <SportsNewsSection />
-      // },
-    ]
+      {
+        path: '/about',
+        element: <About />,
+      },
+      {
+        path: "/latest-news",
+        element: <LatestNewsSection />
+      },
+      {
+        path: "/business",
+        element: <BusinessNewsSection />
+      },
+      {
+        path: "/sports",
+        element: <SportsNewsSection />
+      },
+      {
+        path: 'signup',
+        element: <SignUp />,
+      },
+      {
+        path: 'signin',
+        element: <SignIn />,
+      },
+    ],
   },
 ]);
 
