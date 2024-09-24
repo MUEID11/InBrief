@@ -45,7 +45,7 @@ const SportsNewsSection = () => {
   }
 
   return (
-    <div className="container mx-auto grid gird-cols-1">
+    <div className="container mx-auto">
       <NewsSection
         title="Sports News"
         articles={articles}

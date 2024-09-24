@@ -13,9 +13,9 @@ const NewsSection = ({ title, articles, link }) => {
         return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
       case "Business":
       case "Sports":
-        return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2";
+        return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
       default:
-        return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2";
+        return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
     }
   };
 
