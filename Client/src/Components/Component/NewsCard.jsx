@@ -10,7 +10,7 @@ const NewsCard = ({ article }) => {
   };
 
   return (
-    <article className="shadow-lg p-4 rounded-3xl flex flex-col transform hover:scale-105 transition-transform duration-300">
+    <article className="shadow-lg p-5 border border-red-500 border-r-4 border-b-4 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-105">
       {/* Link wrapping Image */}
       <a
         href={article.url}
@@ -21,7 +21,7 @@ const NewsCard = ({ article }) => {
         <img
           src={article.image}
           alt={article.headline}
-          className="rounded-2xl h-56 object-cover w-full"
+          className="h-56 object-cover w-full"
           loading="lazy"
         />
       </a>
