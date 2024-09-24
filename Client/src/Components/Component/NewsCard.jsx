@@ -34,7 +34,6 @@ const NewsCard = ({ article }) => {
         <a href={article.url} target="_blank" rel="noopener noreferrer">
           <h3 className="font-bold text-lg mt-2">{article.headline}</h3>
         </a>
-
         {/* Date and Category */}
         <div className="flex gap-3 items-center my-2">
           <p className="text-red-600 font-semibold">{article.region}</p>
@@ -42,7 +41,6 @@ const NewsCard = ({ article }) => {
             {new Date(article.date).toLocaleDateString()}
           </span>
         </div>
-
         {/* Description */}
         <p className="text-sm text-gray-600 mb-4 flex-grow">
           {`${article.description.substring(0, 100)}...`}
@@ -58,6 +56,7 @@ const NewsCard = ({ article }) => {
         Read More
       </button>
     </article>
+    
   );
 };
 
