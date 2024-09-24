@@ -37,7 +37,7 @@ const BusinessNewsSection = () => {
   if (error) {
     return (
       <div className="flex items-center justify-center p-4">
-        <p className="text-xl text-red-500">
+        <p className="text-xl text-red-600">
           Failed to load Business News. Please try again later.
         </p>
       </div>
@@ -45,7 +45,7 @@ const BusinessNewsSection = () => {
   }
 
   return (
-    <div className="m-2 sm:m-0">
+    <div className="m-2 container mx-auto">
       <NewsSection title="Business" articles={articles} link="/business" />
     </div>
   );

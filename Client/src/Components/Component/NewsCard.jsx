@@ -1,16 +1,8 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 
 const NewsCard = ({ article }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  // // Toggle the expanded state to show full description
-  const toggleDescription = () => {
-    setIsExpanded(!isExpanded);
-  };
-
   return (
-    <article className="shadow-lg p-5 border border-red-500 border-r-4 border-b-4 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-105">
+    <article className="shadow-lg p-5 border border-red-600 border-r-4 border-b-4 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-105 h-full">
       {/* Link wrapping Image */}
       <a
         href={article.url}
@@ -27,10 +19,9 @@ const NewsCard = ({ article }) => {
       </a>
 
       {/* Info Section */}
-      <div className="mt-4">
+      <div className="mt-4 flex flex-col flex-grow">
         {/* Source Section */}
         <div className="flex gap-2 items-center">
-          {/* Replace the placeholder with actual source icon */}
           <img
             src="https://via.placeholder.com/20" // Placeholder for the source icon
             className="size-5 bg-red-700 rounded-full object-cover"
@@ -43,33 +34,27 @@ const NewsCard = ({ article }) => {
         <a href={article.url} target="_blank" rel="noopener noreferrer">
           <h3 className="font-bold text-lg mt-2">{article.headline}</h3>
         </a>
-
-      
-
-        {/* Description */}
-        <p className="text-sm text-gray-600  mb-4">
-          {isExpanded
-            ? article.description
-            : `${article.description.substring(0, 100)}...`}
-        </p>
-
-          {/* Date and Category */}
-          <div className="flex gap-3 items-center">
-          <p className="text-red-500 font-semibold">{article.region}</p>
+        {/* Date and Category */}
+        <div className="flex gap-3 items-center my-2">
+          <p className="text-red-600 font-semibold">{article.region}</p>
           <span className="text-xs">
             {new Date(article.date).toLocaleDateString()}
           </span>
         </div>
-
-        {/* Read More Button */}
-        <button
-          onClick={toggleDescription}
-          className="mt-auto text-red-500 text-sm hover:underline "
-        >
-          {isExpanded ? "Show Less" : "Read More"}
-        </button>
-
+        {/* Description */}
+        <p className="text-sm text-gray-600 mb-4 flex-grow">
+          {`${article.description.substring(0, 100)}...`}
+        </p>
       </div>
+      <div className="flex gap-3 items-center justify-between mb-2">
+                <p className="text-red-600 font-semibold">{article?.category ? article?.category : "Category"}</p>
+                <span className="text-xs">{article.date}</span>
+              </div>
+
+      {/* Read More Button */}
+      <button className="text-red-600 self-end">
+        Read More
+      </button>
     </article>
     
   );
@@ -78,8 +63,8 @@ const NewsCard = ({ article }) => {
 // PropTypes for type checking
 NewsCard.propTypes = {
   article: PropTypes.shape({
+    category: PropTypes.string,
     headline: PropTypes.string.isRequired,
-    summary: PropTypes.string,
     description: PropTypes.string,
     author: PropTypes.string,
     date: PropTypes.string,

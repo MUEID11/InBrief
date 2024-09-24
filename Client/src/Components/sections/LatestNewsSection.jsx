@@ -39,7 +39,7 @@ const LatestNewsSection = () => {
   if (error) {
     return (
       <div className="flex items-center justify-center p-4">
-        <p className="text-xl text-red-500">
+        <p className="text-xl text-red-600">
           Failed to load Latest News. Please try again later.
         </p>
       </div>
@@ -47,7 +47,7 @@ const LatestNewsSection = () => {
   }
 
   return (
-    <div className="m-2 sm:m-0">
+    <div className="container mx-auto m-2">
       <NewsSection
         title="Latest News"
         articles={articles}
