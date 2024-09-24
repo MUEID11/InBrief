@@ -52,7 +52,7 @@ const sponsorData = [
 
 const About = () => {
   return (
-    <div className="max-sm:px-2">
+    <div className="max-sm:px-2 container mx-auto">
       {/* HEADER SECTION OF THE PAGE */}
       <section className="text-center max-w-[800px] mx-auto my-10 text-stone-900">
         <h1 className="font-bold text-5xl max-sm:text-4xl">ABOUT US</h1>
