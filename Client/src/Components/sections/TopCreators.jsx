@@ -39,7 +39,7 @@ const TopCreators = () => {
           See All <FaArrowRight />
         </Link>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-4">
         {creators.map((creator, index) => (
           <div key={index} className="flex gap-3 items-center ">
             <div>
