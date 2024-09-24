@@ -71,14 +71,14 @@ const fakeData = [
 
 const TopLatestNews = () => {
   return (
-    <section className="sm:mt-14 mt-6 m-2">
+    <section className="container mx-auto sm:mt-14 mt-6 m-2">
       <header className="flex items-center justify-between mb-3">
-        <h3 className="text-2xl md:text-3xl font-inter font-semibold  ml-2 my-2">
+        <h3 className="text-2xl md:text-3xl font-inter font-semibold">
           Top Latest News
         </h3>
         <Link
           to={"/toplatest"}
-          className="flex items-center gap-1 font-bold text-red-500 hover:text-red-700 transition-colors duration-300"
+          className="flex items-center gap-1 font-bold text-red-600 hover:text-red-700 transition-colors duration-300"
         >
           See All <FaArrowRight />
         </Link>

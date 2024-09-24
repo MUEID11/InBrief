@@ -48,23 +48,23 @@ const sponsorData = [
 
 const Sponsors = () => {
   return (
-    <section className="sm:mt-14 mt-6 max-sm:px-1">
+    <section className="container mx-auto sm:mt-14 mt-6 max-sm:px-1">
       <header className="mb-8">
-        <h3 className="text-2xl md:text-3xl font-inter font-semibold  ml-2">Sponsors</h3>
+        <h3 className="text-2xl md:text-3xl font-inter font-semibold">Sponsors</h3>
       </header>
       <main>
         <Marquee pauseOnHover={true}>
           {sponsorData.map((data) => (
             <div key={data.id} className="flex flex-col items-center justify-center mr-20">
               <Link to={data.link}>
-                <div className="bg-gradient-to-b from-red-500 via-[#ea510e] to-[#ef7d00] border-5 border-red-500 rounded-full w-28 h-28 flex items-center justify-center p-[3px]">
+                <div className="bg-gradient-to-b from-red-500 via-[#ea510e] to-[#ef7d00] border-5 border-red-500 rounded-full size-24 flex items-center justify-center p-[3px]">
                   <div className="bg-transparent h-full flex flex-col justify-center items-center rounded-full border-4 border-white p-2">
                     <img src={data.logo} alt="" />
                   </div>
                 </div>
               </Link>
               <Link to={data.link}>
-                <p className="text-xl font-semibold text-neutral-800 mt-3">{data.name}</p>
+                <p className="sm:text-xl font-semibold text-neutral-800 mt-3">{data.name}</p>
               </Link>
             </div>
           ))}
