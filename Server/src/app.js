@@ -1,8 +1,17 @@
 const express = require("express");
 const morgan = require("morgan");
 const createError = require("http-errors");
+const rateLimit = require("express-rate-limit");
+
 const app = express();
 
+const rateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 50, // Limit each IP to 50 requests per `window` (here, per 15 minutes).
+  message: "  Too many requests from this IP .  Please try again later",
+});
+
+app.use(rateLimiter);
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -10,6 +19,11 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.status(200).send({
     message: "server is working finee",
+  });
+});
+app.get("/test", (req, res) => {
+  res.status(200).send({
+    message: "api security testing",
   });
 });
 
