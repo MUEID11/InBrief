@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
 app.get("/test", (req, res) => {
   res.status(200).send({
     message: "api security testing",
+    
   });
 });
 
