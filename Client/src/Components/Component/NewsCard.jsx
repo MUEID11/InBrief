@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const NewsCard = ({ article }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // Toggle the expanded state to show full description
+  // // Toggle the expanded state to show full description
   const toggleDescription = () => {
     setIsExpanded(!isExpanded);
   };
@@ -44,13 +44,7 @@ const NewsCard = ({ article }) => {
           <h3 className="font-bold text-lg mt-2">{article.headline}</h3>
         </a>
 
-        {/* Date and Category */}
-        <div className="flex gap-3 items-center my-2">
-          <p className="text-red-500 font-semibold">{article.region}</p>
-          <span className="text-xs">
-            {new Date(article.date).toLocaleDateString()}
-          </span>
-        </div>
+      
 
         {/* Description */}
         <p className="text-sm text-gray-600  mb-4">
@@ -59,6 +53,14 @@ const NewsCard = ({ article }) => {
             : `${article.description.substring(0, 100)}...`}
         </p>
 
+          {/* Date and Category */}
+          <div className="flex gap-3 items-center">
+          <p className="text-red-500 font-semibold">{article.region}</p>
+          <span className="text-xs">
+            {new Date(article.date).toLocaleDateString()}
+          </span>
+        </div>
+
         {/* Read More Button */}
         <button
           onClick={toggleDescription}
@@ -66,8 +68,10 @@ const NewsCard = ({ article }) => {
         >
           {isExpanded ? "Show Less" : "Read More"}
         </button>
+
       </div>
     </article>
+    
   );
 };
 
