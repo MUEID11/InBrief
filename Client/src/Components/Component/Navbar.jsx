@@ -3,9 +3,12 @@ import { FaRegPenToSquare } from 'react-icons/fa6';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from './../../assets/logo.png';
 import { Link } from 'react-router-dom';
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+
+  console.log(isDropDownOpen);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -58,7 +61,7 @@ const Navbar = () => {
 
           <div className="relative">
             <img
-              onClick={() => setIsDropDownOpen((prev) => !prev)}
+              onClick={() => setIsDropDownOpen(!isDropDownOpen)}
               className="w-[52px] h-[52px] rounded-full border p-[2px] border-red-500 cursor-pointer"
               src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
               alt="Medium avatar"
@@ -66,7 +69,7 @@ const Navbar = () => {
             <div
               id="dropdown"
               className={`absolute right-3 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 ${
-                isDropDownOpen ? 'opacity-0 cursor pointer-events-none select-none' : 'opacity-100'
+                !isDropDownOpen ? 'opacity-0 pointer-events-none select-none' : 'opacity-100'
               } transition-all duration-300`}>
               <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                 <li>
