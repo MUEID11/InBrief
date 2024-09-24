@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 const TopLatestNewsCard = ({ data }) => {
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-sm:hidden">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {data.map((item) => (
           <article
             key={item.url}
-            className="shadow-lg p-4 border border-red-500 border-r-4 border-b-4 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-105"
+            className="shadow-lg p-4 border border-red-600 border-r-4 border-b-4 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-105"
           >
             <Link to={item.url}>
               <img
@@ -30,19 +30,21 @@ const TopLatestNewsCard = ({ data }) => {
                 {item.description.slice(0, 100)}...
               </p>
 
-              <div className="flex gap-3 items-center">
-                <p className="text-red-500 font-semibold">{item.category}</p>
+              <div className="flex gap-3 items-center justify-between mb-2">
+                <p className="text-red-600 font-semibold">{item.category}</p>
                 <span className="text-xs">{item.date}</span>
               </div>
             </Link>
+            {/* Read More Button */}
+            <button className="text-red-600 self-end">Read More</button>
           </article>
         ))}
       </div>
 
       {/* for mobile */}
-      <div className="sm:hidden ">
+      {/* <div className="sm:hidden ">
         {data.map((item) => (
-          <article key={item.url} className="shadow-lg p-4 rounded-3xl">
+          <article key={item.url} className="shadow-lg p-4">
             <Link to={item.url}>
               <div className="flex gap-4">
                 <div className="w-1/2">
@@ -67,7 +69,7 @@ const TopLatestNewsCard = ({ data }) => {
                   </p>
 
                   <div className="flex gap-3 items-center">
-                    <p className="text-red-500 font-semibold">
+                    <p className="text-red-600 font-semibold">
                       {item.category}
                     </p>
                     <div className="h-1 w-1 rounded-full bg-gray-600 -mb-1"></div>
@@ -78,7 +80,7 @@ const TopLatestNewsCard = ({ data }) => {
             </Link>
           </article>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
