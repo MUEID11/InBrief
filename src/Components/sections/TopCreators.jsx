@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -35,11 +36,10 @@ const TopCreators = () => {
   console.log(creators);
 
   return (
-    <div className="container mx-auto my-4 sm:mt-14 px-3">
-      <div className="flex justify-between items-center">
-        <h2 className="font-bold sm:text-3xl text-2xl font-inter mb-4">
-
-          Top Creator
+    <div className="container mx-auto my-14 p-2 max-sm:px-2">
+      <div className="flex justify-between items-center mb-6 mt-4">
+        <h2 className="text-2xl md:text-3xl font-inter font-semibold ">
+          Top Creators
         </h2>
         <Link
           to={"/topcreator"}
@@ -48,7 +48,7 @@ const TopCreators = () => {
           See All <FaArrowRight />
         </Link>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-4 pl-2">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {creators.map((creator, index) => (
           <div key={index} className="flex gap-3 items-center ">
             <div>
@@ -58,8 +58,10 @@ const TopCreators = () => {
               />
             </div>
             <div>
-              <h3 className="sm:text-xl font-semibold">{creator.name}</h3>
-              <p className="text-red-600 font-bold">{creator.channel}</p>
+              <h3 className="sm:text-xl font-bold">{creator.name}</h3>
+              <p className="text-red-600 font-semibold text-sm sm:text-base">
+                {creator.channel}
+              </p>
             </div>
           </div>
         ))}
