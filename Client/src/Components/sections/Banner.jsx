@@ -3,7 +3,7 @@ const Banner = () => {
     <section className="w-full mx-auto md:mb-8 my-4">
       <div className="px-2 sm:px-0">
         <div
-          className="w-full mx-auto p-2 sm:p-12 bg-red-100/50 rounded-2xl border bg-repeat bg-cover sm:mb-8 mb-4"
+          className="w-full mx-auto p-2 sm:p-12 border bg-repeat bg-cover sm:mb-8 mb-4 border-red-500 border-b-4 border-l-4 flex flex-col transition-all duration-200 ease-in-out hover:border-slate-600"
           // style={{
           //   backgroundImage: "url(https://i.ibb.co.com/hH3Gj9n/preview.jpg)",
           // }}
@@ -21,9 +21,9 @@ const Banner = () => {
       {/* Banner */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-sm:mt-5 m-2 sm:m-0">
         {/* Image Section */}
-        <div className="rounded-xl">
+        <div className="">
           <div
-            className="h-52 sm:h-72 bg-cover rounded-lg"
+            className="h-52 sm:h-72 bg-cover"
             style={{
               backgroundImage: 'url(https://i.ibb.co.com/jgvvgdJ/newspaper-background-concept.jpg)',
             }}></div>
@@ -33,7 +33,7 @@ const Banner = () => {
         <div className="bg-white mt-4 max-sm:mt-0 mr-44 border-gray-200 rounded-lg w-full">
           <div className="px-4 py-3">
             <div className="flex justify-between items-center text-sm text-gray-500">
-              <span className="font-semibold text-red-700">Netflix</span>
+              <span className="font-semibold text-red-500">Netflix</span>
               <span>12 minutes ago</span>
             </div>
             <h2 className="mt-2 text-xl sm:text-2xl font-bold text-gray-900">News HEADLINES</h2>
@@ -41,7 +41,7 @@ const Banner = () => {
             <p className="mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero id lorem commodo, vel vehicula dui suscipit.</p>
             <p className="mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
-              <span className="font-semibold text-red-700">Movies</span>
+              <span className="font-semibold text-red-500">Movies</span>
               <span>· 4 min read</span>
             </div>
           </div>
