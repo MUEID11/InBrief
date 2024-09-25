@@ -3,6 +3,8 @@ const morgan = require("morgan");
 const createError = require("http-errors");
 const rateLimit = require("express-rate-limit");
 const userRouter = require("./routers/userRouter");
+const mongoose = require("mongoose");
+const { port, mongodbURL } = require("../secret");
 
 const app = express();
 
@@ -16,7 +18,13 @@ app.use(rateLimiter);
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api/users",userRouter)
+app.use("/api/users", userRouter);
+
+// database connection with mongoose
+mongoose
+  .connect(process.env.MONGODB_ATLAS_URL)
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error(err));
 
 app.get("/", (req, res) => {
   res.status(200).send({
@@ -28,8 +36,6 @@ app.get("/test", (req, res) => {
     message: "api security testing",
   });
 });
-
-
 
 // client error handling
 app.use((req, res, next) => {
@@ -44,4 +50,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-module.exports = app;
+app.listen(port,  () => {
+  console.log(`InBrief is running on port ${port}`);
+  
+});
