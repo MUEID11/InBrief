@@ -75,16 +75,27 @@ const Navbar = () => {
           </div> */}
 
           <div className="relative">
-            <img
-              onClick={() => setIsDropDownOpen(!isDropDownOpen)}
-              className=" size-12 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
-              src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
-              alt="Medium avatar"
-            />
+            <div onClick={() => setIsDropDownOpen(!isDropDownOpen)}>
+              {isDropDownOpen ? (
+                <img
+                  className="relative size-12 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
+                  src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
+                  alt="Medium avatar"
+                />
+              ) : (
+                <div>
+                  <img
+                    className="relative size-12 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
+                    src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
+                    alt="Medium avatar"
+                  />
+                </div>
+              )}
+            </div>
             <div
               ref={userDropdownRef}
               id="dropdown"
-              className={`absolute right-3 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-600 ${
+              className={`absolute right-3 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-44 dark:bg-gray-600 ${
                 !isDropDownOpen ? 'opacity-0 pointer-events-none select-none' : 'opacity-100'
               } transition-all duration-300`}>
               <ul className="py-2 text-sm text-gray-600 dark:text-gray-200">
