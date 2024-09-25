@@ -12,9 +12,9 @@ const EditorPicks = () => {
       className="my-16"
       style={{ backgroundSize: "cover", backgroundPosition: "center" }} // Ensuring the image covers and is centered
     >
-      <div className="container mx-auto py-24 space-y-7 text-white h-[400px] sm:h-[700px]" style={{ height: "600px" }}>
-        <h1 className="sm:text-3xl font-bold  ">Editor's Picks</h1>
-        <p >
+      <div className="container mx-auto py-24 space-y-7 text-white h-[350px] sm:h-[700px] p-2 overflow-auto">
+        <h1 className="text-lg sm:text-3xl font-bold  ">Editor's Picks</h1>
+        <p className="text-sm">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
           scelerisque felis sed sem tincidunt, a faucibus elit suscipit. Integer
           et libero sit amet nulla luctus cursus. Duis et dolor sed elit

@@ -17,12 +17,12 @@ const MustRead = () => {
         </Link>
       </div>
       {/* must read cards */}
-      <div className="my-6 grid grid-cols-1   md:grid-cols-3 gap-6">
+      <div className="my-6 grid grid-cols-1  lg:grid-cols-3 gap-6">
         {/* 1st part */}
         <div className="">
           <img
             src="https://images.pexels.com/photos/20258/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
-            className=""
+            className="w-full"
             alt=""
           />
 
@@ -51,9 +51,9 @@ const MustRead = () => {
           </div>
         </div>
         {/* 2nd part */}
-        <div className="bg-gray-800 shadow-xl relative ">
+        <div className="bg-gray-800 shadow-xl relative md:min-h-[500px]">
           <img
-            className="absolute  inset-0 w-full h-full object-cover opacity-40 rounded-lg"
+            className="absolute  inset-0 w-full h-full object-cover opacity-40 "
             src="https://static.vecteezy.com/system/resources/previews/029/630/494/non_2x/handsome-young-male-singer-holds-a-microphone-stand-and-performs-on-a-concert-stage-free-photo.jpeg"
             alt="singer"
           />
