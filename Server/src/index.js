@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const createError = require('http-errors');
 const rateLimit = require('express-rate-limit');
 const userRouter = require('./routers/userRouter');
+const searchRoutes = require('./routers/search');
 const mongoose = require('mongoose');
 const { port, mongodbURL } = require('../secret');
 const articleHandlers = require('./routers/articleHandlers');
@@ -40,6 +41,9 @@ app.get('/test', (req, res) => {
     message: 'api security testing',
   });
 });
+
+// Search feature
+app.use('/api', searchRoutes);
 
 // client error handling
 app.use((req, res, next) => {
