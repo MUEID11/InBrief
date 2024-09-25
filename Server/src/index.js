@@ -5,6 +5,7 @@ const rateLimit = require('express-rate-limit');
 const userRouter = require('./routers/userRouter');
 const mongoose = require('mongoose');
 const { port, mongodbURL } = require('../secret');
+const articleHandlers = require('./routers/articleHandlers');
 
 const app = express();
 
@@ -27,7 +28,7 @@ mongoose
   .catch((err) => console.error(err));
 
 // APPLICATION ROUTES
-// app.use('/articles', articleHandlers);
+app.use('/articles', articleHandlers);
 
 app.get('/', (req, res) => {
   res.status(200).send({

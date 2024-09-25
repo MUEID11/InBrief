@@ -4,11 +4,10 @@ const articleSchema = mongoose.Schema(
   {
     title: { type: String, required: true },
     description: String,
-    date: { type: Date, default: Date.now() },
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 );
 
-const Article = new mongoose.model('Todo', articleSchema);
+const Article = new mongoose.model('Article', articleSchema);
 
 module.exports = Article;
