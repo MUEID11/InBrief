@@ -3,14 +3,21 @@ import { FaRegPenToSquare } from 'react-icons/fa6';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from './../../assets/logo.png';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import userThunk from '../../Features/thunks/userThunks';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-
   const userDropdownRef = useRef(null);
   const menuDropdownRef = useRef(null);
-
+  const user = useSelector((state)=> state?.user);
+  
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(userThunk())
+  },[dispatch])
+  console.log(user)
   // Close the dropdown if clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -25,9 +32,6 @@ const Navbar = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [userDropdownRef]);
-
-  console.log(isDropDownOpen);
-
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -79,14 +83,14 @@ const Navbar = () => {
               {isDropDownOpen ? (
                 <img
                   className="relative size-12 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
-                  src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
+                  src={user.user?.imageUrl}
                   alt="Medium avatar"
                 />
               ) : (
                 <div>
                   <img
                     className="relative size-12 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
-                    src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
+                    src={user.user?.imageUrl}
                     alt="Medium avatar"
                   />
                 </div>
@@ -100,24 +104,24 @@ const Navbar = () => {
               } transition-all duration-300`}>
               <ul className="py-2 text-sm text-gray-600 dark:text-gray-200">
                 <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <Link to='/profile' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Profile
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <Link to='/dashboard' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Dashboard
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <Link to='/settings' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Settings
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <Link to='/signout' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Sign out
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -153,26 +157,26 @@ const Navbar = () => {
             !isOpen ? 'opacity-0 pointer-events-none select-none' : 'opacity-100'
           } transition-all duration-300`}>
           <ul className="py-2 text-sm text-gray-600 dark:text-gray-200">
-            <li>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                Profile
-              </a>
-            </li>
-            <li>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                Dashboard
-              </a>
-            </li>
-            <li>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                Settings
-              </a>
-            </li>
-            <li>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                Sign out
-              </a>
-            </li>
+          <li>
+                  <Link to='/profile' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/dashboard' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/settings' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Settings
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/signout' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Sign out
+                  </Link>
+                </li>
           </ul>
         </div>
       </div>
