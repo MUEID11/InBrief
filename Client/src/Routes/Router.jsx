@@ -40,7 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/search/:category',
-        element: <SearchResults></SearchResults>,
+        element: <SearchResults />,
       },
       {
         path: 'signup',
