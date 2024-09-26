@@ -11,6 +11,7 @@ import BusinessNewsSection from "../Components/sections/BusinessNewsSection";
 import SportsNewsSection from "../Components/sections/SportsNewsSection";
 import Profile from "../Pages/Profile";
 import ProtectedRoute from "./ProtectedRoute";
+import SearchResults from "../Components/Component/searchResults";
 
 
 const router = createBrowserRouter([
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/search/:category",
-        element: <SearchResults></SearchResults>
+        element: <SearchResults />
       },
       {
         path: 'signup',
