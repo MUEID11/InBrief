@@ -1,11 +1,11 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors')
 const createError = require('http-errors');
 const rateLimit = require('express-rate-limit');
 const { port } = require('../secret');
 const dbConnection = require('./config/db');
 const userHandlers = require('./routers/userHandlers');
-const userRouter = require('./routers/userRouter');
 const searchRoutes = require('./routers/search');
 const articleHandlers = require('./routers/articleHandlers');
 
@@ -22,7 +22,9 @@ app.use(rateLimiter);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors({
+  origin: '*'
+}))
 // APPLICATION ROUTES
 app.use('/articles', articleHandlers);
 //USERS ROUTE
