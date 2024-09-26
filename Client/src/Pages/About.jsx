@@ -52,11 +52,11 @@ const sponsorData = [
 
 const About = () => {
   return (
-    <div className="max-sm:px-7">
+    <div className="max-sm:px-2">
       {/* HEADER SECTION OF THE PAGE */}
       <section className="text-center max-w-[800px] mx-auto my-10 text-stone-900">
-        <h1 className="font-bold text-5xl">ABOUT US</h1>
-        <p className="text-stone-500 font-medium mt-3 text-lg leading-tight">
+        <h1 className="font-bold text-5xl max-sm:text-4xl">ABOUT US</h1>
+        <p className="text-stone-500 font-medium mt-3 text-lg max-sm:text-base leading-tight">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique nostrum non consequuntur, autem accusamus quaerat unde iste deleniti possimus atque.
         </p>
       </section>
@@ -74,9 +74,9 @@ const About = () => {
       {/* OUR STORY / MISSION / VISION */}
       <section className="flex gap-20 max-sm:gap-5 mt-16 max-sm:flex-col">
         <div className="md:w-1/3 flex gap-9 max-sm:gap-2 items-start">
-          <h2 className="font-bold text-5xl uppercase">Our Story</h2>
+          <h2 className="font-bold text-5xl max-sm:text-4xl uppercase">Our Story</h2>
 
-          <img src={arrow} className="w-20 max-sm:w-16 rotate-90 md:-mt-3" alt="" />
+          <img src={arrow} className="w-20 max-sm:w-11 rotate-90 md:-mt-3" alt="" />
         </div>
         <div className="md:w-2/3 ">
           <p className="mb-12 max-sm:mb-8 font-semibold">
@@ -101,12 +101,12 @@ const About = () => {
       {/* OUR SPONSORS SLIDER */}
       <section className="mt-28">
         <header className="mb-14">
-          <h3 className="font-bold text-5xl uppercase">Our Sponsors</h3>
+          <h3 className="font-bold text-5xl max-sm:text-4xl uppercase">Our Sponsors</h3>
         </header>
         <main>
           <Marquee pauseOnHover={true}>
             {sponsorData.map((data) => (
-              <div key={data.id} className="flex flex-col items-center justify-center mr-20">
+              <div key={data.id} className="flex flex-col items-center justify-center mr-12">
                 <Link to={data.link}>
                   <div className="bg-gradient-to-b from-red-500 via-[#ea510e] to-[#ef7d00] border-5 border-red-500 rounded-full w-28 h-28 flex items-center justify-center p-[3px]">
                     <div className="bg-transparent h-full flex flex-col justify-center items-center rounded-full border-4 border-white p-2">
@@ -125,7 +125,7 @@ const About = () => {
 
       <section className="mt-28 flex max-sm:flex-col gap-10 items-center justify-center">
         <div className="w-1/2 max-sm:w-full">
-          <h2 className="font-bold text-5xl uppercase">Join with Us</h2>
+          <h2 className="font-bold text-5xl max-sm:text-4xl uppercase">Join with Us</h2>
           <p className="mt-5 text-stone-600 max-w-[500px] font-medium">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio assumenda quisquam in eveniet. Vitae, recusandae quibusdam omnis voluptas aspernatur beatae amet
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio assumenda quisquam in eveniet.
