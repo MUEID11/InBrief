@@ -2,11 +2,13 @@ const express = require('express');
 const morgan = require('morgan');
 const createError = require('http-errors');
 const rateLimit = require('express-rate-limit');
+const { port } = require('../secret');
+const dbConnection = require('./config/db');
+const userHandlers = require('./routers/userHandlers');
 const userRouter = require('./routers/userRouter');
 const searchRoutes = require('./routers/search');
-const mongoose = require('mongoose');
-const { port, mongodbURL } = require('../secret');
 const articleHandlers = require('./routers/articleHandlers');
+
 
 const app = express();
 
@@ -20,16 +22,11 @@ app.use(rateLimiter);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api/users', userRouter);
-
-// database connection with mongoose
-mongoose
-  .connect(process.env.MONGODB_ATLAS_URL)
-  .then(() => console.log('MongoDB connected'))
-  .catch((err) => console.error(err));
 
 // APPLICATION ROUTES
 app.use('/articles', articleHandlers);
+//USERS ROUTE
+app.use('/users', userHandlers);
 
 app.get('/', (req, res) => {
   res.status(200).send({
@@ -57,6 +54,9 @@ app.use((err, req, res, next) => {
     message: err.message,
   });
 });
+//database connection
+dbConnection();
+
 
 app.listen(port, () => {
   console.log(`InBrief is running on port ${port}`);
