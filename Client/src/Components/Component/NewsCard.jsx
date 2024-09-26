@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 const NewsCard = ({ article }) => {
   return (
@@ -47,16 +48,23 @@ const NewsCard = ({ article }) => {
         </p>
       </div>
       <div className="flex gap-3 items-center justify-between mb-2">
-                <p className="text-red-600 font-semibold">{article?.category ? article?.category : "Category"}</p>
-                <span className="text-xs">{article.date}</span>
-              </div>
+        <p className="text-red-600 font-semibold">
+          {article?.category ? article?.category : "Category"}
+        </p>
+        <span className="text-xs">{article.date}</span>
+      </div>
 
-      {/* Read More Button */}
-      <button className="text-red-600 self-end font-medium">
-        Read More
-      </button>
+      <div className="flex justify-between items-center">
+        <div>
+          <div className="flex items-center gap-2">
+          <button><FaHeart className="text-red-600 text-lg"/></button>
+          <p className="text-gray-700 font-medium">3 likes</p>
+          </div>
+        </div>
+        {/* Read More Button */}
+        <button className="text-red-600 self-end font-medium">Read More</button>
+      </div>
     </article>
-    
   );
 };
 
