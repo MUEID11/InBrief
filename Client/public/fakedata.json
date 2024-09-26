@@ -1,4 +1,54 @@
 {
+    "topLatest": [
+      {
+        "headline": "AI Revolutionizes Healthcare Diagnostics",
+        "summary": "New AI tools drastically reduce diagnostic errors and speed up the detection of diseases.",
+        "description": "Artificial Intelligence is making strides in the healthcare sector by improving diagnostic accuracy. Researchers have created AI models that analyze medical images and patient data, significantly reducing errors. Hospitals worldwide are adopting this technology to enhance treatment outcomes and efficiency, marking a major milestone in medical advancements.",
+        "author": "Emily Clark",
+        "category": "Technology",
+        "date": "2024-09-14",
+        "source": "Tech Health",
+        "region": "Global",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/ai-healthcare"
+      },
+      {
+        "headline": "Breakthrough in Renewable Energy Storage",
+        "summary": "Scientists develop a new method for efficient, long-term storage of renewable energy.",
+        "description": "Researchers at MIT have unveiled a breakthrough in renewable energy storage technology. The new system allows for the efficient storage of solar and wind energy for longer periods, potentially solving one of the major challenges in transitioning to renewable power. This innovation could make renewable energy more reliable and scalable on a global scale.",
+        "author": "Alice Cooper",
+        "category": "Technology",
+        "date": "2024-09-14",
+        "source": "Tech Today",
+        "region": "International",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/energy-storage"
+      },
+      {
+        "headline": "AI Revolutionizes Healthcare Diagnostics",
+        "summary": "New AI tools drastically reduce diagnostic errors and speed up the detection of diseases.",
+        "description": "Artificial Intelligence is making strides in the healthcare sector by improving diagnostic accuracy. Researchers have created AI models that analyze medical images and patient data, significantly reducing errors. Hospitals worldwide are adopting this technology to enhance treatment outcomes and efficiency, marking a major milestone in medical advancements.",
+        "author": "Emily Clark",
+        "category": "Technology",
+        "date": "2024-09-14",
+        "source": "Tech Health",
+        "region": "Global",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/ai-healthcare"
+      },
+      {
+        "headline": "Breakthrough in Renewable Energy Storage",
+        "summary": "Scientists develop a new method for efficient, long-term storage of renewable energy.",
+        "description": "Researchers at MIT have unveiled a breakthrough in renewable energy storage technology. The new system allows for the efficient storage of solar and wind energy for longer periods, potentially solving one of the major challenges in transitioning to renewable power. This innovation could make renewable energy more reliable and scalable on a global scale.",
+        "author": "Alice Cooper",
+        "category": "Technology",
+        "date": "2024-09-14",
+        "source": "Tech Today",
+        "region": "International",
+        "image": "https://via.placeholder.com/300x200",
+        "url": "https://example.com/energy-storage"
+      }
+    ],
     "latestNews": [
       {
         "headline": "Global Climate Summit 2024 Begins",

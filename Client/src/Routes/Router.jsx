@@ -1,3 +1,4 @@
+
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layouts/Main";
 import Home from "../Pages/Home";
@@ -10,6 +11,7 @@ import BusinessNewsSection from "../Components/sections/BusinessNewsSection";
 import SportsNewsSection from "../Components/sections/SportsNewsSection";
 import Profile from "../Pages/Profile";
 import ProtectedRoute from "./ProtectedRoute";
+
 
 const router = createBrowserRouter([
   {
@@ -38,7 +40,11 @@ const router = createBrowserRouter([
         element: <SportsNewsSection />,
       },
       {
-        path: "signup",
+        path: "/search/:category",
+        element: <SearchResults></SearchResults>
+      },
+      {
+        path: 'signup',
         element: <SignUp />,
       },
       {

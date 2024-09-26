@@ -32,10 +32,10 @@ const SignIn = () => {
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white shadow-lg lg:max-w-4xl">
         {/* Left side - Background Image */}
         <div
-          className="hidden bg-cover lg:block lg:w-1/2"
+          className="hidden bg-cover bg-center  lg:block lg:w-1/2"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1540312479395-6b36e14a5961?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+              "url('https://img.freepik.com/free-photo/crystal-globe-with-stock-information_1150-17697.jpg?t=st=1727352816~exp=1727356416~hmac=1e56c6cfd1a2536841945565514dfe9c61718395fcdc65d80526c757002ced81&w=740')",
           }}
         ></div>
 
