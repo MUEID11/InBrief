@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../Layouts/Main';
 import Home from '../Pages/Home';
-import SignUp from '../Pages/SignUp';
-import SignIn from '../Pages/SignIn';
+import SignUp from '../Pages/Authentication/SignUp';
+import SignIn from '../Pages/Authentication/SignIn';
 import About from '../Pages/About';
 import ErrorPage from '../Pages/ErrorPage';
 import LatestNewsSection from '../Components/sections/LatestNewsSection';
