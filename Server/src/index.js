@@ -23,7 +23,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: '*'
+  origin: '*',
 }))
 // APPLICATION ROUTES
 app.use('/articles', articleHandlers);
