@@ -5,6 +5,8 @@ const rateLimit = require('express-rate-limit');
 const { port } = require('../secret');
 const dbConnection = require('./config/db');
 const userHandlers = require('./routers/userHandlers');
+const userRouter = require('./routers/userRouter');
+const searchRoutes = require('./routers/search');
 const articleHandlers = require('./routers/articleHandlers');
 
 
@@ -36,6 +38,9 @@ app.get('/test', (req, res) => {
     message: 'api security testing',
   });
 });
+
+// Search feature
+app.use('/api', searchRoutes);
 
 // client error handling
 app.use((req, res, next) => {
