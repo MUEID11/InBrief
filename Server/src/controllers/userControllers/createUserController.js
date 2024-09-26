@@ -5,16 +5,13 @@ const createUser = async(req, res) => {
   const {name, email, age, imageUrl, password} = req.body;
   const hashedPassword = await hashPass(password);
   try {
-    // const user = await userModel.create({
-    //   name, email, age, imageUrl, password: hashedPassword
-    // })
-    const user = new userModel({
+    const user = await userModel.create({
       name, email, age, imageUrl, password: hashedPassword
     })
-    const result = await user.save();
-    console.log(result)
-    res.json(result)
+    console.log(user)
+    res.json(user)
   } catch (error) {
+    console.log(error)
     res.send(error.message)
   }
 
