@@ -4,12 +4,12 @@ const mongooseUniqueValidator = require("mongoose-unique-validator");
 const userSchema = new Schema({
   name: {
     type: String,
-    required: [true, "Please type your name"]
+    required: [true, "Please type your name"],
   },
   email: {
     type: String,
     required: [true, "Please provide your email"],
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
@@ -19,10 +19,12 @@ const userSchema = new Schema({
   imageUrl: {
     type: String,
     required: [true, "Image must be provided"],
-  }
-})
+  },
+});
 
-userSchema.plugin(mongooseUniqueValidator, {message: '{PATH} must be unique'})
+userSchema.plugin(mongooseUniqueValidator, {
+  message: "{PATH} must be unique",
+});
 
-const userModel = model('users', userSchema)
+const userModel = model("users", userSchema);
 module.exports = userModel;
