@@ -1,15 +1,17 @@
 const createError = require("http-errors");
-const users = require("../models/userModel");
+const { userModel } = require("../../models/userModel");
 
 
-const getUser = (req, res,next) => {
+const getUser = async(req, res, next) => {
   try {
+    const users = await userModel.find()
+      
     res.status(200).send({
       message: "users were returned",
       users,
     });
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
