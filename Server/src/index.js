@@ -6,6 +6,7 @@ const userRouter = require('./routers/userRouter');
 const searchRoutes = require('./routers/search');
 const mongoose = require('mongoose');
 const { port, mongodbURL } = require('../secret');
+const articleHandlers = require('./routers/articleHandlers');
 
 const app = express();
 
@@ -28,7 +29,7 @@ mongoose
   .catch((err) => console.error(err));
 
 // APPLICATION ROUTES
-// app.use('/articles', articleHandlers);
+app.use('/articles', articleHandlers);
 
 app.get('/', (req, res) => {
   res.status(200).send({
