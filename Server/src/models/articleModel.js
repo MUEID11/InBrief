@@ -13,6 +13,7 @@ const articleSchema = mongoose.Schema(
     likes: { type: [String], required: true },
     dislikes: { type: [String], required: true },
     bookmarks: { type: [String], required: true },
+//       like: [{type: ObjectId, ref:"User"}]
   },
   { timestamps: true, versionKey: false }
 );
