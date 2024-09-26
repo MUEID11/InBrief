@@ -16,7 +16,7 @@ const userSchema = new Schema({
     required: [true, "Password must be provided"],
     minLength: 6,
   },
-  image: {
+  imageUrl: {
     type: String,
     required: [true, "Image must be provided"],
   }
