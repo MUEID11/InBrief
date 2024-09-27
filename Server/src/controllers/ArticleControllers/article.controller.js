@@ -28,8 +28,8 @@ const addToBookmark = async (req, res) => {
     const result = await Article.updateOne({ _id: articleId }, { $addToSet: { bookmarks: userEmail } });
     console.log(result);
     // Check if the user email already exists in the bookmarks array
-    const post = await Article.findOne({ _id: articleId, bookmarks: userEmail });
-    if (post) {
+    const alreadyExists = await Article.findOne({ _id: articleId, bookmarks: userEmail });
+    if (alreadyExists) {
       return res.status(400).json({ message: 'Already exists in bookmarks' });
     }
 
