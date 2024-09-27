@@ -20,6 +20,7 @@ const SignIn = () => {
       console.log(response);
       const data = await response.json();
       const token = localStorage.setItem('token', data);
+      console.log(token);
       if (data) {
         dispatch(userThunk());
         navigate('/');
