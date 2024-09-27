@@ -24,7 +24,7 @@ const SignIn = () => {
         dispatch(userThunk());
         navigate('/');
       }
-      console.log('data',data)
+      console.log('data', data);
     } catch (error) {
       console.log(error.message);
     }
