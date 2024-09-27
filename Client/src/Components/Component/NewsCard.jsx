@@ -26,18 +26,18 @@ const NewsCard = ({ article }) => {
           <img
             src="https://via.placeholder.com/20" // Placeholder for the source icon
             className="size-5 bg-red-700 rounded-full object-cover"
-            alt={`${article.source}`}
+            alt={`${article?.source.name}`}
           />
-          <span className="text-sm text-gray-600">{article.source}</span>
+          <span className="text-sm text-gray-600">{article?.source.url}</span>
         </div>
 
         {/* Headline */}
         <a href={article.url} target="_blank" rel="noopener noreferrer">
-          <h3 className="font-bold text-lg mt-2">{article.headline}</h3>
+          <h3 className="font-bold text-lg mt-2">{article?.headline}</h3>
         </a>
         {/* Date and Category */}
         <div className="flex gap-3 items-center my-2">
-          <p className="text-red-600 font-semibold">{article.region}</p>
+          <p className="text-red-600 font-semibold">{article?.region}</p>
           <span className="text-xs">
             {new Date(article.date).toLocaleDateString()}
           </span>
@@ -48,11 +48,9 @@ const NewsCard = ({ article }) => {
         </p>
       </div>
       <div className="flex gap-3 items-center justify-between mb-2">
-        <p className="text-red-600 font-semibold">
-          {article?.category ? article?.category : "Category"}
-        </p>
-        <span className="text-xs">{article.date}</span>
-      </div>
+                <p className="text-red-600 font-semibold">{article?.category ? article?.category : "Category"}</p>
+                <span className="text-xs">{article?.date}</span>
+              </div>
 
       <div className="flex justify-between items-center">
         <div>
