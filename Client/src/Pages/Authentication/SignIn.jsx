@@ -1,8 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from './../../assets/logo.png';
 import { FcGoogle } from 'react-icons/fc';
+import userThunk from '../../Features/thunks/userThunks';
+import { useDispatch } from 'react-redux';
 const SignIn = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleSignIn = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -17,12 +20,11 @@ const SignIn = () => {
       console.log(response);
       const data = await response.json();
       const token = localStorage.setItem('token', data);
-      const isToken = localStorage.getItem('token', data);
-      if (isToken) {
+      if (data) {
+        dispatch(userThunk());
         navigate('/');
       }
-      console.log(data);
-      console.log('token', token);
+      console.log('data',data)
     } catch (error) {
       console.log(error.message);
     }
