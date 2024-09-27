@@ -1,18 +1,19 @@
 import PropTypes from "prop-types";
 
 const NewsCard = ({ article }) => {
+  // console.log(article)
   return (
     <article className="shadow-lg p-5 border border-red-600 border-r-4 border-b-4 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-105 h-full">
       {/* Link wrapping Image */}
       <a
-        href={article.url}
+        href={article?.url}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`Read more about ${article.headline}`}
+        aria-label={`Read more about ${article?.headline}`}
       >
         <img
-          src={article.image}
-          alt={article.headline}
+          src={article?.image}
+          alt={article?.headline}
           className="h-56 object-cover w-full"
           loading="lazy"
         />
@@ -22,33 +23,34 @@ const NewsCard = ({ article }) => {
       <div className="mt-4 flex flex-col flex-grow">
         {/* Source Section */}
         <div className="flex gap-2 items-center">
-          <img
-            src="https://via.placeholder.com/20" // Placeholder for the source icon
-            className="size-5 bg-red-700 rounded-full object-cover"
-            alt={`${article.source}`}
-          />
-          <span className="text-sm text-gray-600">{article.source}</span>
-        </div>
+  <img
+    src="https://via.placeholder.com/20" // Placeholder for the source icon
+    className="size-5 bg-red-700 rounded-full object-cover"
+    alt={`${article?.source?.url}`}
+  />
+  <span className="text-sm text-gray-600">{article?.source?.name}</span>
+</div>
+
 
         {/* Headline */}
-        <a href={article.url} target="_blank" rel="noopener noreferrer">
-          <h3 className="font-bold text-lg mt-2">{article.headline}</h3>
+        <a href={article?.url} target="_blank" rel="noopener noreferrer">
+          <h3 className="font-bold text-lg mt-2">{article?.headline}</h3>
         </a>
         {/* Date and Category */}
         <div className="flex gap-3 items-center my-2">
-          <p className="text-red-600 font-semibold">{article.region}</p>
+          <p className="text-red-600 font-semibold">{article?.region}</p>
           <span className="text-xs">
-            {new Date(article.date).toLocaleDateString()}
+            {new Date(article?.date).toLocaleDateString()}
           </span>
         </div>
         {/* Description */}
         <p className="text-sm text-gray-600 mb-4 flex-grow">
-          {`${article.description.substring(0, 100)}...`}
+          {`${article?.description.substring(0, 100)}...`}
         </p>
       </div>
       <div className="flex gap-3 items-center justify-between mb-2">
                 <p className="text-red-600 font-semibold">{article?.category ? article?.category : "Category"}</p>
-                <span className="text-xs">{article.date}</span>
+                <span className="text-xs">{article?.date}</span>
               </div>
 
       {/* Read More Button */}
@@ -64,15 +66,20 @@ const NewsCard = ({ article }) => {
 NewsCard.propTypes = {
   article: PropTypes.shape({
     category: PropTypes.string,
-    headline: PropTypes.string.isRequired,
+    headline: PropTypes.string, 
     description: PropTypes.string,
     author: PropTypes.string,
     date: PropTypes.string,
-    source: PropTypes.string,
+    source: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      url: PropTypes.string,
+    }).isRequired,
     region: PropTypes.string,
     image: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
   }).isRequired,
 };
+
+
 
 export default NewsCard;
