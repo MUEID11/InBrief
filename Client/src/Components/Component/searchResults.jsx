@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate for route change
 
 const SearchResults = () => {
     const { category } = useParams();  // Get category from URL params
     const [results, setResults] = useState([]);
     const [error, setError] = useState(null);
+    const navigate = useNavigate(); // useNavigate for navigation
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/articles?category=${category}`);
-                
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/articles?category=${category}`);                
                 if (!response.ok) {
                     throw new Error(`Error fetching data: ${response.statusText}`);
                 }
                 
                 const data = await response.json();
-                console.log(data);
-                
                 setResults(data.data);  // Assuming `data.data` contains the search results
             } catch (error) {
                 setError(error.message);
@@ -27,7 +25,18 @@ const SearchResults = () => {
         if (category) {
             fetchData();
         }
+
+        // Cleanup function to reset data when leaving the page or navigating away
+        return () => {
+            setResults([]);  // Clear results when leaving the page
+        };
     }, [category]);
+
+    // Function to handle leaving the page
+    const handleBack = () => {
+        setResults([]);  // Clear data when going back
+        navigate('/');  // Navigate back to home page or another page
+    };
 
     if (error) {
         return <div>Error fetching data: {error}</div>;
@@ -35,7 +44,7 @@ const SearchResults = () => {
 
     return (
         <div>
-            <h1>{category}</h1>
+            <h1>Search Results for Category: {category}</h1>
             {results.length > 0 ? (
                 <div>
                     {results.map((item) => (
@@ -50,6 +59,7 @@ const SearchResults = () => {
             ) : (
                 <div>No results found</div>
             )}
+            <button onClick={handleBack}>Go Back</button>
         </div>
     );
 };
