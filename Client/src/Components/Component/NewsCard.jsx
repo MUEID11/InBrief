@@ -39,6 +39,7 @@ const NewsCard = ({ article }) => {
         {/* Date and Category */}
         <div className="flex gap-3 items-center my-2">
           <p className="text-red-600 font-semibold">{article?.region}</p>
+          <p className="text-red-600 font-semibold">{article?.region}</p>
           <span className="text-xs">
             {new Date(article?.date).toLocaleDateString()}
           </span>
@@ -50,6 +51,7 @@ const NewsCard = ({ article }) => {
       </div>
       <div className="flex gap-3 items-center justify-between mb-2">
                 <p className="text-red-600 font-semibold">{article?.category ? article?.category : "Category"}</p>
+                <span className="text-xs">{article?.date}</span>
                 <span className="text-xs">{article?.date}</span>
               </div>
 
