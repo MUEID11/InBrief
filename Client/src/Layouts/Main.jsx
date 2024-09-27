@@ -8,7 +8,7 @@ const Main = () => {
       {/* navbar */}
 
       <Navbar />
-      <div className="container mx-auto">
+      <div>
         <Outlet />
       </div>
       {/* footer */}
