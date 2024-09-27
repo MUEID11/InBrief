@@ -1,4 +1,7 @@
+import { useSelector } from "react-redux";
+
 const Profile = () => {
+  const {user} = useSelector((state) => state.user);
   return (
     <div className="container mx-auto my-12 max-w-lg p-4 shadow-md bg-gray-50 text-gray-800">
       <div className="flex justify-between pb-4 border-bottom">
@@ -8,7 +11,7 @@ const Profile = () => {
             href="#"
             className="mb-0 capitalize text-gray-800"
           >
-            Photography
+            User ID: {user?._id}
           </a>
         </div>
         <a rel="noopener noreferrer" href="#">

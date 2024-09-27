@@ -111,7 +111,7 @@ const Navbar = () => {
                 <div>
                   <img
                     className="relative size-12 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
-                    src={user.user?.imageUrl}
+                    src={user?.user?.imageUrl}
                     alt="Medium avatar"
                   />
                 </div>
