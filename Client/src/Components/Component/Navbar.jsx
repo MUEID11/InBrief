@@ -12,12 +12,12 @@ const Navbar = () => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const userDropdownRef = useRef(null);
   const menuDropdownRef = useRef(null);
-  const {user} = useSelector((state)=> state?.user);
+  const { user } = useSelector((state) => state?.user);
   const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(userThunk())
-  },[dispatch])
-  console.log(user)
+  useEffect(() => {
+    dispatch(userThunk());
+  }, [dispatch]);
+  console.log(user);
 
   // Search start
   const [category, setCategory] = useState('');
@@ -26,20 +26,22 @@ const Navbar = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     navigate(`/search/${category}`);
-};
+  };
 
-const handleSignOut = async(e) => {
-  e.preventDefault();
-  dispatch(resetUser());
-  navigate('/signin')
-}
+  const handleSignOut = async (e) => {
+    e.preventDefault();
+    dispatch(resetUser());
+    navigate('/signin');
+  };
   // Search end
 
   // Close the dropdown if clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if ((userDropdownRef.current || menuDropdownRef.current) && (!userDropdownRef.current.contains(event.target) || !menuDropdownRef.current.contains(event.target))) {
+      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target)) {
         setIsDropDownOpen(false);
+      }
+      if (menuDropdownRef.current && !menuDropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
@@ -49,6 +51,7 @@ const handleSignOut = async(e) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [userDropdownRef]);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -90,17 +93,18 @@ const handleSignOut = async(e) => {
             <FaRegPenToSquare className="text-lg sm:text-xl" />
             <h2 className="lg:mr-4 text-red-600 font-medium text-base">Write</h2>
           </div> */}
-            <div>
+          <div>
             <form onSubmit={handleSearch}>
-                <input
-                    type="text"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    placeholder="Search by category"
-                />
-                <button type="submit">Search</button>
+              <input
+                type="text"
+                value={category}
+                className="border shadow py-1 px-2 mr-1 placeholder-shown:font-normal"
+                onChange={(e) => setCategory(e.target.value)}
+                placeholder="Search by category"
+              />
+              <button type="submit">Search</button>
             </form>
-        </div>
+          </div>
 
           {/* <div className="hidden sm:flex">
             <input type="text" placeholder="Search..." className="px-4 py-2 rounded-md text-gray-600  focus:ring-rose-300 focus:ring focus:outline-none border border-rose-300" />
@@ -132,17 +136,17 @@ const handleSignOut = async(e) => {
               } transition-all duration-300`}>
               <ul className="py-2 text-sm text-gray-600 dark:text-gray-200">
                 <li>
-                  <Link to='/profile' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Profile
                   </Link>
                 </li>
                 <li>
-                  <Link to='/dashboard' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Dashboard
                   </Link>
                 </li>
                 <li>
-                  <Link to='/settings' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <Link to="/settings" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Settings
                   </Link>
                 </li>
@@ -185,26 +189,26 @@ const handleSignOut = async(e) => {
             !isOpen ? 'opacity-0 pointer-events-none select-none' : 'opacity-100'
           } transition-all duration-300`}>
           <ul className="py-2 text-sm text-gray-600 dark:text-gray-200">
-          <li>
-                  <Link to='/profile' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link to='/dashboard' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Dashboard
-                  </Link>
-                </li>
-                <li>
-                  <Link to='/settings' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Settings
-                  </Link>
-                </li>
-                <li>
-                  <Link to='/signout' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Sign out
-                  </Link>
-                </li>
+            <li>
+              <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                Profile
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                Dashboard
+              </Link>
+            </li>
+            <li>
+              <Link to="/settings" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                Settings
+              </Link>
+            </li>
+            <li>
+              <Link to="/signout" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                Sign out
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
