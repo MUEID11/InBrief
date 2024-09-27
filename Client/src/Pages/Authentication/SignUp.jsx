@@ -1,26 +1,101 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "./../../assets/logo.png";
 import whitelogo from "./../../assets/whitelogo.png";
 import { FcGoogle } from "react-icons/fc";
-import { signUpUser } from "../../Features/Authenticate/authAction";
+// import { signUpUser } from "../../Features/Authenticate/authAction";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
+import userThunk from "../../Features/thunks/userThunks";
 
-import { authStart, authSuccess } from "../../Features/Authenticate/AuthSlice";
 const SignUp = () => {
   const dispatch = useDispatch();
-  const handleSubmit = async (e) => {
+  const [error, setError] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const handleChange = async (e) => {
     e.preventDefault();
-    const formData = e.target;
-    const name = formData.name.value;
-    const email = formData.email.value;
-    const password = formData.password.value;
-    dispatch(authStart());
-    const user = await signUpUser(email, password, name);
-    console.log(user);
-    dispatch(
-      authSuccess({ name: user?.user?.displayName, email: user?.user?.email })
+    setLoading(true);
+    const userImage = e.target.files[0];
+    const image = new FormData();
+    if (!image) {
+      return;
+    }
+    image.append("file", userImage);
+    image.append("upload_preset", "a4roznw9");
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${
+        import.meta.env.VITE_CLOUD_NAME
+      }/image/upload`,
+      {
+        method: "POST",
+        body: image,
+      }
     );
+    const data = await response.json();
+    const url = data.secure_url;
+    console.log(url)
+    if (!url) {
+      setLoading(false);
+      return alert("image upload failed");
+    }else{
+      setImageUrl(url)
+      setLoading(false);
+    }
+    
   };
+console.log(loading)
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // Extract form values
+  const formData = e.target;
+  const name = formData.name.value;
+  const email = formData.email.value;
+  const password = formData.password.value;
+  const confirmPassword = formData.confirmPassword.value;
+  const age = formData.age.value;
+  
+  const user = { name, email, password, age, imageUrl };
+
+  // Password confirmation check
+  if (password !== confirmPassword) {
+    return setError("Passwords do not match");
+  }else{setError(null)}
+
+  try {
+    // Make POST request to create a user
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/users/createuser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user),
+    });
+
+    // Handle the response data
+    const data = await response.json();//token on data
+    localStorage.setItem('token', data);
+    // Check if there is an error in the response
+    if (!response.ok) {
+      throw new Error(data.message || "Failed to create user");
+    }
+
+    // Successful creation
+    console.log("User created:", data);
+    
+    // Optionally, reset form
+    formData.reset();
+    dispatch(userThunk());
+    navigate('/')
+    
+  } catch (error) {
+    // Handle errors
+    console.error("Error creating user:", error.message);
+    setError(error.message);
+  }
+};
+
   return (
     <section className="contianer mx-auto h-screen flex items-center justify-center">
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white shadow-lg  lg:max-w-4xl">
@@ -121,6 +196,22 @@ const SignUp = () => {
               />
             </div>
             <div className="mt-4">
+              <label
+                className="block mb-2 text-sm font-medium text-gray-600"
+                htmlFor="LoggingImage"
+              >
+                Image
+              </label>
+              <input
+                id="LoggingImage"
+                onChange={handleChange}
+                name="image"
+                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                type="file"
+              />
+            </div>
+            <div className="mt-4">
+
               <div className="flex justify-between">
                 <label
                   className="block mb-2 text-sm font-medium text-gray-600"
@@ -152,6 +243,14 @@ const SignUp = () => {
                 type="password"
               />
             </div>
+            <div>
+              {error && (
+                <span className="text-red-600 text-xs py-1">
+                  Your password doesn&#39;t match
+                </span>
+              )}
+            </div>
+
             <div className="mb-4 mt-2">
               <input type="checkbox" id="terms" className="mr-2" />
               <label htmlFor="terms">
@@ -165,6 +264,7 @@ const SignUp = () => {
             {/* Sign In Button */}
             <div className="mt-6">
               <button
+                disabled={loading}
                 type="submit"
                 className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-800 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
               >
