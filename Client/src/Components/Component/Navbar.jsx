@@ -5,6 +5,7 @@ import logo from './../../assets/logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import userThunk from '../../Features/thunks/userThunks';
 import { Link, useNavigate } from 'react-router-dom';
+import { resetUser } from '../../Features/Authenticate/userSlice';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +25,13 @@ const Navbar = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    navigate(`/articles/search/${category}`);
+    navigate(`/search/${category}`);
+  };
+
+  const handleSignOut = async (e) => {
+    e.preventDefault();
+    dispatch(resetUser());
+    navigate('/signin');
   };
   // Search end
 
@@ -144,7 +151,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/signout" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <Link onClick={handleSignOut} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Sign out
                   </Link>
                 </li>

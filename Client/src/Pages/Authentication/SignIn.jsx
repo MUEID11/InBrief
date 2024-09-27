@@ -17,7 +17,8 @@ const SignIn = () => {
       console.log(response);
       const data = await response.json();
       const token = localStorage.setItem('token', data);
-      if (token) {
+      const isToken = localStorage.getItem('token', data);
+      if (isToken) {
         navigate('/');
       }
       console.log(data);

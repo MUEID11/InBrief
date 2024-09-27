@@ -7,7 +7,7 @@ const Profile = () => {
       <div className="flex justify-between pb-4 border-bottom">
         <div className="flex items-center">
           <a rel="noopener noreferrer" href="#" className="mb-0 capitalize text-gray-800">
-            User ID: <span>{user?._id}</span>
+            User ID: {user?._id}
           </a>
         </div>
         <a rel="noopener noreferrer" href="#">

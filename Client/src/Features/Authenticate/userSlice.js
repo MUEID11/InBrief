@@ -10,7 +10,13 @@ const initialState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    resetUser: (state) => {
+      state.user = null,
+      localStorage.removeItem('token')
+
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(userThunk.pending, (state) => {
@@ -28,5 +34,5 @@ const userSlice = createSlice({
       });
   },
 });
-
+export const {resetUser} = userSlice.actions;
 export default userSlice.reducer;
