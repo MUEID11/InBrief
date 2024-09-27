@@ -5,13 +5,14 @@ import logo from './../../assets/logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import userThunk from '../../Features/thunks/userThunks';
 import { Link, useNavigate } from 'react-router-dom';
+import { resetUser } from '../../Features/Authenticate/userSlice';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const userDropdownRef = useRef(null);
   const menuDropdownRef = useRef(null);
-  const user = useSelector((state)=> state?.user);
+  const {user} = useSelector((state)=> state?.user);
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(userThunk())
@@ -26,6 +27,12 @@ const Navbar = () => {
     e.preventDefault();
     navigate(`/search/${category}`);
 };
+
+const handleSignOut = async(e) => {
+  e.preventDefault();
+  dispatch(resetUser());
+  navigate('/signin')
+}
   // Search end
 
   // Close the dropdown if clicking outside of it
@@ -103,15 +110,15 @@ const Navbar = () => {
             <div onClick={() => setIsDropDownOpen(!isDropDownOpen)}>
               {isDropDownOpen ? (
                 <img
-                  className="relative size-12 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
-                  src={user.user?.imageUrl}
+                  className="relative size-10 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
+                  src={user?.imageUrl}
                   alt="Medium avatar"
                 />
               ) : (
                 <div>
                   <img
-                    className="relative size-12 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
-                    src={user.user?.imageUrl}
+                    className="relative size-10 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
+                    src={user?.imageUrl}
                     alt="Medium avatar"
                   />
                 </div>
@@ -140,7 +147,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to='/signout' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <Link onClick={handleSignOut} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Sign out
                   </Link>
                 </li>
