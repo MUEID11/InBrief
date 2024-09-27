@@ -24,14 +24,8 @@ const Home = () => {
       <EditorPicks />
       {/* cards under editors pick */}
       {/* business & sports */}
-      <div className="flex flex-col lg:flex-row justify-between gap-6">
-        <div className="w-full lg:w-1/2">
-          <BusinessNewsSection />
-        </div>
-        <div className="w-full lg:w-1/2">
-          <SportsNewsSection />
-        </div>
-      </div>
+      <BusinessNewsSection />
+      <SportsNewsSection />
       {/* topcreators */}
       <TopCreators />
       {/* newslatter subscription */}

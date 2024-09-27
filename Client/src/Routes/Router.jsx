@@ -1,38 +1,47 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../Layouts/Main';
 import Home from '../Pages/Home';
-// import LatestNewsSection from '../Components/LatestNewsSection';
-// import BusinessNewsSection from '../Components/BusinessNewsSection';
-// import SportsNewsSection from '../Components/SportsNewsSection';
-import SignUp from '../Pages/SignUp';
-import SignIn from '../Pages/SignIn';
+import SignUp from '../Pages/Authentication/SignUp';
+import SignIn from '../Pages/Authentication/SignIn';
 import About from '../Pages/About';
+import ErrorPage from '../Pages/ErrorPage';
+import LatestNewsSection from '../Components/sections/LatestNewsSection';
+import BusinessNewsSection from '../Components/sections/BusinessNewsSection';
+import SportsNewsSection from '../Components/sections/SportsNewsSection';
+import Profile from '../Pages/Profile';
+import ProtectedRoute from './ProtectedRoute';
+import SearchResults from '../Components/Component/searchResults';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Main />,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
         element: <Home />,
       },
       {
-        path: '/about',
+        path: 'about',
         element: <About />,
       },
-      // {
-      //   path: "/latest-news",
-      //   element: <LatestNewsSection />
-      // },
-      // {
-      //   path: "/business",
-      //   element: <BusinessNewsSection />
-      // },
-      // {
-      //   path: "/sports",
-      //   element: <SportsNewsSection />
-      // },
+      {
+        path: 'latest-news',
+        element: <LatestNewsSection />,
+      },
+      {
+        path: 'business',
+        element: <BusinessNewsSection />,
+      },
+      {
+        path: 'sports',
+        element: <SportsNewsSection />,
+      },
+      {
+        path: '/articles/search/:category',
+        element: <SearchResults />,
+      },
       {
         path: 'signup',
         element: <SignUp />,
@@ -40,6 +49,14 @@ const router = createBrowserRouter([
       {
         path: 'signin',
         element: <SignIn />,
+      },
+      {
+        path: 'profile',
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
