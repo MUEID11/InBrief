@@ -8,6 +8,7 @@ import ErrorPage from '../Pages/ErrorPage';
 import LatestNewsSection from '../Components/sections/LatestNewsSection';
 import BusinessNewsSection from '../Components/sections/BusinessNewsSection';
 import SportsNewsSection from '../Components/sections/SportsNewsSection';
+import SearchResults from '../Components/Component/searchResults';
 
 
 const router = createBrowserRouter([
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/sports",
         element: <SportsNewsSection />
+      },
+      {
+        path: "/search/:category",
+        element: <SearchResults></SearchResults>
       },
       {
         path: 'signup',

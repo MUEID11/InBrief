@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { FaRegPenToSquare } from 'react-icons/fa6';
+// import { FaRegPenToSquare } from 'react-icons/fa6';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from './../../assets/logo.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +10,16 @@ const Navbar = () => {
 
   const userDropdownRef = useRef(null);
   const menuDropdownRef = useRef(null);
+
+  // Search start
+  const [category, setCategory] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/search/${category}`);
+};
+  // Search end
 
   // Close the dropdown if clicking outside of it
   useEffect(() => {
@@ -65,10 +75,21 @@ const Navbar = () => {
 
         {/* Write Icon and Search Input */}
         <div className="flex gap-2 items-center justify-center">
-          <div className="hidden sm:flex items-center">
+          {/* <div className="hidden sm:flex items-center">
             <FaRegPenToSquare className="text-lg sm:text-xl" />
             <h2 className="lg:mr-4 text-red-600 font-medium text-base">Write</h2>
-          </div>
+          </div> */}
+            <div>
+            <form onSubmit={handleSearch}>
+                <input
+                    type="text"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    placeholder="Search by category"
+                />
+                <button type="submit">Search</button>
+            </form>
+        </div>
 
           {/* <div className="hidden sm:flex">
             <input type="text" placeholder="Search..." className="px-4 py-2 rounded-md text-gray-600  focus:ring-rose-300 focus:ring focus:outline-none border border-rose-300" />
