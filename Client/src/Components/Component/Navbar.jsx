@@ -11,7 +11,7 @@ const Navbar = () => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const userDropdownRef = useRef(null);
   const menuDropdownRef = useRef(null);
-  const user = useSelector((state) => state?.user);
+  const { user } = useSelector((state) => state?.user);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(userThunk());
@@ -24,7 +24,7 @@ const Navbar = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    navigate(`/search/${category}`);
+    navigate(`/articles/search/${category}`);
   };
   // Search end
 
@@ -107,15 +107,15 @@ const Navbar = () => {
             <div onClick={() => setIsDropDownOpen(!isDropDownOpen)}>
               {isDropDownOpen ? (
                 <img
-                  className="relative size-12 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
-                  src={user.user?.imageUrl}
+                  className="relative size-10 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
+                  src={user?.imageUrl}
                   alt="Medium avatar"
                 />
               ) : (
                 <div>
                   <img
-                    className="relative size-12 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
-                    src={user.user?.imageUrl}
+                    className="relative size-10 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
+                    src={user?.imageUrl}
                     alt="Medium avatar"
                   />
                 </div>

@@ -9,7 +9,8 @@ const SearchResults = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/articles?category=${category}`);
+        const response = await fetch(`http://localhost:5000/articles/search?category=${category}`);
+        console.log(response);
 
         if (!response.ok) {
           throw new Error(`Error fetching data: ${response.statusText}`);
@@ -18,15 +19,15 @@ const SearchResults = () => {
         const data = await response.json();
         console.log(data);
 
-        setResults(data.data); // Assuming `data.data` contains the search results
+        setResults(data); // Assuming `data.data` contains the search results
       } catch (error) {
         setError(error.message);
       }
     };
 
-    if (category) {
-      fetchData();
-    }
+    // if (category) {
+    fetchData();
+    // }
   }, [category]);
 
   if (error) {
@@ -36,8 +37,8 @@ const SearchResults = () => {
   return (
     <div>
       <h1>{category}</h1>
-      {results.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {results?.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {results.map((item) => (
             <div key={item._id} className="news-item">
               <h2>{item.title}</h2>

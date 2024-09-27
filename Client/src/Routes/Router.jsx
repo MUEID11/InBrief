@@ -39,7 +39,7 @@ const router = createBrowserRouter([
         element: <SportsNewsSection />,
       },
       {
-        path: '/search/:category',
+        path: '/articles/search/:category',
         element: <SearchResults />,
       },
       {
