@@ -1,13 +1,22 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema.Types;
 
 const articleSchema = mongoose.Schema(
   {
     title: { type: String, required: true },
-    description: String,
+    description: { type: String, required: true },
+    image: { type: String, required: true },
+    url: { type: String, required: true },
+    source: { type: Object, required: true },
+    category: { type: String, required: true },
+    region: { type: String },
+    postedBy: { type: String, required: true },
+    bookmarks: { type: [String], required: true },
+    like: [{ type: ObjectId, ref: "User" }],
   },
   { timestamps: true, versionKey: false }
 );
 
-const Article = new mongoose.model('Article', articleSchema);
+const Article = new mongoose.model("Article", articleSchema);
 
 module.exports = Article;
