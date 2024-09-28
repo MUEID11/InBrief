@@ -140,19 +140,24 @@ const Navbar = () => {
                     Profile
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Dashboard
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/settings" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Settings
+                    Home
                   </Link>
                 </li>
                 <li>
                   <Link onClick={handleSignOut} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Sign out
+                    Stories
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/about" onClick={handleSignOut} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    About
                   </Link>
                 </li>
               </ul>
