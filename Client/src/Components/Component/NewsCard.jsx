@@ -56,7 +56,7 @@ const NewsCard = ({ article }) => {
         <div>
           <div className="flex items-center gap-2">
           <button><FaHeart className="text-red-600 text-lg"/></button>
-          <p className="text-gray-700 font-medium">3 likes</p>
+          <p className="text-gray-700 text-sm">3 likes</p>
           </div>
         </div>
         {/* Read More Button */}
