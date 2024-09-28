@@ -47,16 +47,15 @@ const NewsCard = ({ article }) => {
         </p>
       </div>
       <div className="flex gap-3 items-center justify-between mb-2">
-                <p className="text-red-600 font-semibold">{article?.category ? article?.category : "Category"}</p>
-                <span className="text-xs">{article?.date}</span>
-              </div>
+        <p className="text-red-600 font-semibold">
+          {article?.category ? article?.category : "Category"}
+        </p>
+        <span className="text-xs">{article?.date}</span>
+      </div>
 
       {/* Read More Button */}
-      <button className="text-red-600 self-end font-medium">
-        Read More
-      </button>
+      <button className="text-red-600 self-end font-medium">Read More</button>
     </article>
-    
   );
 };
 
