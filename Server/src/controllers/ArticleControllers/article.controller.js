@@ -23,6 +23,26 @@ const getArticles = async (req, res) => {
     res.status(500).json({ success: false, error });
   }
 };
+const getBusinessArticles = async (req, res) => {
+  try {
+    const businessArticle = await Article.find({ category: "Business" });
+    res
+      .status(200)
+      .json({ success: true, count: businessArticle.length, data: businessArticle });
+  } catch (error) {
+    res.status(500).json({ success: false, error });
+  }
+};
+const getSportArticles = async (req, res) => {
+  try {
+    const SportsArticle = await Article.find({ category: "Sports" });
+    res
+      .status(200)
+      .json({ success: true, count: SportsArticle.length, data: SportsArticle });
+  } catch (error) {
+    res.status(500).json({ success: false, error });
+  }
+};
 
 const addToBookmark = async (req, res) => {
   const { articleId, userEmail } = req.body;
@@ -53,58 +73,10 @@ const addToBookmark = async (req, res) => {
   }
 };
 
-const likeArticle = async (req, res) => {
-  try {
-    const { articleId } = req.params;
-    const userId = req.body.userId; // Get userId from request body
-
-    const article = await Article.findById(articleId);
-
-    if (!article.like.includes(userId)) {
-      article.like.push(userId); // Add user ID to like array
-      await article.save();
-      return res
-        .status(200)
-        .json({ message: "Article liked", likes: article.like.length });
-    } else {
-      return res
-        .status(400)
-        .json({ message: "You have already liked this article" });
-    }
-  } catch (error) {
-    return res.status(500).json({ error: "Something went wrong" });
-  }
-};
-
-// Unlike an article
-const unlikeArticle = async (req, res) => {
-  try {
-    const { articleId } = req.params;
-    const userId = req.body.userId; // Get userId from request body
-
-    const article = await Article.findById(articleId);
-
-    if (article.like.includes(userId)) {
-      article.like = article.like.filter(
-        (id) => id.toString() !== userId.toString()
-      ); // Remove user ID from like array
-      await article.save();
-      return res
-        .status(200)
-        .json({ message: "Article unliked", likes: article.like.length });
-    } else {
-      return res
-        .status(400)
-        .json({ message: "You haven't liked this article yet" });
-    }
-  } catch (error) {
-    return res.status(500).json({ error: "Something went wrong" });
-  }
-};
-
 module.exports = {
   postArticle,
   getArticles,
   addToBookmark,
-  likeArticle,
-  unlikeArticle};
+  getBusinessArticles,
+  getSportArticles
+};
