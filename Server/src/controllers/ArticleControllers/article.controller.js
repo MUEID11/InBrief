@@ -28,7 +28,11 @@ const getBusinessArticles = async (req, res) => {
     const businessArticle = await Article.find({ category: "Business" });
     res
       .status(200)
-      .json({ success: true, count: businessArticle.length, data: businessArticle });
+      .json({
+        success: true,
+        count: businessArticle.length,
+        data: businessArticle,
+      });
   } catch (error) {
     res.status(500).json({ success: false, error });
   }
@@ -38,7 +42,11 @@ const getSportArticles = async (req, res) => {
     const SportsArticle = await Article.find({ category: "Sports" });
     res
       .status(200)
-      .json({ success: true, count: SportsArticle.length, data: SportsArticle });
+      .json({
+        success: true,
+        count: SportsArticle.length,
+        data: SportsArticle,
+      });
   } catch (error) {
     res.status(500).json({ success: false, error });
   }
@@ -78,5 +86,5 @@ module.exports = {
   getArticles,
   addToBookmark,
   getBusinessArticles,
-  getSportArticles
+  getSportArticles,
 };

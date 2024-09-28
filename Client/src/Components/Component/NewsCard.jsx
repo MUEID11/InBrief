@@ -9,11 +9,11 @@ const NewsCard = ({ article }) => {
         href={article.url}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`Read more about ${article.headline}`}
+        aria-label={`Read more about ${article.title}`}
       >
         <img
           src={article.image}
-          alt={article.headline}
+          alt={article.title}
           className="h-56 object-cover w-full"
           loading="lazy"
         />
@@ -33,7 +33,7 @@ const NewsCard = ({ article }) => {
 
         {/* Headline */}
         <a href={article.url} target="_blank" rel="noopener noreferrer">
-          <h3 className="font-bold text-lg mt-2">{article?.headline}</h3>
+          <h3 className="font-bold text-lg mt-2">{article?.title}</h3>
         </a>
         {/* Date and Category */}
         <div className="flex gap-3 items-center my-2">
@@ -71,7 +71,7 @@ const NewsCard = ({ article }) => {
 NewsCard.propTypes = {
   article: PropTypes.shape({
     category: PropTypes.string,
-    headline: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     description: PropTypes.string,
     author: PropTypes.string,
     date: PropTypes.string,

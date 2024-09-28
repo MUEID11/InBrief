@@ -6,26 +6,26 @@ const BusinessNewsSection = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-    // Fetch Business News data from API
-    useEffect(() => {
-      fetch("http://localhost:5000/articles/business") // Updated URL
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then(({data}) => { 
-          setArticles(data); 
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error("Error fetching Business News:", err);
-          setError(true);
-          setLoading(false);
-        });
-    }, []);
-  console.log(articles)
+  // Fetch Business News data from API
+  useEffect(() => {
+    fetch("http://localhost:5000/articles/business") // Updated URL
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then(({ data }) => {
+        setArticles(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching Business News:", err);
+        setError(true);
+        setLoading(false);
+      });
+  }, []);
+  console.log(articles);
 
   if (loading) {
     return (
