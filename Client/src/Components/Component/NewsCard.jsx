@@ -61,7 +61,7 @@ const NewsCard = ({ article }) => {
         </div>
         {/* Read More Button */}
         <button className="text-red-600 self-end font-medium">Read More</button>
-        <FaBookmark />
+        
       </div>
     </article>
   );
