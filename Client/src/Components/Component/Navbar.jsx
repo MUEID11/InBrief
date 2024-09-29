@@ -1,21 +1,47 @@
 import { useState, useEffect, useRef } from 'react';
-import { FaRegPenToSquare } from 'react-icons/fa6';
+// import { FaRegPenToSquare } from 'react-icons/fa6';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from './../../assets/logo.png';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import userThunk from '../../Features/thunks/userThunks';
+import { Link, useNavigate } from 'react-router-dom';
+import { resetUser } from '../../Features/Authenticate/userSlice';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-
   const userDropdownRef = useRef(null);
   const menuDropdownRef = useRef(null);
+  const { user } = useSelector((state) => state?.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(userThunk());
+  }, [dispatch]);
+  console.log(user);
+
+  // Search start
+  const [category, setCategory] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/search/${category}`);
+  };
+
+  const handleSignOut = async (e) => {
+    e.preventDefault();
+    dispatch(resetUser());
+    navigate('/signin');
+  };
+  // Search end
 
   // Close the dropdown if clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if ((userDropdownRef.current || menuDropdownRef.current) && (!userDropdownRef.current.contains(event.target) || !menuDropdownRef.current.contains(event.target))) {
+      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target)) {
         setIsDropDownOpen(false);
+      }
+      if (menuDropdownRef.current && !menuDropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
@@ -25,8 +51,6 @@ const Navbar = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [userDropdownRef]);
-
-  console.log(isDropDownOpen);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -65,9 +89,21 @@ const Navbar = () => {
 
         {/* Write Icon and Search Input */}
         <div className="flex gap-2 items-center justify-center">
-          <div className="hidden sm:flex items-center">
+          {/* <div className="hidden sm:flex items-center">
             <FaRegPenToSquare className="text-lg sm:text-xl" />
             <h2 className="lg:mr-4 text-red-600 font-medium text-base">Write</h2>
+          </div> */}
+          <div>
+            <form onSubmit={handleSearch}>
+              <input
+                type="text"
+                value={category}
+                className="border shadow py-1 px-2 mr-1 placeholder-shown:font-normal"
+                onChange={(e) => setCategory(e.target.value)}
+                placeholder="Search by category"
+              />
+              <button type="submit">Search</button>
+            </form>
           </div>
 
           {/* <div className="hidden sm:flex">
@@ -78,15 +114,15 @@ const Navbar = () => {
             <div onClick={() => setIsDropDownOpen(!isDropDownOpen)}>
               {isDropDownOpen ? (
                 <img
-                  className="relative size-12 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
-                  src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
+                  className="relative size-10 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
+                  src={user?.imageUrl}
                   alt="Medium avatar"
                 />
               ) : (
                 <div>
                   <img
-                    className="relative size-12 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
-                    src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
+                    className="relative size-10 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
+                    src={user?.imageUrl}
                     alt="Medium avatar"
                   />
                 </div>
@@ -100,24 +136,24 @@ const Navbar = () => {
               } transition-all duration-300`}>
               <ul className="py-2 text-sm text-gray-600 dark:text-gray-200">
                 <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Profile
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Dashboard
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <Link to="/settings" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Settings
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <Link onClick={handleSignOut} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Sign out
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -154,24 +190,24 @@ const Navbar = () => {
           } transition-all duration-300`}>
           <ul className="py-2 text-sm text-gray-600 dark:text-gray-200">
             <li>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+              <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                 Profile
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+              <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                 Dashboard
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+              <Link to="/settings" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                 Settings
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+              <Link to="/signout" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                 Sign out
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

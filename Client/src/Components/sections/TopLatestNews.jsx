@@ -1,95 +1,51 @@
-import { FaArrowRight } from "react-icons/fa6";
-import { Link } from "react-router-dom";
-import TopLatestNewsCard from "../Component/TopLatestNewsCard";
-
-const fakeData = [
-  {
-    url: "https://metalinjection.net/news/brujeria-cancels-all-tour-dates-due-to-severe-medical-emergency",
-    image:
-      "https://cdn-p.smehost.net/sites/7f9737f2506941499994d771a29ad47a/wp-content/uploads/2023/07/Brujeria-2023.png",
-    title:
-      'Latest NewsBRUJERIA Cancels All Tour Dates Due To "Severe Medical Emergency"',
-    description:
-      "Brujeria has sadly had to cancel all their upcoming tour dates due to an unspecified severe medical emergency. Brujeria promises an update about their situation soon, but in the meantime we wish everyone in the band all the best.",
-    date: "18th September 2024",
-    source: {
-      name: "Metal Injection",
-      url: "https://metalinjection.net/",
-      icon: "https://cdn-p.smehost.net/sites/7f9737f2506941499994d771a29ad47a/wp-content/uploads/2020/09/metalinjectionlogo-2020-3.png",
-    },
-    category: "music",
-  },
-  {
-    url: "https://metalinjection.net/news/brujeria-cancels-all-tour-dates-due-to-severe-medical-emergency",
-    image:
-      "https://cdn-p.smehost.net/sites/7f9737f2506941499994d771a29ad47a/wp-content/uploads/2023/07/Brujeria-2023.png",
-    title:
-      'Latest NewsBRUJERIA Cancels All Tour Dates Due To "Severe Medical Emergency"',
-    description:
-      "Brujeria has sadly had to cancel all their upcoming tour dates due to an unspecified severe medical emergency. Brujeria promises an update about their situation soon, but in the meantime we wish everyone in the band all the best.",
-    date: "18th September 2024",
-    source: {
-      name: "Metal Injection",
-      url: "https://metalinjection.net/",
-      icon: "https://cdn-p.smehost.net/sites/7f9737f2506941499994d771a29ad47a/wp-content/uploads/2020/09/metalinjectionlogo-2020-3.png",
-    },
-    category: "music",
-  },
-  {
-    url: "https://metalinjection.net/news/brujeria-cancels-all-tour-dates-due-to-severe-medical-emergency",
-    image:
-      "https://cdn-p.smehost.net/sites/7f9737f2506941499994d771a29ad47a/wp-content/uploads/2023/07/Brujeria-2023.png",
-    title:
-      'Latest NewsBRUJERIA Cancels All Tour Dates Due To "Severe Medical Emergency"',
-    description:
-      "Brujeria has sadly had to cancel all their upcoming tour dates due to an unspecified severe medical emergency. Brujeria promises an update about their situation soon, but in the meantime we wish everyone in the band all the best.",
-    date: "18th September 2024",
-    source: {
-      name: "Metal Injection",
-      url: "https://metalinjection.net/",
-      icon: "https://cdn-p.smehost.net/sites/7f9737f2506941499994d771a29ad47a/wp-content/uploads/2020/09/metalinjectionlogo-2020-3.png",
-    },
-    category: "music",
-  },
-  {
-    url: "https://metalinjection.net/news/brujeria-cancels-all-tour-dates-due-to-severe-medical-emergency",
-    image:
-      "https://cdn-p.smehost.net/sites/7f9737f2506941499994d771a29ad47a/wp-content/uploads/2023/07/Brujeria-2023.png",
-    title:
-      'Latest NewsBRUJERIA Cancels All Tour Dates Due To "Severe Medical Emergency"',
-    description:
-      "Brujeria has sadly had to cancel all their upcoming tour dates due to an unspecified severe medical emergency. Brujeria promises an update about their situation soon, but in the meantime we wish everyone in the band all the best.",
-    date: "18th September 2024",
-    source: {
-      name: "Metal Injection",
-      url: "https://metalinjection.net/",
-      icon: "https://cdn-p.smehost.net/sites/7f9737f2506941499994d771a29ad47a/wp-content/uploads/2020/09/metalinjectionlogo-2020-3.png",
-    },
-    category: "music",
-  },
-];
+import { useEffect, useState } from 'react';
+import NewsSection from './NewsSection';
 
 const TopLatestNews = () => {
-  return (
-    <section className="container mx-auto sm:mt-14 mt-6">
-      <div className="m-2 sm:m-0">
-      <header className="flex items-center justify-between mb-3">
-        <h3 className="text-2xl md:text-3xl font-inter font-semibold">
-          Top Latest News
-        </h3>
-        <Link
-          to={"/toplatest"}
-          className="flex items-center gap-1 font-bold text-red-600 hover:text-red-700 transition-colors duration-300"
-        >
-          See All <FaArrowRight />
-        </Link>
-      </header>
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-      <main>
-        <TopLatestNewsCard data={fakeData} />
-      </main>
+  // Fetch Latest News data from fakedata.json
+  useEffect(() => {
+    fetch('/fakedata.json')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setArticles(data.latestNews);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error fetching Latest News:', err);
+        setError(true);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center p-4">
+        <p className="text-xl">Loading Latest News...</p>
       </div>
-    </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center p-4">
+        <p className="text-xl text-red-600">Failed to load Latest News. Please try again later.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="container mx-auto m-2">
+      <NewsSection title="Top Latest News" articles={articles} link="/latest-news" />
+    </div>
   );
 };
 

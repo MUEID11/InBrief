@@ -8,7 +8,9 @@ import ErrorPage from '../Pages/ErrorPage';
 import LatestNewsSection from '../Components/sections/LatestNewsSection';
 import BusinessNewsSection from '../Components/sections/BusinessNewsSection';
 import SportsNewsSection from '../Components/sections/SportsNewsSection';
-
+import Profile from '../Pages/Profile';
+import ProtectedRoute from './ProtectedRoute';
+import SearchResults from '../Components/Component/searchResults';
 
 const router = createBrowserRouter([
   {
@@ -21,20 +23,24 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/about',
+        path: 'about',
         element: <About />,
       },
       {
-        path: "/latest-news",
-        element: <LatestNewsSection />
+        path: 'latest-news',
+        element: <LatestNewsSection />,
       },
       {
-        path: "/business",
-        element: <BusinessNewsSection />
+        path: 'business',
+        element: <BusinessNewsSection />,
       },
       {
-        path: "/sports",
-        element: <SportsNewsSection />
+        path: 'sports',
+        element: <SportsNewsSection />,
+      },
+      {
+        path: '/articles/search/:category',
+        element: <SearchResults />,
       },
       {
         path: 'signup',
@@ -43,6 +49,14 @@ const router = createBrowserRouter([
       {
         path: 'signin',
         element: <SignIn />,
+      },
+      {
+        path: 'profile',
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

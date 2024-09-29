@@ -9,11 +9,15 @@ const NewsSection = ({ title, articles, link }) => {
   // Function to determine grid columns based on the section title
   const getGridColumns = () => {
     switch (title) {
+      case "Top Latest News":
+        return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
       case "Latest News":
         return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
       case "Business":
+        return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
       case "Sports":
         return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+
       default:
         return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
     }
