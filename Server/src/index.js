@@ -12,8 +12,8 @@ const articleHandlers = require('./routers/articleHandlers');
 const app = express();
 
 const rateLimiter = rateLimit({
-  windowMs: 10 * 60 * 1000, // 10 minutes
-  max: 50, // Limit each IP to 50 requests per `window` (here, per 15 minutes).
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
   message: '  Too many requests from this IP .  Please try again later',
 });
 
