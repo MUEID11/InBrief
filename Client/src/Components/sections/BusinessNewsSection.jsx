@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import NewsSection from "./NewsSection";
 
+
 const BusinessNewsSection = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
 
   // Fetch Business News data from API
   useEffect(() => {
