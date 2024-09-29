@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: '*',
+    origin: ['http://localhost:5173', ' https://inbrief-3d9ce.web.app'],
   })
 );
 // APPLICATION ROUTES
