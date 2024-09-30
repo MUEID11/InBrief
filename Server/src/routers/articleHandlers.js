@@ -3,9 +3,7 @@ const { getArticles, postArticle, addToBookmark, getBusinessArticles, getSportAr
 const { searchByCategory } = require('../controllers/searchController');
 const router = express.Router();
 
-router.get('/', getArticles)
-router.get('/business', getBusinessArticles)
-router.get('/sports', getSportArticles)
+router.get('/', getArticles);
 router.post('/', postArticle);
 router.patch('/addBookmark', addToBookmark);
 router.get('/search', searchByCategory);
