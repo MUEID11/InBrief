@@ -11,6 +11,8 @@ import SportsNewsSection from '../Components/sections/SportsNewsSection';
 import Profile from '../Pages/Profile';
 import ProtectedRoute from './ProtectedRoute';
 import SearchResults from '../Components/Component/searchResults';
+import SubmitArticleForm from '../Components/Component/SubmitArticleForm';
+import ArticleList from '../Components/Component/ArticleList';
 
 const router = createBrowserRouter([
   {
@@ -49,6 +51,18 @@ const router = createBrowserRouter([
       {
         path: 'signin',
         element: <SignIn />,
+      },
+      {
+        path: 'submit-article',
+        element: (
+          // <ProtectedRoute>
+            <SubmitArticleForm />
+          // </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'article-list',
+        element: <ArticleList />,
       },
       {
         path: 'profile',
