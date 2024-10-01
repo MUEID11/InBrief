@@ -1,73 +1,182 @@
-/* eslint-disable no-unused-vars */
-import { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
-const SubmitArticleForm = () => {
-  const [title, setTitle] = useState('');
-  const [link, setLink] = useState('');
-  const [description, setDescription] = useState('');
-  const [message, setMessage] = useState('');
+const ArticleForm = () => {
+  const [articleData, setArticleData] = useState({
+    title: "",
+    description: "",
+    image: "",
+    url: "",
+    source: "",
+    category: "",
+    region: "",
+    postedBy: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setArticleData({ ...articleData, [name]: value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/articles/add', { title, link, description });
-      setMessage('Article submitted successfully!');
-      setTitle('');
-      setLink('');
-      setDescription('');
+      const response = await axios.post("http://localhost:5000/articles", articleData);
+      console.log("Article created:", response.data);
+      setArticleData({
+        title: "",
+        description: "",
+        image: "",
+        url: "",
+        source: "",
+        category: "",
+        region: "",
+        postedBy: "",
+      });
     } catch (error) {
-      setMessage('Failed to submit article.');
+      console.error("Error creating article:", error);
     }
   };
 
   return (
-    <div className="container mx-auto p-6 max-w-lg bg-white shadow-lg rounded-lg">
-      <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Submit an Article</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
+    <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 shadow-lg rounded-lg mt-10 relative">
+      {/* Adding a GIF background */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://media.giphy.com/media/26Fxy3Iz1ari8oytO/giphy.gif"
+          alt="background animation"
+          className="w-full h-full object-cover opacity-20"
+        />
+      </div>
+
+      <h2 className="text-4xl font-bold text-center text-white mb-8 relative z-10">
+        Create New Article
+      </h2>
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-6 relative z-10 animate-pulse" // adding pulse animation
+      >
+        {/* Title Input */}
+        <div className="flex flex-col transform hover:translate-y-1 transition-all duration-300">
+          <label className="text-lg font-semibold text-white mb-1">Title</label>
           <input
             type="text"
-            value={title}
-            placeholder="Article Title"
-            onChange={(e) => setTitle(e.target.value)}
+            name="title"
+            value={articleData.title}
+            onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="border-none rounded-md p-3 bg-white bg-opacity-20 backdrop-blur-md text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300"
+            placeholder="Enter article title"
           />
         </div>
-        <div>
-          <input
-            type="url"
-            value={link}
-            placeholder="Article Link"
-            onChange={(e) => setLink(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          />
-        </div>
-        <div>
+
+        {/* Description Input */}
+        <div className="flex flex-col transform hover:translate-y-1 transition-all duration-300">
+          <label className="text-lg font-semibold text-white mb-1">Description</label>
           <textarea
-            value={description}
-            placeholder="Article Description"
-            onChange={(e) => setDescription(e.target.value)}
+            name="description"
+            value={articleData.description}
+            onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none h-32"
+            className="border-none rounded-md p-3 bg-white bg-opacity-20 backdrop-blur-md text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300"
+            rows="4"
+            placeholder="Enter article description"
           />
         </div>
+
+        {/* Image URL Input */}
+        <div className="flex flex-col transform hover:translate-y-1 transition-all duration-300">
+          <label className="text-lg font-semibold text-white mb-1">Image URL</label>
+          <input
+            type="text"
+            name="image"
+            value={articleData.image}
+            onChange={handleChange}
+            required
+            className="border-none rounded-md p-3 bg-white bg-opacity-20 backdrop-blur-md text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300"
+            placeholder="Enter image URL"
+          />
+        </div>
+
+        {/* Source Input */}
+        <div className="flex flex-col transform hover:translate-y-1 transition-all duration-300">
+          <label className="text-lg font-semibold text-white mb-1">Source</label>
+          <input
+            type="text"
+            name="source"
+            value={articleData.source}
+            onChange={handleChange}
+            required
+            className="border-none rounded-md p-3 bg-white bg-opacity-20 backdrop-blur-md text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300"
+            placeholder="Enter source"
+          />
+        </div>
+
+        {/* URL Input */}
+        <div className="flex flex-col transform hover:translate-y-1 transition-all duration-300">
+          <label className="text-lg font-semibold text-white mb-1">URL</label>
+          <input
+            type="text"
+            name="url"
+            value={articleData.url}
+            onChange={handleChange}
+            required
+            className="border-none rounded-md p-3 bg-white bg-opacity-20 backdrop-blur-md text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300"
+            placeholder="Enter URL"
+          />
+        </div>
+
+        {/* Category Input */}
+        <div className="flex flex-col transform hover:translate-y-1 transition-all duration-300">
+          <label className="text-lg font-semibold text-white mb-1">Category</label>
+          <input
+            type="text"
+            name="category"
+            value={articleData.category}
+            onChange={handleChange}
+            required
+            className="border-none rounded-md p-3 bg-white bg-opacity-20 backdrop-blur-md text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300"
+            placeholder="Enter category"
+          />
+        </div>
+
+        {/* Region Input */}
+        <div className="flex flex-col transform hover:translate-y-1 transition-all duration-300">
+          <label className="text-lg font-semibold text-white mb-1">Region</label>
+          <input
+            type="text"
+            name="region"
+            value={articleData.region}
+            onChange={handleChange}
+            className="border-none rounded-md p-3 bg-white bg-opacity-20 backdrop-blur-md text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300"
+            placeholder="Enter region"
+          />
+        </div>
+
+        {/* Posted By Input */}
+        <div className="flex flex-col transform hover:translate-y-1 transition-all duration-300">
+          <label className="text-lg font-semibold text-white mb-1">Posted By</label>
+          <input
+            type="text"
+            name="postedBy"
+            value={articleData.postedBy}
+            onChange={handleChange}
+            required
+            className="border-none rounded-md p-3 bg-white bg-opacity-20 backdrop-blur-md text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300"
+            placeholder="Enter your name"
+          />
+        </div>
+
+        {/* Submit Button with movement effect */}
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+          className="w-full bg-blue-500 text-white py-3 rounded-lg shadow-lg hover:bg-blue-600 hover:shadow-xl transition-all duration-300 transform hover:scale-110"
         >
-          Submit
+          Submit Article
         </button>
       </form>
-      {message && (
-        <p className={`mt-4 text-center ${message.includes('successfully') ? 'text-green-500' : 'text-red-500'}`}>
-          {message}
-        </p>
-      )}
     </div>
   );
 };
 
-export default SubmitArticleForm;
+export default ArticleForm;
