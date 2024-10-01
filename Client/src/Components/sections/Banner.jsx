@@ -1,9 +1,9 @@
 const Banner = () => {
   return (
-    <section className="container w-full mx-auto md:mb-8 my-4">
+    <section className="container w-full mx-auto md:mb-8 my-6">
       <div className="px-2 sm:px-0">
         <div
-          className="w-full mx-auto p-2 sm:p-12 border bg-repeat bg-cover sm:mb-8 mb-4 border-red-600 border-b-4 border-l-4 flex flex-col transition-all duration-200 ease-in-out hover:border-slate-600"
+          className="w-full mx-auto p-2 sm:p-12 border bg-repeat bg-cover sm:mb-8 mb-4 border-red-600 border-b-4 border-l-4 flex flex-col transition-all duration-200 ease-in-out hover:border-slate-600 rounded-sm"
           // style={{
           //   backgroundImage: "url(https://i.ibb.co.com/hH3Gj9n/preview.jpg)",
           // }}
@@ -27,7 +27,7 @@ const Banner = () => {
         {/* Image Section */}
         <div className="">
           <div
-            className="h-52 sm:h-72 bg-cover"
+            className="h-52 sm:h-72 bg-cover rounded-sm"
             style={{
               backgroundImage:
                 "url(https://i.ibb.co.com/jgvvgdJ/newspaper-background-concept.jpg)",
@@ -36,7 +36,7 @@ const Banner = () => {
         </div>
 
         {/* News Section */}
-        <div className="bg-white mt-4 max-sm:mt-0 mr-44 border-gray-200 rounded-lg w-full">
+        <div className=" mt-4 max-sm:mt-0 mr-44 border-gray-200 rounded-lg w-full">
           <div className="px-4 py-3">
             <div className="flex justify-between items-center text-sm text-gray-500">
               <span className="font-semibold text-red-600">Netflix</span>

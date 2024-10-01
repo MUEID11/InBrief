@@ -149,7 +149,7 @@ const About = () => {
                   </div>
                 </Link>
                 <Link to={data.link}>
-                  <p className="text-xl font-semibold text-neutral-800 mt-3">
+                  <p className="text-xl font-semibold text-neutral-600 mt-3">
                     {data.name}
                   </p>
                 </Link>

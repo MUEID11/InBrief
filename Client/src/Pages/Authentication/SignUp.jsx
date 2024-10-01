@@ -32,7 +32,11 @@ const SignUp = () => {
     console.log(url);
     if (!url) {
       setLoading(false);
+<<<<<<< HEAD
+      return alert("image upload failed");
+=======
       return alert('image upload failed');
+>>>>>>> 717c382724b63f107abb41a7abc5cb6a07e463bb
     } else {
       setImageUrl(url);
       setLoading(false);
@@ -54,13 +58,40 @@ const SignUp = () => {
 
     // Password confirmation check
     if (password !== confirmPassword) {
+<<<<<<< HEAD
+      return setError("Passwords do not match");
+=======
       return setError('Passwords do not match');
+>>>>>>> 717c382724b63f107abb41a7abc5cb6a07e463bb
     } else {
       setError(null);
     }
 
     try {
       // Make POST request to create a user
+<<<<<<< HEAD
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/users/createuser`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
+
+      // Handle the response data
+      const data = await response.json(); //token on data
+      localStorage.setItem("token", data);
+      // Check if there is an error in the response
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to create user");
+      }
+
+      // Successful creation
+      console.log("User created:", data);
+=======
       const response = await fetch(`${import.meta.env.VITE_API_URL}/users/createuser`, {
         method: 'POST',
         headers: {
@@ -79,14 +110,22 @@ const SignUp = () => {
 
       // Successful creation
       console.log('User created:', data);
+>>>>>>> 717c382724b63f107abb41a7abc5cb6a07e463bb
 
       // Optionally, reset form
       formData.reset();
       dispatch(userThunk());
+<<<<<<< HEAD
+      navigate("/");
+    } catch (error) {
+      // Handle errors
+      console.error("Error creating user:", error.message);
+=======
       navigate('/');
     } catch (error) {
       // Handle errors
       console.error('Error creating user:', error.message);
+>>>>>>> 717c382724b63f107abb41a7abc5cb6a07e463bb
       setError(error.message);
     }
   };
