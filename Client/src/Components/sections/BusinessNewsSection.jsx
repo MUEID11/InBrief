@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
 import NewsSection from "./NewsSection";
 
+
 const BusinessNewsSection = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // Fetch Business News data from fakedata.json
+
+  // Fetch Business News data from API
   useEffect(() => {
-    fetch("/fakedata.json")
+    fetch("http://localhost:5000/articles/business")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         return response.json();
       })
-      .then((data) => {
-        setArticles(data.businessNews);
+      .then(({ data }) => {
+        setArticles(data);
         setLoading(false);
       })
       .catch((err) => {
@@ -25,6 +27,7 @@ const BusinessNewsSection = () => {
         setLoading(false);
       });
   }, []);
+  console.log(articles);
 
   if (loading) {
     return (

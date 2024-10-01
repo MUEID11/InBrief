@@ -1,16 +1,16 @@
-import { Link, useNavigate } from "react-router-dom";
-import logo from "./../../assets/logo.png";
-import whitelogo from "./../../assets/whitelogo.png";
-import { FcGoogle } from "react-icons/fc";
+import { Link, useNavigate } from 'react-router-dom';
+import logo from './../../assets/logo.png';
+import whitelogo from './../../assets/whitelogo.png';
+import { FcGoogle } from 'react-icons/fc';
 // import { signUpUser } from "../../Features/Authenticate/authAction";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import userThunk from "../../Features/thunks/userThunks";
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import userThunk from '../../Features/thunks/userThunks';
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleChange = async (e) => {
@@ -21,23 +21,22 @@ const SignUp = () => {
     if (!image) {
       return;
     }
-    image.append("file", userImage);
-    image.append("upload_preset", "a4roznw9");
-    const response = await fetch(
-      `https://api.cloudinary.com/v1_1/${
-        import.meta.env.VITE_CLOUD_NAME
-      }/image/upload`,
-      {
-        method: "POST",
-        body: image,
-      }
-    );
+    image.append('file', userImage);
+    image.append('upload_preset', 'a4roznw9');
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/image/upload`, {
+      method: 'POST',
+      body: image,
+    });
     const data = await response.json();
     const url = data.secure_url;
     console.log(url);
     if (!url) {
       setLoading(false);
+<<<<<<< HEAD
       return alert("image upload failed");
+=======
+      return alert('image upload failed');
+>>>>>>> 717c382724b63f107abb41a7abc5cb6a07e463bb
     } else {
       setImageUrl(url);
       setLoading(false);
@@ -59,13 +58,18 @@ const SignUp = () => {
 
     // Password confirmation check
     if (password !== confirmPassword) {
+<<<<<<< HEAD
       return setError("Passwords do not match");
+=======
+      return setError('Passwords do not match');
+>>>>>>> 717c382724b63f107abb41a7abc5cb6a07e463bb
     } else {
       setError(null);
     }
 
     try {
       // Make POST request to create a user
+<<<<<<< HEAD
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/users/createuser`,
         {
@@ -87,20 +91,47 @@ const SignUp = () => {
 
       // Successful creation
       console.log("User created:", data);
+=======
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/createuser`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      });
+
+      // Handle the response data
+      const data = await response.json(); //token on data
+      localStorage.setItem('token', data);
+      // Check if there is an error in the response
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to create user');
+      }
+
+      // Successful creation
+      console.log('User created:', data);
+>>>>>>> 717c382724b63f107abb41a7abc5cb6a07e463bb
 
       // Optionally, reset form
       formData.reset();
       dispatch(userThunk());
+<<<<<<< HEAD
       navigate("/");
     } catch (error) {
       // Handle errors
       console.error("Error creating user:", error.message);
+=======
+      navigate('/');
+    } catch (error) {
+      // Handle errors
+      console.error('Error creating user:', error.message);
+>>>>>>> 717c382724b63f107abb41a7abc5cb6a07e463bb
       setError(error.message);
     }
   };
 
   return (
-    <section className="contianer mx-auto h-screen flex items-center justify-center">
+    <section className="container mx-auto min-h-screen flex items-center justify-center mt-10">
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white shadow-lg  lg:max-w-4xl">
         {/* Left side - Background Image */}
         <div
@@ -108,16 +139,13 @@ const SignUp = () => {
           style={{
             backgroundImage:
               "url('https://img.freepik.com/free-photo/crystal-globe-with-stock-information_1150-17697.jpg?t=st=1727352816~exp=1727356416~hmac=1e56c6cfd1a2536841945565514dfe9c61718395fcdc65d80526c757002ced81&w=740')",
-          }}
-        >
+          }}>
           <div className="flex flex-col items-center justify-center h-full">
             <div>
               <img className="w-auto h-7 sm:h-8" src={whitelogo} alt="Logo" />
             </div>
             <div className="mt-3">
-              <p className="text-4xl text-center text-gray-100">
-                Welcome back!
-              </p>
+              <p className="text-4xl text-center text-gray-100">Welcome back!</p>
             </div>
           </div>
         </div>
@@ -130,25 +158,17 @@ const SignUp = () => {
           </div>
 
           {/* Google Sign-In Button */}
-          <a
-            href="#"
-            className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-50 "
-          >
+          <a href="#" className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-50 ">
             <div className="px-4 py-2">
               <FcGoogle className="text-2xl" />
             </div>
-            <span className="w-5/6 px-4 py-3 font-bold text-center">
-              Sign in with Google
-            </span>
+            <span className="w-5/6 px-4 py-3 font-bold text-center">Sign in with Google</span>
           </a>
 
           {/* Separator */}
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b lg:w-1/4"></span>
-            <a
-              href="#"
-              className="text-xs text-center text-gray-500 uppercase hover:underline"
-            >
+            <a href="#" className="text-xs text-center text-gray-500 uppercase hover:underline">
               or login with email
             </a>
             <span className="w-1/5 border-b lg:w-1/4"></span>
@@ -157,10 +177,7 @@ const SignUp = () => {
           {/* Login Form */}
           <form onSubmit={handleSubmit}>
             <div className="mt-4">
-              <label
-                className="block mb-2 text-sm font-medium text-gray-600"
-                htmlFor="Name"
-              >
+              <label className="block mb-2 text-sm font-medium text-gray-600" htmlFor="Name">
                 Name
               </label>
               <input
@@ -171,10 +188,7 @@ const SignUp = () => {
               />
             </div>
             <div className="mt-4">
-              <label
-                className="block mb-2 text-sm font-medium text-gray-600"
-                htmlFor="Age"
-              >
+              <label className="block mb-2 text-sm font-medium text-gray-600" htmlFor="Age">
                 Age
               </label>
               <input
@@ -185,10 +199,7 @@ const SignUp = () => {
               />
             </div>
             <div className="mt-4">
-              <label
-                className="block mb-2 text-sm font-medium text-gray-600"
-                htmlFor="LoggingEmailAddress"
-              >
+              <label className="block mb-2 text-sm font-medium text-gray-600" htmlFor="LoggingEmailAddress">
                 Email Address
               </label>
               <input
@@ -199,10 +210,7 @@ const SignUp = () => {
               />
             </div>
             <div className="mt-4">
-              <label
-                className="block mb-2 text-sm font-medium text-gray-600"
-                htmlFor="LoggingImage"
-              >
+              <label className="block mb-2 text-sm font-medium text-gray-600" htmlFor="LoggingImage">
                 Image
               </label>
               <input
@@ -215,10 +223,7 @@ const SignUp = () => {
             </div>
             <div className="mt-4">
               <div className="flex justify-between">
-                <label
-                  className="block mb-2 text-sm font-medium text-gray-600"
-                  htmlFor="loggingPassword"
-                >
+                <label className="block mb-2 text-sm font-medium text-gray-600" htmlFor="loggingPassword">
                   Password
                 </label>
               </div>
@@ -231,10 +236,7 @@ const SignUp = () => {
             </div>
             <div className="mt-4">
               <div className="flex justify-between">
-                <label
-                  className="block mb-2 text-sm font-medium text-gray-600"
-                  htmlFor="loggingPasswordConfirm"
-                >
+                <label className="block mb-2 text-sm font-medium text-gray-600" htmlFor="loggingPasswordConfirm">
                   Confirm Password
                 </label>
               </div>
@@ -245,13 +247,7 @@ const SignUp = () => {
                 type="password"
               />
             </div>
-            <div>
-              {error && (
-                <span className="text-red-600 text-xs py-1">
-                  Your password doesn&#39;t match
-                </span>
-              )}
-            </div>
+            <div>{error && <span className="text-red-600 text-xs py-1">Your password doesn&#39;t match</span>}</div>
 
             <div className="mb-4 mt-2">
               <input type="checkbox" id="terms" className="mr-2" />
@@ -268,8 +264,7 @@ const SignUp = () => {
               <button
                 disabled={loading}
                 type="submit"
-                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-800 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
-              >
+                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-800 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
                 Sign Up Now
               </button>
             </div>
@@ -278,10 +273,7 @@ const SignUp = () => {
           {/* Sign Up Link */}
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b md:w-1/4"></span>
-            <Link
-              to="/signin"
-              className="text-xs text-gray-500 uppercase hover:underline"
-            >
+            <Link to="/signin" className="text-xs text-gray-500 uppercase hover:underline">
               or sign in
             </Link>
             <span className="w-1/5 border-b md:w-1/4"></span>
