@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const NewsCard = ({ article }) => {
   return (
-    <article className="shadow-lg p-5 border border-red-600 border-r-4 border-b-4 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-105 h-full">
+    <article className="shadow-lg p-5 border border-red-600 border-r-4 border-b-4 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-105 h-full rounded-sm">
       {/* Link wrapping Image */}
       <a
         href={article.url}
@@ -13,7 +13,7 @@ const NewsCard = ({ article }) => {
         <img
           src={article.image}
           alt={article.headline}
-          className="h-56 object-cover w-full"
+          className="h-56 object-cover w-full rounded-sm"
           loading="lazy"
         />
       </a>

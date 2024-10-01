@@ -1,8 +1,8 @@
-import { Link, useNavigate } from 'react-router-dom';
-import Logo from './../../assets/logo.png';
-import { FcGoogle } from 'react-icons/fc';
-import userThunk from '../../Features/thunks/userThunks';
-import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from "react-router-dom";
+import Logo from "./../../assets/logo.png";
+import { FcGoogle } from "react-icons/fc";
+import userThunk from "../../Features/thunks/userThunks";
+import { useDispatch } from "react-redux";
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -12,34 +12,38 @@ const SignIn = () => {
     const email = form.email.value;
     const password = form.password.value;
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/signin`, {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/users/signin`,
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       console.log(response);
       const data = await response.json();
-      const token = localStorage.setItem('token', data);
+      const token = localStorage.setItem("token", data);
       console.log(token);
       if (data) {
         dispatch(userThunk());
-        navigate('/');
+        navigate("/");
       }
-      console.log('data', data);
+      console.log("data", data);
     } catch (error) {
       console.log(error.message);
     }
   };
   return (
-    <section className="contianer mx-auto h-screen flex items-center justify-center">
-      <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white shadow-lg lg:max-w-4xl">
+    <section className="h-screen flex items-center justify-center w-full sm:block mx-auto">
+      <div className="flex w-full max-w-sm overflow-hidden bg-white shadow-lg sm:max-w-4xl">
         {/* Left side - Background Image */}
         <div
-          className="hidden bg-cover bg-center  lg:block lg:w-1/2"
+          className="hidden bg-cover bg-center lg:block lg:w-1/2"
           style={{
             backgroundImage:
               "url('https://img.freepik.com/free-photo/crystal-globe-with-stock-information_1150-17697.jpg?t=st=1727352816~exp=1727356416~hmac=1e56c6cfd1a2536841945565514dfe9c61718395fcdc65d80526c757002ced81&w=740')",
-          }}></div>
+          }}
+        ></div>
 
         {/* Right side - Login Form */}
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2 border-red-600 border-r-4">
@@ -48,20 +52,30 @@ const SignIn = () => {
             <img className="w-auto h-7 sm:h-8" src={Logo} alt="Logo" />
           </div>
 
-          <p className="mt-3 text-xl text-center text-gray-600">Welcome back!</p>
+          <p className="mt-3 text-xl text-center text-gray-600">
+            Welcome back!
+          </p>
 
           {/* Google Sign-In Button */}
-          <a href="#" className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg :border-gray-700  hover:bg-gray-50">
+          <a
+            href="#"
+            className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg :border-gray-700  hover:bg-gray-50"
+          >
             <div className="px-4 py-2">
               <FcGoogle className="text-2xl" />
             </div>
-            <span className="w-5/6 px-4 py-3 font-bold text-center">Sign in with Google</span>
+            <span className="w-5/6 px-4 py-3 font-bold text-center">
+              Sign in with Google
+            </span>
           </a>
 
           {/* Separator */}
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b  lg:w-1/4"></span>
-            <a href="#" className="text-xs text-center text-gray-500 uppercase  hover:underline">
+            <a
+              href="#"
+              className="text-xs text-center text-gray-500 uppercase  hover:underline"
+            >
               or login with email
             </a>
             <span className="w-1/5 border-b  lg:w-1/4"></span>
@@ -70,7 +84,10 @@ const SignIn = () => {
           {/* Login Form */}
           <form onSubmit={handleSignIn}>
             <div className="mt-4">
-              <label className="block mb-2 text-sm font-medium text-gray-600 " htmlFor="LoggingEmailAddress">
+              <label
+                className="block mb-2 text-sm font-medium text-gray-600 "
+                htmlFor="LoggingEmailAddress"
+              >
                 Email Address
               </label>
               <input
@@ -83,7 +100,10 @@ const SignIn = () => {
 
             <div className="mt-4">
               <div className="flex justify-between">
-                <label className="block mb-2 text-sm font-medium text-gray-600 " htmlFor="loggingPassword">
+                <label
+                  className="block mb-2 text-sm font-medium text-gray-600 "
+                  htmlFor="loggingPassword"
+                >
                   Password
                 </label>
                 <a href="#" className="text-xs text-gray-500 hover:underline">
@@ -111,7 +131,8 @@ const SignIn = () => {
             <div className="mt-6">
               <button
                 type="submit"
-                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-800 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-800 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
+              >
                 Sign In Now
               </button>
             </div>
@@ -120,7 +141,10 @@ const SignIn = () => {
           {/* Sign Up Link */}
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b  md:w-1/4"></span>
-            <Link to="/signup" className="text-xs text-gray-500 uppercase hover:underline">
+            <Link
+              to="/signup"
+              className="text-xs text-gray-500 uppercase hover:underline"
+            >
               or sign up
             </Link>
             <span className="w-1/5 border-b md:w-1/4"></span>

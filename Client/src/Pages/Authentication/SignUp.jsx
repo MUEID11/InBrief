@@ -34,67 +34,70 @@ const SignUp = () => {
     );
     const data = await response.json();
     const url = data.secure_url;
-    console.log(url)
+    console.log(url);
     if (!url) {
       setLoading(false);
       return alert("image upload failed");
-    }else{
-      setImageUrl(url)
+    } else {
+      setImageUrl(url);
       setLoading(false);
     }
-    
   };
-console.log(loading)
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  console.log(loading);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  // Extract form values
-  const formData = e.target;
-  const name = formData.name.value;
-  const email = formData.email.value;
-  const password = formData.password.value;
-  const confirmPassword = formData.confirmPassword.value;
-  const age = formData.age.value;
-  
-  const user = { name, email, password, age, imageUrl };
+    // Extract form values
+    const formData = e.target;
+    const name = formData.name.value;
+    const email = formData.email.value;
+    const password = formData.password.value;
+    const confirmPassword = formData.confirmPassword.value;
+    const age = formData.age.value;
 
-  // Password confirmation check
-  if (password !== confirmPassword) {
-    return setError("Passwords do not match");
-  }else{setError(null)}
+    const user = { name, email, password, age, imageUrl };
 
-  try {
-    // Make POST request to create a user
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/users/createuser`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(user),
-    });
-
-    // Handle the response data
-    const data = await response.json();//token on data
-    localStorage.setItem('token', data);
-    // Check if there is an error in the response
-    if (!response.ok) {
-      throw new Error(data.message || "Failed to create user");
+    // Password confirmation check
+    if (password !== confirmPassword) {
+      return setError("Passwords do not match");
+    } else {
+      setError(null);
     }
 
-    // Successful creation
-    console.log("User created:", data);
-    
-    // Optionally, reset form
-    formData.reset();
-    dispatch(userThunk());
-    navigate('/')
-    
-  } catch (error) {
-    // Handle errors
-    console.error("Error creating user:", error.message);
-    setError(error.message);
-  }
-};
+    try {
+      // Make POST request to create a user
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/users/createuser`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
+
+      // Handle the response data
+      const data = await response.json(); //token on data
+      localStorage.setItem("token", data);
+      // Check if there is an error in the response
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to create user");
+      }
+
+      // Successful creation
+      console.log("User created:", data);
+
+      // Optionally, reset form
+      formData.reset();
+      dispatch(userThunk());
+      navigate("/");
+    } catch (error) {
+      // Handle errors
+      console.error("Error creating user:", error.message);
+      setError(error.message);
+    }
+  };
 
   return (
     <section className="contianer mx-auto h-screen flex items-center justify-center">
@@ -211,7 +214,6 @@ const handleSubmit = async (e) => {
               />
             </div>
             <div className="mt-4">
-
               <div className="flex justify-between">
                 <label
                   className="block mb-2 text-sm font-medium text-gray-600"
