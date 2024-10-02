@@ -2,7 +2,7 @@ const Article = require('../../models/articleModel');
 
 const postArticle = async (req, res) => {
   const newArticle = new Article(req.body);
-
+console.log(newArticle);
   try {
     const result = await newArticle.save();
     res.status(201).json({ success: true, message: 'Todo inserted successfully', result });
@@ -87,6 +87,5 @@ module.exports = {
   postArticle,
   getArticles,
   addToBookmark,
-
   AddLike,
 };
