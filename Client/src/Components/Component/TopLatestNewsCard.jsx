@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const TopLatestNewsCard = ({ data }) => {
   return (
@@ -9,15 +9,26 @@ const TopLatestNewsCard = ({ data }) => {
         {data.map((item) => (
           <article
             key={item?.url}
-            className="shadow-lg p-4 border border-red-600 border-r-4 border-b-4 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-105">
+            className="shadow-lg p-4 border border-red-600 border-r-4 border-b-4 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-105"
+          >
             <Link to={item?.url}>
-              <img src={item?.image} alt={item?.title} className="h-56 object-cover" />
+              <img
+                src={item?.image}
+                alt={item?.title}
+                className="h-56 object-cover"
+              />
               <div className="flex gap-1 items-center mt-2">
-                <img src={item?.source?.icon} className="size-5 bg-red-700 rounded-full object-cover" alt="" />
+                <img
+                  src={item?.source?.icon}
+                  className="size-5 bg-red-700 rounded-full object-cover"
+                  alt=""
+                />
                 <span className="text-sm">{item?.source?.name}</span>
               </div>
               <h4 className="font-bold my-2">{item?.title}</h4>
-              <p className="text-sm text-gray-600 mb-1">{item?.description.slice(0, 100)}...</p>
+              <p className="text-sm text-gray-600 mb-1">
+                {item?.description.slice(0, 100)}...
+              </p>
 
               <div className="flex gap-3 items-center justify-between mb-2">
                 <p className="text-red-600 font-semibold">{item?.category}</p>
@@ -25,7 +36,9 @@ const TopLatestNewsCard = ({ data }) => {
               </div>
             </Link>
             {/* Read More Button */}
-            <button className="text-red-600 self-end font-medium">Read More</button>
+            <button className="text-red-600 self-end font-medium">
+              Read More
+            </button>
           </article>
         ))}
       </div>

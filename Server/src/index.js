@@ -13,7 +13,7 @@ const app = express();
 
 const rateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 50, // Limit each IP to 50 requests per `window` (here, per 15 minutes).
+  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
   message: '  Too many requests from this IP .  Please try again later',
 });
 
@@ -21,11 +21,10 @@ app.use(rateLimiter);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: ['http://localhost:5173', ' https://inbrief-3d9ce.web.app'],
-  })
-);
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://inbrief-3d9ce.web.app'], // Allow your frontend domain
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],     // Allow necessary methods                                             // Allow cookies and credentials
+}));
 // APPLICATION ROUTES
 app.use('/articles', articleHandlers);
 //USERS ROUTE
