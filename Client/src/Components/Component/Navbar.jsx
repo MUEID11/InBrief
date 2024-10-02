@@ -19,14 +19,7 @@ const Navbar = () => {
   }, [dispatch]);
   console.log(user);
 
-  // Search start
-  const [category, setCategory] = useState("");
-  const navigate = useNavigate();
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    navigate(`/search/${category}`);
-  };
+  
 
   const handleSignOut = async (e) => {
     e.preventDefault();
@@ -102,23 +95,7 @@ const Navbar = () => {
         </div> */}
         {/* Search bar */}
         {/* Write Icon and Search Input */}
-        <div className="flex justify-center items-center">
-          <form onSubmit={handleSearch} className="flex w-full max-w-sm">
-            <input
-              type="text"
-              value={category}
-              className="flex-1 border border-gray-200 rounded-l-sm py-2 px-4 shadow-sm focus:ring-2 focus:ring-red-400 focus:outline-none text-gray-700 placeholder-gray-400 placeholder-shown:font-light"
-              onChange={(e) => setCategory(e.target.value)}
-              placeholder="Search by category"
-            />
-            <button
-              type="submit"
-              className="bg-red-600 text-white px-4 py-2 rounded-r-sm hover:bg-red-700 focus:ring-2 focus:ring-red-400 focus:ring-opacity-50 shadow-sm transition duration-300 ease-in-out"
-            >
-              Search
-            </button>
-          </form>
-        </div>
+        
 
         <div className="flex gap-2 items-center justify-center">
           <div className="relative">

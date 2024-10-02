@@ -10,7 +10,7 @@ const BusinessNewsSection = () => {
 
   // Fetch Business News data from API
   useEffect(() => {
-    fetch("http://localhost:5000/articles/business")
+    fetch("http://localhost:5000/articles?category=business")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
