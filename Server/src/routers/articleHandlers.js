@@ -1,5 +1,5 @@
 const express = require('express');
-const { getArticles, postArticle, addToBookmark, getBusinessArticles, getSportArticles, AddLike } = require('../controllers/ArticleControllers/article.controller');
+const { getArticles, postArticle, addToBookmark,  AddLike } = require('../controllers/ArticleControllers/article.controller');
 const { searchByCategory } = require('../controllers/searchController');
 const router = express.Router();
 
