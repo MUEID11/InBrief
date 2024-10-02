@@ -87,7 +87,6 @@ module.exports = {
   postArticle,
   getArticles,
   addToBookmark,
-  getBusinessArticles,
-  getSportArticles,
+
   AddLike,
 };
