@@ -13,6 +13,8 @@ import ProtectedRoute from './ProtectedRoute';
 import SearchResults from '../Components/Component/searchResults';
 import SubmitArticleForm from '../Components/Component/SubmitArticleForm';
 import ArticleList from '../Components/Component/ArticleList';
+
+import Bookmarks from '../Pages/Bookmarks';
 import Stories from '../Pages/Stories';
 import Contact from '../Pages/Contact';
 import Dashboard from '../Pages/Dashboard';
@@ -33,11 +35,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'stories',
-        element: <Stories/>,
+        element: <Stories />,
       },
       {
         path: 'contact',
-        element: <Contact/>,
+        element: <Contact />,
       },
       {
         path: 'latest-news',
@@ -67,13 +69,17 @@ const router = createBrowserRouter([
         path: 'submit-article',
         element: (
           // <ProtectedRoute>
-            <SubmitArticleForm />
+          <SubmitArticleForm />
           // </ProtectedRoute>
         ),
       },
       {
         path: 'article-list',
         element: <ArticleList />,
+      },
+      {
+        path: '/bookmarks',
+        element: <Bookmarks />,
       },
       {
         path: '/dashboard',

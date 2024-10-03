@@ -1,17 +1,18 @@
-import { Link } from "react-router-dom";
-import { IoMdBook } from "react-icons/io";
-import { SlPeople } from "react-icons/sl";
-import { FiPhoneCall } from "react-icons/fi";
-import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { Link } from 'react-router-dom';
+import { IoMdBook } from 'react-icons/io';
+import { SlPeople } from 'react-icons/sl';
+import { FiPhoneCall } from 'react-icons/fi';
+import { MdOutlineSpaceDashboard } from 'react-icons/md';
+import { TbBookmarks } from 'react-icons/tb';
 const Asidebar = () => {
   return (
     <div className="sticky top-16 w-64 p-4 flex flex-col md:w-64 h-[calc(100vh-70px)] overflow-y-auto bg-gray-100 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 max-lg:hidden overflow-hidden">
       <div className="flex flex-col justify-between flex-1 mt-4">
         <nav className="-mx-4 space-y-3">
-
           {/* Home */}
-          <Link to="/" className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            >
+          <Link
+            to="/"
+            className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
               <path
                 strokeLinecap="round"
@@ -22,8 +23,9 @@ const Asidebar = () => {
             <span className="mx-2 text-sm font-medium">Home</span>
           </Link>
           {/* Stories */}
-          <Link to="/stories" className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            >
+          <Link
+            to="/stories"
+            className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg">
             {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
               <path
                 strokeLinecap="round"
@@ -34,30 +36,35 @@ const Asidebar = () => {
             <IoMdBook />
             <span className="mx-2 text-sm font-medium">Stories</span>
           </Link>
-           {/* About us */}
-          <Link to="/about" className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            >
-            
-           <SlPeople />
+          {/* About us */}
+          <Link
+            to="/about"
+            className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg">
+            <SlPeople />
             <span className="mx-2 text-sm font-medium">About Us</span>
           </Link>
-           {/* Contact us */}
-          <Link to="/contact" className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            >
-            
+          {/* Contact us */}
+          <Link
+            to="/contact"
+            className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg">
             <FiPhoneCall />
             <span className="mx-2 text-sm font-medium">Contact Us </span>
           </Link>
-           {/* Dashboard */}
-          <Link to="/dashboard" className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            >
-            
+          {/* Dashboard */}
+          <Link
+            to="/dashboard"
+            className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg">
             <MdOutlineSpaceDashboard />
             <span className="mx-2 text-sm font-medium">Dashboard</span>
           </Link>
 
-
-          
+          <Link
+            to={'/bookmarks'}
+            className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
+            href="#">
+            <TbBookmarks />
+            <span className="mx-2 text-sm font-medium">Bookmarks</span>
+          </Link>
         </nav>
 
         <div className="mt-6">
@@ -66,9 +73,6 @@ const Asidebar = () => {
             <li className="flex items-center p-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg">
               <span className="text-sm">Post Title 1</span>
             </li>
-            {/* <li className="flex items-center p-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg">
-                            <span className="text-sm">Post Title 2</span>
-                        </li> */}
           </ul>
         </div>
       </div>

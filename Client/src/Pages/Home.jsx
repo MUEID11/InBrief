@@ -7,6 +7,7 @@ import BusinessNewsSection from '../Components/sections/BusinessNewsSection';
 import SportsNewsSection from '../Components/sections/SportsNewsSection';
 import TopCreators from '../Components/sections/TopCreators';
 import Newsletter from '../Components/sections/Newsletter';
+import Faq from '../Components/sections/Faq';
 // import LatestNewsSection from '../Components/sections/LatestNewsSection';
 // import { useState } from 'react';
 
@@ -35,7 +36,8 @@ const Home = () => {
         <TopCreators />
         {/* newslatter subscription */}
         <Newsletter />
-        {/* something */}
+        {/* Faq */}
+        <Faq />
       </div>
     </div>
   );
