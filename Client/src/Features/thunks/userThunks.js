@@ -1,20 +1,29 @@
-import {createAsyncThunk} from "@reduxjs/toolkit"
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-
-const userThunk = createAsyncThunk('user/userThunk', async() => {
-  
-  const getToken = localStorage.getItem('token')
-  console.log('thunk',getToken)
+const userThunk = createAsyncThunk("user/userThunk", async () => {
+  const getToken = localStorage.getItem("token");
+  console.log("thunk", getToken);
   try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/users/uservalidation`, {
-      method: "GET",
-      headers: {'content-type': "application/json", "Authorization": `Bearer ${getToken}`}
-    })
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/users/uservalidation`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${getToken}`,
+        },
+      }
+    );
     const data = await response.json();
-    console.log('conosling from user thank',data);
-    return data;
+    console.log("conosling from user thank", data);
+    if (response.ok) {
+      return data;
+    }else{
+      throw new Error(data.message);
+      
+    }
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return error;
   }
 });

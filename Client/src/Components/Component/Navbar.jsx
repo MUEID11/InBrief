@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { resetUser } from '../../Features/Authenticate/userSlice';
 import { RiMenu3Line } from 'react-icons/ri';
 import { RxCross1 } from 'react-icons/rx';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +36,7 @@ const Navbar = () => {
     e.preventDefault();
     dispatch(resetUser());
     navigate('/signin');
+    toast.success('User logged out')
   };
   // Search end
 
@@ -154,19 +156,13 @@ const Navbar = () => {
             ''
           )}
 
-          {!user?.email ? (
-            <Link className="group relative inline-block text-sm font-medium text-red-600 focus:outline-none focus:ring active:text-red-600" to="/signup">
+          {!user?.email && (
+            <Link className="group relative inline-block text-sm font-medium text-red-600 focus:outline-none focus:ring active:text-red-600" to="/signin">
               <span className="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-red-600 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>
 
-              <span className="relative block border border-current bg-white px-4 py-2"> SIGN UP </span>
+              <span className="relative block border border-current bg-white sm:px-4 sm:py-2 px-2 py-1"> Sign in </span>
             </Link>
-          ) : (
-            <Link className="group relative inline-block text-sm font-medium text-red-600 focus:outline-none focus:ring active:text-red-600">
-              <span className="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-red-600 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>
-
-              <span className="relative block border border-current bg-white px-4 py-2"> LOGOUT </span>
-            </Link>
-          )}
+          ) }
 
           {/* Hamburger Icon (for tablet view) */}
           <div className="lg:hidden pt-[6px]">
