@@ -4,6 +4,7 @@ import { SlPeople } from 'react-icons/sl';
 import { FiPhoneCall } from 'react-icons/fi';
 import { MdOutlineSpaceDashboard } from 'react-icons/md';
 import { TbBookmarks } from 'react-icons/tb';
+import { AiOutlineFileAdd } from "react-icons/ai";
 const Asidebar = () => {
   return (
     <div className="sticky top-[85px] w-64 p-4 flex flex-col md:w-64 h-[calc(100vh-70px)] overflow-y-auto bg-gray-100 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 max-lg:hidden overflow-hidden">
@@ -57,12 +58,18 @@ const Asidebar = () => {
             <MdOutlineSpaceDashboard />
             <span className="mx-2 text-sm font-medium">Dashboard</span>
           </Link>
-
           <Link
             to={'/bookmarks'}
             className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
             href="#">
             <TbBookmarks />
+            <span className="mx-2 text-sm font-medium">Bookmarks</span>
+          </Link>
+          <Link
+            to={'/submit-article'}
+            className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
+            href="#">
+            <AiOutlineFileAdd />
             <span className="mx-2 text-sm font-medium">Bookmarks</span>
           </Link>
         </nav>
