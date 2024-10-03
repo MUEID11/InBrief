@@ -8,7 +8,9 @@ const ArticleList = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/articles");
+        const response = await axios.get(
+          "${import.meta.env.VITE_API_URL}/articles"
+        );
         setArticles(response.data);
       } catch (error) {
         console.error("Error fetching articles:", error);
@@ -29,10 +31,18 @@ const ArticleList = () => {
               className="h-40 w-full object-cover rounded-md"
             />
             <h3 className="text-xl font-semibold mt-4">{article.title}</h3>
-            <p className="text-gray-600 mt-2">{article.description.substring(0, 100)}...</p>
-            <p className="text-gray-500 text-sm mt-2">Source: {article.source}</p>
-            <p className="text-gray-500 text-sm">Category: {article.category}</p>
-            <p className="text-gray-500 text-sm">Posted By: {article.postedBy}</p>
+            <p className="text-gray-600 mt-2">
+              {article.description.substring(0, 100)}...
+            </p>
+            <p className="text-gray-500 text-sm mt-2">
+              Source: {article.source}
+            </p>
+            <p className="text-gray-500 text-sm">
+              Category: {article.category}
+            </p>
+            <p className="text-gray-500 text-sm">
+              Posted By: {article.postedBy}
+            </p>
             <div className="flex items-center justify-between mt-4">
               {/* <button
                 className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition"

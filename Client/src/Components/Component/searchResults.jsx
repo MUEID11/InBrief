@@ -10,7 +10,7 @@ const SearchResults = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/articles/search?category=${category}`
+          `${import.meta.env.VITE_API_URL}/articles/search?category=${category}`
         );
         console.log(response);
 
