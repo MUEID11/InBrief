@@ -131,9 +131,9 @@ const NewsCard = ({ article }) => {
             </button>
             <p className="text-gray-700 text-sm"> {likes} Votes</p>
             {bookmarked ? (
-              <IoBookmarksSharp title="Bookmark" className="cursor-pointer text-red-950" onClick={() => handleBookmark(article._id)} />
+              <IoBookmarksSharp title="Bookmark" className="cursor-pointer text-red-500" onClick={() => handleBookmark(article._id)} />
             ) : (
-              <IoBookmarksOutline title="Bookmark" className="cursor-pointer text-red-900" onClick={() => handleBookmark(article._id)} />
+              <IoBookmarksOutline title="Bookmark" className="cursor-pointer text-red-600" onClick={() => handleBookmark(article._id)} />
             )}
           </div>
         </div>

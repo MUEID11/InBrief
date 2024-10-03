@@ -1,10 +1,10 @@
 const Faq = () => {
   return (
-    <div className="container mx-auto my-16">
+    <div className="container mx-auto my-8">
       <section id="faq" className="dark:bg-gray-100 dark:text-gray-800">
-        <div className="container flex flex-col justify-center px-4 py-8 mx-auto md:p-8">
-          <h2 className="text-4xl font-bold sm:text-4xl text-center">Frequently Asked Questions</h2>
-          <p className="mt-4 mb-8 dark:text-gray-600 text-center">Here are some frequently asked questions about our news aggregator platform</p>
+        <div className="container flex flex-col justify-center px-4 py-8 mx-auto ">
+          <h2 className="text-2xl font-semibold sm:text-3xl">Frequently Asked Questions</h2>
+          <p className="mt-4 mb-8 dark:text-gray-600">Here are some frequently asked questions about our news aggregator platform</p>
           <div className="space-y-4">
             <details className="w-full border rounded-lg">
               <summary className="px-4 py-6 focus:outline-none focus-visible:dark:ring-violet-600 font-semibold">What is a news aggregator, and how does it work?</summary>
