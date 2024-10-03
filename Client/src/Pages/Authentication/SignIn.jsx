@@ -60,7 +60,7 @@ const SignIn = () => {
     }
   };
   return (
-    <section className="container mx-auto  flex items-center justify-center ">
+    <section className="container mx-auto  flex items-center justify-center mt-2 ">
       <div className="flex w-full max-w-sm overflow-hidden bg-white shadow-lg sm:max-w-4xl">
         {/* Left side - Background Image */}
         <div
