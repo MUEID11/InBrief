@@ -11,7 +11,7 @@ const BusinessNewsSection = () => {
     fetch('http://localhost:5000/articles?category=business')
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Network response was not ok!');
         }
         return response.json();
       })
