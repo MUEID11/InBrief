@@ -70,7 +70,7 @@ const Asidebar = () => {
             className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
             href="#">
             <AiOutlineFileAdd />
-            <span className="mx-2 text-sm font-medium">Bookmarks</span>
+            <span className="mx-2 text-sm font-medium">Add Article</span>
           </Link>
         </nav>
 

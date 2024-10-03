@@ -313,7 +313,7 @@ const Navbar = () => {
                 href="#"
               >
                 <AiOutlineFileAdd />
-                <span className="mx-2 text-sm font-medium">Bookmarks</span>
+                <span className="mx-2 text-sm font-medium">Add Article</span>
               </Link>
             </nav>
 
