@@ -61,7 +61,7 @@ const NewsCard = ({ article }) => {
 
     try {
       const response = await fetch(
-        "${import.meta.env.VITE_API_URL}/articles/addBookmark",
+        `${import.meta.env.VITE_API_URL}/articles/addBookmark`,
         {
           method: "PATCH",
           headers: {
@@ -188,7 +188,7 @@ NewsCard.propTypes = {
   article: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     category: PropTypes.string,
-    headline: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     description: PropTypes.string,
     author: PropTypes.string,
     date: PropTypes.string,

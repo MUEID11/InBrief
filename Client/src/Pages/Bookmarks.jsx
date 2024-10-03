@@ -7,7 +7,7 @@ const Bookmarks = () => {
   const [bookmarks, setBookmarks] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-
+  console.log(`${import.meta.env.VITE_API_URL}`)
   useEffect(() => {
     fetch(
       `${import.meta.env.VITE_API_URL}/articles/allBookmarks?userEmail=${

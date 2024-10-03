@@ -9,7 +9,7 @@ const ArticleList = () => {
     const fetchArticles = async () => {
       try {
         const response = await axios.get(
-          "${import.meta.env.VITE_API_URL}/articles"
+          `${import.meta.env.VITE_API_URL}/articles`
         );
         setArticles(response.data);
       } catch (error) {
