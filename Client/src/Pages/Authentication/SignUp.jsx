@@ -85,7 +85,7 @@ const SignUp = () => {
       formData.reset();
       dispatch(userThunk());
       navigate('/');
-      toast("Welcome to InBrief! 📰", {
+      toast("Welcome to InBrief 📰", {
         icon: '✔️',
         style: {
           borderRadius: "10px",
