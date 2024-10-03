@@ -1,49 +1,12 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import {  FaRegNewspaper, FaSearch } from "react-icons/fa";
-
 const Asidebar = () => {
-  // Search start
-  const [category, setCategory] = useState("");
-  const navigate = useNavigate();
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    navigate(`/search/${category}`);
-  };
   return (
-    <div className="sticky   top-0 h-screen w-64 md:w-64 xl:w-72 px-1 py-4 flex flex-col  min-h-[calc(100vh-75px)] overflow-y-auto bg-gray-100 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
-      <div className="">
-        <form onSubmit={handleSearch} className="flex ">
-          <input
-            type="text"
-            value={category}
-            className=" border-y-2 border-gray-200    rounded-l-sm py-2 px-1  shadow-sm focus:ring-2 focus:ring-red-400 focus:outline-none text-gray-700 placeholder-gray-400 placeholder-shown:font-light"
-            onChange={(e) => setCategory(e.target.value)}
-            placeholder="Search by category"
-          />
-          <button
-            type="submit"
-            className="bg-red-600 text-white px-3 py-1 rounded-r-sm  hover:bg-red-700 focus:ring-2 focus:ring-red-400 focus:ring-opacity-50 shadow-sm transition duration-300 ease-in-out"
-          >
-            <FaSearch />
-          </button>
-        </form>
-      </div>
-      <div className="flex flex-col justify-between flex-1 mt-4 px-2">
+    <div className="sticky top-16 w-64 p-4 flex flex-col md:w-64 h-[calc(100vh-70px)] overflow-y-auto bg-gray-100 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 max-lg:hidden ">
+      <div className="flex flex-col justify-between flex-1 mt-4">
         <nav className="-mx-4 space-y-3">
           <a
             className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            href="/"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-5 h-5"
-            >
+            href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -55,25 +18,8 @@ const Asidebar = () => {
 
           <a
             className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            href="/about"
-          >
-            <span>
-            <FaRegNewspaper />
-            </span>
-            <span className="mx-2 text-sm font-medium">About Us</span>
-          </a>
-          <a
-            className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            href="/"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-5 h-5"
-            >
+            href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -85,16 +31,8 @@ const Asidebar = () => {
 
           <a
             className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            href="/"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-5 h-5"
-            >
+            href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -106,16 +44,8 @@ const Asidebar = () => {
 
           <a
             className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            href="#"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-5 h-5"
-            >
+            href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -127,42 +57,18 @@ const Asidebar = () => {
 
           <a
             className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            href="#"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-5 h-5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"
-              />
+            href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
             </svg>
             <span className="mx-2 text-sm font-medium">Reporting</span>
           </a>
 
           <a
             className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            href="#"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-5 h-5"
-            >
+            href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -174,9 +80,7 @@ const Asidebar = () => {
         </nav>
 
         <div className="mt-6">
-          <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
-            Active Posts
-          </h2>
+          <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300">Active Posts</h2>
           <ul className="mt-2 space-y-2">
             <li className="flex items-center p-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg">
               <span className="text-sm">Post Title 1</span>
