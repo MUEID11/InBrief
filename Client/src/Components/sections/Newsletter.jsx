@@ -14,9 +14,9 @@ const Newsletter = () => {
             <input
               type="text"
               className="flex-1 border border-gray-200 rounded-l-sm py-2 px-4 shadow-sm focus:ring-2 focus:ring-red-400 focus:outline-none text-gray-700 placeholder-gray-400 placeholder-shown:font-light"
-              placeholder="Search by category"
+              placeholder="Enter Your Email"
             />
-            <button type="submit" className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-3 text-lg rounded-sm focus:ring-red-400 focus:outline-none">
+            <button type="submit" className="bg-gradient-to-r from-red-500 to-red-600 text-white px-2 py-3 text-lg rounded-sm focus:ring-red-400 focus:outline-none">
               Subscribe
             </button>
           </form>
