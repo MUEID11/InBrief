@@ -13,6 +13,7 @@ import ProtectedRoute from './ProtectedRoute';
 import SearchResults from '../Components/Component/searchResults';
 import SubmitArticleForm from '../Components/Component/SubmitArticleForm';
 import ArticleList from '../Components/Component/ArticleList';
+import Bookmarks from '../Pages/Bookmarks';
 
 const router = createBrowserRouter([
   {
@@ -56,13 +57,17 @@ const router = createBrowserRouter([
         path: 'submit-article',
         element: (
           // <ProtectedRoute>
-            <SubmitArticleForm />
+          <SubmitArticleForm />
           // </ProtectedRoute>
         ),
       },
       {
         path: 'article-list',
         element: <ArticleList />,
+      },
+      {
+        path: '/bookmarks',
+        element: <Bookmarks />,
       },
       {
         path: 'profile',
