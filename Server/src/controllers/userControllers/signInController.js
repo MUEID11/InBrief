@@ -6,7 +6,6 @@ const verifyPass = require("../Validation/varifyPass");
 const signInController = async (req, res) => {
   const { email, password } = req.body;
   console.log(req.body);
-  const hashedPassword = await hashPass(password);
   try {
     const user = await userModel.findOne({ email});
     console.log(user);
@@ -15,17 +14,16 @@ const signInController = async (req, res) => {
     }
 
     if (user) {
-      const isPassValid = verifyPass(password, hashedPassword);
+      const isPassValid = await verifyPass(password, user?.password);
       if(isPassValid){
         const token = generateJwt({
           id: user?._id,
           email: user?.email,
           age: user?.age,
         });
-        console.log(token);
-        res.json(token);
+        res.json(token)
       }else{
-        res.status(404).send({message: "Incorrect Password"})
+        res.status(403).send({message: "Incorrect Password"})
       }
     }
   } catch (error) {

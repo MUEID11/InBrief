@@ -20,7 +20,7 @@ const Newsletter = () => {
           
               className="flex-1 border border-gray-200 rounded-l-sm py-2 px-4 shadow-sm focus:ring-2 focus:ring-red-400 focus:outline-none text-gray-700 placeholder-gray-400 placeholder-shown:font-light"
               
-              placeholder="Subscribe to our newsletter"
+              placeholder="Enter Your Email"
             />
             <button
               type="submit"
