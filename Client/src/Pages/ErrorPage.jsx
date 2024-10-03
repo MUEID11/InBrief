@@ -10,7 +10,7 @@ const ErrorPage = () => {
               Error 404
             </h1>
             <p className="text-3xl font-semibold md:text-5xl">
-              Sorry, we couldn't find this page.
+              Sorry, we couldn&apos;t find this page.
             </p>
             <p className="mt-4 mb-8 dark:text-gray-600 text-xl">
               But dont worry, you can find plenty of other things on our
@@ -18,7 +18,7 @@ const ErrorPage = () => {
             </p>
 
             <Link to="/">
-              {" "}
+             
               <button className="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-red-500 rounded-full shadow-md group">
                 <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-red-500 group-hover:translate-x-0 ease">
                   <svg

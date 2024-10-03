@@ -1,6 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
-import { motion } from "framer-motion"; // Importing framer-motion
+import axios from "axios"; 
 
 const ArticleForm = () => {
   const [articleData, setArticleData] = useState({
@@ -43,35 +42,13 @@ const ArticleForm = () => {
   };
 
   return (
-    <motion.div
-      className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-lg rounded-3xl mt-10 relative overflow-hidden" // Light background with overflow hidden
-      animate={{
-        y: [0, 10, 0], // Moving the form up and down continuously
-      }}
-      transition={{
-        repeat: Infinity, // Infinite loop
-        duration: 3, // Slow motion effect
-        ease: "easeInOut",
-      }}
+    <div
+      className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-lg rounded-sm mt-10 relative overflow-hidden" // Light background with overflow hidden
+    
     >
-      {/* New News-themed GIF Background */}
-      <div className="absolute inset-0 z-0">
-        <motion.img
-          src="https://media.giphy.com/media/l1J9EdzfOSgfyueLm/giphy.gif" // News-themed GIF
-          alt="background animation"
-          className="w-full h-full object-cover opacity-10"
-          animate={{
-            x: [0, 50, 0], // Slow horizontal movement of the background
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: 10, // Slow movement for a smooth effect
-            ease: "linear",
-          }}
-        />
-      </div>
+      
 
-      <motion.h2
+      <h2
         className="text-4xl font-bold text-center text-gray-800 mb-8 relative z-10"
         animate={{
           y: [0, -10, 0], // Spring-like jumping effect
@@ -85,19 +62,17 @@ const ArticleForm = () => {
         }}
       >
         Create New Article
-      </motion.h2>
+      </h2>
 
-      <motion.form
+      <form
         onSubmit={handleSubmit}
         className="space-y-6 relative z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.7 }}
+      
       >
         {/* Title Input */}
-        <motion.div
+        <div
           className="flex flex-col transform transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
+         
         >
           <label className="text-lg font-semibold text-gray-800 mb-1">Title</label>
           <input
@@ -108,16 +83,16 @@ const ArticleForm = () => {
             onFocus={() => setIsFocused(true)} // Set focus to true on focus
             onBlur={() => setIsFocused(false)} // Set focus to false on blur
             required
-            className={`border-2 rounded-xl p-3 bg-slate-300 text-gray-800 placeholder-gray-400 focus:outline-none 
+            className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
                         focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`} // Change class based on focus
             placeholder="Enter article title"
           />
-        </motion.div>
+        </div>
 
         {/* Description Input */}
-        <motion.div
+        <div
           className="flex flex-col transform transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
+         
         >
           <label className="text-lg font-semibold text-gray-800 mb-1">Description</label>
           <textarea
@@ -127,17 +102,17 @@ const ArticleForm = () => {
             onFocus={() => setIsFocused(true)} // Set focus to true on focus
             onBlur={() => setIsFocused(false)} // Set focus to false on blur
             required
-            className={`border-2 rounded-xl p-3 bg-slate-300 text-gray-800 placeholder-gray-400 focus:outline-none 
+            className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
                         focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`} // Change class based on focus
             rows="4"
             placeholder="Enter article description"
           />
-        </motion.div>
+        </div>
 
         {/* Image URL Input */}
-        <motion.div
+        <div
           className="flex flex-col transform transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
+         
         >
           <label className="text-lg font-semibold text-gray-800 mb-1">Image URL</label>
           <input
@@ -148,16 +123,16 @@ const ArticleForm = () => {
             onFocus={() => setIsFocused(true)} // Set focus to true on focus
             onBlur={() => setIsFocused(false)} // Set focus to false on blur
             required
-            className={`border-2 rounded-xl p-3 bg-slate-300 text-gray-800 placeholder-gray-400 focus:outline-none 
+            className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
                         focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`} // Change class based on focus
             placeholder="Enter image URL"
           />
-        </motion.div>
+        </div>
 
         {/* Source Input */}
-        <motion.div
+        <div
           className="flex flex-col transform transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
+          
         >
           <label className="text-lg font-semibold text-gray-800 mb-1">Source</label>
           <input
@@ -168,16 +143,16 @@ const ArticleForm = () => {
             onFocus={() => setIsFocused(true)} // Set focus to true on focus
             onBlur={() => setIsFocused(false)} // Set focus to false on blur
             required
-            className={`border-2 rounded-xl p-3 bg-slate-300 text-gray-800 placeholder-gray-400 focus:outline-none 
+            className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
                         focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`} // Change class based on focus
             placeholder="Enter source"
         />
-        </motion.div>
+        </div>
 
         {/* URL Input */}
-        <motion.div
+        <div
           className="flex flex-col transform transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
+          
         >
           <label className="text-lg font-semibold text-gray-800 mb-1">URL</label>
           <input
@@ -188,16 +163,16 @@ const ArticleForm = () => {
             onFocus={() => setIsFocused(true)} // Set focus to true on focus
             onBlur={() => setIsFocused(false)} // Set focus to false on blur
             required
-            className={`border-2 rounded-xl p-3 bg-slate-300 text-gray-800 placeholder-gray-400 focus:outline-none 
+            className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
                         focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`} // Change class based on focus
             placeholder="Enter URL"
           />
-        </motion.div>
+        </div>
 
         {/* Category Input */}
-        <motion.div
+        <div
           className="flex flex-col transform transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
+          
         >
           <label className="text-lg font-semibold text-gray-800 mb-1">Category</label>
           <input
@@ -208,16 +183,16 @@ const ArticleForm = () => {
             onFocus={() => setIsFocused(true)} // Set focus to true on focus
             onBlur={() => setIsFocused(false)} // Set focus to false on blur
             required
-            className={`border-2 rounded-xl p-3 bg-slate-300 text-gray-800 placeholder-gray-400 focus:outline-none 
+            className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
                         focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`} // Change class based on focus
             placeholder="Enter category"
           />
-        </motion.div>
+        </div>
 
         {/* Region Input */}
-        <motion.div
+        <div
           className="flex flex-col transform transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
+          
         >
           <label className="text-lg font-semibold text-gray-800 mb-1">Region</label>
           <input
@@ -228,16 +203,16 @@ const ArticleForm = () => {
             onFocus={() => setIsFocused(true)} // Set focus to true on focus
             onBlur={() => setIsFocused(false)} // Set focus to false on blur
             required
-            className={`border-2 rounded-xl p-3 bg-slate-300 text-gray-800 placeholder-gray-400 focus:outline-none 
+            className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
                         focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`} // Change class based on focus
             placeholder="Enter region"
           />
-        </motion.div>
+        </div>
 
         {/* Posted By Input */}
-        <motion.div
+        <div
           className="flex flex-col transform transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
+          
         >
           <label className="text-lg font-semibold text-gray-800 mb-1">Posted By</label>
           <input
@@ -248,22 +223,22 @@ const ArticleForm = () => {
             onFocus={() => setIsFocused(true)} // Set focus to true on focus
             onBlur={() => setIsFocused(false)} // Set focus to false on blur
             required
-            className={`border-2 rounded-xl p-3 bg-slate-300 text-gray-800 placeholder-gray-400 focus:outline-none 
+            className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
                         focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`} // Change class based on focus
             placeholder="Enter your name"
           />
-        </motion.div>
+        </div>
 
         {/* Submit Button */}
-        <motion.button
+        <button
           type="submit"
-          className="w-full p-3 bg-gradient-to-r from-red-800 to-pink-400 text-white font-semibold rounded-xl shadow-lg hover:from-red-800 hover:to-pink-300 transition-all duration-300"
-          whileHover={{ scale: 1.05 }}
+          className="w-full p-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-sm shadow-lg hover:from-red-800 hover:to-pink-300 transition-all duration-300"
+          
         >
           Submit Article
-        </motion.button>
-      </motion.form>
-    </motion.div>
+        </button>
+      </form>
+    </div>
   );
 };
 
