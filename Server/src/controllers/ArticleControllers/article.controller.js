@@ -2,7 +2,7 @@ const Article = require('../../models/articleModel');
 
 const postArticle = async (req, res) => {
   const newArticle = new Article(req.body);
-console.log(newArticle);
+  console.log(newArticle);
   try {
     const result = await newArticle.save();
     res.status(201).json({ success: true, message: 'Todo inserted successfully', result });
@@ -38,7 +38,7 @@ const addToBookmark = async (req, res) => {
     const alreadyExists = await Article.findOne({ _id: articleId, bookmarks: { $in: [userEmail] } });
     console.log(alreadyExists);
     if (alreadyExists) {
-      return res.status(400).json({ message: 'Already exists in bookmarks' });
+      return res.status(400).json({ message: 'Already exists in bookmarks!' });
     }
     // Update the post with $addToSet to prevent duplicate bookmarks(//$addToSet Adds userEmail to bookmarks if not already present)
     const result = await Article.updateOne({ _id: articleId }, { $addToSet: { bookmarks: userEmail } });
