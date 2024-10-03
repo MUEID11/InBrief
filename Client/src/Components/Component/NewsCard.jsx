@@ -101,14 +101,14 @@ const NewsCard = ({ article }) => {
           <img
             src="https://via.placeholder.com/20" // Placeholder for the source icon
             className="size-5 bg-red-700 rounded-full object-cover"
-            alt={`${article?.source.name}`}
+            alt={`${article?.source?.url}`}
           />
-          <span className="text-sm text-gray-600">{article?.source.url}</span>
+          <span className="text-sm text-gray-600">{article?.source?.name}</span>
         </div>
 
         {/* Headline */}
         <a href={article.url} target="_blank" rel="noopener noreferrer">
-          <h3 className="font-bold text-lg mt-2">{article?.title}</h3>
+          <h3 className="font-bold text-lg mt-2">{article?.headline}</h3>
         </a>
         {/* Date and Category */}
         <div className="flex gap-3 items-center my-2">
@@ -149,11 +149,14 @@ NewsCard.propTypes = {
   article: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     category: PropTypes.string,
-    title: PropTypes.string.isRequired,
+    headline: PropTypes.string.isRequired,
     description: PropTypes.string,
     author: PropTypes.string,
     date: PropTypes.string,
-    source: PropTypes.string,
+    source: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      url: PropTypes.string,
+    }).isRequired,
     region: PropTypes.string,
     image: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,

@@ -13,7 +13,11 @@ import ProtectedRoute from './ProtectedRoute';
 import SearchResults from '../Components/Component/searchResults';
 import SubmitArticleForm from '../Components/Component/SubmitArticleForm';
 import ArticleList from '../Components/Component/ArticleList';
+
 import Bookmarks from '../Pages/Bookmarks';
+import Stories from '../Pages/Stories';
+import Contact from '../Pages/Contact';
+import Dashboard from '../Pages/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: 'about',
         element: <About />,
+      },
+      {
+        path: 'stories',
+        element: <Stories />,
+      },
+      {
+        path: 'contact',
+        element: <Contact />,
       },
       {
         path: 'latest-news',
@@ -68,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: '/bookmarks',
         element: <Bookmarks />,
+      },
+      {
+        path: '/dashboard',
+        element: <Dashboard />,
       },
       {
         path: 'profile',

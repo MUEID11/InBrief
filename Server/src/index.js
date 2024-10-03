@@ -40,7 +40,6 @@ app.get('/test', (req, res) => {
     message: 'api security testing',
   });
 });
-
 // Search feature
 app.use('/api', searchRoutes);
 
