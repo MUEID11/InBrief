@@ -44,7 +44,8 @@ const addToBookmark = async (req, res) => {
     const alreadyExists = await Article.findOne({ _id: articleId, bookmarks: { $in: [userEmail] } });
     console.log(alreadyExists);
     if (alreadyExists) {
-      return res.status(400).json({ message: 'Already exists in bookmarks!' });
+      await Article.updateOne({ _id: articleId }, { $pull: { bookmarks: userEmail } });
+      return res.status(200).json({ message: 'Bookmark removed successfully!' });
     }
     // Update the post with $addToSet to prevent duplicate bookmarks(//$addToSet Adds userEmail to bookmarks if not already present)
     const result = await Article.updateOne({ _id: articleId }, { $addToSet: { bookmarks: userEmail } });
@@ -60,17 +61,30 @@ const addToBookmark = async (req, res) => {
   }
 };
 
+const getAllBookmarks = async (req, res) => {
+  const userEmail = req.query?.userEmail;
+  if (!userEmail) {
+    return res.status(400).json({ message: 'User Email parameter is required' });
+  }
+  // get all bookmarks that has the email in bookmarks field which is an array
+  try {
+    const articles = await Article.find({ bookmarks: { $in: [userEmail] } });
+    res.status(200).json({ success: true, count: articles.length, data: articles });
+  } catch (error) {
+    res.status(500).json({ success: false, error });
+  }
+};
+
 const AddLike = async (req, res) => {
   const { articleId, userEmail } = req.body;
 
   try {
-   
     const article = await Article.findOne({ _id: articleId, likes: { $in: [userEmail] } });
 
     if (article) {
       // If user has already liked the post, remove their like (Unlike)
       const result = await Article.updateOne({ _id: articleId }, { $pull: { likes: userEmail } });
-      
+
       if (result.modifiedCount > 0) {
         res.status(200).json({ message: 'Like removed successfully!' });
       } else {
@@ -91,10 +105,10 @@ const AddLike = async (req, res) => {
   }
 };
 
-
 module.exports = {
   postArticle,
   getArticles,
   addToBookmark,
   AddLike,
+  getAllBookmarks,
 };

@@ -14,7 +14,6 @@ const ArticleList = () => {
         console.error("Error fetching articles:", error);
       }
     };
-
     fetchArticles();
   }, []);
 

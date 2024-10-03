@@ -10,7 +10,7 @@ const ErrorPage = () => {
               Error 404
             </h1>
             <p className="text-3xl font-semibold md:text-5xl">
-              Sorry, we couldn't find this page.
+              Sorry, we couldn&apos;t find this page.
             </p>
             <p className="mt-4 mb-8 dark:text-gray-600 text-xl">
               But dont worry, you can find plenty of other things on our
