@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { BiSolidUpvote } from "react-icons/bi";
+import { LuArrowBigUpDash } from "react-icons/lu";
 import { useSelector } from "react-redux";
 
 const NewsCard = ({ article }) => {
@@ -92,7 +92,7 @@ const NewsCard = ({ article }) => {
         <div>
           <div className="flex items-center gap-2">
           <button onClick={() => handleLike(article._id)} className="">
-            <BiSolidUpvote className={`text-xl ${liked ? "text-green-600 " : "text-gray-500"}`} />
+            <LuArrowBigUpDash className={`text-2xl font-medium ${liked ? "text-green-600 bg-green-200 rounded-full" : "text-gray-500 bg-gray-200"}`} />
           </button>
             <p className="text-gray-700 text-sm"> {likes} Votes</p>
           </div>
