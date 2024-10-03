@@ -2,18 +2,34 @@ const Newsletter = () => {
   return (
     <section className="sm:m-0 m-2 mb-12">
       <div className="border border-red-600 border-r-4 border-b-4 container mx-auto sm:p-10 px-4 sm:py-16 max-sm:py-8 mt-12 flex flex-col md:flex-row items-center justify-between gap-4 ">
-        <div className="w-full md:w-1/2 ">
+        <div className="w-full md:w-1/2 text-center">
           <p className="font-bold max-sm:text-sm text-gray-600 uppercase tracking-[0.3em]">
             {" "}
             GET FIRST UPDATE
           </p>
-          <h3 className="font-bold text-3xl max-sm:text-xl mt-2 font-inter ">
+          <h3 className="font-bold text-lg md:text-xl lg:text-2xl mt-2 font-inter ">
             Get the news infront line by <br />
             <span className="text-rose-600">subscribe</span>✍️ our latest
             updates
           </h3>
         </div>
-        <div className="w-full text-center md:w-1/2 space-y-3 sm:space-y-0">
+<<<<<<< HEAD
+        <div className="flex justify-center max-sm:hidden items-center">
+          <form  className="flex w-full max-w-sm">
+            <input
+              type="text"
+              className="flex-1 border border-gray-200 rounded-l-sm py-2 px-4 shadow-sm focus:ring-2 focus:ring-red-400 focus:outline-none text-gray-700 placeholder-gray-400 placeholder-shown:font-light"
+             
+              placeholder="Subscribe to our newsletter"
+            />
+            <button
+              type="submit"
+              className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-3 text-lg rounded-sm focus:ring-red-400 focus:outline-none">
+              Subscribe
+            </button>
+          </form>
+=======
+        <div className="w-full text-center md:w-1/2 space-y-3 sm:space-y-0 flex justify-center items-center">
           <input
             type="text"
             className="text-lg bg-white text-black sm:w-72 pl-5 placeholder-neutral-500 py-3 focus:ring-rose-200 focus:ring focus:outline-none border-red-500 border border-r-4 border-b-4"
@@ -23,6 +39,7 @@ const Newsletter = () => {
             {" "}
             subscribe
           </button>
+>>>>>>> 538b7c5b00886469d95d82acfa1650e7c06f018f
         </div>
       </div>
     </section>
