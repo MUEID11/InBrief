@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import {  FaHeart, FaRegHeart } from "react-icons/fa";
+import { BiSolidUpvote } from "react-icons/bi";
 import { useSelector } from "react-redux";
 
 const NewsCard = ({ article }) => {
@@ -15,7 +15,7 @@ const NewsCard = ({ article }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ articleId: id, userEmail: user?._id }),
+        body: JSON.stringify({ articleId: id, userEmail: user?.email }),
       });
 
       if (!response.ok) {
@@ -91,14 +91,10 @@ const NewsCard = ({ article }) => {
       <div className="flex justify-between items-center">
         <div>
           <div className="flex items-center gap-2">
-            <button onClick={() => handleLike(article._id)}>
-              {liked ? (
-                <FaHeart className="text-red-600 text-lg" />
-              ) : (
-                <FaRegHeart className="text-lg" />
-              )}
-            </button>
-            <p className="text-gray-700 text-sm"> {likes} likes</p>
+          <button onClick={() => handleLike(article._id)} className="">
+            <BiSolidUpvote className={`text-xl ${liked ? "text-green-600 " : "text-gray-500"}`} />
+          </button>
+            <p className="text-gray-700 text-sm"> {likes} Votes</p>
           </div>
         </div>
         {/* Read More Button */}
