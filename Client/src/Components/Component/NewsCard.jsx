@@ -25,7 +25,7 @@ const NewsCard = ({ article }) => {
     }
     try {
       const response = await fetch(
-        "${import.meta.env.VITE_API_URL}/articles/addLike",
+        `${import.meta.env.VITE_API_URL}/articles/addLike`,
         {
           method: "PATCH",
           headers: {

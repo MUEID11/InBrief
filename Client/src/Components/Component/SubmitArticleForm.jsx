@@ -50,16 +50,6 @@ const ArticleForm = () => {
     >
       <h2
         className="text-4xl font-bold text-center text-gray-800 mb-8 relative z-10"
-        animate={{
-          y: [0, -10, 0], // Spring-like jumping effect
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 1.5, // Speed of the spring
-          ease: "easeInOut",
-          type: "spring", // Spring animation type
-          stiffness: 100, // Spring stiffness for more bounce
-        }}
       >
         Create New Article
       </h2>
