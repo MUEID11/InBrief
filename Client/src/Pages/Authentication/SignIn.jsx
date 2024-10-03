@@ -3,6 +3,7 @@ import Logo from "./../../assets/logo.png";
 import { FcGoogle } from "react-icons/fc";
 import userThunk from "../../Features/thunks/userThunks";
 import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -28,20 +29,36 @@ const SignIn = () => {
         dispatch(userThunk());
         navigate("/");
       }
+      toast("Welcome back!", {
+        icon: '✔️',
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
       console.log("data", data);
     } catch (error) {
+      toast(error.message, {
+        icon: '❌',
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
       console.log(error.message);
     }
   };
   return (
-    <section className="h-screen flex items-center justify-center w-full sm:block mx-auto">
+    <section className="container mx-auto  flex items-center justify-center mt-5">
       <div className="flex w-full max-w-sm overflow-hidden bg-white shadow-lg sm:max-w-4xl">
         {/* Left side - Background Image */}
         <div
           className="hidden bg-cover bg-center lg:block lg:w-1/2"
           style={{
             backgroundImage:
-              "url('https://img.freepik.com/free-photo/crystal-globe-with-stock-information_1150-17697.jpg?t=st=1727352816~exp=1727356416~hmac=1e56c6cfd1a2536841945565514dfe9c61718395fcdc65d80526c757002ced81&w=740')",
+              "url('https://images.unsplash.com/photo-1689421755395-c18b8cd24db3?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
           }}
         ></div>
 

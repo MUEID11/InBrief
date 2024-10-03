@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import NewsSection from './NewsSection';
 
@@ -6,9 +7,20 @@ const SportsNewsSection = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const [width, setWidth] = useState(window.innerWidth);
+  console.log(width);
+  let url;
+  if (width <= 1536 && width >= 1280) {
+    url = `http://localhost:5000/articles?category=sports&limit=3`;
+  } else if (width >= 1024 && width <= 1280) {
+    url = `http://localhost:5000/articles?category=sports&limit=2`;
+  } else {
+    url = `http://localhost:5000/articles?category=sports&limit=4`;
+  }
+
   // Fetch Business News data from API
   useEffect(() => {
-    fetch('http://localhost:5000/articles?category=sports')
+    fetch(url)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -24,7 +36,7 @@ const SportsNewsSection = () => {
         setError(true);
         setLoading(false);
       });
-  }, []);
+  }, [url]);
   console.log(articles);
   if (loading) {
     return (

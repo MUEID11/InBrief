@@ -7,7 +7,7 @@ import BusinessNewsSection from '../Components/sections/BusinessNewsSection';
 import SportsNewsSection from '../Components/sections/SportsNewsSection';
 import TopCreators from '../Components/sections/TopCreators';
 import Newsletter from '../Components/sections/Newsletter';
-import LatestNewsSection from '../Components/sections/LatestNewsSection';
+// import LatestNewsSection from '../Components/sections/LatestNewsSection';
 // import { useState } from 'react';
 
 const Home = () => {
@@ -15,28 +15,28 @@ const Home = () => {
   // console.log(width);
   return (
     <div className="">
-      <div className="ml-6">
-      <Banner />
-      {/* welcome message and the card under it */}
-      {/* latest news */}
-      <TopLatestNews />
-      <LatestNewsSection />
-      {/* bulletin news/sponsors */}
-      <Sponsors />
-      {/* must read */}
-      <MustRead />
-      {/* editor pick banner */}
-      <EditorPicks />
-      {/* cards under editors pick */}
-      {/* business & sports */}
-      <BusinessNewsSection />
-      <SportsNewsSection />
-      {/* topcreators */}
-      <TopCreators />
-      {/* newslatter subscription */}
-      <Newsletter />
-      {/* something */}
-    </div>
+      <div className="sm:px-4">
+        <Banner />
+        {/* welcome message and the card under it */}
+        {/* latest news */}
+        <TopLatestNews />
+        {/* <LatestNewsSection /> */}
+        {/* bulletin news/sponsors */}
+        <Sponsors />
+        {/* must read */}
+        <MustRead />
+        {/* editor pick banner */}
+        <EditorPicks />
+        {/* cards under editors pick */}
+        {/* business & sports */}
+        <BusinessNewsSection />
+        <SportsNewsSection />
+        {/* topcreators */}
+        <TopCreators />
+        {/* newslatter subscription */}
+        <Newsletter />
+        {/* something */}
+      </div>
     </div>
   );
 };
