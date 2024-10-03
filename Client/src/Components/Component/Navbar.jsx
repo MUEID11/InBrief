@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import userThunk from '../../Features/thunks/userThunks';
 import { Link, useNavigate } from 'react-router-dom';
 import { resetUser } from '../../Features/Authenticate/userSlice';
+import { RiMenu3Line } from 'react-icons/ri';
+import { RxCross1 } from 'react-icons/rx';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -167,8 +169,8 @@ const Navbar = () => {
           )}
 
           {/* Hamburger Icon (for tablet view) */}
-          <div className="lg:hidden pt-1">
-            <button onClick={toggleMenu}>{isOpen ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />}</button>
+          <div className="lg:hidden pt-[6px]">
+            <button onClick={toggleMenu}>{isOpen ? <RxCross1 className="text-3xl" /> : <RiMenu3Line className="text-3xl" />}</button>
           </div>
         </div>
       </div>
@@ -178,7 +180,7 @@ const Navbar = () => {
         <div
           ref={menuDropdownRef}
           id="dropdown"
-          className={`absolute  z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-96 h-screen dark:bg-gray-600 ${
+          className={`absolute  z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-full h-screen dark:bg-gray-600 ${
             !isOpen ? '-left-full' : 'left-0'
           } transition-all duration-300`}>
           <div className="flex flex-col justify-between flex-1 mt-4 h-[calc(100vh-95px)]">
