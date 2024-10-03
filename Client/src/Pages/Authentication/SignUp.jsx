@@ -52,7 +52,7 @@ const SignUp = () => {
     const age = formData.age.value;
 
     const user = { name, email, password, age, imageUrl };
-
+    console.log(user);
     // Password confirmation check
     if (password !== confirmPassword) {
       return setError('Passwords do not match');

@@ -5,7 +5,7 @@ const verifyPass = async (password, hashedPassword) => {
   try {
     // Compare the password with the hashed password
     const match = await bcrypt.compare(password, hashedPassword);
-
+    console.log("verify passs console",match, password, hashedPassword)
     if (match) {
       console.log('Password is correct');
       return true;
