@@ -10,16 +10,16 @@ const NewsSection = ({ title, articles, link }) => {
   const getGridColumns = () => {
     switch (title) {
       case "Top Latest News":
-        return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+        return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 ";
       case "Latest News":
-        return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+        return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4";
       case "Business":
-        return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+        return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4";
       case "Sports":
-        return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+        return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4";
 
       default:
-        return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+        return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4";
     }
   };
 
