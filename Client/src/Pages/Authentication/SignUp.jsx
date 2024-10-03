@@ -92,7 +92,7 @@ const SignUp = () => {
   };
 
   return (
-    <section className="container mx-auto min-h-screen flex items-center justify-center mt-10">
+    <section className="container mx-auto min-h-screen flex items-center justify-center mt-10 ">
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white shadow-lg  lg:max-w-4xl">
         {/* Left side - Background Image */}
         <div
