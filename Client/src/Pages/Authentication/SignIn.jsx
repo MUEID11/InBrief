@@ -1,98 +1,175 @@
-const Asidebar = () => {
+import { Link, useNavigate } from "react-router-dom";
+import Logo from "./../../assets/logo.png";
+import { FcGoogle } from "react-icons/fc";
+import userThunk from "../../Features/thunks/userThunks";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+const SignIn = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/users/signin`,
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
+      console.log(response);
+      const data = await response.json();
+      const token = localStorage.setItem("token", data);
+      console.log(token);
+      if (data) {
+        dispatch(userThunk());
+        navigate("/");
+      }
+      toast("Welcome back!", {
+        icon: '✔️',
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+      console.log("data", data);
+    } catch (error) {
+      toast(error.message, {
+        icon: '❌',
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+      console.log(error.message);
+    }
+  };
   return (
-    <div className="sticky top-16 w-64 p-4 flex flex-col md:w-64 h-[calc(100vh-70px)] overflow-y-auto bg-gray-100 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 max-lg:hidden overflow-hidden">
-      <div className="flex flex-col justify-between flex-1 mt-4">
-        <nav className="-mx-4 space-y-3">
+    <section className="container mx-auto  flex items-center justify-center ">
+      <div className="flex w-full max-w-sm overflow-hidden bg-white shadow-lg sm:max-w-4xl">
+        {/* Left side - Background Image */}
+        <div
+          className="hidden bg-cover bg-center lg:block lg:w-1/2"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1689421755395-c18b8cd24db3?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+          }}
+        ></div>
+
+        {/* Right side - Login Form */}
+        <div className="w-full px-6 py-8 md:px-8 lg:w-1/2 border-red-600 border-r-4">
+          {/* Logo */}
+          <div className="flex justify-center mx-auto">
+            <img className="w-auto h-7 sm:h-8" src={Logo} alt="Logo" />
+          </div>
+
+          <p className="mt-3 text-xl text-center text-gray-600">
+            Welcome back!
+          </p>
+
+          {/* Google Sign-In Button */}
           <a
-            className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            href="/">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+            href="#"
+            className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg :border-gray-700  hover:bg-gray-50"
+          >
+            <div className="px-4 py-2">
+              <FcGoogle className="text-2xl" />
+            </div>
+            <span className="w-5/6 px-4 py-3 font-bold text-center">
+              Sign in with Google
+            </span>
+          </a>
+
+          {/* Separator */}
+          <div className="flex items-center justify-between mt-4">
+            <span className="w-1/5 border-b  lg:w-1/4"></span>
+            <a
+              href="#"
+              className="text-xs text-center text-gray-500 uppercase  hover:underline"
+            >
+              or login with email
+            </a>
+            <span className="w-1/5 border-b  lg:w-1/4"></span>
+          </div>
+
+          {/* Login Form */}
+          <form onSubmit={handleSignIn}>
+            <div className="mt-4">
+              <label
+                className="block mb-2 text-sm font-medium text-gray-600 "
+                htmlFor="LoggingEmailAddress"
+              >
+                Email Address
+              </label>
+              <input
+                id="LoggingEmailAddress"
+                name="email"
+                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 :focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                type="email"
               />
-            </svg>
-            <span className="mx-2 text-sm font-medium">Home</span>
-          </a>
+            </div>
 
-          <a
-            className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            href="/">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605"
+            <div className="mt-4">
+              <div className="flex justify-between">
+                <label
+                  className="block mb-2 text-sm font-medium text-gray-600 "
+                  htmlFor="loggingPassword"
+                >
+                  Password
+                </label>
+                <a href="#" className="text-xs text-gray-500 hover:underline">
+                  Forget Password?
+                </a>
+              </div>
+              <input
+                id="loggingPassword"
+                name="password"
+                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 :focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                type="password"
               />
-            </svg>
-            <span className="mx-2 text-sm font-medium">Dashboard</span>
-          </a>
+            </div>
+            <div className="mb-4 mt-2">
+              <input type="checkbox" id="terms" className="mr-2" />
+              <label htmlFor="terms">
+                I agree to all the statements in
+                <a href="#" className="text-blue-500 hover:underline">
+                  Terms of service
+                </a>
+              </label>
+            </div>
 
-          <a
-            className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            href="/">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"
-              />
-            </svg>
-            <span className="mx-2 text-sm font-medium">Projects</span>
-          </a>
+            {/* Sign In Button */}
+            <div className="mt-6">
+              <button
+                type="submit"
+                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-800 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
+              >
+                Sign In Now
+              </button>
+            </div>
+          </form>
 
-          <a
-            className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12"
-              />
-            </svg>
-            <span className="mx-2 text-sm font-medium">Tasks</span>
-          </a>
-
-          <a
-            className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
-            </svg>
-            <span className="mx-2 text-sm font-medium">Reporting</span>
-          </a>
-
-          <a
-            className="flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg"
-            href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.594-.766-6.363-2.06 1.547-1.284 2.777-2.645 3.378-3.87a9.376 9.376 0 00.681 1.333c1.013 1.31 2.585 2.122 4.493 2.122 3.174 0 5.74-2.098 6.55-4.977 0 .001 0 .001.001 0"
-              />
-            </svg>
-            <span className="mx-2 text-sm font-medium">Teams</span>
-          </a>
-        </nav>
-
-        <div className="mt-6">
-          <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300">Active Posts</h2>
-          <ul className="mt-2 space-y-2">
-            <li className="flex items-center p-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg">
-              <span className="text-sm">Post Title 1</span>
-            </li>
-            {/* <li className="flex items-center p-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg">
-                            <span className="text-sm">Post Title 2</span>
-                        </li> */}
-          </ul>
+          {/* Sign Up Link */}
+          <div className="flex items-center justify-between mt-4">
+            <span className="w-1/5 border-b  md:w-1/4"></span>
+            <Link
+              to="/signup"
+              className="text-xs text-gray-500 uppercase hover:underline"
+            >
+              or sign up
+            </Link>
+            <span className="w-1/5 border-b md:w-1/4"></span>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Asidebar;
+export default SignIn;
