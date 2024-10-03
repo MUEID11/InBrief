@@ -14,6 +14,9 @@ const postArticle = async (req, res) => {
 const getArticles = async (req, res) => {
   const category = req.query?.category;
   const sort = req.query?.sort;
+  const queryLimit = req.query?.limit;
+
+  let limit = 0;
   let query = {};
   let sortOption = {};
   if (category) {
@@ -22,8 +25,11 @@ const getArticles = async (req, res) => {
   if (sort) {
     sortOption = { createdAt: sort === 'dsc' ? -1 : 1 };
   }
+  if (queryLimit) {
+    limit = parseInt(queryLimit);
+  }
   try {
-    const articles = await Article.find(query).sort(sortOption);
+    const articles = await Article.find(query).sort(sortOption).limit(limit);
     res.status(200).json({ success: true, count: articles.length, data: articles });
   } catch (error) {
     res.status(500).json({ success: false, error });

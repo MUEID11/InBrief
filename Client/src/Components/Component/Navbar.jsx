@@ -182,7 +182,7 @@ const Navbar = () => {
           id="dropdown"
           className={`absolute  z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-full h-screen dark:bg-gray-600 ${
             !isOpen ? '-left-full' : 'left-0'
-          } transition-all duration-300`}>
+          } transition-all duration-300 overflow-hidden`}>
           <div className="flex flex-col justify-between flex-1 mt-4 h-[calc(100vh-95px)]">
             <nav className=" space-y-3">
               <form onSubmit={handleSearch} className="flex w-full max-w-sm px-3">
