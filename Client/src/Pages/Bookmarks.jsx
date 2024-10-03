@@ -47,8 +47,8 @@ const Bookmarks = () => {
 
   return (
     <div className="container">
-      <h1 className="text-center text-2xl font-semibold my-5">BOOKMARKS</h1>
-      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      <h1 className="text-center text-2xl font-semibold my-5 text-neutral-700">BOOKMARKS</h1>
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 px-8">
         {bookmarks.length > 0 && bookmarks.map((bookmark) => <NewsCard key={bookmark._id} article={bookmark} />)}
       </div>
     </div>
