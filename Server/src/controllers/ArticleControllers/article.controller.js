@@ -59,23 +59,25 @@ const addToBookmark = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error', error });
   }
 };
+
 const AddLike = async (req, res) => {
   const { articleId, userEmail } = req.body;
 
   try {
-    // Check if the user has already liked the article
-    const post = await Article.findOne({ _id: articleId, likes: userEmail });
+   
+    const article = await Article.findOne({ _id: articleId, likes: { $in: [userEmail] } });
 
-    if (post) {
-      // if User has already liked the post, then remove their like
+    if (article) {
+      // If user has already liked the post, remove their like (Unlike)
       const result = await Article.updateOne({ _id: articleId }, { $pull: { likes: userEmail } });
-
+      
       if (result.modifiedCount > 0) {
         res.status(200).json({ message: 'Like removed successfully!' });
       } else {
         res.status(404).json({ message: 'Article not found' });
       }
     } else {
+      // If user has not liked the post, add their like
       const result = await Article.updateOne({ _id: articleId }, { $addToSet: { likes: userEmail } });
 
       if (result.matchedCount > 0) {
@@ -88,6 +90,7 @@ const AddLike = async (req, res) => {
     res.status(500).json({ success: false, error });
   }
 };
+
 
 module.exports = {
   postArticle,

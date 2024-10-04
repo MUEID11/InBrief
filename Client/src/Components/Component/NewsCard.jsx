@@ -1,14 +1,22 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { BiSolidUpvote } from "react-icons/bi";
+import { LuArrowBigUpDash } from "react-icons/lu";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const NewsCard = ({ article }) => {
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
-  const [likes, setLikes] = useState(article?.likes?.length);
+  console.log(user)
+  const [likes, setLikes] = useState(article?.likes?.length || 0);
   const [liked, setLiked] = useState(article?.likes?.includes(user?.email));
 
   const handleLike = async (id) => {
+    if (!user.email) {
+      navigate("/signin"); 
+      
+      return;
+    }
     try {
       const response = await fetch("http://localhost:5000/articles/addLike", {
         method: "PATCH",
@@ -90,9 +98,15 @@ const NewsCard = ({ article }) => {
       <div className="flex justify-between items-center">
         <div>
           <div className="flex items-center gap-2">
-          <button onClick={() => handleLike(article._id)} className="">
-            <BiSolidUpvote className={`text-xl ${liked ? "text-green-600 " : "text-gray-500"}`} />
-          </button>
+            <button  onClick={() => handleLike(article._id)} className="">
+              <LuArrowBigUpDash
+                className={`text-2xl font-medium ${
+                  liked
+                    ? "text-green-600 bg-green-200 rounded-full"
+                    : "text-gray-500 bg-gray-200 rounded-full"
+                }`}
+              />
+            </button>
             <p className="text-gray-700 text-sm"> {likes} Votes</p>
           </div>
         </div>
@@ -106,6 +120,7 @@ const NewsCard = ({ article }) => {
 // PropTypes for type checking
 NewsCard.propTypes = {
   article: PropTypes.shape({
+    _id: PropTypes.string.isRequired, 
     category: PropTypes.string,
     headline: PropTypes.string.isRequired,
     description: PropTypes.string,

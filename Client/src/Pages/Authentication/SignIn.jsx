@@ -1,8 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom';
-import Logo from './../../assets/logo.png';
-import { FcGoogle } from 'react-icons/fc';
-import userThunk from '../../Features/thunks/userThunks';
-import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from "react-router-dom";
+import Logo from "./../../assets/logo.png";
+import { FcGoogle } from "react-icons/fc";
+import userThunk from "../../Features/thunks/userThunks";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -12,21 +13,40 @@ const SignIn = () => {
     const email = form.email.value;
     const password = form.password.value;
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/signin`, {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/users/signin`,
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       console.log(response);
       const data = await response.json();
-      const token = localStorage.setItem('token', data);
+      const token = localStorage.setItem("token", data);
       console.log(token);
       if (data) {
         dispatch(userThunk());
-        navigate('/');
+        navigate("/");
       }
-      console.log('data', data);
+      toast("Welcome back!", {
+        icon: '✔️',
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+      console.log("data", data);
     } catch (error) {
+      toast(error.message, {
+        icon: '❌',
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
       console.log(error.message);
     }
   };
@@ -38,7 +58,7 @@ const SignIn = () => {
           className="hidden bg-cover bg-center lg:block lg:w-1/2"
           style={{
             backgroundImage:
-              "url('https://img.freepik.com/free-photo/crystal-globe-with-stock-information_1150-17697.jpg?t=st=1727352816~exp=1727356416~hmac=1e56c6cfd1a2536841945565514dfe9c61718395fcdc65d80526c757002ced81&w=740')",
+              "url('https://images.unsplash.com/photo-1689421755395-c18b8cd24db3?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
           }}></div>
 
         {/* Right side - Login Form */}
