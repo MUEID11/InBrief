@@ -43,6 +43,7 @@ const ArticleForm = () => {
       });
     } catch (error) {
       console.error("Error creating article:", error);
+      toast.error(error.message)
     }
   };
 
