@@ -5,7 +5,7 @@ const MustRead = () => {
   return (
     <div className="my-2 p-2 container mx-auto mt-4 sm:mt-12 max-sm:px-2">
       {/* Must read title */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center rounded-sm">
         <h2 className="text-2xl md:text-3xl font-inter font-semibold  ">
           Must read
         </h2>
@@ -22,7 +22,7 @@ const MustRead = () => {
         <div className="">
           <img
             src="https://images.pexels.com/photos/20258/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
-            className="w-full"
+            className="w-full rounded-sm"
             alt=""
           />
 
@@ -51,9 +51,9 @@ const MustRead = () => {
           </div>
         </div>
         {/* 2nd part */}
-        <div className="bg-gray-800 shadow-xl relative md:min-h-[500px]">
+        <div className="bg-gray-800 shadow-xl relative md:min-h-[500px] rounded-sm">
           <img
-            className="absolute  inset-0 w-full h-full object-cover opacity-40 "
+            className="absolute  inset-0 w-full h-full object-cover opacity-40 rounded-sm"
             src="https://static.vecteezy.com/system/resources/previews/029/630/494/non_2x/handsome-young-male-singer-holds-a-microphone-stand-and-performs-on-a-concert-stage-free-photo.jpeg"
             alt="singer"
           />
@@ -84,12 +84,12 @@ const MustRead = () => {
           </div>
         </div>
         {/* 3rd part */}
-        <div className="gap-6 grid grid-row-2 grid-cols-1">
+        <div className="gap-6 grid grid-row-2 grid-cols-1 rounded-sm">
           <div className="row-span-1 flex items-center justify-center space-x-4 min-h-full">
-            <div className="relative h-full w-full">
+            <div className="relative h-full w-full rounded-sm">
               <img
                 src="https://images.pexels.com/photos/20258/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover rounded-sm"
                 alt=""
               />
             </div>
@@ -118,7 +118,7 @@ const MustRead = () => {
             <div className="relative h-full w-full">
               <img
                 src="https://images.pexels.com/photos/20258/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover rounded-sm"
                 alt=""
               />
             </div>

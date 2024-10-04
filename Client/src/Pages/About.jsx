@@ -52,10 +52,10 @@ const sponsorData = [
 
 const About = () => {
   return (
-    <div className="max-sm:px-2 container mx-auto">
+    <div className="max-sm:px-2 container mx-auto px-3">
       {/* HEADER SECTION OF THE PAGE */}
       <section className="text-center max-w-[800px] mx-auto my-10 text-stone-900">
-        <h1 className="font-bold text-5xl max-sm:text-4xl">ABOUT US</h1>
+        <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl font-inter">ABOUT US</h1>
         <p className="text-stone-500 font-medium mt-3 text-lg max-sm:text-base leading-tight">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique
           nostrum non consequuntur, autem accusamus quaerat unde iste deleniti
@@ -83,14 +83,14 @@ const About = () => {
 
       {/* OUR STORY / MISSION / VISION */}
       <section className="flex gap-20 max-sm:gap-5 mt-16 max-sm:flex-col">
-        <div className="md:w-1/3 flex gap-9 max-sm:gap-2 items-start">
-          <h2 className="font-bold text-5xl max-sm:text-4xl uppercase">
+        <div className="md:w-1/3 flex gap-6 max-sm:gap-2 items-start">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-inter font-semibold uppercase">
             Our Story
           </h2>
 
           <img
             src={arrow}
-            className="w-20 max-sm:w-11 rotate-90 md:-mt-3"
+            className="w-[24px] md:w-[30px]  lg:w-[36px] max-sm:w-11 rotate-90 md:-mt-3"
             alt=""
           />
         </div>
@@ -130,7 +130,7 @@ const About = () => {
       {/* OUR SPONSORS SLIDER */}
       <section className="mt-28">
         <header className="mb-14">
-          <h3 className="font-bold text-5xl max-sm:text-4xl uppercase">
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-inter font-semibold uppercase">
             Our Sponsors
           </h3>
         </header>
@@ -149,7 +149,7 @@ const About = () => {
                   </div>
                 </Link>
                 <Link to={data.link}>
-                  <p className="text-xl font-semibold text-neutral-800 mt-3">
+                  <p className="text-xl font-semibold text-neutral-600 mt-3">
                     {data.name}
                   </p>
                 </Link>
@@ -161,7 +161,7 @@ const About = () => {
 
       <section className="mt-28 flex max-sm:flex-col gap-10 items-center justify-center">
         <div className="w-1/2 max-sm:w-full">
-          <h2 className="font-bold text-5xl max-sm:text-4xl uppercase">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-medium uppercase">
             Join with Us
           </h2>
           <p className="mt-5 text-stone-600 max-w-[500px] font-medium">

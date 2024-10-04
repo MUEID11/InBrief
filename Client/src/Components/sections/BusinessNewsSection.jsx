@@ -1,30 +1,31 @@
-import { useEffect, useState } from "react";
-import NewsSection from "./NewsSection";
+import { useEffect, useState } from 'react';
+import NewsSection from './NewsSection';
 
 const BusinessNewsSection = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // Fetch Business News data from fakedata.json
+  // Fetch Business News data from API
   useEffect(() => {
-    fetch("/fakedata.json")
+    fetch('http://localhost:5000/articles?category=business')
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error('Network response was not ok!');
         }
         return response.json();
       })
-      .then((data) => {
-        setArticles(data.businessNews);
+      .then(({ data }) => {
+        setArticles(data);
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching Business News:", err);
+        console.error('Error fetching Business News:', err);
         setError(true);
         setLoading(false);
       });
   }, []);
+  console.log(articles);
 
   if (loading) {
     return (
@@ -37,9 +38,7 @@ const BusinessNewsSection = () => {
   if (error) {
     return (
       <div className="flex items-center justify-center p-4">
-        <p className="text-xl text-red-600">
-          Failed to load Business News. Please try again later.
-        </p>
+        <p className="text-xl text-red-600">Failed to load Business News. Please try again later.</p>
       </div>
     );
   }
