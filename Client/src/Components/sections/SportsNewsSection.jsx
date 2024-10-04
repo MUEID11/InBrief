@@ -58,7 +58,7 @@ const SportsNewsSection = () => {
 
   return (
     <div className="container mx-auto">
-      <NewsSection title="Sports" articles={articles} link="/sports-news" />
+      <NewsSection title="Sports" articles={articles} link="/sports" />
     </div>
   );
 };

@@ -26,41 +26,41 @@ const Footer = () => {
                 <div className="flex mt-4  sm:mt-5">
                   <a
                     href="#"
-                    className="text-white p-2 rounded-full bg-red-600 hover:text-gray-800 dark:hover:text-white"
+                    className="text-white p-2 rounded-full bg-red-600  dark:hover:text-white"
                   >
                     <FaFacebook />
                     <span className="sr-only">Facebook page</span>
                   </a>
                   <a
                     href="#"
-                    className="text-white p-2 rounded-full bg-red-600 hover:text-gray-800 dark:hover:text-white ms-5"
+                    className="text-white p-2 rounded-full bg-red-600  dark:hover:text-white ms-5"
                   >
                     <FaDiscord />
                     <span className="sr-only">Discord community</span>
                   </a>
                   <a
                     href="#"
-                    className="text-white p-2 rounded-full bg-red-600 hover:text-gray-800 dark:hover:text-white ms-5"
+                    className="text-white p-2 rounded-full bg-red-600  dark:hover:text-white ms-5"
                   >
                     <FaTwitter />
                     <span className="sr-only">Twitter page</span>
                   </a>
                   <a
                     href="#"
-                    className="text-white p-2 rounded-full bg-red-600 hover:text-gray-800 dark:hover:text-white ms-5"
+                    className="text-white p-2 rounded-full bg-red-600  dark:hover:text-white ms-5"
                   >
                     <FaGithub />
                     <span className="sr-only">GitHub account</span>
                   </a>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-8 lg:gap-16 sm:grid-cols-4">
+              <div className="grid grid-cols-2 gap-8 lg:gap-16 sm:grid-cols-4 text-neutral-100">
                 
                 <div>
-                  <h2 className="mb-6 text-lg font-bold text-gray-800 uppercase dark:text-white">
+                  <h2 className="mb-6 text-lg font-bold  uppercase dark:text-white">
                     Legal
                   </h2>
-                  <ul className="text-gray-800 dark:text-gray-800 font-medium">
+                  <ul className=" dark: font-medium">
                     <li className="mb-4">
                       <a href="#" className="hover:underline">
                         Privacy Policy
@@ -74,10 +74,10 @@ const Footer = () => {
                   </ul>
                 </div>
                 <div>
-                  <h2 className="mb-6 text-lg font-bold text-gray-800 uppercase dark:text-white">
+                  <h2 className="mb-6 text-lg font-bold  uppercase dark:text-white">
                     Resources
                   </h2>
-                  <ul className="text-gray-800 dark:text-gray-800 font-medium">
+                  <ul className=" dark: font-medium">
                     <li className="mb-4">
                       <a
                         href="https://flowbite.com/"
@@ -97,10 +97,10 @@ const Footer = () => {
                   </ul>
                 </div>
                 <div>
-                  <h2 className="mb-6 text-lg font-bold text-gray-800 uppercase dark:text-white">
+                  <h2 className="mb-6 text-lg font-bold  uppercase dark:text-white">
                     Follow us
                   </h2>
-                  <ul className="text-gray-800 dark:text-gray-800 font-medium">
+                  <ul className=" dark: font-medium">
                     <li className="mb-4">
                       <a
                         href="https://github.com/themesberg/flowbite"
@@ -120,10 +120,10 @@ const Footer = () => {
                   </ul>
                 </div>
                 <div>
-                  <h2 className="mb-6 text-lg font-bold text-gray-800 uppercase dark:text-white">
+                  <h2 className="mb-6 text-lg font-bold  uppercase dark:text-white">
                     Legal
                   </h2>
-                  <ul className="text-gray-800 dark:text-gray-800 font-medium">
+                  <ul className=" dark: font-medium">
                     <li className="mb-4">
                       <a href="#" className="hover:underline">
                         Privacy Policy
@@ -139,46 +139,46 @@ const Footer = () => {
               </div>
             </div>
             <hr className="my-4 border-gray-200" />
-            <div className="sm:flex sm:items-center sm:justify-between">
-              <span className="text-sm text-gray-800 sm:text-center dark:text-gray-800">
+            <div className="sm:flex sm:items-center sm:justify-between text-neutral-100">
+              <span className="text-sm  sm:text-center dark:">
                 © 2023{" "}
                 <a href="https://flowbite.com/" className="hover:underline">
                   Flowbite™
                 </a>
                 . All Rights Reserved.
               </span>
-              <div className="flex mt-4 sm:justify-center sm:mt-0">
+              <div className="flex mt-4 sm:justify-center sm:mt-0 text-neutral-100">
                 <a
                   href="#"
-                  className="text-gray-800 hover:text-gray-800 dark:hover:text-white"
+                  className="  dark:hover:text-white"
                 >
                   <FaFacebook />
                   <span className="sr-only">Facebook page</span>
                 </a>
                 <a
                   href="#"
-                  className="text-gray-800 hover:text-gray-800 dark:hover:text-white ms-5"
+                  className="  dark:hover:text-white ms-5"
                 >
                   <FaDiscord />
                   <span className="sr-only">Discord community</span>
                 </a>
                 <a
                   href="#"
-                  className="text-gray-800 hover:text-gray-800 dark:hover:text-white ms-5"
+                  className="  dark:hover:text-white ms-5"
                 >
                   <FaTwitter />
                   <span className="sr-only">Twitter page</span>
                 </a>
                 <a
                   href="#"
-                  className="text-gray-800 hover:text-gray-800 dark:hover:text-white ms-5"
+                  className="  dark:hover:text-white ms-5"
                 >
                   <FaGithub />
                   <span className="sr-only">GitHub account</span>
                 </a>
                 <a
                   href="#"
-                  className="text-gray-800 hover:text-gray-800 dark:hover:text-white ms-5"
+                  className="  dark:hover:text-white ms-5"
                 >
                   <FaDribbble />
                   <span className="sr-only">Dribbble account</span>

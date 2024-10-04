@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const ArticleForm = () => {
   const [articleData, setArticleData] = useState({
@@ -28,7 +29,8 @@ const ArticleForm = () => {
         `${import.meta.env.VITE_API_URL}/articles`,
         articleData
       );
-      console.log("Article created:", response.data);
+      console.log(response);
+      toast.success('Article added successfully')
       setArticleData({
         title: "",
         description: "",
