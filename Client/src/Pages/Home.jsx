@@ -7,7 +7,7 @@ import BusinessNewsSection from '../Components/sections/BusinessNewsSection';
 import SportsNewsSection from '../Components/sections/SportsNewsSection';
 import TopCreators from '../Components/sections/TopCreators';
 import Newsletter from '../Components/sections/Newsletter';
-import LatestNewsSection from '../Components/sections/LatestNewsSection';
+// import LatestNewsSection from '../Components/sections/LatestNewsSection';
 // import { useState } from 'react';
 
 const Home = () => {
@@ -20,7 +20,7 @@ const Home = () => {
         {/* welcome message and the card under it */}
         {/* latest news */}
         <TopLatestNews />
-        <LatestNewsSection />
+        {/* <LatestNewsSection /> */}
         {/* bulletin news/sponsors */}
         <Sponsors />
         {/* must read */}

@@ -13,16 +13,20 @@ const Newsletter = () => {
             updates
           </h3>
         </div>
-        <div className="w-full text-center md:w-1/2 space-y-3 sm:space-y-0">
-          <input
-            type="text"
-            className="text-lg bg-white text-black sm:w-72 pl-5 placeholder-neutral-500 py-3 focus:ring-rose-200 focus:ring focus:outline-none border-red-500 border border-r-4 border-b-4"
-            placeholder="Enter Your Email"
-          />
-          <button className="text-lg bg-red-600 text-white sm:px-4 sm:py-3 px-2 py-2  rounded-lg ml-1 font-inter">
-            {" "}
-            subscribe
-          </button>
+        <div className="flex justify-center max-sm:hidden items-center">
+          <form  className="flex w-full max-w-sm">
+            <input
+              type="text"
+              className="flex-1 border border-gray-200 rounded-l-sm py-2 px-4 shadow-sm focus:ring-2 focus:ring-red-400 focus:outline-none text-gray-700 placeholder-gray-400 placeholder-shown:font-light"
+             
+              placeholder="Subscribe to our newsletter"
+            />
+            <button
+              type="submit"
+              className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-3 text-lg rounded-sm focus:ring-red-400 focus:outline-none">
+              Subscribe
+            </button>
+          </form>
         </div>
       </div>
     </section>
