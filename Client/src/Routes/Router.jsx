@@ -18,6 +18,7 @@ import Bookmarks from '../Pages/Bookmarks';
 import Stories from '../Pages/Stories';
 import Contact from '../Pages/Contact';
 import Dashboard from '../Pages/Dashboard';
+import NewsDetails from '../Components/Component/NewsDetails';
 
 const router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <Dashboard />,
+      },
+      {
+        path: '/articles/:id',
+        element: <NewsDetails />,
       },
       {
         path: 'profile',
