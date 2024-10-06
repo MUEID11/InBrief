@@ -128,5 +128,5 @@ module.exports = {
   addToBookmark,
   AddLike,
   getAllBookmarks,
-  getArticleById
+  getArticleById,
 };
