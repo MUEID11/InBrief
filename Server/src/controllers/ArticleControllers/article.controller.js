@@ -104,6 +104,21 @@ const AddLike = async (req, res) => {
     res.status(500).json({ success: false, error });
   }
 };
+// Get a single article by ID
+const getArticleById = async (req, res) => {
+  try {
+    const articleId = req.params.id;
+    const article = await Article.findById(articleId);
+
+    if (!article) {
+      return res.status(404).json({ message: 'Article not found' });
+    }
+
+    res.status(200).json(article);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
 
 module.exports = {
   postArticle,
@@ -111,4 +126,5 @@ module.exports = {
   addToBookmark,
   AddLike,
   getAllBookmarks,
+  getArticleById
 };

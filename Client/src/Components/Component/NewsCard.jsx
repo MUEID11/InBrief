@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { LuArrowBigUpDash } from "react-icons/lu";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
 import toast from "react-hot-toast";
 
 const NewsCard = ({ article }) => {
+  console.log(article)
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
   console.log(user);
@@ -96,10 +97,14 @@ const NewsCard = ({ article }) => {
   };
 
   return (
-    <article className="shadow-lg p-5 border border-red-600 border-r-4 border-b-4 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-105 h-full rounded-sm">
+ 
+ <article className="shadow-lg p-5 border border-red-600 border-r-4 border-b-4 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-105 h-full rounded-sm">
+<Link to={`articles/${article?._id}`}>
+  
       {/* Link wrapping Image */}
       <a
         href={article.url}
+
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Read more about ${article.title}`}
@@ -179,7 +184,11 @@ const NewsCard = ({ article }) => {
         {/* Read More Button */}
         <button className="text-red-600 self-end font-medium">Read More</button>
       </div>
+
+</Link>
     </article>
+
+
   );
 };
 
