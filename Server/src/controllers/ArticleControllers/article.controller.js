@@ -37,9 +37,11 @@ const getArticles = async (req, res) => {
 };
 
 const addToBookmark = async (req, res) => {
-  const { articleId, userEmail } = req.body;
-
   try {
+    const { articleId, userEmail } = req.body;
+    if (!articleId || !userEmail) {
+      return res.status(400).json({ message: 'Something went wrong!' });
+    }
     // Check if the user email already exists in the bookmarks array
     const alreadyExists = await Article.findOne({ _id: articleId, bookmarks: { $in: [userEmail] } });
     console.log(alreadyExists);
@@ -126,5 +128,5 @@ module.exports = {
   addToBookmark,
   AddLike,
   getAllBookmarks,
-  getArticleById
+  getArticleById,
 };

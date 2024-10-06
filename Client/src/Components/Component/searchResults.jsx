@@ -25,9 +25,11 @@ const SearchResults = () => {
       }
     };
 
-    // if (category) {
-    fetchData();
-    // }
+    if (category) {
+      setError(null);
+      setResults([]);
+      fetchData();
+    }
   }, [category]);
 
   if (error) {
@@ -46,7 +48,7 @@ const SearchResults = () => {
   return (
     <div className="container mx-auto px-7 pt-3">
       {/* <h1>{category}</h1> */}
-      {results?.length > 0 ? (
+      {results && results?.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
           {results.map((item) => (
             <article
