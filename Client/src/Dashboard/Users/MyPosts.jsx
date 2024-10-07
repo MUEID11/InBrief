@@ -5,6 +5,8 @@ import { FaTrash } from "react-icons/fa";
 import { PiEmptyBold } from "react-icons/pi";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import { TbListDetails } from "react-icons/tb";
 
 const MyPosts = () => {
   const { user } = useSelector((state) => state.user);
@@ -121,6 +123,12 @@ const MyPosts = () => {
                         >
                           Delete
                         </th>
+                        <th
+                          scope="col"
+                          className="px-2 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                        >
+                         View Details
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200 text-left ">
@@ -130,7 +138,7 @@ const MyPosts = () => {
                             {`${article.title.substring(0, 40)}...`}
                           </td>
 
-                          <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                          <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap ">
                             {article.likes.length}
                           </td>
                           <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
@@ -151,6 +159,16 @@ const MyPosts = () => {
                               </button>
                             </div>
                           </td>
+                          <Link to={`/articles/${article._id}`}><td className="px-4 py-4 text-sm whitespace-nowrap">
+                            <div className="flex items-center gap-x-2">
+                              <button
+                               
+                                className="px-3 py-1 rounded-full  bg-blue-100/60"
+                              >
+                                <TbListDetails />
+                              </button>
+                            </div>
+                          </td></Link>
                         </tr>
                       ))}
                     </tbody>
