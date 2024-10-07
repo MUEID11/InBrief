@@ -4,27 +4,68 @@ import { useSelector } from "react-redux";
 import { FaTrash } from "react-icons/fa";
 import { PiEmptyBold } from "react-icons/pi";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const MyPosts = () => {
   const { user } = useSelector((state) => state.user);
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    try {
+    if (user?.email ) {
       getData();
-    } catch (error) {
-      console.error("Error creating article:", error);
-      toast.error(error.message);
+
     }
-  }, [user, setArticles]);
+  }, [user]);
 
   const getData = async () => {
-    const { data } = await axios(
-      `${import.meta.env.VITE_API_URL}/articles/user/${user?.email}`
-    );
-    setArticles(data);
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/articles/user/${user?.email}`
+      );
+      setArticles(data);
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+      toast.error(error.message);
+    }
   };
 
+  const handledelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axios.delete(
+            `${import.meta.env.VITE_API_URL}/articles/${id}`
+          );
+  
+          // Log the response from the server for debugging
+          console.log("Delete response:", res.data);
+  
+          if (res.data.result) {
+            getData()
+            Swal.fire({
+              title: "Deleted!",
+              text: "Article has been deleted.",
+              icon: "success",
+            });
+          } else {
+            console.log("Article not found.");
+            toast.error("Failed to delete the article.");
+          }
+        } catch (error) {
+          console.error("Error deleting article:", error);
+          toast.error("Error deleting article");
+        }
+      }
+    });
+  };
   return (
     <section className="container px-4 mx-auto pt-1 my-10  ">
       {articles.length > 0 ? (
