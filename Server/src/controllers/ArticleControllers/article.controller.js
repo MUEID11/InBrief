@@ -193,4 +193,6 @@ module.exports = {
   getAllBookmarks,
   getArticleById,
   getArticlesByPreferences,
+  getArticlesByEmail,
+  deleteArticle,
 };
