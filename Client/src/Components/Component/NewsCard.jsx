@@ -91,7 +91,7 @@ const NewsCard = ({ article }) => {
 
   return (
     <article className="shadow-lg p-5 border border-red-600 border-r-4 border-b-4 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-105 h-full rounded-sm">
-      <Link to={`articles/${article?._id}`}>
+      <Link to={`articles/${article?._id}`} className="flex-1">
         {/* Link wrapping Image */}
         <a href={article.url} target="_blank" rel="noopener noreferrer" aria-label={`Read more about ${article.title}`}>
           <img src={article.image} alt={article.title} className="h-56 object-cover w-full" loading="lazy" />
@@ -114,36 +114,40 @@ const NewsCard = ({ article }) => {
           <a href={article.url} target="_blank" rel="noopener noreferrer">
             <h3 className="font-bold text-lg mt-2">{article?.title}</h3>
           </a>
-          {/* Date and Category */}
-          <div className="flex gap-3 items-center my-2">
-            <p className="text-red-600 font-semibold">{article?.region}</p>
-            <span className="text-xs">{new Date(article.createdAt).toLocaleDateString()}</span>
+          {/* Date, Category, Region */}
+          <div className="flex justify-between items-center mb-2 mt-1">
+            <div className="flex gap-3 items-center">
+              <p className="text-red-600 font-semibold">{article?.region}</p>
+              <span className="text-xs text-neutral-500">{new Date(article.createdAt).toLocaleDateString()}</span>
+            </div>
+            <p className="text-red-600 font-semibold bg-red-100 py-1 px-3 rounded-sm text-xs capitalize">{article?.category ? article?.category : 'Category'}</p>
           </div>
           {/* Description */}
           <p className="text-sm text-gray-600 mb-4 flex-grow">{`${article.description.substring(0, 100)}...`}</p>
         </div>
-        <div className="flex gap-3 items-center justify-between mb-2">
-          <p className="text-red-600 font-semibold">{article?.category ? article?.category : 'Category'}</p>
-          <span className="text-xs">{article?.date}</span>
-        </div>
       </Link>
 
-      <div className="flex justify-between items-center">
-        <div>
-          <div className="flex items-center gap-2">
-            <button onClick={() => handleLike(article._id)} className="">
-              <LuArrowBigUpDash className={`text-2xl font-medium ${liked ? 'text-green-600 bg-green-200 rounded-full' : 'text-gray-500 bg-gray-200 rounded-full'}`} />
-            </button>
-            <p className="text-gray-700 text-sm"> {likes} Votes</p>
-            {bookmarked ? (
-              <IoBookmarksSharp title="Bookmark" className="cursor-pointer text-red-500" onClick={() => handleBookmark(article._id)} />
-            ) : (
-              <IoBookmarksOutline title="Bookmark" className="cursor-pointer text-red-600" onClick={() => handleBookmark(article._id)} />
-            )}
+      <div>
+        {/* <div className="flex gap-3 items-center justify-between mb-2">
+          <p className="text-red-600 font-semibold">{article?.category ? article?.category : 'Category'}</p>
+        </div> */}
+        <div className="flex justify-between items-center">
+          <div>
+            <div className="flex items-center gap-2">
+              <button onClick={() => handleLike(article._id)} className="">
+                <LuArrowBigUpDash className={`text-2xl font-medium ${liked ? 'text-green-600 bg-green-200 rounded-full' : 'text-gray-500 bg-gray-200 rounded-full'}`} />
+              </button>
+              <p className="text-gray-700 text-sm"> {likes} Votes</p>
+              {bookmarked ? (
+                <IoBookmarksSharp title="Bookmark" className="cursor-pointer text-red-500" onClick={() => handleBookmark(article._id)} />
+              ) : (
+                <IoBookmarksOutline title="Bookmark" className="cursor-pointer text-red-600" onClick={() => handleBookmark(article._id)} />
+              )}
+            </div>
           </div>
+          {/* Read More Button */}
+          <button className="text-red-600 self-end font-medium">Read More</button>
         </div>
-        {/* Read More Button */}
-        <button className="text-red-600 self-end font-medium">Read More</button>
       </div>
     </article>
   );

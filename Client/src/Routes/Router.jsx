@@ -19,6 +19,7 @@ import Stories from '../Pages/Stories';
 import Contact from '../Pages/Contact';
 import Dashboard from '../Pages/Dashboard';
 import NewsDetails from '../Components/Component/NewsDetails';
+import MyFeed from '../Pages/MyFeed';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/my-feed',
+        element: <MyFeed />,
       },
       {
         path: 'about',
@@ -70,7 +75,7 @@ const router = createBrowserRouter([
         path: 'submit-article',
         element: (
           <ProtectedRoute>
-          <SubmitArticleForm />
+            <SubmitArticleForm />
           </ProtectedRoute>
         ),
       },

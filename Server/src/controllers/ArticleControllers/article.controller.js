@@ -1,4 +1,5 @@
 const Article = require('../../models/articleModel');
+const userModel = require('../../models/userModel');
 
 const postArticle = async (req, res) => {
   const newArticle = new Article(req.body);
@@ -30,6 +31,30 @@ const getArticles = async (req, res) => {
   }
   try {
     const articles = await Article.find(query).sort(sortOption).limit(limit);
+    res.status(200).json({ success: true, count: articles.length, data: articles });
+  } catch (error) {
+    res.status(500).json({ success: false, error });
+  }
+};
+
+const getArticlesByPreferences = async (req, res) => {
+  console.log('first');
+  const id = req.params?.id;
+  console.log('userPreferences', id);
+  if (!id) {
+    return res.status(400).json({ message: 'User preferences are required' });
+  }
+  // get articles by userPreferences array of strings that are matching with category field of article
+  try {
+    const user = await userModel.findById(id);
+    console.log('dad', user);
+    if (!user || !user.preferences || user.preferences.length === 0) {
+      const articles = await Article.find().sort({ createdAt: -1 });
+      return res.status(200).json({ success: true, count: articles.length, data: articles });
+    }
+    const categories = user.preferences;
+    console.log('catgfsssssssssssssssssssssss', categories);
+    const articles = await Article.find({ category: { $in: categories } });
     res.status(200).json({ success: true, count: articles.length, data: articles });
   } catch (error) {
     res.status(500).json({ success: false, error });
@@ -129,4 +154,5 @@ module.exports = {
   AddLike,
   getAllBookmarks,
   getArticleById,
+  getArticlesByPreferences,
 };
