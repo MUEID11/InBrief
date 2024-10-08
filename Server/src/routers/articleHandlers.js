@@ -6,6 +6,8 @@ const {
   AddLike,
   getAllBookmarks,
   getArticleById,
+  getArticlesByEmail,
+  deleteArticle,
   getArticlesByPreferences,
 } = require('../controllers/ArticleControllers/article.controller');
 const { searchByCategory } = require('../controllers/searchController');
@@ -18,6 +20,7 @@ router.patch('/addBookmark', addToBookmark);
 router.get('/allBookmarks', getAllBookmarks);
 router.get('/search', searchByCategory);
 router.patch('/addLike', AddLike);
-
 router.get('/:id', getArticleById); // Get a specific article by ID
+router.get('/user/:email', getArticlesByEmail);
+router.delete('/:id', deleteArticle);
 module.exports = router;

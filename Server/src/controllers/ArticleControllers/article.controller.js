@@ -68,7 +68,10 @@ const addToBookmark = async (req, res) => {
       return res.status(400).json({ message: 'Something went wrong!' });
     }
     // Check if the user email already exists in the bookmarks array
-    const alreadyExists = await Article.findOne({ _id: articleId, bookmarks: { $in: [userEmail] } });
+    const alreadyExists = await Article.findOne({
+      _id: articleId,
+      bookmarks: { $in: [userEmail] },
+    });
     console.log(alreadyExists);
     if (alreadyExists) {
       await Article.updateOne({ _id: articleId }, { $pull: { bookmarks: userEmail } });
@@ -106,7 +109,10 @@ const AddLike = async (req, res) => {
   const { articleId, userEmail } = req.body;
 
   try {
-    const article = await Article.findOne({ _id: articleId, likes: { $in: [userEmail] } });
+    const article = await Article.findOne({
+      _id: articleId,
+      likes: { $in: [userEmail] },
+    });
 
     if (article) {
       // If user has already liked the post, remove their like (Unlike)
@@ -144,6 +150,38 @@ const getArticleById = async (req, res) => {
     res.status(200).json(article);
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
+  }
+};
+const getArticlesByEmail = async (req, res) => {
+  const email = req.params.email;
+
+  try {
+    const articles = await Article.find({ postedBy: email });
+
+    if (articles.length === 0) {
+      return res.status(404).json({ message: 'No products found for this email' });
+    }
+
+    res.status(200).json(articles);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    res.status(500).json({ message: 'Internal Server Error', error });
+  }
+};
+const deleteArticle = async (req, res) => {
+  try {
+    const articleId = req.params.id;
+
+    const result = await Article.findByIdAndDelete(articleId);
+
+    if (!result) {
+      return res.status(404).json({ message: 'Article not found' });
+    }
+
+    res.status(200).json({ message: 'Article deleted successfully', result });
+  } catch (error) {
+    console.error('Error deleting article:', error);
+    res.status(500).json({ message: 'Internal Server Error', error });
   }
 };
 
