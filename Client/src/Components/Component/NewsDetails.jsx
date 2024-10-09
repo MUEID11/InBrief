@@ -14,7 +14,6 @@ const NewsDetails = () => {
   const [error, setError] = useState(null);
   const { user } = useSelector((state) => state.user);
   const [comment, setComment] = useState("");
-
   useEffect(() => {
     const fetchArticleDetails = async () => {
       try {
@@ -158,25 +157,28 @@ const NewsDetails = () => {
             </div>
             {/* Comments Section */}
             <form onSubmit={submitHandler}>
-              <div className="bg-white shadow-lg rounded-lg p-6">
+              <div className="bg-white shadow-lg rounded-lg  p-6 mb-1">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">
                   Comments
                 </h3>
                 <textarea
                   onChange={(e) => setComment(e.target.value)}
-                  className="w-full mt-4 p-2 border border-gray-300 rounded"
-                  rows="3"
+                  className="w-full mt-1 p-2 border border-gray-300 rounded"
+                  rows="2"
                   placeholder="Write a comment..."
                 ></textarea>
-                <button
+               <div className="flex justify-end ">
+               <button
                   type="submit"
-                  className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
+                  className="mt-2 bg-red-500 text-white px-2 py-1 rounded-xl  "
                 >
-                  Submit
+                   Comment
                 </button>
+               </div>
               </div>
             </form>
             <div>
+              <hr />
             {
                         comments?.map((comment) => {
                             return <Comment key={comment?._id} comment={comment} />

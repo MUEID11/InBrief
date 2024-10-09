@@ -10,7 +10,7 @@ export const commentsApi = createApi({
         url: `/comments/${postId}/comments`,
         method: "GET",
       }),
-      providesTags: ["Comments"],
+      providesTags: ["Comment"],
     }),
     addComment: builder.mutation({
       query: ({ postId, data }) => ({
@@ -18,9 +18,21 @@ export const commentsApi = createApi({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Comments"],
+      invalidatesTags: ["Comment"],
     }),
+    addReply: builder.mutation({
+      query: ({ commentId, data }) => ({
+        url: `/comments/${commentId}/reply`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["Comment"],
+    }),
+
+
+
+    
   }),
 });
 
-export const { useGetCommentQuery,useAddCommentMutation} = commentsApi;
+export const { useGetCommentQuery,useAddCommentMutation,useAddReplyMutation} = commentsApi;
