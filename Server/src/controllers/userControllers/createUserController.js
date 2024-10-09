@@ -4,9 +4,9 @@ const hashPass = require('../Validation/hashPass');
 
 const createUser = async (req, res) => {
   const { name, email, age, imageUrl, password } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   const hashedPassword = await hashPass(password);
-  console.log("consoling hashed pass form create",hashedPassword)
+  // console.log("consoling hashed pass form create",hashedPassword)
   try {
     const user = await userModel.create({
       name,

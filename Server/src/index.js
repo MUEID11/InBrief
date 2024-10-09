@@ -21,10 +21,12 @@ app.use(rateLimiter);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-  origin: ['http://localhost:5173', 'https://inbrief-3d9ce.web.app'], // Allow your frontend domain
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],     // Allow necessary methods                                             // Allow cookies and credentials
-}));
+app.use(
+  cors({
+    origin: ['http://localhost:5173', 'https://inbrief-3d9ce.web.app'], // Allow your frontend domain
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'], // Allow necessary methods                                             // Allow cookies and credentials
+  })
+);
 // APPLICATION ROUTES
 app.use('/articles', articleHandlers);
 //USERS ROUTE
