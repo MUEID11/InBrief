@@ -12,7 +12,6 @@ import { useAddBookmarkMutation } from '../../services/bookmarksApi';
 const NewsCard = ({ article }) => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
-  console.log(user);
   const [likes, setLikes] = useState(article?.likes?.length || 0);
   const [liked, setLiked] = useState(article?.likes?.includes(user?.email));
   const [bookmarked, setBookmarked] = useState(article?.bookmarks?.includes(user?.email));
@@ -46,7 +45,7 @@ const NewsCard = ({ article }) => {
         setLikes(likes + 1);
       }
       setLiked(!liked);
-      console.log(data.message);
+      // console.log(data.message);
     } catch (error) {
       console.error('Failed to toggle like:', error);
     }
