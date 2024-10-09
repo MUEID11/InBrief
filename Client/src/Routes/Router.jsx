@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/my-feed',
+        path: 'my-feed',
         element: <MyFeed />,
       },
       {

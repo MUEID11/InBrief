@@ -3,7 +3,6 @@ const userModel = require('../../models/userModel');
 
 const postArticle = async (req, res) => {
   const newArticle = new Article(req.body);
-  console.log(newArticle);
   try {
     const result = await newArticle.save();
     res.status(201).json({ success: true, message: 'Todo inserted successfully', result });
@@ -38,22 +37,18 @@ const getArticles = async (req, res) => {
 };
 
 const getArticlesByPreferences = async (req, res) => {
-  console.log('first');
   const id = req.params?.id;
-  console.log('userPreferences', id);
   if (!id) {
     return res.status(400).json({ message: 'User preferences are required' });
   }
   // get articles by userPreferences array of strings that are matching with category field of article
   try {
     const user = await userModel.findById(id);
-    console.log('dad', user);
     if (!user || !user.preferences || user.preferences.length === 0) {
       const articles = await Article.find().sort({ createdAt: -1 });
       return res.status(200).json({ success: true, count: articles.length, data: articles });
     }
     const categories = user.preferences;
-    console.log('catgfsssssssssssssssssssssss', categories);
     const articles = await Article.find({ category: { $in: categories } });
     res.status(200).json({ success: true, count: articles.length, data: articles });
   } catch (error) {
@@ -72,14 +67,12 @@ const addToBookmark = async (req, res) => {
       _id: articleId,
       bookmarks: { $in: [userEmail] },
     });
-    console.log(alreadyExists);
     if (alreadyExists) {
       await Article.updateOne({ _id: articleId }, { $pull: { bookmarks: userEmail } });
       return res.status(200).json({ message: 'Bookmark removed successfully!' });
     }
     // Update the post with $addToSet to prevent duplicate bookmarks(//$addToSet Adds userEmail to bookmarks if not already present)
     const result = await Article.updateOne({ _id: articleId }, { $addToSet: { bookmarks: userEmail } });
-    console.log(result);
 
     if (result.matchedCount > 0) {
       res.status(200).json({ message: 'Bookmark added successfully!' });
