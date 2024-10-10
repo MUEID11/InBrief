@@ -88,7 +88,7 @@ const MustRead = () => {
           <div className="row-span-1 flex items-center justify-center space-x-4 min-h-full">
             <div className="relative h-full w-full rounded-sm">
               <img
-                src="https://images.pexels.com/photos/20258/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
+                src="https://business.itn.co.uk/wp-content/uploads/2024/04/keyclimatedates.jpg"
                 className="h-full w-full object-cover rounded-sm"
                 alt=""
               />
@@ -100,13 +100,13 @@ const MustRead = () => {
                 <p>10 hours ago</p>
               </div>
               <h3 className="text-sm font-semibold font-inter">
-                Ukraine`s slience along southern front fuels counteroffensive...
+              Global Climate Summit 2024: Key Decisions Made
               </h3>
               <p className="text-sm mt-1 text-gray-600 font-medium">
                 Ukraine CNN -
               </p>
               <p className="text-xs mb-1 text-gray-600 font-medium">
-                Miles of empty feilds where ou might expect a build up of army
+              World leaders gather at the Global Climate Summit to tackle pressing environmental issues.
               </p>
               <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
                 <p className="text-red-600 text-sm">War.</p>
@@ -117,7 +117,7 @@ const MustRead = () => {
           <div className="row-span-1 flex items-center justify-center space-x-4 min-h-full">
             <div className="relative h-full w-full">
               <img
-                src="https://images.pexels.com/photos/20258/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
+                src="https://www.kevinmd.com/wp-content/uploads/unnamed-42.jpg"
                 className="h-full w-full object-cover rounded-sm"
                 alt=""
               />
@@ -129,13 +129,13 @@ const MustRead = () => {
                 <p>10 hours ago</p>
               </div>
               <h3 className="text-sm font-semibold font-inter">
-                Ukraine`s slience along southern front fuels counteroffensive...
+              Revolutionary AI Tool Transforms Healthcare
               </h3>
               <p className="text-sm mt-1 text-gray-600 font-medium">
                 Ukraine CNN -
               </p>
               <p className="text-xs mb-1 text-gray-600 font-medium">
-                Miles of empty feilds where ou might expect a build up of army
+              A new AI-powered tool is set to revolutionize healthcare, promising faster diagnostics.
               </p>
               <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
                 <p className="text-red-600 text-sm">War.</p>
