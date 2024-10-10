@@ -20,7 +20,7 @@ const Home = () => {
         <Banner />
         {/* welcome message and the card under it */}
         {/* latest news */}
-        <TopLatestNews />
+        <TopLatestNews isHomeSection={true} />
         {/* <LatestNewsSection /> */}
         {/* bulletin news/sponsors */}
         <Sponsors />
@@ -30,8 +30,8 @@ const Home = () => {
         <EditorPicks />
         {/* cards under editors pick */}
         {/* business & sports */}
-        <BusinessNewsSection />
-        <SportsNewsSection />
+        <BusinessNewsSection isHomeSection={true} />
+        <SportsNewsSection isHomeSection={true} />
         {/* topcreators */}
         <TopCreators />
         {/* newslatter subscription */}
