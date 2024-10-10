@@ -21,7 +21,8 @@ import Dashboard from '../Pages/Dashboard';
 import NewsDetails from '../Components/Component/NewsDetails';
 import MyPosts from '../Dashboard/Users/MyPosts';
 import MyFeed from '../Pages/MyFeed';
-import ForumPage from "../Pages/ForumPage";
+import ForumPage from '../Pages/ForumPage';
+import TopLatestNews from '../Components/sections/TopLatestNews';
 
 const router = createBrowserRouter([
   {
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'latest-news',
-        element: <LatestNewsSection />,
+        element: <TopLatestNews />,
       },
       {
         path: 'business',
@@ -62,11 +63,11 @@ const router = createBrowserRouter([
         element: <SportsNewsSection />,
       },
       {
-        path: "forum",
+        path: 'forum',
         element: <ForumPage />,
       },
       {
-        path: "forum",
+        path: 'forum',
         element: <ForumPage />,
       },
       {
