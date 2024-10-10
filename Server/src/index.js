@@ -9,6 +9,7 @@ const userHandlers = require('./routers/userHandlers');
 const searchRoutes = require('./routers/search');
 const articleHandlers = require('./routers/articleHandlers');
 const CommentRoute =require('./routers/CommentRoute')
+const forumRouters = require('./routers/forumRouters');
 
 const app = express();
 
@@ -31,6 +32,10 @@ app.use(cors({
 app.use('/users', userHandlers);
 // APPLICATION ROUTES
 app.use('/articles', articleHandlers);
+//USERS ROUTE
+app.use('/users', userHandlers);
+// FORUM ROUTE
+app.use('/forum', forumRouters);
 // Comment ROUTES
 app.use('/comments', CommentRoute);
 
