@@ -29,15 +29,16 @@ const NewsDetails = () => {
     };
 
     fetchArticleDetails();
+    fetchArticleDetails();
   }, [id]);
 
   let {
     data: comments,
-    isLoading: commentLoading ,
-    isError: commentError ,
-
+    isLoading: commentLoading,
+    isError: commentError,
   } = useGetCommentQuery(id) || {};
 
+  // add comment
   const [addComment] = useAddCommentMutation() || {};
 
   const submitHandler = async (e) => {
@@ -59,6 +60,11 @@ const NewsDetails = () => {
       console.error("Error adding comment:", error);
     }
   };
+
+  // total commentss count
+  let totals = comments?.map((item) => item?.replies?.length);
+  let ultimateTotal = totals?.reduce((acc, item) => acc + item, 0);
+  ultimateTotal = ultimateTotal + comments?.length;
 
   if (error) {
     return (
@@ -129,15 +135,20 @@ const NewsDetails = () => {
                 {/* Likes and Bookmarks */}
                 <div className="flex justify-end mt-4 space-x-6">
                   <p className="flex items-center text-gray-500">
-                  <button
-              // onClick={() => handleLike(article._id)}
-              className=""
-            >
-              <LuArrowBigUpDash
-                className={" text-2xl text-green-500 bg-green-100 rounded-full"}
-              />
-            </button>
-                    <span className="font-semibold text-green-500 px-1"> Votes:  </span>
+                    <button
+                      // onClick={() => handleLike(article._id)}
+                      className=""
+                    >
+                      <LuArrowBigUpDash
+                        className={
+                          " text-2xl text-green-500 bg-green-100 rounded-full"
+                        }
+                      />
+                    </button>
+                    <span className="font-semibold text-green-500 px-1">
+                      {" "}
+                      Votes:{" "}
+                    </span>
                     {article?.likes?.length}
                   </p>
                   <p className="flex items-center text-gray-500">
@@ -161,7 +172,7 @@ const NewsDetails = () => {
             <form onSubmit={submitHandler}>
               <div className="bg-white shadow-lg rounded-lg  p-6 mb-1">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">
-                  Comments
+                  Comments ({Number(ultimateTotal)})
                 </h3>
                 <textarea
                   onChange={(e) => setComment(e.target.value)}
@@ -169,23 +180,21 @@ const NewsDetails = () => {
                   rows="2"
                   placeholder="Write a comment..."
                 ></textarea>
-               <div className="flex justify-end ">
-               <button
-                  type="submit"
-                  className="mt-2 bg-red-500 text-white px-2 py-1 rounded-sm  "
-                >
-                   Comment
-                </button>
-               </div>
+                <div className="flex justify-end ">
+                  <button
+                    type="submit"
+                    className="mt-2 bg-red-500 text-white px-2 py-1 rounded-sm  "
+                  >
+                    Comment
+                  </button>
+                </div>
               </div>
             </form>
             <div>
               <hr />
-            {
-                        comments?.map((comment) => {
-                            return <Comment key={comment?._id} comment={comment} />
-                        })
-                    }
+              {comments?.map((comment) => {
+                return <Comment key={comment?._id} comment={comment} />;
+              })}
             </div>
           </div>
 
@@ -212,6 +221,7 @@ const NewsDetails = () => {
               </ul>
             </div>
 
+            {/* Weather  */}
             {/* Weather  */}
 
             <div

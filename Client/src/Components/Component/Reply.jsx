@@ -1,15 +1,26 @@
 import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useSelector } from "react-redux";
+import { useDeleteReplyMutation } from "../../Features/Comment/commentsApi";
 
 const Reply = ({ reply }) => {
   const { user } = useSelector((state) => state.user);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-
   const canDeleteReply = reply?.userGmail === user?.email;
+  const [deleteReply] = useDeleteReplyMutation() || {};
 
-  const handleDeleteReply = () => {
+  const handleDeleteReply = async () => {
     console.log("Reply Deleted:", reply?._id);
+    try {
+      const response = await deleteReply({
+        commentId: reply?.commentId,
+        replyId: reply?._id,
+      });
+      setShowDeleteModal(false);
+      console.log("Delete Comment:", response);
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+    }
     setShowDeleteModal(false);
   };
 

@@ -28,10 +28,38 @@ export const commentsApi = createApi({
       }),
       invalidatesTags: ["Comment"],
     }),
-    
-    
-    
+    addLikeComment: builder.mutation({
+      query: ({ commentId, data }) => ({
+        url: `/comments/${commentId}/like`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Comment"],
+    }),
+
+    deleteComment: builder.mutation({
+      query: ({ commentId }) => ({
+        url: `/comments/${commentId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Comment"],
+    }),
+    deleteReply: builder.mutation({
+      query: ({ commentId,replyId }) => ({
+        url: `/comments/${commentId}/replies/${replyId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Comment"],
+    }),
+
   }),
 });
 
-export const { useGetCommentQuery,useAddCommentMutation,useAddReplyMutation} = commentsApi;
+export const {
+  useGetCommentQuery,
+  useAddCommentMutation,
+  useAddReplyMutation,
+  useAddLikeCommentMutation,
+  useDeleteCommentMutation,
+  useDeleteReplyMutation
+} = commentsApi;

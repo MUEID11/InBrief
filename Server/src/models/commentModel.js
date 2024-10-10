@@ -7,6 +7,7 @@ const commentSchema = new mongoose.Schema(
     userImage: { type: String, required: true },
     userGmail: { type: String, required: true },
     comment: { type: String, required: true },
+    likes: { type: [String], required: true },
     replies: [
       {
         username: {
@@ -26,11 +27,11 @@ const commentSchema = new mongoose.Schema(
           required: true,
         },
         reply: { type: String, required: true },
-        createdAt:{
-            type:Date,
-            default: new Date().getTime()
-        }
-        
+        createdAt: {
+          type: Date,
+          default: new Date().getTime(),
+        },
+        likes: { type: [String], required: true },
       },
     ],
   },

@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { BiLike } from "react-icons/bi";
+import { BiLike, BiSolidLike } from "react-icons/bi";
 import { FaRegCommentDots } from "react-icons/fa";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { useAddReplyMutation } from "../../Features/Comment/commentsApi";
+import {
+  useAddLikeCommentMutation,
+  useAddReplyMutation,
+  useDeleteCommentMutation,
+} from "../../Features/Comment/commentsApi";
 import { useSelector } from "react-redux";
 import Reply from "./Reply";
 
@@ -10,11 +14,14 @@ const Comment = ({ comment }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [reply, setReply] = useState("");
   const { user } = useSelector((state) => state.user);
-  const [addReply] = useAddReplyMutation() || {};
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-
   const canDeleteComment = comment?.userGmail === user?.email;
+  const [addReply] = useAddReplyMutation() || {};
+  const [addLikeComment] = useAddLikeCommentMutation() || {};
+  const [deleteComment] = useDeleteCommentMutation() || {};
+  const hasLiked = comment?.likes?.includes(user?.email);
 
+//   add reply to comment
   const submitReply = async (e) => {
     e.preventDefault();
     try {
@@ -36,11 +43,36 @@ const Comment = ({ comment }) => {
     }
   };
 
-  const handleDeleteComment = () => {
-    console.log("Comment Deleted:", comment?._id, comment?.postId);
-    setShowDeleteModal(false);
+//   like comment
+  const handleLike = async () => {
+    try {
+      const response = await addLikeComment({
+        commentId: comment._id,
+        data: {
+          commentId: comment._id,
+          userEmail: user?.email,
+        },
+      });
+      console.log("Like Added:", response);
+    } catch (error) {
+      console.error("Error adding like:", error);
+    }
   };
 
+
+//   deletee comment
+
+  const handleDeleteComment = async () => {
+    try {
+      const response = await deleteComment({
+        commentId: comment._id,
+      });
+      setShowDeleteModal(false);
+      console.log("Delete Comment:", response);
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+    }
+  };
   const handleClickOutside = (e) => {
     if (e.target.closest(".modal-content")) return;
     setShowDeleteModal(false);
@@ -60,15 +92,21 @@ const Comment = ({ comment }) => {
             <p className="font-semibold">
               {comment?.username}
               <span className="text-gray-500  ml-4 text-[12px] ">
-               
                 {new Date(comment.createdAt).toLocaleDateString()}
               </span>
             </p>
             <p>{comment?.comment}</p>
             <div className="flex items-center pt-1">
-              <button className="">
-                <BiLike className="text-xl" />
-              </button>
+              <div className="flex items-center gap-1">
+                <button onClick={handleLike}>
+                  {hasLiked ? (
+                    <BiSolidLike className="text-xl text-blue-500" /> // Liked
+                  ) : (
+                    <BiLike className="text-xl" />
+                  )}
+                </button>
+                <p>{comment?.likes?.length}</p>
+              </div>
               <button
                 className="text-blue-500 text-sm ml-4 flex gap-1 items-center"
                 onClick={() => setShowReplyForm(!showReplyForm)}
