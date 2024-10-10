@@ -1,21 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
-import userThunk from "../thunks/userThunks";
+import { createSlice } from '@reduxjs/toolkit';
+import userThunk, { updateUser } from '../thunks/userThunks';
 
 const initialState = {
   user: null,
-  isLoading: false, 
+  isLoading: false,
   error: null,
 };
 
 const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     resetUser: (state) => {
-      state.user = null,
-      localStorage.removeItem('token')
-
-    }
+      (state.user = null), localStorage.removeItem('token');
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -31,8 +29,20 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.user = null;
         state.error = action.payload;
+      })
+      .addCase(updateUser.pending, (state) => {
+        state.isLoading = true; // Properly set state using block
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+        state.error = null;
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });
-export const {resetUser} = userSlice.actions;
+export const { resetUser } = userSlice.actions;
 export default userSlice.reducer;

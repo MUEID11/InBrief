@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const articleSchema = mongoose.Schema(
   {
@@ -16,6 +16,6 @@ const articleSchema = mongoose.Schema(
   { timestamps: true, versionKey: false }
 );
 
-const Article = new mongoose.model("Article", articleSchema);
+const Article = new mongoose.model('Article', articleSchema);
 
 module.exports = Article;

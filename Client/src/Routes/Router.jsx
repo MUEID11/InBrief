@@ -18,6 +18,10 @@ import Bookmarks from '../Pages/Bookmarks';
 import Stories from '../Pages/Stories';
 import Contact from '../Pages/Contact';
 import Dashboard from '../Pages/Dashboard';
+import NewsDetails from '../Components/Component/NewsDetails';
+import MyPosts from '../Dashboard/Users/MyPosts';
+import MyFeed from '../Pages/MyFeed';
+import ForumPage from "../Pages/ForumPage";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: 'my-feed',
+        element: <MyFeed />,
       },
       {
         path: 'about',
@@ -54,6 +62,14 @@ const router = createBrowserRouter([
         element: <SportsNewsSection />,
       },
       {
+        path: "forum",
+        element: <ForumPage />,
+      },
+      {
+        path: "forum",
+        element: <ForumPage />,
+      },
+      {
         path: '/search/:category',
         element: <SearchResults />,
       },
@@ -69,7 +85,7 @@ const router = createBrowserRouter([
         path: 'submit-article',
         element: (
           <ProtectedRoute>
-          <SubmitArticleForm />
+            <SubmitArticleForm />
           </ProtectedRoute>
         ),
       },
@@ -84,6 +100,18 @@ const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <Dashboard />,
+      },
+      {
+        path: '/dashboard/my-posts',
+        element: (
+          <ProtectedRoute>
+            <MyPosts />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/articles/:id',
+        element: <NewsDetails />,
       },
       {
         path: 'profile',
