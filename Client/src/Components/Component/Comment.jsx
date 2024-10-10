@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { LuArrowBigUpDash } from "react-icons/lu";
+import { BiLike } from "react-icons/bi";
 import { FaRegCommentDots } from "react-icons/fa";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import { useAddReplyMutation } from "../../Features/Comment/commentsApi";
 import { useSelector } from "react-redux";
 import Reply from "./Reply";
@@ -10,6 +11,9 @@ const Comment = ({ comment }) => {
   const [reply, setReply] = useState("");
   const { user } = useSelector((state) => state.user);
   const [addReply] = useAddReplyMutation() || {};
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const canDeleteComment = comment?.userGmail === user?.email;
 
   const submitReply = async (e) => {
     e.preventDefault();
@@ -19,46 +23,69 @@ const Comment = ({ comment }) => {
         data: {
           commentId: comment?._id,
           username: user?.name,
+          userImage: user?.imageUrl,
+          userGmail: user?.email,
           reply,
         },
       });
       console.log("Reply Added:", response);
       setReply("");
-      setShowReplyForm(!showReplyForm)
+      setShowReplyForm(false);
     } catch (error) {
       console.error("Error adding reply:", error);
     }
   };
 
+  const handleDeleteComment = () => {
+    console.log("Comment Deleted:", comment?._id, comment?.postId);
+    setShowDeleteModal(false);
+  };
+
+  const handleClickOutside = (e) => {
+    if (e.target.closest(".modal-content")) return;
+    setShowDeleteModal(false);
+  };
+
+
   return (
-    <div className="">
-      {/* Comment Content with User Profile */}
+    <div className="relative">
       <div className="bg-white p-4 rounded shadow-sm flex items-start">
         <img
-          src="https://logopond.com/logos/b4f4918b027ac2801e051ef9f44b44c9.png"
+          src={comment?.userImage}
           alt="User Profile"
           className="w-10 h-10 rounded-full mr-3"
         />
-        <div>
-          <p className="font-semibold">{comment.username}</p>
-          <p>{comment.comment}</p>
-          <div className="flex items-center justify-start  pt-1">
-            <button
-              // onClick={() => handleLike(article._id)}
-              className=""
-            >
-              <LuArrowBigUpDash
-                className={" text-xl text-green-500 bg-green-100 rounded-full"}
-              />
-            </button>
-            <button
-              className="text-blue-500 text-sm ml-4 flex gap-1 items-center"
-              onClick={() => setShowReplyForm(!showReplyForm)}
-            >
-              <FaRegCommentDots />
-              Reply
-            </button>
+        <div className="flex-1 flex justify-between">
+          <div>
+            <p className="font-semibold">
+              {comment?.username}
+              <span className="text-gray-500  ml-4 text-[12px] ">
+               
+                {new Date(comment.createdAt).toLocaleDateString()}
+              </span>
+            </p>
+            <p>{comment?.comment}</p>
+            <div className="flex items-center pt-1">
+              <button className="">
+                <BiLike className="text-xl" />
+              </button>
+              <button
+                className="text-blue-500 text-sm ml-4 flex gap-1 items-center"
+                onClick={() => setShowReplyForm(!showReplyForm)}
+              >
+                <FaRegCommentDots />
+                {showReplyForm ? "Cancel" : "Reply"}
+              </button>
+            </div>
           </div>
+          {canDeleteComment && (
+            <button
+              onClick={() => setShowDeleteModal(!showDeleteModal)}
+              className="ml-4"
+            >
+              <BsThreeDotsVertical />
+            </button>
+          )}
         </div>
       </div>
 
@@ -67,30 +94,56 @@ const Comment = ({ comment }) => {
         <form onSubmit={submitReply} className="pl-6 pr-4 bg-white">
           <input
             className="w-full p-2 border border-gray-300 rounded"
-            placeholder="add a reply..."
+            placeholder="Add a reply..."
             value={reply}
             onChange={(e) => setReply(e.target.value)}
             required
           />
-          <div className="flex justify-end ">
+          <div className="flex justify-end">
             <button
               type="submit"
-              className="mt-2 bg-blue-500 text-white px-2 py-1 rounded-xl"
+              className="mt-2 bg-blue-500 text-white px-2 py-1 rounded-sm"
             >
-              reply
+              Reply
             </button>
           </div>
         </form>
       )}
-{/* show All replies here */}
-<div>
-{
-                comment?.replies?.length >= 0 && comment?.replies?.map((reply) => {
-                    return <Reply key={reply?._id} reply={reply} />
-                })
-            }
-</div>
 
+      {/* Delete Modal */}
+      {showDeleteModal && (
+        <div
+          className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
+          onClick={handleClickOutside}
+        >
+          <div className="modal-content bg-white p-4 rounded shadow-lg">
+            <h2 className="text-lg font-semibold">Delete Comment</h2>
+            <p>Are you sure you want to delete this comment?</p>
+            <div className="flex justify-end mt-4">
+              <button
+                className="mr-2 text-gray-500"
+                onClick={() => setShowDeleteModal(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-red-500 text-white px-4 py-1 rounded"
+                onClick={handleDeleteComment}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Show All Replies */}
+      <div>
+        {comment?.replies?.length >= 0 &&
+          comment?.replies?.map((reply) => {
+            return <Reply key={reply?._id} reply={reply} />;
+          })}
+      </div>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import {
 } from "../../Features/Comment/commentsApi";
 import { useSelector } from "react-redux";
 import Comment from "./Comment";
+import { LuArrowBigUpDash } from "react-icons/lu";
 
 const NewsDetails = () => {
   const { id } = useParams();
@@ -41,13 +42,14 @@ const NewsDetails = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
     try {
       const response = await addComment({
         postId: id,
         data: {
           comment: comment,
           username: user?.name,
+          userImage: user?.imageUrl,
+          userGmail: user?.email,
         },
       });
       console.log("Comment Added:", response);
@@ -127,15 +129,15 @@ const NewsDetails = () => {
                 {/* Likes and Bookmarks */}
                 <div className="flex justify-end mt-4 space-x-6">
                   <p className="flex items-center text-gray-500">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      className="w-5 h-5 text-red-500 mr-2"
-                    >
-                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6.42 3.42 5 5.5 5c1.74 0 3.41 1.1 4.07 2.09C10.59 6.1 12.26 5 14 5c2.08 0 3.5 1.42 3.5 3.5 0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                    </svg>
-                    <span className="font-semibold text-red-500">Likes: </span>
+                  <button
+              // onClick={() => handleLike(article._id)}
+              className=""
+            >
+              <LuArrowBigUpDash
+                className={" text-2xl text-green-500 bg-green-100 rounded-full"}
+              />
+            </button>
+                    <span className="font-semibold text-green-500 px-1"> Votes:  </span>
                     {article?.likes?.length}
                   </p>
                   <p className="flex items-center text-gray-500">
@@ -170,7 +172,7 @@ const NewsDetails = () => {
                <div className="flex justify-end ">
                <button
                   type="submit"
-                  className="mt-2 bg-red-500 text-white px-2 py-1 rounded-xl  "
+                  className="mt-2 bg-red-500 text-white px-2 py-1 rounded-sm  "
                 >
                    Comment
                 </button>

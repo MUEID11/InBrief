@@ -2,13 +2,15 @@ const Comment = require("../models/commentModel");
 
 const createComment = async (req, res) => {
   const id = req.params?.postId;
-  const { comment, username } = req?.body;
+  const { comment, username, userImage, userGmail } = req?.body;
   try {
     if (id) {
       const createComment = await Comment.create({
         postId: id,
         comment,
         username: username ? username : "user",
+        userImage,
+        userGmail,
       });
       res.status(201).json(createComment);
     } else {
@@ -38,21 +40,23 @@ const getAllComments = async (req, res) => {
 
 const addReply = async (req, res) => {
   const id = req.params?.commentId;
-  console.log(" rpely id:", id);
+  const { reply, username, userImage, userGmail } = req?.body;
 
   try {
     if (id) {
       const reply = {
         commentId: id,
-        username: req.body.username ? req.body.username : 'user' ,
+        username: req.body.username ? req.body.username : "user",
         reply: req.body.reply,
+        userImage,
+        userGmail,
       };
       const newComment = await Comment.findByIdAndUpdate(
         { _id: id },
         {
           $push: { replies: reply },
         },
-        {new:true}
+        { new: true }
       );
       res.status(201).json(newComment);
     } else {
@@ -63,8 +67,10 @@ const addReply = async (req, res) => {
   }
 };
 
+
 module.exports = {
   createComment,
   getAllComments,
-  addReply
+  addReply,
+  
 };

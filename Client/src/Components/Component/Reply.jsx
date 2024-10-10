@@ -1,18 +1,83 @@
+import { useState } from "react";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 const Reply = ({ reply }) => {
-    return (
-        <div className="bg-white p-3 pl-16 rounded  flex items-start">
-          <img
-            src="https://plus.unsplash.com/premium_photo-1669343628944-d0e2d053a5e8?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW5zdGFncmFtJTIwcHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"
-            alt="User Profile"
-            className="w-6 h-6 rounded-full mr-3"
-          />
-          <div>
-            <p className="font-semibold text-[15px]">{reply.username}</p>
-            <p className=" text-[14px]">{reply.reply}</p>
+  const { user } = useSelector((state) => state.user);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const canDeleteReply = reply?.userGmail === user?.email;
+
+  const handleDeleteReply = () => {
+    console.log("Reply Deleted:", reply?._id);
+    setShowDeleteModal(false);
+  };
+
+  const handleClickOutside = (e) => {
+    if (e.target.closest(".modal-content")) return;
+    setShowDeleteModal(false);
+  };
+
+  return (
+    <div className="relative">
+      {/* Reply Content */}
+      <div className="bg-white p-3 pl-16 rounded flex items-start">
+        <img
+          src={reply?.userImage}
+          className="w-6 h-6 rounded-full mr-3"
+          alt="User Profile"
+        />
+        <div className="flex-1 flex justify-between items-center">
+          <div className="flex items-center">
+            <div>
+              <p className="font-semibold text-[15px]">
+                {reply?.username}
+                <span className="text-gray-500 text-[11px] ml-3">
+                  {new Date(reply.createdAt).toLocaleDateString()}
+                </span>
+              </p>
+              <p className="text-[14px]">{reply?.reply}</p>
+            </div>
+            {canDeleteReply && (
+              <button
+                onClick={() => setShowDeleteModal(!showDeleteModal)}
+                className="m-4"
+              >
+                <BsThreeDotsVertical />
+              </button>
+            )}
           </div>
         </div>
-      );
+      </div>
+
+      {/* Delete Modal */}
+      {showDeleteModal && (
+        <div
+          className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
+          onClick={handleClickOutside}
+        >
+          <div className="modal-content bg-white p-4 rounded shadow-lg">
+            <h2 className="text-lg font-semibold">Delete Reply</h2>
+            <p>Are you sure you want to delete this reply?</p>
+            <div className="flex justify-end mt-4">
+              <button
+                className="mr-2 text-gray-500"
+                onClick={() => setShowDeleteModal(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-red-500 text-white px-4 py-1 rounded"
+                onClick={handleDeleteReply}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Reply;
