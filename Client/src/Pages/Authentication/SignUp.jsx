@@ -115,7 +115,7 @@ const SignUp = () => {
               <img className="w-auto h-7 sm:h-8" src={whitelogo} alt="Logo" />
             </div>
             <div className="mt-3">
-              <p className="text-4xl text-center text-gray-800">Welcome back!</p>
+              <p className="text-4xl text-center text-gray-800">Welcome!</p>
             </div>
           </div>
         </div>

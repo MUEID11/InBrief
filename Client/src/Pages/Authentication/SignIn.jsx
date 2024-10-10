@@ -4,6 +4,8 @@ import { FcGoogle } from "react-icons/fc";
 import userThunk from "../../Features/thunks/userThunks";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
+import whitelogo from './../../assets/whitelogo.png';
+
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,7 +27,7 @@ const SignIn = () => {
       console.log(data);
       const token = localStorage.setItem("token", data);
       console.log(token);
-      console.log(response.ok)
+      console.log(response.ok);
       if (response.ok) {
         dispatch(userThunk());
         navigate("/");
@@ -37,7 +39,7 @@ const SignIn = () => {
             color: "#fff",
           },
         });
-      }else{
+      } else {
         toast(data?.message, {
           icon: "❌",
           style: {
@@ -69,7 +71,17 @@ const SignIn = () => {
             backgroundImage:
               "url('https://images.unsplash.com/photo-1689421755395-c18b8cd24db3?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
           }}
-        ></div>
+        >
+          {" "}
+          <div className="flex flex-col items-center justify-center h-full">
+            <div>
+              <img className="w-auto h-7 sm:h-8" src={whitelogo} alt="Logo" />
+            </div>
+            <div className="mt-3">
+              <p className="text-4xl text-center text-gray-800">Welcome back!</p>
+            </div>
+          </div>
+        </div>
 
         {/* Right side - Login Form */}
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2 border-red-600 border-r-4">
