@@ -81,13 +81,9 @@ const NewsDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Header */}
-      <header className="bg-white shadow">
-        <div className="container mx-auto py-6 px-4">
-          <h1 className="text-4xl font-bold text-gray-800">News Aggregator</h1>
-        </div>
-      </header>
+    <div className="min-h-screen">
+      {/* Header Not needed */}
+     
 
       {/* Main Content */}
       <main className="container mx-auto my-12 px-4 md:px-8">
@@ -117,7 +113,7 @@ const NewsDetails = () => {
               <div className="mt-6">
                 <p className="text-gray-500">
                   <span className="font-semibold">Source: </span>
-                  {article?.source?.name}
+                  {article?.source?.name || article?.source}
                 </p>
                 <p className="text-gray-500">
                   <span className="font-semibold">Category: </span>
@@ -170,13 +166,13 @@ const NewsDetails = () => {
             </div>
             {/* Comments Section */}
             <form onSubmit={submitHandler}>
-              <div className="bg-white shadow-lg rounded-lg  p-6 mb-1">
+              <div className="bg-white shadow-lg rounded-sm  p-6 mb-1">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">
                   Comments ({Number(ultimateTotal)})
                 </h3>
                 <textarea
                   onChange={(e) => setComment(e.target.value)}
-                  className="w-full mt-1 p-2 border border-gray-300 rounded"
+                  className="w-full mt-1 p-2 border border-gray-300 rounded-sm"
                   rows="2"
                   placeholder="Write a comment..."
                 ></textarea>

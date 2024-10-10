@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { IoMdBook } from "react-icons/io";
 import { SlPeople } from "react-icons/sl";
 import { FiPhoneCall } from "react-icons/fi";
-import { MdForum, MdOutlineSpaceDashboard } from "react-icons/md";
+import { MdOutlineForum, MdOutlineSpaceDashboard } from "react-icons/md";
 import { TbBookmarks } from "react-icons/tb";
 import { AiOutlineFileAdd } from "react-icons/ai";
 import { BsNewspaper } from "react-icons/bs";
@@ -100,7 +100,7 @@ const Asidebar = () => {
               pathname === "/forum" && "bg-gray-200 text-gray-700"
             }`}
           >
-            <MdForum />
+            <MdOutlineForum />
             <span className="mx-2 text-sm font-medium">Forum</span>
           </Link>
           <Link

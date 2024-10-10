@@ -160,7 +160,7 @@ const About = () => {
 
       <section className="mt-28 flex max-sm:flex-col gap-10 items-center justify-center">
         <div className="w-1/2 max-sm:w-full">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-medium uppercase">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium uppercase">
             Join with Us
           </h2>
           <p className="mt-5 text-stone-600 max-w-[500px] font-medium">
