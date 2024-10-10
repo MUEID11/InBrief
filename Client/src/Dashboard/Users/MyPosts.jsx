@@ -13,9 +13,8 @@ const MyPosts = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    if (user?.email ) {
+    if (user?.email) {
       getData();
-
     }
   }, [user]);
 
@@ -27,7 +26,6 @@ const MyPosts = () => {
       setArticles(data);
     } catch (error) {
       console.error("Error fetching articles:", error);
-      toast.error(error.message);
     }
   };
 
@@ -46,12 +44,12 @@ const MyPosts = () => {
           const res = await axios.delete(
             `${import.meta.env.VITE_API_URL}/articles/${id}`
           );
-  
+
           // Log the response from the server for debugging
           console.log("Delete response:", res.data);
-  
+
           if (res.data.result) {
-            getData()
+            getData();
             Swal.fire({
               title: "Deleted!",
               text: "Article has been deleted.",
@@ -127,7 +125,7 @@ const MyPosts = () => {
                           scope="col"
                           className="px-2 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
                         >
-                         View Details
+                          View Details
                         </th>
                       </tr>
                     </thead>
@@ -159,16 +157,15 @@ const MyPosts = () => {
                               </button>
                             </div>
                           </td>
-                          <Link to={`/articles/${article._id}`}><td className="px-4 py-4 text-sm whitespace-nowrap">
-                            <div className="flex items-center gap-x-2">
-                              <button
-                               
-                                className="px-3 py-1 rounded-full  bg-blue-100/60"
-                              >
-                                <TbListDetails />
-                              </button>
-                            </div>
-                          </td></Link>
+                          <Link to={`/articles/${article._id}`}>
+                            <td className="px-4 py-4 text-sm whitespace-nowrap">
+                              <div className="flex items-center gap-x-2">
+                                <button className="px-3 py-1 rounded-full  bg-blue-100/60">
+                                  <TbListDetails />
+                                </button>
+                              </div>
+                            </td>
+                          </Link>
                         </tr>
                       ))}
                     </tbody>
