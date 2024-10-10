@@ -30,7 +30,7 @@ const Banner = () => {
             className="h-52 sm:h-72 bg-cover rounded-sm"
             style={{
               backgroundImage:
-                "url(https://i.ibb.co.com/jgvvgdJ/newspaper-background-concept.jpg)",
+                "url(https://www.marketresearchintellect.com/images/01-24/global-shake-machines-market-size-and-forecast.webp)",
             }}
           ></div>
         </div>
@@ -42,19 +42,18 @@ const Banner = () => {
               <span className="font-semibold text-red-600">Netflix</span>
               <span>12 minutes ago</span>
             </div>
-            <h2 className="mt-2 text-xl sm:text-2xl font-bold text-gray-900">
+            {/* <h2 className="mt-2 text-xl sm:text-2xl font-bold text-gray-900">
               News HEADLINES
+            </h2> */}
+            <h2 className="mt-2 text-3xl font-bold text-gray-900">
+            Major Tech Merger Shakes Global Markets
             </h2>
-            <h2 className="mt-2 text-xl sm:text-2xl font-bold text-gray-900">
-              Awami League is coming again
-            </h2>
-            <p className="mt-2 text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              convallis libero id lorem commodo, vel vehicula dui suscipit.
+            <p className="mt-3 text-xl text-gray-600">
+            Two leading tech giants announce a historic merger, sending shockwaves through the global market. The deal is expected to reshape the tech landscape and impact millions of users worldwide.
             </p>
-            <p className="mt-2 text-gray-600">
+            {/* <p className="mt-2 text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
+            </p> */}
             <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
               <span className="font-semibold text-red-600">Movies</span>
               <span>· 4 min read</span>
