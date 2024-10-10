@@ -2,7 +2,6 @@ const Article = require('../models/articleModel');
 
 const searchByCategory = async (req, res) => {
   try {
-    console.log('first');
     const category = req.query.category;
 
     if (!category) {
