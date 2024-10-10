@@ -8,6 +8,7 @@ const dbConnection = require('./config/db');
 const userHandlers = require('./routers/userHandlers');
 const searchRoutes = require('./routers/search');
 const articleHandlers = require('./routers/articleHandlers');
+// const forumRoutes = require('./routers/forumRouters');
 
 const app = express();
 
@@ -29,6 +30,8 @@ app.use(cors({
 app.use('/articles', articleHandlers);
 //USERS ROUTE
 app.use('/users', userHandlers);
+// FORUM ROUTE
+// app.use('/forum', forumRoutes); 
 
 app.get('/', (req, res) => {
   res.status(200).send({

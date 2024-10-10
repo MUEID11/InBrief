@@ -1,8 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 const ArticleForm = () => {
+  const { user } = useSelector((state) => state.user);
+
   const [articleData, setArticleData] = useState({
     title: "",
     description: "",
@@ -11,7 +14,6 @@ const ArticleForm = () => {
     source: "",
     category: "",
     region: "",
-    postedBy: "",
   });
 
   // State to manage if the input is focused (clicked)
@@ -25,12 +27,17 @@ const ArticleForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const updatedArticleData = {
+        ...articleData,
+        postedBy: user?.email, 
+      };
+
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/articles`,
-        articleData
+        updatedArticleData
       );
       console.log(response);
-      toast.success('Article added successfully')
+      toast.success("Article added successfully");
       setArticleData({
         title: "",
         description: "",
@@ -39,21 +46,16 @@ const ArticleForm = () => {
         source: "",
         category: "",
         region: "",
-        postedBy: "",
       });
     } catch (error) {
       console.error("Error creating article:", error);
-      toast.error(error.message)
+      toast.error(error.message);
     }
   };
 
   return (
-    <div
-      className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-lg rounded-sm mt-10 relative overflow-hidden" // Light background with overflow hidden
-    >
-      <h2
-        className="text-4xl font-bold text-center text-gray-800 mb-8 relative z-10"
-      >
+    <div className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-lg rounded-sm mt-10 relative overflow-hidden">
+      <h2 className="text-4xl font-bold text-center text-gray-800 mb-8 relative z-10">
         Create New Article
       </h2>
 
@@ -68,15 +70,15 @@ const ArticleForm = () => {
             name="title"
             value={articleData.title}
             onChange={handleChange}
-            onFocus={() => setIsFocused(true)} // Set focus to true on focus
-            onBlur={() => setIsFocused(false)} // Set focus to false on blur
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-                        focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
-                          isFocused
-                            ? "border-gradient-to-r from-red-500 to-pink-500"
-                            : "border-gray-300"
-                        }`} // Change class based on focus
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
+                isFocused
+                  ? "border-gradient-to-r from-red-500 to-pink-500"
+                  : "border-gray-300"
+              }`}
             placeholder="Enter article title"
           />
         </div>
@@ -90,15 +92,15 @@ const ArticleForm = () => {
             name="description"
             value={articleData.description}
             onChange={handleChange}
-            onFocus={() => setIsFocused(true)} // Set focus to true on focus
-            onBlur={() => setIsFocused(false)} // Set focus to false on blur
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-                        focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
-                          isFocused
-                            ? "border-gradient-to-r from-red-500 to-pink-500"
-                            : "border-gray-300"
-                        }`} // Change class based on focus
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
+                isFocused
+                  ? "border-gradient-to-r from-red-500 to-pink-500"
+                  : "border-gray-300"
+              }`}
             rows="4"
             placeholder="Enter article description"
           />
@@ -114,15 +116,15 @@ const ArticleForm = () => {
             name="image"
             value={articleData.image}
             onChange={handleChange}
-            onFocus={() => setIsFocused(true)} // Set focus to true on focus
-            onBlur={() => setIsFocused(false)} // Set focus to false on blur
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-                        focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
-                          isFocused
-                            ? "border-gradient-to-r from-red-500 to-pink-500"
-                            : "border-gray-300"
-                        }`} // Change class based on focus
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
+                isFocused
+                  ? "border-gradient-to-r from-red-500 to-pink-500"
+                  : "border-gray-300"
+              }`}
             placeholder="Enter image URL"
           />
         </div>
@@ -137,38 +139,36 @@ const ArticleForm = () => {
             name="source"
             value={articleData.source}
             onChange={handleChange}
-            onFocus={() => setIsFocused(true)} // Set focus to true on focus
-            onBlur={() => setIsFocused(false)} // Set focus to false on blur
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-                        focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
-                          isFocused
-                            ? "border-gradient-to-r from-red-500 to-pink-500"
-                            : "border-gray-300"
-                        }`} // Change class based on focus
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
+                isFocused
+                  ? "border-gradient-to-r from-red-500 to-pink-500"
+                  : "border-gray-300"
+              }`}
             placeholder="Enter source"
           />
         </div>
 
         {/* URL Input */}
         <div className="flex flex-col transform transition-all duration-300">
-          <label className="text-lg font-semibold text-gray-800 mb-1">
-            URL
-          </label>
+          <label className="text-lg font-semibold text-gray-800 mb-1">URL</label>
           <input
             type="text"
             name="url"
             value={articleData.url}
             onChange={handleChange}
-            onFocus={() => setIsFocused(true)} // Set focus to true on focus
-            onBlur={() => setIsFocused(false)} // Set focus to false on blur
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-                        focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
-                          isFocused
-                            ? "border-gradient-to-r from-red-500 to-pink-500"
-                            : "border-gray-300"
-                        }`} // Change class based on focus
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
+                isFocused
+                  ? "border-gradient-to-r from-red-500 to-pink-500"
+                  : "border-gray-300"
+              }`}
             placeholder="Enter URL"
           />
         </div>
@@ -183,15 +183,15 @@ const ArticleForm = () => {
             name="category"
             value={articleData.category}
             onChange={handleChange}
-            onFocus={() => setIsFocused(true)} // Set focus to true on focus
-            onBlur={() => setIsFocused(false)} // Set focus to false on blur
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-                        focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
-                          isFocused
-                            ? "border-gradient-to-r from-red-500 to-pink-500"
-                            : "border-gray-300"
-                        }`} // Change class based on focus
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
+                isFocused
+                  ? "border-gradient-to-r from-red-500 to-pink-500"
+                  : "border-gray-300"
+              }`}
             placeholder="Enter category"
           />
         </div>
@@ -206,39 +206,16 @@ const ArticleForm = () => {
             name="region"
             value={articleData.region}
             onChange={handleChange}
-            onFocus={() => setIsFocused(true)} // Set focus to true on focus
-            onBlur={() => setIsFocused(false)} // Set focus to false on blur
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-                        focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
-                          isFocused
-                            ? "border-gradient-to-r from-red-500 to-pink-500"
-                            : "border-gray-300"
-                        }`} // Change class based on focus
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
+                isFocused
+                  ? "border-gradient-to-r from-red-500 to-pink-500"
+                  : "border-gray-300"
+              }`}
             placeholder="Enter region"
-          />
-        </div>
-
-        {/* Posted By Input */}
-        <div className="flex flex-col transform transition-all duration-300">
-          <label className="text-lg font-semibold text-gray-800 mb-1">
-            Posted By
-          </label>
-          <input
-            type="text"
-            name="postedBy"
-            value={articleData.postedBy}
-            onChange={handleChange}
-            onFocus={() => setIsFocused(true)} // Set focus to true on focus
-            onBlur={() => setIsFocused(false)} // Set focus to false on blur
-            required
-            className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-                        focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
-                          isFocused
-                            ? "border-gradient-to-r from-red-500 to-pink-500"
-                            : "border-gray-300"
-                        }`} // Change class based on focus
-            placeholder="Enter your name"
           />
         </div>
 

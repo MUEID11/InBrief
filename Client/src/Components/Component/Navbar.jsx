@@ -218,7 +218,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu      === (Shown when the hamburger icon is clicked) */}
-      <div sclassName={`relative lg:hidden `}>
+      <div className={`relative lg:hidden `}>
         <div
           ref={menuDropdownRef}
           id="dropdown"
