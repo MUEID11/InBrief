@@ -2,9 +2,11 @@ import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const ArticleForm = () => {
   const { user } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const [articleData, setArticleData] = useState({
     title: '',
@@ -37,6 +39,7 @@ const ArticleForm = () => {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/articles`, updatedArticleData);
       console.log(response);
       toast.success('Article added successfully');
+      navigate('/dashboard/my-posts')
       setArticleData({
         title: '',
         description: '',
