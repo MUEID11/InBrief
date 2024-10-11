@@ -55,11 +55,13 @@ const About = () => {
     <div className="max-sm:px-2 container mx-auto px-3">
       {/* HEADER SECTION OF THE PAGE */}
       <section className="text-center max-w-[800px] mx-auto my-10 text-stone-900">
-        <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl font-inter">ABOUT US</h1>
-        <p className="text-stone-500 font-medium mt-3 text-lg max-sm:text-base leading-tight">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique
-          nostrum non consequuntur, autem accusamus quaerat unde iste deleniti
-          possimus atque.
+        <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl font-inter">
+          ABOUT US
+        </h1>
+        <p className="text-stone-500 font-medium mt-3 text-lg max-sm:text-base leading-tight font-serif">
+          InBrief is a personalized news platform that curates top stories from
+          reliable sources, offering users a streamlined, customizable news
+          experience
         </p>
       </section>
 
@@ -95,34 +97,31 @@ const About = () => {
           />
         </div>
         <div className="md:w-2/3 ">
-          <p className="mb-12 max-sm:mb-8 font-semibold">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-            assumenda quisquam in eveniet. Vitae, recusandae quibusdam omnis
-            voluptas aspernatur beatae amet adipisci cum molestias dignissimos.
-            Suscipit nam esse labore sed obcaecati animi rerum, reiciendis, hic
-            officia repellendus quae voluptatem. Quibusdam.
+          <p className="mb-12 max-sm:mb-8 font-semibold ">
+            InBrief was born from a desire to make news consumption more
+            streamlined and meaningful. In a world filled with overwhelming
+            information, we saw the need for a platform that curates the most
+            relevant and trustworthy news from various sources, all in one
+            place. Our mission is to empower readers by offering personalized
+            news feeds, allowing them to stay informed while filtering out the
+            noise.
           </p>
           <p className="text-stone-600">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
-            quisquam nam corrupti quae expedita accusantium in, modi repellat
-            soluta? Eius beatae fugiat unde omnis blanditiis, accusamus
-            necessitatibus aspernatur tempora saepe maiores, dolorem aperiam
-            nihil! Impedit suscipit odit, fugiat laboriosam facere alias
-            voluptatum, esse laborum voluptatem eum animi sunt nostrum atque!
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            What started as a small project among like-minded individuals
+            passionate about technology and current affairs has evolved into a
+            comprehensive platform with features like customizable news
+            categories, trending topics, and community engagement. At InBrief,
+            we believe in the power of information and the need for users to
+            take control of what they consume. With a strong emphasis on
+            simplicity, reliability, and user experience, we are redefining how
+            people interact with the news.
             <br />
-            Odio commodi alias beatae assumenda aliquid praesentium numquam
-            incidunt quibusdam? Praesentium eius, sint iure pariatur nulla id.
-            At magni quidem facere voluptates. Similique dicta nam unde
-            aspernatur fugit odit consequuntur quaerat! Fuga vel mollitia
-            reiciendis at asperiores ut minus, aliquam ullam ipsa?
+            Whether you’re looking for the latest global headlines, in-depth
+            analysis, or niche topics, InBrief brings everything to your
+            fingertips. Our journey is just beginning, and we are excited to
+            continue innovating, always striving to deliver a better experience
+            for our users.
             <br />
-            <br />
-            Odio commodi alias beatae assumenda aliquid praesentium numquam
-            incidunt quibusdam? Praesentium eius, sint iure pariatur nulla id.
-            At magni quidem facere voluptates. Similique dicta nam unde
-            aspernatur fugit odit consequuntur quaerat! Fuga vel mollitia
-            reiciendis at asperiores ut minus, aliquam ullam ipsa?
           </p>
         </div>
       </section>
@@ -161,20 +160,19 @@ const About = () => {
 
       <section className="mt-28 flex max-sm:flex-col gap-10 items-center justify-center">
         <div className="w-1/2 max-sm:w-full">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-medium uppercase">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium uppercase">
             Join with Us
           </h2>
           <p className="mt-5 text-stone-600 max-w-[500px] font-medium">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-            assumenda quisquam in eveniet. Vitae, recusandae quibusdam omnis
-            voluptas aspernatur beatae amet Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Distinctio assumenda quisquam in
-            eveniet.
+            Join us at InBrief, where news isn't just gathered—it's tailored for
+            you. We’re creating a platform that brings together the latest, most
+            relevant stories from trusted sources, ensuring you stay informed
+            and engaged. Be a part of our community and experience news that
+            fits your world."
             <br />
             <br />
-            adipisci cum molestias dignissimos. Suscipit nam esse labore sed
-            obcaecati animi rerum, reiciendis, hic officia repellendus quae
-            voluptatem
+            Together, let's reshape how news is discovered, shared, and
+            discussed in a way that connects us all.
           </p>
           <Link to="/signup">
             <button className="bg-red-600 text-white font-semibold py-3 px-10 rounded-lg transition-all duration-500 hover:bg-red-700 mt-6">
