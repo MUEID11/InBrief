@@ -4,10 +4,11 @@ import axios from "axios";
 import {
   useAddCommentMutation,
   useGetCommentQuery,
-} from "../../Features/Comment/commentsApi";
+} from "../Features/Comment/commentsApi";
 import { useSelector } from "react-redux";
-import Comment from "./Comment";
+
 import { LuArrowBigUpDash } from "react-icons/lu";
+import CommentComponent from "../Components/Component/CommentComponent";
 
 const NewsDetails = () => {
   const { id } = useParams();
@@ -90,23 +91,23 @@ const NewsDetails = () => {
         <div className="flex flex-col md:flex-row gap-8">
           {/* Article Section */}
           <div className="md:w-3/4">
-            <div className="bg-white shadow-lg rounded-lg p-6">
+            <div className="bg-white shadow-lg rounded-sm p-6">
               <img
-                className="rounded-lg w-full h-96 object-cover mb-6"
+                className=" w-full h-96 object-cover mb-6"
                 src={article?.image}
                 alt={article?.title}
               />
-              <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
                 {article?.title}
               </h2>
-              <p className="text-lg text-gray-600 mb-6">
-                {article?.description}
+              <p className="text-base text-gray-600 mb-6">
+                {article?.description.slice(0, 250)} ....
               </p>
               <a
                 href={article?.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-center text-blue-600 text-bold  hover:underline hover:text-xl hover:transition-transform text-lg"
+                className="text-center text-blue-600 text-bold  hover:underline hover:transition-transform "
               >
                 Read full article
               </a>
@@ -156,7 +157,7 @@ const NewsDetails = () => {
                     >
                       <path d="M6 2C4.9 2 4 2.9 4 4v16l8-4 8 4V4c0-1.1-.9-2-2-2H6z" />
                     </svg>
-                    <span className="font-semibold text-blue-500">
+                    <span className="font-semibold text-[#2D2D2D]">
                       Bookmarks:{" "}
                     </span>
                     {article?.bookmarks?.length}
@@ -189,7 +190,7 @@ const NewsDetails = () => {
             <div>
               <hr />
               {comments?.map((comment) => {
-                return <Comment key={comment?._id} comment={comment} />;
+                return <CommentComponent key={comment?._id} comment={comment} />;
               })}
             </div>
           </div>

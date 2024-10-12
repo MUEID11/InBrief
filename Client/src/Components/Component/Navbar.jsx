@@ -73,25 +73,25 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const navLinks = (
-    <>
-      <Link to="/" className="hover:text-red-600 transition-all duration-600">
-        Home
-      </Link>
-      <Link
-        to="/stories"
-        className="hover:text-red-600 transition-all duration-600"
-      >
-        Stories
-      </Link>
-      <Link
-        to="/about"
-        className="hover:text-red-600 transition-all duration-600"
-      >
-        About
-      </Link>
-    </>
-  );
+  // const navLinks = (
+  //   <>
+  //     <Link to="/" className="hover:text-red-600 transition-all duration-600">
+  //       Home
+  //     </Link>
+  //     <Link
+  //       to="/stories"
+  //       className="hover:text-red-600 transition-all duration-600"
+  //     >
+  //       Stories
+  //     </Link>
+  //     <Link
+  //       to="/about"
+  //       className="hover:text-red-600 transition-all duration-600"
+  //     >
+  //       About
+  //     </Link>
+  //   </>
+  // );
   return (
     <nav className="bg-white border-b border-gray-200 w-full sticky top-0 z-10 min-h-[74px]">
       <div className=" flex justify-between items-center sm:py-4 px-4 min-h-[74px]">
@@ -114,7 +114,7 @@ const Navbar = () => {
             />
             <button
               type="submit"
-              className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-3 text-lg rounded-sm focus:ring-red-400 focus:outline-none"
+              className="bg-gradient-to-r from-secondary-black to-primary-black text-white px-4 py-3 text-lg rounded-sm focus:ring-secondary-black focus:outline-none"
             >
               Search
             </button>
