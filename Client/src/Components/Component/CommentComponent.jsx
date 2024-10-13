@@ -15,7 +15,7 @@ const CommentComponent = ({ comment }) => {
   const [reply, setReply] = useState("");
   const { user } = useSelector((state) => state.user);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const canDeleteComment = comment?.userGmail === user?.email;
+  const canDeleteComment = comment?.userEmail === user?.email;
   const [addReply] = useAddReplyMutation() || {};
   const [addLikeComment] = useAddLikeCommentMutation() || {};
   const [deleteComment] = useDeleteCommentMutation() || {};
@@ -31,7 +31,7 @@ const CommentComponent = ({ comment }) => {
           commentId: comment?._id,
           username: user?.name,
           userImage: user?.imageUrl,
-          userGmail: user?.email,
+          userEmail: user?.email,
           reply,
         },
       });

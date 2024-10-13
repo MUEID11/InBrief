@@ -1,3 +1,5 @@
+import Headline from "./Headline";
+
 const Banner = () => {
   return (
     <section className="container w-full mx-auto md:mb-8 my-6">
@@ -21,6 +23,9 @@ const Banner = () => {
           </div>
         </div>
       </div>
+<div>
+  <Headline></Headline>
+</div>
 
       {/* Banner */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-sm:mt-5 m-2 sm:m-0">

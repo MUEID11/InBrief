@@ -6,7 +6,7 @@ import { useDeleteReplyMutation } from "../../Features/Comment/commentsApi";
 const Reply = ({ reply }) => {
   const { user } = useSelector((state) => state.user);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const canDeleteReply = reply?.userGmail === user?.email;
+  const canDeleteReply = reply?.userEmail === user?.email;
   const [deleteReply] = useDeleteReplyMutation() || {};
 
   const handleDeleteReply = async () => {

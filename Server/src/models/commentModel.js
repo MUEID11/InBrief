@@ -5,7 +5,7 @@ const commentSchema = new mongoose.Schema(
     postId: { type: Schema.Types.ObjectId, ref: "Article", required: true },
     username: { type: String, required: true },
     userImage: { type: String, required: true },
-    userGmail: { type: String, required: true },
+    userEmail: { type: String, required: true },
     comment: { type: String, required: true },
     likes: { type: [String], required: true },
     replies: [
@@ -18,7 +18,7 @@ const commentSchema = new mongoose.Schema(
           type: String,
           required: true,
         },
-        userGmail: {
+        userEmail: {
           type: String,
           required: true,
         },

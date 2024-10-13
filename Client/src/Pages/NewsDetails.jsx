@@ -51,7 +51,7 @@ const NewsDetails = () => {
           comment: comment,
           username: user?.name,
           userImage: user?.imageUrl,
-          userGmail: user?.email,
+          userEmail: user?.email,
         },
       });
       console.log("Comment Added:", response);

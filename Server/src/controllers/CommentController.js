@@ -2,7 +2,7 @@ const Comment = require("../models/commentModel");
 
 const createComment = async (req, res) => {
   const id = req.params?.postId;
-  const { comment, username, userImage, userGmail } = req?.body;
+  const { comment, username, userImage, userEmail } = req?.body;
   try {
     if (id) {
       const createComment = await Comment.create({
@@ -10,7 +10,7 @@ const createComment = async (req, res) => {
         comment,
         username: username ? username : "user",
         userImage,
-        userGmail,
+        userEmail,
       });
       res.status(201).json(createComment);
     } else {
@@ -96,7 +96,7 @@ const addLikeComment = async (req, res) => {
 
 const addReply = async (req, res) => {
   const id = req.params?.commentId;
-  const { reply, username, userImage, userGmail } = req?.body;
+  const { reply, username, userImage, userEmail } = req?.body;
 
   try {
     if (id) {
@@ -105,7 +105,7 @@ const addReply = async (req, res) => {
         username: req.body.username ? req.body.username : "user",
         reply: req.body.reply,
         userImage,
-        userGmail,
+        userEmail,
       };
       const newComment = await Comment.findByIdAndUpdate(
         { _id: id },
