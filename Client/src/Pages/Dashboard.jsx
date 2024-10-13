@@ -1,16 +1,28 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Pie, Line, Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 import 'tailwindcss/tailwind.css';
 import { FaNewspaper, FaEye, FaList } from 'react-icons/fa';
+import { FaFirefoxBrowser, FaChrome, FaSafari } from 'react-icons/fa';
+
 const Dashboard = () => {
   const [articlesCount, setArticlesCount] = useState(0);
   const [totalViews, setTotalViews] = useState(0);
   const [categoryCount, setCategoryCount] = useState(0);
   const [categoryDistribution, setCategoryDistribution] = useState([]);
   const [viewsData, setViewsData] = useState([]);
+  const [browserUsage, setBrowserUsage] = useState([
+    { name: 'Chrome', percentage: 65, color: 'bg-gradient-to-r from-green-400 to-blue-500' },
+    { name: 'Firefox', percentage: 20, color: 'bg-gradient-to-r from-orange-400 to-red-500' },
+    { name: 'Safari', percentage: 10, color: 'bg-gradient-to-r from-blue-400 to-purple-500' },
+    { name: 'Others', percentage: 5, color: 'bg-gradient-to-r from-gray-400 to-gray-600' }
+  ]);
+  const [browserState, setBrowserState] = useState({
+    currentURL: window.location.href,
+    userAgent: navigator.userAgent,
+    onlineStatus: navigator.onLine ? 'Online' : 'Offline',
+  });
 
   const fetchArticlesData = async () => {
     try {
@@ -116,10 +128,13 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gradient-to-r from-slate-100 via-slate-200 to-slate-200">
       <header className="bg-gradient-to-r from-slate-300 to-slate-500 text-gray-100 py-4 px-6 flex justify-between items-center relative">
-        <div className="text-2xl text-black font-bold">Admin Dashboard</div>
-        <div className='b'>
+        <div className="flex items-center">
+          <img src={'https://i.ibb.co/5cDyX38/social-media.gif'} alt="Logo" className="h-10 border-2 border-blue-500 rounded-2xl mr-4" />
+          <div className="text-2xl text-black font-bold">Admin Dashboard</div>
+        </div>
+        <div>
           <button className="border-amber-800 border-2 bg-blue-200 text-orange-900 px-4 py-2 rounded mr-2 hover:bg-gray-300 transition duration-300">Profile</button>
-          <button className="border-amber-800 border-2 bg-gray-700 text-white  px-4 py-2 rounded hover:bg-gray-300 transition duration-300">Logout</button>
+          <button className="border-amber-800 border-2 bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-300 transition duration-300">Logout</button>
         </div>
       </header>
 
@@ -168,6 +183,35 @@ const Dashboard = () => {
             <Bar data={barData} />
           </div>
         </div>
+
+       {/* Browser Usage Section */}
+<div className="mt-6 bg-gradient-to-r from-slate-300 to-slate-50 p-6 rounded-lg shadow-md">
+  <h2 className="text-xl font-semibold mb-4">Browser Usage Statistics</h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    {browserUsage.map((browser, index) => (
+      <div key={index} className={`p-4 rounded-lg shadow-md ${browser.color}`}>
+        <div className="flex items-center">
+          {browser.name === 'Chrome' && <FaChrome className="text-3xl mr-2" />}
+          {browser.name === 'Firefox' && <FaFirefoxBrowser className="text-3xl mr-2" />}
+          {browser.name === 'Safari' && <FaSafari className="text-3xl mr-2" />}
+          {browser.name === 'Others' && <FaList className="text-3xl mr-2" />}
+          <div>
+            <p className="text-lg font-semibold">{browser.name}</p>
+            <p className="text-md">{browser.percentage}% usage</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+
+        {/* <div className="mt-6 bg-gradient-to-r from-slate-100 to-slate-200 p-6 rounded-lg shadow-md">
+          <h2 className="text-xl font-semibold mb-4">Browser State Information</h2>
+          <p className="mb-2">Current URL: <strong>{browserState.currentURL}</strong></p>
+          <p className="mb-2">User Agent: <strong>{browserState.userAgent}</strong></p>
+          <p className="mb-2">Online Status: <strong>{browserState.onlineStatus}</strong></p>
+        </div> */}
       </main>
     </div>
   );
