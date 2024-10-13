@@ -62,7 +62,7 @@ const TopLatestNews = ({ isHomeSection = false }) => {
 
   return (
     <div className="container mx-auto m-2">
-      <NewsSection title="Latest News" articles={articles} link="/latest-news" />
+      <NewsSection isHomeSection={isHomeSection} title="Latest News" articles={articles} link="/latest-news" />
     </div>
   );
 };
