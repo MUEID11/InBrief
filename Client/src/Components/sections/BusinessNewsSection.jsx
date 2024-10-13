@@ -60,7 +60,7 @@ const BusinessNewsSection = ({ isHomeSection = false }) => {
 
   return (
     <div className="m-2 container mx-auto">
-      <NewsSection title="Business" articles={articles} link="/business" />
+      <NewsSection isHomeSection={isHomeSection} title="Business" articles={articles} link="/business" />
     </div>
   );
 };
