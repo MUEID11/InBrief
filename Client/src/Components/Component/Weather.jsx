@@ -14,7 +14,7 @@ const WeatherCard = () => {
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${import.meta.env.VITE_WEATHER_API}`
       );
-      console.log(response)
+      console.log(response);
       setWeather(response.data);
     } catch (error) {
       console.error('Error fetching weather data:', error);
@@ -28,6 +28,13 @@ const WeatherCard = () => {
     fetchWeather(query);
   }, [query]);
 
+  // Handle key press for Enter key
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      setQuery(search);
+    }
+  };
+
   return (
     <div className="flex justify-center items-center bg-primary-black shadow-lg">
       <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 shadow-lg w-72">
@@ -37,6 +44,7 @@ const WeatherCard = () => {
             placeholder="Search"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            onKeyPress={handleKeyPress} // Add key press event
             className="bg-transparent focus:outline-none text-white flex-grow placeholder-white/70 text-sm w-28"
           />
           <button
