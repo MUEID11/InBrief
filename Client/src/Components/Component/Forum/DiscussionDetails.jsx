@@ -8,4 +8,3 @@ const DiscussionDetails = ({ discussion }) => {
   };
   
   export default DiscussionDetails;
-  
