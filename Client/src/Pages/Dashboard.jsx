@@ -1,10 +1,10 @@
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Pie, Line, Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 import 'tailwindcss/tailwind.css';
 import { FaNewspaper, FaEye, FaList } from 'react-icons/fa';
-
 const Dashboard = () => {
   const [articlesCount, setArticlesCount] = useState(0);
   const [totalViews, setTotalViews] = useState(0);

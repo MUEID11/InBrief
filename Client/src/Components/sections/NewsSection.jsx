@@ -5,7 +5,7 @@ import NewsCard from '../Component/NewsCard';
 import { FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const NewsSection = ({ title, articles, link }) => {
+const NewsSection = ({ title, articles, link, isHomeSection }) => {
   // Function to determine grid columns based on the section title
   const getGridColumns = () => {
     switch (title) {
@@ -24,13 +24,15 @@ const NewsSection = ({ title, articles, link }) => {
   };
 
   return (
-    <div className="sm:mt-14 mt-6 max-sm:px-1">
+    <div className="sm:mt-6 mt-6 px-1">
       {/* Header with Title and "View All" Link */}
       <div className="flex justify-between items-center">
         <h2 className="text-2xl md:text-3xl font-inter font-semibold  mb-4">{title}</h2>
-        <Link to={link} className="flex items-center gap-1 font-bold text-red-600 hover:text-red-700 transition-colors duration-300">
-          See All <FaArrowRight />
-        </Link>
+        {isHomeSection && (
+          <Link to={link} className="flex items-center gap-1 font-bold text-red-600 hover:text-red-700 transition-colors duration-300">
+            See All <FaArrowRight />
+          </Link>
+        )}
       </div>
 
       {/* Grid of News Cards */}

@@ -10,7 +10,7 @@ import {
 import { useSelector } from "react-redux";
 import Reply from "./Reply";
 
-const Comment = ({ comment }) => {
+const CommentComponent = ({ comment }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [reply, setReply] = useState("");
   const { user } = useSelector((state) => state.user);
@@ -186,4 +186,4 @@ const Comment = ({ comment }) => {
   );
 };
 
-export default Comment;
+export default CommentComponent;

@@ -89,7 +89,7 @@ const NewsCard = ({ article }) => {
   }, [error, isError, isSuccess, toggleBookmarkMsg]);
 
   return (
-    <article className="shadow-lg p-5 border  border-r-2 border-b-2 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-105 h-full rounded-sm">
+    <article className="shadow-lg p-5 border  border-r-2 border-b-2 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-102 h-full rounded-sm">
       <Link to={`/articles/${article?._id}`} className="flex-1">
         {/* Link wrapping Image */}
         <a href={article.url} target="_blank" rel="noopener noreferrer" aria-label={`Read more about ${article.title}`}>
@@ -105,7 +105,7 @@ const NewsCard = ({ article }) => {
                 className="size-5 bg-red-700 rounded-full object-cover"
                 alt={`${article?.source?.url}`}
               /> */}
-            <div className="size-2 bg-red-700 rounded-full"></div>
+            <div className="size-2 bg-red-600 rounded-full"></div>
             <span className="text-sm text-gray-600">{article?.source?.name || article.source}</span>
           </div>
 
@@ -116,10 +116,10 @@ const NewsCard = ({ article }) => {
           {/* Date, Category, Region */}
           <div className="flex justify-between items-center mb-2 mt-1">
             <div className="flex gap-3 items-center">
-              <p className="text-red-600 font-semibold">{article?.region}</p>
-              <span className="text-xs text-neutral-500">{new Date(article.createdAt).toLocaleDateString()}</span>
+              <p className="text-black-primary font-semibold">{article?.region}</p>
+              <span className="text-xs text-neutral-600">{new Date(article.createdAt).toLocaleDateString()}</span>
             </div>
-            <p className="text-red-600 font-semibold bg-red-100 py-1 px-3 rounded-sm text-xs capitalize">{article?.category ? article?.category : 'Category'}</p>
+            <p className="text-blue-500 font-semibold bg-blue-100 py-1 px-3 rounded-sm text-xs capitalize">{article?.category ? article?.category : 'Category'}</p>
           </div>
           {/* Description */}
           <p className="text-sm text-gray-600 mb-4 flex-grow">{`${article.description.substring(0, 100)}...`}</p>
@@ -134,7 +134,7 @@ const NewsCard = ({ article }) => {
           <div>
             <div className="flex items-center gap-2">
               <button onClick={() => handleLike(article._id)} className="">
-                <LuArrowBigUpDash className={`text-2xl font-medium ${liked ? 'text-green-600 bg-green-200 rounded-full' : 'text-gray-500 bg-gray-200 rounded-full'}`} />
+                <LuArrowBigUpDash className={`text-2xl font-medium ${liked ? 'text-blue-500 bg-blue-100 rounded-full' : 'text-gray-500 bg-gray-200 rounded-full'}`} />
               </button>
               <p className="text-gray-700 text-sm"> {likes} Votes</p>
               {bookmarked ? (
