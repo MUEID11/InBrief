@@ -1,19 +1,16 @@
-const DiscussionList = ({ discussions, onSelect }) => {
+import React from 'react';
+
+const DiscussionList = ({ discussions, onSelectDiscussion }) => {
     return (
-      <div className="p-4">
-        {discussions.map((discussion) => (
-          <div
-            key={discussion.id}
-            onClick={() => onSelect(discussion)}
-            className="p-4 mb-2 border cursor-pointer hover:bg-gray-100"
-          >
-            <h3 className="text-lg font-semibold">{discussion.title}</h3>
-            <p>{discussion.content.substring(0, 100)}...</p>
-          </div>
-        ))}
-      </div>
+        <div>
+            {discussions.map((discussion) => (
+                <div key={discussion._id} onClick={() => onSelectDiscussion(discussion)} className="border p-2 mb-2 cursor-pointer">
+                    <h3 className="font-bold">{discussion.title}</h3>
+                    <p>{discussion.content}</p>
+                </div>
+            ))}
+        </div>
     );
-  };
-  
-  export default DiscussionList;
-  
+};
+
+export default DiscussionList;

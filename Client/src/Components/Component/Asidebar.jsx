@@ -6,6 +6,7 @@ import { MdOutlineForum, MdOutlineSpaceDashboard } from "react-icons/md";
 import { TbBookmarks } from "react-icons/tb";
 import { AiOutlineFileAdd } from "react-icons/ai";
 import { BsNewspaper } from "react-icons/bs";
+import Weather from "./Weather";
 
 const Asidebar = () => {
   const { pathname } = useLocation();
@@ -124,14 +125,7 @@ const Asidebar = () => {
         </nav>
 
         <div className="mt-6">
-          <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
-            Active Posts
-          </h2>
-          <ul className="mt-2 space-y-2">
-            <li className="flex items-center p-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg">
-              <span className="text-sm">Post Title 1</span>
-            </li>
-          </ul>
+          <Weather />
         </div>
       </div>
     </div>
