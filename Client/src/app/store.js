@@ -9,6 +9,7 @@ const store = configureStore({
   reducer: {
     user: userReducer,
     preferredArticles: articleReducer,
+    forumsR: forumReducer,
     [bookmarksApi.reducerPath]: bookmarksApi.reducer,
     [commentsApi.reducerPath]: commentsApi.reducer,
     [infoUpdateApi.reducerPath]: infoUpdateApi.reducer,
