@@ -77,7 +77,7 @@ const CommentComponent = ({ comment }) => {
     if (e.target.closest(".modal-content")) return;
     setShowDeleteModal(false);
   };
-
+                   
 
   return (
     <div className="relative">
