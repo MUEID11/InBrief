@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FaBullhorn, FaExclamationCircle, FaNewspaper } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Marquee from "react-fast-marquee";
+
 
 const Headline = () => {
     const [articles, setArticles] = useState([]);
@@ -55,7 +57,9 @@ console.log(articles)
         </div>
   
         <div className="bg-white flex-1  rounded-r-lg ">
-          <marquee className="text-gray-800 text-lg font-semibold">
+          <Marquee
+          pauseOnHover={true}
+          className="text-gray-800 text-lg font-semibold">
             {articles.map((article, index) => (
               <Link
               key={index}
@@ -65,7 +69,7 @@ console.log(articles)
               {article.title}
             </Link>
             ))}
-          </marquee>
+          </Marquee>
         </div>
       </div>
     );

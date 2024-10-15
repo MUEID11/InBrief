@@ -45,12 +45,12 @@ const Profile = () => {
 
   return (
     <div className="container mx-auto sm:my-12 my-2 max-w-6xl">
-      <div className="grid grid-cols-4 gap-8 sm:min-h-80">
+      <div className="grid grid-cols-4 gap-8 sm:min-h-80 ">
         {/* Profile Image Card */}
         <div className="col-span-1 ">
           <img
             src={user?.imageUrl}
-            className="w-48 h-48 lg:w-64 lg:h-64 rounded-sm object-cover mx-auto"
+            className="w-48 h-48 lg:w-64 lg:h-64  object-cover mx-auto rounded-full"
             alt="User"
           />
         </div>

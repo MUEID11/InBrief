@@ -29,6 +29,21 @@ const userSchema = new Schema({
     required: [true, 'pref must be provided'],
     default: [],
   },
+  education: {
+    type: [String],
+    required: [true, 'education must be provided'],
+    default: [],
+  },
+  about: {
+    type: [String],
+    required: [true, 'about must be provided'],
+    default: [],
+  },
+  interest: {
+    type: [String],
+    required: [true, 'interest must be provided'],
+    default: [],
+  },
 });
 
 userSchema.plugin(mongooseUniqueValidator, {
