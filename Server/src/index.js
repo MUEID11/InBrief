@@ -8,7 +8,7 @@ const dbConnection = require('./config/db');
 const userHandlers = require('./routers/userHandlers');
 const searchRoutes = require('./routers/search');
 const articleHandlers = require('./routers/articleHandlers');
-const CommentRoute =require('./routers/CommentRoute')
+const CommentRoute = require('./routers/CommentRoute');
 const forumRouters = require('./routers/forumRouters');
 
 const app = express();
@@ -23,10 +23,12 @@ app.use(rateLimiter);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-  origin: ['http://localhost:5173', 'https://inbrief-3d9ce.web.app'], // Allow your frontend domain
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],     // Allow necessary methods                                             // Allow cookies and credentials
-}));
+app.use(
+  cors({
+    origin: ['http://localhost:5173', 'https://inbrief-3d9ce.web.app'], // Allow your frontend domain
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'], // Allow necessary methods                                             // Allow cookies and credentials
+  })
+);
 
 //USERS ROUTE
 app.use('/users', userHandlers);
