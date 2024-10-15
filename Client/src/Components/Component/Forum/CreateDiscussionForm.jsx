@@ -1,58 +1,66 @@
-import { useState } from "react";
-import { useSelector } from "react-redux"; 
+// src/Components/Component/Forum/CreateDiscussion.js
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 const CreateDiscussion = ({ onCreate }) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
+  const { user } = useSelector((state) => state.user); 
 
-  const { user } = useSelector((state) => state.user);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const discussion = {
-      title,
-      content,
-      image,
-      username: user?.name,
-      userImage: user?.imageUrl,
-    };
+    // Prevent if title or content is empty
+    if (!title || !content || !image) return;
 
-    onCreate(discussion);
-    setTitle("");
-    setContent("");
-    setImage(null);
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('image', image);
+    formData.append('username', user?.name); 
+    formData.append('userImage', user?.imageUrl); 
+
+    try {
+      const response = await axios.post('http://localhost:5000/forum', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      onCreate(response.data); 
+      setTitle('');
+      setContent(''); 
+      setImage(null); 
+    } catch (error) {
+      console.error('Error creating discussion', error);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="p-4">
+      <h1 className="font-bold mb-2">Create Discussion</h1>
       <input
         type="text"
-        placeholder="Discussion Title"
+        placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="block w-full mb-2 p-2 border"
-        required
+        className="border p-2 w-full mb-4"
       />
       <textarea
-        placeholder="Discussion Content"
+        placeholder="Discussion content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        className="block w-full mb-2 p-2 border"
-        required
+        className="border p-2 w-full mb-4"
       ></textarea>
       <input
         type="file"
-        accept="image/*"
         onChange={(e) => setImage(e.target.files[0])}
-        className="block w-full mb-2 p-2 border"
+        className="mb-4"
       />
-     <div className="flex justify-end">
-     <button type="submit" className="bg-red-600 rounded-sm text-white  p-2">
+      <button type="submit" className="bg-blue-500 text-white p-2">
         Create Discussion
       </button>
-     </div>
     </form>
   );
 };

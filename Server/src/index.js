@@ -9,9 +9,13 @@ const userHandlers = require('./routers/userHandlers');
 const searchRoutes = require('./routers/search');
 const articleHandlers = require('./routers/articleHandlers');
 const CommentRoute =require('./routers/CommentRoute')
-const forumRouters = require('./routers/forumRouters');
+const discussionRouter = require('./routers/ForumRouters/discussionRouter');
+const commentRouters = require('./routers/ForumRouters/commentRouter');
 
 const app = express();
+
+// app.use('/uploads', express.static('uploads')); // Serve uploaded images
+
 
 const rateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -34,8 +38,11 @@ app.use('/users', userHandlers);
 app.use('/articles', articleHandlers);
 //USERS ROUTE
 app.use('/users', userHandlers);
-// FORUM ROUTE
-app.use('/forum', forumRouters);
+// FORUM ROUTE (discussion route)
+app.use('/forum', discussionRouter);
+// FORUM ROUTE (comment route)
+app.use('/forum', commentRouters);
+
 // Comment ROUTES
 app.use('/comments', CommentRoute);
 

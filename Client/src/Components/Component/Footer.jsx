@@ -11,7 +11,7 @@ import logo from "./../../assets/whitelogo.png";
 const Footer = () => {
   return (
     <>
-      <div className="p-4 bg-gray-600">
+      <div className="p-4 bg-gray-700">
         <footer className="text">
           <div className="w-full p-12 lg:py-8">
             <div className="md:flex md:justify-between">
