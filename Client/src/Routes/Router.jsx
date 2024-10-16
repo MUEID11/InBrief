@@ -17,7 +17,6 @@ import Bookmarks from "../Pages/Bookmarks";
 import Stories from "../Pages/Stories";
 import Contact from "../Pages/Contact";
 import Dashboard from "../Pages/Dashboard";
-import MyPosts from "../Dashboard/Users/MyPosts";
 import MyFeed from "../Pages/MyFeed";
 import ForumPage from "../Pages/ForumPage";
 import TopLatestNews from "../Components/sections/TopLatestNews";
@@ -106,13 +105,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <Dashboard />,
-      },
-      {
-        path: "/dashboard/my-posts",
         element: (
           <ProtectedRoute>
-            <MyPosts />
+            <Dashboard />
           </ProtectedRoute>
         ),
       },
