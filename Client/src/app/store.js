@@ -5,6 +5,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import articleReducer from "../Features/Articles/articleSlice";
 import { commentsApi } from "../Features/Comment/commentsApi";
 import forumReducer from "../Features/Forum/ForumSlice";
+import { forumcommentsApi } from "../Features/ForumComment/ForumCommentApi";
 const store = configureStore({
   reducer: {
     user: userReducer,
@@ -12,11 +13,13 @@ const store = configureStore({
     forumsR: forumReducer,
     [bookmarksApi.reducerPath]: bookmarksApi.reducer,
     [commentsApi.reducerPath]: commentsApi.reducer,
+    [forumcommentsApi.reducerPath]: forumcommentsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(bookmarksApi.middleware)
-      .concat(commentsApi.middleware),
+      .concat(commentsApi.middleware)
+      .concat(forumcommentsApi.middleware)
 });
 
 setupListeners(store.dispatch);

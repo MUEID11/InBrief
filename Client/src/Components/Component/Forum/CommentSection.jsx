@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useAddForumCommentMutation } from "../../../Features/ForumComment/ForumCommentApi";
 
 const CommentSection = ({ discussionId }) => {
   const [comment, setComment] = useState("");
   const { user } = useSelector((state) => state.user);
+  const [addForumComment] = useAddForumCommentMutation() || {};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,24 +16,18 @@ const CommentSection = ({ discussionId }) => {
     if (!comment) return;
 
     try {
-      const commentData = {
-        comment,
-        username: user?.name,
-        userImage: user?.imageUrl,
+      const response = await addForumComment({
         discussionId,
-      };
-      //  jhari deyen na ami localhost thik kore dibonii(pr er somy thik kore nisi)
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/forum/${discussionId}/comments`,
-        commentData
-      );
-      // forum comment alada vabe save hosche
-      console.log(response);
-      // onComment(response.data);
-      const data = await response.data;
-      console.log(data);
-
+        data: {
+          comment: comment,
+          username: user?.name,
+          userImage: user?.imageUrl,
+          userEmail: user?.email,
+        },
+      });
+      console.log('forum Comment Added:', response);
       setComment("");
+      e.target.reset();
     } catch (error) {
       console.error("Error adding comment", error);
     }

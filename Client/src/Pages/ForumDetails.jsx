@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CommentSection from "../Components/Component/Forum/CommentSection";
+import { useGetForumCommentQuery } from "../Features/ForumComment/ForumCommentApi";
+import ForumCommentt from "../Components/Component/Forum/ForumCommentt";
 
 const ForumDetails = () => {
   const [forum, setForum] = useState({});
@@ -30,7 +32,19 @@ const ForumDetails = () => {
     };
     fetchForum();
   }, []);
-  console.log("megh", forum);
+  // console.log("megh", forum);
+
+  let {
+    data: comments,
+    isLoading: commentLoading,
+    isError: commentError,
+  } = useGetForumCommentQuery(id) || {};
+  console.log(comments);
+
+  // total commentss count
+  let totals = comments?.map((item) => item?.replies?.length);
+  let ultimateTotal = totals?.reduce((acc, item) => acc + item, 0);
+  ultimateTotal = ultimateTotal + comments?.length;
 
   return (
     <div className=" flex items-center justify-center">
@@ -47,6 +61,18 @@ const ForumDetails = () => {
         <p>{forum.content}</p>
         <img className="max-w-sm" src={forum?.image} alt="" />
         <button className="absolute top-7 right-3 text-gray-500 hover:text-gray-800 focus:outline-none"></button>
+        <div className="mt-4 py-4">
+          <h3 className="text-xl  md:text-2xl font-bold text-gray-800 pb-4 ">
+            Comments (95) 
+            {/* ({Number(ultimateTotal)}) */}
+          </h3>
+          <div>
+            <hr />
+            {comments?.map((comment) => {
+              return <ForumCommentt key={comment?._id} comment={comment} />;
+            })}
+          </div>
+        </div>
       </div>
       <CommentSection
         discussionId={forum?._id}

@@ -41,6 +41,7 @@ const NewsDetails = () => {
   }, [id]);
 
   let { data: comments, isLoading: commentLoading, isError: commentError } = useGetCommentQuery(id) || {};
+  console.log(comments)
 
   // add comment
   const [addComment] = useAddCommentMutation() || {};
@@ -57,7 +58,7 @@ const NewsDetails = () => {
           userEmail: user?.email,
         },
       });
-      console.log('Comment Added:', response);
+      // console.log('Comment Added:', response);
       setComment('');
       e.target.reset();
     } catch (error) {
