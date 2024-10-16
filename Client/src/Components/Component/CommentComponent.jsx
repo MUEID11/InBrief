@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BiLike, BiSolidLike } from "react-icons/bi";
 import { FaRegCommentDots } from "react-icons/fa";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { MdOutlineDelete } from "react-icons/md";
 import {
   useAddLikeCommentMutation,
   useAddReplyMutation,
@@ -21,7 +21,7 @@ const CommentComponent = ({ comment }) => {
   const [deleteComment] = useDeleteCommentMutation() || {};
   const hasLiked = comment?.likes?.includes(user?.email);
 
-//   add reply to comment
+  //   add reply to comment
   const submitReply = async (e) => {
     e.preventDefault();
     try {
@@ -43,7 +43,7 @@ const CommentComponent = ({ comment }) => {
     }
   };
 
-//   like comment
+  //   like comment
   const handleLike = async () => {
     try {
       const response = await addLikeComment({
@@ -59,8 +59,7 @@ const CommentComponent = ({ comment }) => {
     }
   };
 
-
-//   deletee comment
+  //   deletee comment
 
   const handleDeleteComment = async () => {
     try {
@@ -77,7 +76,6 @@ const CommentComponent = ({ comment }) => {
     if (e.target.closest(".modal-content")) return;
     setShowDeleteModal(false);
   };
-
 
   return (
     <div className="relative">
@@ -119,9 +117,9 @@ const CommentComponent = ({ comment }) => {
           {canDeleteComment && (
             <button
               onClick={() => setShowDeleteModal(!showDeleteModal)}
-              className="ml-4"
+              className="ml-4 text-lg"
             >
-              <BsThreeDotsVertical />
+              <MdOutlineDelete />
             </button>
           )}
         </div>

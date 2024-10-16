@@ -23,7 +23,7 @@ import TopLatestNews from "../Components/sections/TopLatestNews";
 import NewsDetails from "../Pages/NewsDetails";
 import CreateDiscussion from "../Components/Component/Forum/CreateDiscussionForm";
 import DiscussionList from "../Components/Component/Forum/DiscussionList";
-
+import UserDashboard from "../Pages/UserDashbord/UserDashboard";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -107,6 +107,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/dashboard/user",
+        element: (
+          <ProtectedRoute>
+            <UserDashboard/>
           </ProtectedRoute>
         ),
       },

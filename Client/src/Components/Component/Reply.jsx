@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { MdOutlineDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { useDeleteReplyMutation } from "../../Features/Comment/commentsApi";
 
@@ -54,7 +54,7 @@ const Reply = ({ reply }) => {
                 onClick={() => setShowDeleteModal(!showDeleteModal)}
                 className="m-4"
               >
-                <BsThreeDotsVertical />
+                <MdOutlineDelete />
               </button>
             )}
           </div>
