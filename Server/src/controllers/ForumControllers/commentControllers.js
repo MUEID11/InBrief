@@ -85,3 +85,26 @@ exports.addForumReply = async (req, res) => {
     res.status(404).json({ message: error });
   }
 };
+
+exports.deleteForumReply = async (req, res) => {
+  try {
+    const { commentId, replyId } = req.params;
+
+    const updatedComment = await ForumComment.findByIdAndUpdate(
+      commentId,
+      { $pull: { replies: { _id: replyId } } },
+      { new: true }
+    );
+
+    if (!updatedComment) {
+      return res.status(404).json({ message: "Comment not found" });
+    }
+
+    res
+      .status(200)
+      .json({ message: "Reply deleted successfully", updatedComment });
+  } catch (error) {
+    console.error("Error deleting reply:", error);
+    res.status(500).json({ message: "Internal Server Error", error });
+  }
+};

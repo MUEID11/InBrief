@@ -7,14 +7,14 @@ export const forumcommentsApi = createApi({
   endpoints: (builder) => ({
     getForumComment: builder.query({
       query: (discussionId) => ({
-        url: `/forum/${discussionId}/comments`,
+        url: `/forum/getcomments/${discussionId}`,
         method: "GET",
       }),
       providesTags: ["ForumComment"],
     }),
     addForumComment: builder.mutation({
       query: ({ discussionId, data }) => ({
-        url: `/forum/${discussionId}/createComment`,
+        url: `/forum/addComment/${discussionId}`,
         method: "POST",
         body: data,
       }),
@@ -36,10 +36,17 @@ export const forumcommentsApi = createApi({
       }),
       invalidatesTags: ["ForumComment"],
     }),
+    deleteForumReply: builder.mutation({
+      query: ({ commentId,replyId }) => ({
+        url: `/forum/${commentId}/${replyId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["ForumComment"],
+    }),
 
 
   }),
 });
 
-export const { useGetForumCommentQuery, useAddForumCommentMutation,useDeleteForumCommentMutation,useAddForumReplyMutation } =
+export const { useGetForumCommentQuery, useAddForumCommentMutation,useDeleteForumCommentMutation,useAddForumReplyMutation,useDeleteForumReplyMutation } =
   forumcommentsApi;

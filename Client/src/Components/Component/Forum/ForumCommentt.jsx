@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { MdOutlineDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
-import { useAddForumReplyMutation, useDeleteForumCommentMutation } from "../../../Features/ForumComment/ForumCommentApi";
+import {
+  useAddForumReplyMutation,
+  useDeleteForumCommentMutation,
+} from "../../../Features/ForumComment/ForumCommentApi";
 import { FaRegCommentDots } from "react-icons/fa";
+import ForumReply from "./ForumReply";
 
 const ForumCommentt = ({ comment }) => {
   const { user } = useSelector((state) => state.user);
@@ -12,8 +16,8 @@ const ForumCommentt = ({ comment }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [reply, setReply] = useState("");
   const [addForumReply] = useAddForumReplyMutation() || {};
-console.log(comment._id)
-  
+  //   console.log(comment._id);
+
   //   add reply to comment
   const submitReply = async (e) => {
     e.preventDefault();
@@ -28,14 +32,13 @@ console.log(comment._id)
           reply,
         },
       });
-      console.log("Forum Reply Added:", response);
+      //   console.log("Forum Reply Added:", response);
       setReply("");
       setShowReplyForm(false);
     } catch (error) {
       console.error("Error adding forum reply:", error);
     }
   };
-
 
   const handleDeleteComment = async () => {
     try {
@@ -102,8 +105,8 @@ console.log(comment._id)
         </div>
       </div>
 
- {/* Reply Form */}
- {showReplyForm && (
+      {/* Reply Form */}
+      {showReplyForm && (
         <form onSubmit={submitReply} className="pl-6 pr-4 bg-white">
           <input
             className="w-full p-2 border border-gray-300 rounded"
@@ -123,9 +126,8 @@ console.log(comment._id)
         </form>
       )}
 
-
- {/* Delete Modal */}
- {showDeleteModal && (
+      {/* Delete Modal */}
+      {showDeleteModal && (
         <div
           className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
           onClick={handleClickOutside}
@@ -150,7 +152,13 @@ console.log(comment._id)
           </div>
         </div>
       )}
-
+      {/* reply display */}
+      <div>
+        {comment?.replies?.length >= 0 &&
+          comment?.replies?.map((reply) => {
+            return <ForumReply key={reply?._id} reply={reply} />;
+          })}
+      </div>
     </div>
   );
 };
