@@ -24,6 +24,7 @@ import NewsDetails from "../Pages/NewsDetails";
 import CreateDiscussion from "../Components/Component/Forum/CreateDiscussionForm";
 import DiscussionList from "../Components/Component/Forum/DiscussionList";
 import ForumDetails from "../Pages/ForumDetails";
+import FeaturedBooks from "../Pages/FeaturedBooks";
 
 const router = createBrowserRouter([
   {
@@ -126,6 +127,10 @@ const router = createBrowserRouter([
             <Profile />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "featured-books",
+        element: <FeaturedBooks />,
       },
     ],
   },

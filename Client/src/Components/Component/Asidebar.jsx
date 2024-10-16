@@ -1,12 +1,13 @@
-import { Link, useLocation } from 'react-router-dom';
-import { IoMdBook } from 'react-icons/io';
-import { SlPeople } from 'react-icons/sl';
-import { FiPhoneCall } from 'react-icons/fi';
-import { MdOutlineForum, MdOutlineSpaceDashboard } from 'react-icons/md';
-import { TbBookmarks } from 'react-icons/tb';
-import { AiOutlineFileAdd } from 'react-icons/ai';
-import { BsNewspaper } from 'react-icons/bs';
-import Weather from './Weather';
+import { Link, useLocation } from "react-router-dom";
+import { IoMdBook } from "react-icons/io";
+import { SlPeople } from "react-icons/sl";
+import { FiPhoneCall } from "react-icons/fi";
+import { MdOutlineForum, MdOutlineSpaceDashboard } from "react-icons/md";
+import { TbBookmarks } from "react-icons/tb";
+import { AiOutlineFileAdd } from "react-icons/ai";
+import { BsNewspaper } from "react-icons/bs";
+import { PiBooks } from "react-icons/pi";
+import Weather from "./Weather";
 
 const Asidebar = () => {
   const { pathname } = useLocation();
@@ -19,7 +20,7 @@ const Asidebar = () => {
           <Link
             to="/"
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-              pathname === '/' && 'bg-gray-200 text-gray-700'
+              pathname === "/" && "bg-gray-200 text-gray-700"
             }`}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
               <path
@@ -32,9 +33,9 @@ const Asidebar = () => {
           </Link>
           {/* My Feed */}
           <Link
-            to={'/my-feed'}
+            to={"/my-feed"}
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-              pathname === '/my-feed' && 'bg-gray-200 text-gray-700'
+              pathname === "/my-feed" && "bg-gray-200 text-gray-700"
             }`}>
             <BsNewspaper />
             <span className="mx-2 text-sm font-medium">My Feed</span>
@@ -43,7 +44,7 @@ const Asidebar = () => {
           <Link
             to="/stories"
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-              pathname === '/stories' && 'bg-gray-200 text-gray-700'
+              pathname === "/stories" && "bg-gray-200 text-gray-700"
             }`}>
             {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
               <path
@@ -59,7 +60,7 @@ const Asidebar = () => {
           <Link
             to="/about"
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-              pathname === '/about' && 'bg-gray-200 text-gray-700'
+              pathname === "/about" && "bg-gray-200 text-gray-700"
             }`}>
             <SlPeople />
             <span className="mx-2 text-sm font-medium">About Us</span>
@@ -68,7 +69,7 @@ const Asidebar = () => {
           <Link
             to="/contact"
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-              pathname === '/contact' && 'bg-gray-200 text-gray-700'
+              pathname === "/contact" && "bg-gray-200 text-gray-700"
             }`}>
             <FiPhoneCall />
             <span className="mx-2 text-sm font-medium">Contact Us </span>
@@ -77,7 +78,7 @@ const Asidebar = () => {
           <Link
             to="/dashboard"
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-              pathname === '/dashboard/my-posts' && 'bg-gray-200 text-gray-700'
+              pathname === "/dashboard/my-posts" && "bg-gray-200 text-gray-700"
             }`}>
             <MdOutlineSpaceDashboard />
             <span className="mx-2 text-sm font-medium">Dashboard</span>
@@ -85,26 +86,34 @@ const Asidebar = () => {
           <Link
             to="/forum"
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-              pathname === '/forum' && 'bg-gray-200 text-gray-700'
+              pathname === "/forum" && "bg-gray-200 text-gray-700"
             }`}>
             <MdOutlineForum />
             <span className="mx-2 text-sm font-medium">Forum</span>
           </Link>
           <Link
-            to={'/bookmarks'}
+            to={"/bookmarks"}
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-              pathname === '/bookmarks' && 'bg-gray-200 text-gray-700'
+              pathname === "/bookmarks" && "bg-gray-200 text-gray-700"
             }`}>
             <TbBookmarks />
             <span className="mx-2 text-sm font-medium">Bookmarks</span>
           </Link>
           <Link
-            to={'/submit-article'}
+            to={"/submit-article"}
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-              pathname === '/submit-article' && 'bg-gray-200 text-gray-700'
+              pathname === "/submit-article" && "bg-gray-200 text-gray-700"
             }`}>
             <AiOutlineFileAdd />
             <span className="mx-2 text-sm font-medium">Add Article</span>
+          </Link>
+          <Link
+            to={"/featured-books"}
+            className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
+              pathname === "/featured-books" && "bg-gray-200 text-gray-700"
+            }`}>
+            <PiBooks />
+            <span className="mx-2 text-sm font-medium">Featured Books</span>
           </Link>
         </nav>
 
