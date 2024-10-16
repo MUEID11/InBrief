@@ -22,7 +22,7 @@ export const articleSlice = createSlice({
       })
       .addCase(getArticleByPreference.rejected, (state, action) => {
         state.isLoading = false;
-        state.user = null;
+        state.articles = null;
         state.error = action.error.message;
       });
   },

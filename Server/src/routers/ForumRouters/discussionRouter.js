@@ -1,14 +1,17 @@
-
-const express = require('express');
-const multer = require('multer');
-const { createDiscussion, getAllDiscussions } = require('../../controllers/ForumControllers/discussionControllers');
+const express = require("express");
+const {
+  createDiscussion,
+  getAllDiscussions,
+  getDiscussionById,
+} = require("../../controllers/ForumControllers/discussionControllers");
 
 const router = express.Router();
-const upload = multer({ dest: 'uploads/' }); // Image upload folder
 
 // Route for creating a discussion
-router.post('/', upload.single('image'), createDiscussion);
+router.post("/", createDiscussion);
 // Route for getting all discussions
-router.get('/', getAllDiscussions);
+router.get("/", getAllDiscussions);
+
+router.get("/:id", getDiscussionById);
 
 module.exports = router;

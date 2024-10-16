@@ -1,4 +1,3 @@
-// src/models/Discussion.js
 const mongoose = require('mongoose');
 
 const discussionSchema = new mongoose.Schema({
@@ -8,6 +7,7 @@ const discussionSchema = new mongoose.Schema({
   username: { type: String, required: true },
   userImage: { type: String },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }], // Reference to Comment model
+  // comments: [String]
 }, { timestamps: true });
 
 const Discussion = mongoose.model('Discussion', discussionSchema);

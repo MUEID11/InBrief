@@ -225,7 +225,7 @@ const SignUp = () => {
                 I agree to all the statements in
                 <a href="#" className="text-blue-500 hover:underline">
                   Terms of service
-                </a>
+                </a>s
               </label>
             </div>
 
