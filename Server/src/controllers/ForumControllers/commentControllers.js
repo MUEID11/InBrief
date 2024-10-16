@@ -40,11 +40,11 @@ exports.getAllForumComments = async (req, res) => {
   }
 };
 
-exports. deleteForumComment = async (req, res) => {
+exports.deleteForumComment = async (req, res) => {
   try {
     const commentId = req.params.commentId;
 
-    const result = await ForumComment.findByIdAndDelete({ _id: commentId});
+    const result = await ForumComment.findByIdAndDelete({ _id: commentId });
 
     if (!result) {
       return res.status(404).json({ message: "Commentle not found" });
@@ -54,5 +54,34 @@ exports. deleteForumComment = async (req, res) => {
   } catch (error) {
     console.error("Error deleting comment:", error);
     res.status(500).json({ message: "Internal Server Error", error });
+  }
+};
+
+exports.addForumReply = async (req, res) => {
+  const id = req.params?.commentId;
+  const { reply, username, userImage, userEmail } = req?.body;
+
+  try {
+    if (id) {
+      const reply = {
+        commentId: id,
+        username: req.body.username ? req.body.username : "user",
+        reply: req.body.reply,
+        userImage,
+        userEmail,
+      };
+      const newComment = await ForumComment.findByIdAndUpdate(
+        { _id: id },
+        {
+          $push: { replies: reply },
+        },
+        { new: true }
+      );
+      res.status(201).json(newComment);
+    } else {
+      res.status(404).json({ message: "Comment with this id not  found" });
+    }
+  } catch (error) {
+    res.status(404).json({ message: error });
   }
 };

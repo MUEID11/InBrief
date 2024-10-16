@@ -1,13 +1,40 @@
 import React, { useState } from "react";
 import { MdOutlineDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
-import { useDeleteForumCommentMutation } from "../../../Features/ForumComment/ForumCommentApi";
+import { useAddForumReplyMutation, useDeleteForumCommentMutation } from "../../../Features/ForumComment/ForumCommentApi";
+import { FaRegCommentDots } from "react-icons/fa";
 
 const ForumCommentt = ({ comment }) => {
   const { user } = useSelector((state) => state.user);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const canDeleteComment = comment?.userEmail === user?.email;
   const [deleteForumComment] = useDeleteForumCommentMutation() || {};
+  const [showReplyForm, setShowReplyForm] = useState(false);
+  const [reply, setReply] = useState("");
+  const [addForumReply] = useAddForumReplyMutation() || {};
+console.log(comment._id)
+  
+  //   add reply to comment
+  const submitReply = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await addForumReply({
+        commentId: comment?._id,
+        data: {
+          commentId: comment?._id,
+          username: user?.name,
+          userImage: user?.imageUrl,
+          userEmail: user?.email,
+          reply,
+        },
+      });
+      console.log("Forum Reply Added:", response);
+      setReply("");
+      setShowReplyForm(false);
+    } catch (error) {
+      console.error("Error adding forum reply:", error);
+    }
+  };
 
 
   const handleDeleteComment = async () => {
@@ -55,13 +82,13 @@ const ForumCommentt = ({ comment }) => {
                 </button>
                 <p>{comment?.likes?.length}</p>
               </div> */}
-              {/* <button
-                className="text-blue-500 text-sm ml-4 flex gap-1 items-center"
+              <button
+                className="text-blue-500 text-sm  flex gap-1 items-center"
                 onClick={() => setShowReplyForm(!showReplyForm)}
               >
                 <FaRegCommentDots />
                 {showReplyForm ? "Cancel" : "Reply"}
-              </button> */}
+              </button>
             </div>
           </div>
           {canDeleteComment && (
@@ -74,6 +101,28 @@ const ForumCommentt = ({ comment }) => {
           )}
         </div>
       </div>
+
+ {/* Reply Form */}
+ {showReplyForm && (
+        <form onSubmit={submitReply} className="pl-6 pr-4 bg-white">
+          <input
+            className="w-full p-2 border border-gray-300 rounded"
+            placeholder="Add a reply..."
+            value={reply}
+            onChange={(e) => setReply(e.target.value)}
+            required
+          />
+          <div className="flex justify-end">
+            <button
+              type="submit"
+              className="mt-2 bg-blue-500 text-white px-2 py-1 rounded-sm"
+            >
+              Reply
+            </button>
+          </div>
+        </form>
+      )}
+
 
  {/* Delete Modal */}
  {showDeleteModal && (

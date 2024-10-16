@@ -47,8 +47,8 @@ const ForumDetails = () => {
   ultimateTotal = ultimateTotal + comments?.length;
 
   return (
-    <div className=" flex items-center justify-center">
-      <div className="rounded-sm p-4 max-w-2xl w-full relative">
+    <div className="flex justify-center items-center">
+      <div className="rounded-sm p-4 max-w-2xl w-full relative ">
         <div className="flex items-center mb-4">
           <img
             src={forum?.userImage}
@@ -61,11 +61,20 @@ const ForumDetails = () => {
         <p>{forum.content}</p>
         <img className="max-w-sm" src={forum?.image} alt="" />
         <button className="absolute top-7 right-3 text-gray-500 hover:text-gray-800 focus:outline-none"></button>
-        <div className="mt-4 py-4">
-          <h3 className="text-xl  md:text-2xl font-bold text-gray-800 pb-4 ">
-            Comments (95) 
-            {/* ({Number(ultimateTotal)}) */}
+        
+        <h3 className="text-xl  md:text-2xl font-bold text-gray-800 pb-2 pt-10 ">
+            Comments 
+            ({Number(ultimateTotal)})
           </h3>
+
+        <CommentSection
+        discussionId={forum?._id}
+        // selectedDiscussion={selectedDiscussion}
+        // onComment={handleAddComment}
+      ></CommentSection>
+       
+        <div className="mt-4 py-4">
+         
           <div>
             <hr />
             {comments?.map((comment) => {
@@ -74,11 +83,7 @@ const ForumDetails = () => {
           </div>
         </div>
       </div>
-      <CommentSection
-        discussionId={forum?._id}
-        // selectedDiscussion={selectedDiscussion}
-        // onComment={handleAddComment}
-      ></CommentSection>
+     
     </div>
   );
 };

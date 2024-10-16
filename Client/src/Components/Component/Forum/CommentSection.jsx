@@ -35,24 +35,25 @@ const CommentSection = ({ discussionId }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="p-4">
-        <div className="flex items-center mb-4">
+      <form onSubmit={handleSubmit} className="">
+        {/* <div className="flex items-center mb-4">
           <img
             src={user?.imageUrl}
             alt={user?.name}
             className="w-8 h-8 rounded-full mr-2"
           />
           <h1 className="font-semibold">{user?.name}</h1>
-        </div>
+        </div> */}
         <textarea
-          placeholder="Write a comment..."
-          value={comment}
           onChange={(e) => setComment(e.target.value)}
-          className="border p-2 w-full mb-4"
-        ></textarea>
-        <button type="submit" className="bg-blue-500 text-white p-2">
-          Add Comment
-        </button>
+          className="w-full mt-1 p-2 border border-gray-300 rounded-sm"
+                  rows="2"
+                  placeholder="Write a comment..."></textarea>
+                <div className="flex justify-end ">
+                  <button type="submit" className="mt-2 bg-red-500 text-white px-2 py-1 rounded-sm  ">
+                    Comment
+                  </button>
+                </div>
       </form>
       {/* <div>{data}</div> */}
     </div>

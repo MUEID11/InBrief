@@ -28,10 +28,18 @@ export const forumcommentsApi = createApi({
       }),
       invalidatesTags: ["ForumComment"],
     }),
+    addForumReply: builder.mutation({
+      query: ({ commentId, data }) => ({
+        url: `/forum/reply/${commentId}`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["ForumComment"],
+    }),
 
 
   }),
 });
 
-export const { useGetForumCommentQuery, useAddForumCommentMutation,useDeleteForumCommentMutation } =
+export const { useGetForumCommentQuery, useAddForumCommentMutation,useDeleteForumCommentMutation,useAddForumReplyMutation } =
   forumcommentsApi;
