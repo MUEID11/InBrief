@@ -24,6 +24,7 @@ import TopLatestNews from "../Components/sections/TopLatestNews";
 import NewsDetails from "../Pages/NewsDetails";
 import CreateDiscussion from "../Components/Component/Forum/CreateDiscussionForm";
 import DiscussionList from "../Components/Component/Forum/DiscussionList";
+import ForumDetails from "../Pages/ForumDetails";
 
 const router = createBrowserRouter([
   {
@@ -67,10 +68,10 @@ const router = createBrowserRouter([
         path: "forum",
         element: <ForumPage />,
       },
-      // {
-      //   path: "create-discussion",
-      //   element: <CreateDiscussion />,
-      // },
+      {
+        path: "forum/forum-details/:id",
+        element: <ForumDetails />,
+      },
       // {
       //   path: "discussion",
       //   element: <DiscussionList />,

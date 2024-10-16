@@ -3,10 +3,9 @@ const mongoose = require('mongoose');
 const commentSchema = new mongoose.Schema({
     discussionId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Discussion',
         required: true
     },
-    content: {
+    comment: {
         type: String,
         required: true
     },
@@ -20,8 +19,8 @@ const commentSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now
+        default: Date.now()
     }
 });
 
-module.exports = mongoose.model('Comment', commentSchema);
+module.exports = mongoose.model('ForumComment', commentSchema);
