@@ -17,11 +17,12 @@ import Bookmarks from "../Pages/Bookmarks";
 import Stories from "../Pages/Stories";
 import Contact from "../Pages/Contact";
 import Dashboard from "../Pages/Dashboard";
-import MyPosts from "../Dashboard/Users/MyPosts";
 import MyFeed from "../Pages/MyFeed";
 import ForumPage from "../Pages/ForumPage";
 import TopLatestNews from "../Components/sections/TopLatestNews";
 import NewsDetails from "../Pages/NewsDetails";
+import CreateDiscussion from "../Components/Component/Forum/CreateDiscussionForm";
+import DiscussionList from "../Components/Component/Forum/DiscussionList";
 
 const router = createBrowserRouter([
   {
@@ -65,10 +66,14 @@ const router = createBrowserRouter([
         path: "forum",
         element: <ForumPage />,
       },
-      {
-        path: "forum",
-        element: <ForumPage />,
-      },
+      // {
+      //   path: "create-discussion",
+      //   element: <CreateDiscussion />,
+      // },
+      // {
+      //   path: "discussion",
+      //   element: <DiscussionList />,
+      // },
       {
         path: "/search/:category",
         element: <SearchResults />,
@@ -99,13 +104,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <Dashboard />,
-      },
-      {
-        path: "/dashboard/my-posts",
         element: (
           <ProtectedRoute>
-            <MyPosts />
+            <Dashboard />
           </ProtectedRoute>
         ),
       },

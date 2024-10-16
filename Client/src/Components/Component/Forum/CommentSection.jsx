@@ -1,35 +1,55 @@
-import { useState } from "react";
 
-const CommentSection = ({ comments, onComment }) => {
-  const [comment, setComment] = useState("");
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
-  const handleComment = (e) => {
+const CommentSection = ({ discussionId, onComment }) => {
+  const [comment, setComment] = useState('');
+  const { user } = useSelector((state) => state.user); 
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onComment(comment);
-    setComment("");
+
+    // Prevent if comment is empty
+    if (!comment) return;
+
+    try {
+      const commentData = {
+        comment,
+        username: user?.name, 
+        userImage: user?.imageUrl, 
+        discussionId,
+      };
+
+    //  jhari deyen an ami localhost thik kore dibonii
+      const response = await axios.post(`http://localhost:5000/forum/${discussionId}/comments`, commentData);
+      onComment(response.data);
+      setComment('');
+    } catch (error) {
+      console.error('Error adding comment', error);
+    }
   };
 
   return (
-    <div className="mt-4">
-      <form onSubmit={handleComment} className="mb-4">
-        <textarea
-          placeholder="Add a comment"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          className="w-full p-2 border"
-        ></textarea>
-        <button type="submit" className="bg-red-600 rounded-sm text-white p-2">
-          Submit Comment
-        </button>
-      </form>
-      <div className="comments-list">
-        {comments.map((cmt, index) => (
-          <div key={index} className="p-2 border-b">
-            {cmt}
-          </div>
-        ))}
+    <form onSubmit={handleSubmit} className="p-4">
+      <div className="flex items-center mb-4">
+        <img
+          src={user?.imageUrl}
+          alt={user?.name}
+          className="w-8 h-8 rounded-full mr-2"
+        />
+        <h1 className="font-semibold">{user?.name}</h1>
       </div>
-    </div>
+      <textarea
+        placeholder="Write a comment..."
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+        className="border p-2 w-full mb-4"
+      ></textarea>
+      <button type="submit" className="bg-blue-500 text-white p-2">
+        Add Comment
+      </button>
+    </form>
   );
 };
 
