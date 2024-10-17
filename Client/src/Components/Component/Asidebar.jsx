@@ -42,19 +42,12 @@ const Asidebar = () => {
           </Link>
           {/* Stories */}
           <Link
-            to="/stories"
+            to="/blogs"
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-              pathname === "/stories" && "bg-gray-200 text-gray-700"
+              pathname === "/blogs" && "bg-gray-200 text-gray-700"
             }`}>
-            {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-              />
-            </svg> */}
             <IoMdBook />
-            <span className="mx-2 text-sm font-medium">Stories</span>
+            <span className="mx-2 text-sm font-medium">Blogs</span>
           </Link>
           {/* About us */}
           <Link
