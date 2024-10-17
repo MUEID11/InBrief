@@ -9,6 +9,7 @@ const {
   getArticlesByEmail,
   deleteArticle,
   getArticlesByPreferences,
+  getMyVotesArticles,
 } = require("../controllers/ArticleControllers/article.controller");
 const { searchByCategory } = require("../controllers/searchController");
 const router = express.Router();
@@ -23,4 +24,6 @@ router.patch("/addLike", AddLike);
 router.get("/:id", getArticleById); // Get a specific article by ID
 router.get("/user/:email", getArticlesByEmail);
 router.delete("/:id", deleteArticle);
+router.get("/myVotedArticles/:email", getMyVotesArticles);
+
 module.exports = router;

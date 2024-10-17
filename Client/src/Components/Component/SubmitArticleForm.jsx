@@ -39,7 +39,7 @@ const ArticleForm = () => {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/articles`, updatedArticleData);
       console.log(response);
       toast.success('Article added successfully');
-      navigate('/dashboard/my-posts')
+      navigate('/dashboard/user/my-posts')
       setArticleData({
         title: '',
         description: '',

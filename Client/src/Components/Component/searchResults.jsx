@@ -48,7 +48,7 @@ const SearchResults = () => {
   }
   return (
     <div className="container mx-auto px-7 pt-3">
-      <h1 className='lg:text-4xl text-2xl font-semibold text-center py-4'>{category}</h1>
+      <h1 className='lg:text-2xl text-xl font-semibold text-left py-4'> Search result of "{category}"</h1>
       {results && results?.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
           {results.map((item) => (
