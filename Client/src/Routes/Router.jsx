@@ -90,9 +90,9 @@ const router = createBrowserRouter([
       {
         path: "submit-article",
         element: (
-          <ProtectedRoute>
+          // <ProtectedRoute>
             <SubmitArticleForm />
-          </ProtectedRoute>
+          // </ProtectedRoute>
         ),
       },
       {
@@ -106,9 +106,9 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: (
-          <ProtectedRoute>
+          // <ProtectedRoute>
             <Dashboard />
-          </ProtectedRoute>
+          // </ProtectedRoute>
         ),
       },
       {
