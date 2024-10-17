@@ -51,14 +51,16 @@ console.log(articles)
 
     return (
         <div className="flex items-center mb-4 ">
-        <div className="bg-gray-200 flex items-center px-4 py-2 rounded-l-lg">
-          <FaNewspaper className="text-red-600 text-xl" />
-          <span className="text-gray-900 font-bold ml-2">Headlines</span>
+        <div className=" flex items-center px-4 py-2 bg-red-700 ">
+          <FaNewspaper className="text-white text-xl" />
+          <span className="text-white font-bold ml-2">Headlines</span>
         </div>
   
         <div className="bg-white flex-1  rounded-r-lg ">
           <Marquee
           pauseOnHover={true}
+          speed={30}
+         
           className="text-gray-800 text-lg font-semibold">
             {articles.map((article, index) => (
               <Link
