@@ -22,6 +22,10 @@ import TopLatestNews from "../Components/sections/TopLatestNews";
 import NewsDetails from "../Pages/NewsDetails";
 import ForumDetails from "../Pages/ForumDetails";
 import Blogs from "../Pages/Blogs";
+import UserDashboard from "../Pages/UserDashbord/UserDashboard";
+import MyPosts from "../Pages/UserDashbord/MyPosts";
+import MyVotesArticle from "../Pages/UserDashbord/MyVotesArticle";
+import MyBookmarkes from "../Pages/UserDashbord/MyBookmarkes";
 import FeaturedBooks from "../Pages/FeaturedBooks";
 import BookDetails from "../Pages/BookDetails";
 
@@ -109,6 +113,38 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/dashboard/user",
+        element: (
+          // <ProtectedRoute>
+          <UserDashboard />
+          // </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/dashboard/user/my-posts",
+        element: (
+          <ProtectedRoute>
+            <MyPosts />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/dashboard/user/my-votedArticles",
+        element: (
+          <ProtectedRoute>
+            <MyVotesArticle />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/dashboard/user/my-bookmarks",
+        element: (
+          <ProtectedRoute>
+            <MyBookmarkes />
           </ProtectedRoute>
         ),
       },

@@ -177,6 +177,19 @@ const deleteArticle = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error', error });
   }
 };
+const getMyVotesArticles = async (req, res) => {
+  const userEmail = req.params?.email;
+  if (!userEmail) {
+    return res.status(400).json({ message: 'User Email parameter is required' });
+  }
+  
+  try {
+    const articles = await Article.find({ likes: { $in: [userEmail] } });
+    res.status(200).json({ success: true, count: articles.length, data: articles });
+  } catch (error) {
+    res.status(500).json({ success: false, error });
+  }
+};
 
 module.exports = {
   postArticle,
@@ -188,4 +201,5 @@ module.exports = {
   getArticlesByPreferences,
   getArticlesByEmail,
   deleteArticle,
+  getMyVotesArticles
 };

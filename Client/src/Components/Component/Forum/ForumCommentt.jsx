@@ -1,31 +1,28 @@
-import { useState } from "react";
-import { BiLike, BiSolidLike } from "react-icons/bi";
-import { FaRegCommentDots } from "react-icons/fa";
+import React, { useState } from "react";
 import { MdOutlineDelete } from "react-icons/md";
-import {
-  useAddLikeCommentMutation,
-  useAddReplyMutation,
-  useDeleteCommentMutation,
-} from "../../Features/Comment/commentsApi";
 import { useSelector } from "react-redux";
-import Reply from "./Reply";
+import {
+  useAddForumReplyMutation,
+  useDeleteForumCommentMutation,
+} from "../../../Features/ForumComment/ForumCommentApi";
+import { FaRegCommentDots } from "react-icons/fa";
+import ForumReply from "./ForumReply";
 
-const CommentComponent = ({ comment }) => {
-  const [showReplyForm, setShowReplyForm] = useState(false);
-  const [reply, setReply] = useState("");
+const ForumCommentt = ({ comment }) => {
   const { user } = useSelector((state) => state.user);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const canDeleteComment = comment?.userEmail === user?.email;
-  const [addReply] = useAddReplyMutation() || {};
-  const [addLikeComment] = useAddLikeCommentMutation() || {};
-  const [deleteComment] = useDeleteCommentMutation() || {};
-  const hasLiked = comment?.likes?.includes(user?.email);
+  const [deleteForumComment] = useDeleteForumCommentMutation() || {};
+  const [showReplyForm, setShowReplyForm] = useState(false);
+  const [reply, setReply] = useState("");
+  const [addForumReply] = useAddForumReplyMutation() || {};
+  //   console.log(comment._id);
 
   //   add reply to comment
   const submitReply = async (e) => {
     e.preventDefault();
     try {
-      const response = await addReply({
+      const response = await addForumReply({
         commentId: comment?._id,
         data: {
           commentId: comment?._id,
@@ -35,50 +32,33 @@ const CommentComponent = ({ comment }) => {
           reply,
         },
       });
-      console.log("Reply Added:", response);
+      //   console.log("Forum Reply Added:", response);
       setReply("");
       setShowReplyForm(false);
     } catch (error) {
-      console.error("Error adding reply:", error);
+      console.error("Error adding forum reply:", error);
     }
   };
-
-  //   like comment
-  const handleLike = async () => {
-    try {
-      const response = await addLikeComment({
-        commentId: comment._id,
-        data: {
-          commentId: comment._id,
-          userEmail: user?.email,
-        },
-      });
-      console.log("Like Added:", response);
-    } catch (error) {
-      console.error("Error adding like:", error);
-    }
-  };
-
-  //   deletee comment
 
   const handleDeleteComment = async () => {
     try {
-      const response = await deleteComment({
+      const response = await deleteForumComment({
         commentId: comment._id,
       });
       setShowDeleteModal(false);
-      console.log("Delete Comment:", response);
+      console.log("Delete forum Comment:", response);
     } catch (error) {
-      console.error("Error deleting comment:", error);
+      console.error("Error deleting forum comment:", error);
     }
   };
+
   const handleClickOutside = (e) => {
     if (e.target.closest(".modal-content")) return;
     setShowDeleteModal(false);
   };
 
   return (
-    <div className="relative">
+    <div>
       <div className="bg-white p-4 rounded shadow-sm flex items-start">
         <img
           src={comment?.userImage}
@@ -95,7 +75,7 @@ const CommentComponent = ({ comment }) => {
             </p>
             <p>{comment?.comment}</p>
             <div className="flex items-center pt-1">
-              <div className="flex items-center gap-1">
+              {/* <div className="flex items-center gap-1">
                 <button onClick={handleLike}>
                   {hasLiked ? (
                     <BiSolidLike className="text-xl text-blue-500" /> // Liked
@@ -104,9 +84,9 @@ const CommentComponent = ({ comment }) => {
                   )}
                 </button>
                 <p>{comment?.likes?.length}</p>
-              </div>
+              </div> */}
               <button
-                className="text-blue-500 text-sm ml-4 flex gap-1 items-center"
+                className="text-blue-500 text-sm  flex gap-1 items-center"
                 onClick={() => setShowReplyForm(!showReplyForm)}
               >
                 <FaRegCommentDots />
@@ -172,16 +152,15 @@ const CommentComponent = ({ comment }) => {
           </div>
         </div>
       )}
-
-      {/* Show All Replies */}
+      {/* reply display */}
       <div>
         {comment?.replies?.length >= 0 &&
           comment?.replies?.map((reply) => {
-            return <Reply key={reply?._id} reply={reply} />;
+            return <ForumReply key={reply?._id} reply={reply} />;
           })}
       </div>
     </div>
   );
 };
 
-export default CommentComponent;
+export default ForumCommentt;

@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { MdOutlineDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { useDeleteReplyMutation } from "../../Features/Comment/commentsApi";
 
 const Reply = ({ reply }) => {
   const { user } = useSelector((state) => state.user);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const canDeleteReply = reply?.userGmail === user?.email;
+  const canDeleteReply = reply?.userEmail === user?.email;
   const [deleteReply] = useDeleteReplyMutation() || {};
 
   const handleDeleteReply = async () => {
@@ -54,7 +54,7 @@ const Reply = ({ reply }) => {
                 onClick={() => setShowDeleteModal(!showDeleteModal)}
                 className="m-4"
               >
-                <BsThreeDotsVertical />
+                <MdOutlineDelete />
               </button>
             )}
           </div>
