@@ -5,7 +5,6 @@ import SignUp from "../Pages/Authentication/SignUp";
 import SignIn from "../Pages/Authentication/SignIn";
 import About from "../Pages/About";
 import ErrorPage from "../Pages/ErrorPage";
-import LatestNewsSection from "../Components/sections/LatestNewsSection";
 import BusinessNewsSection from "../Components/sections/BusinessNewsSection";
 import SportsNewsSection from "../Components/sections/SportsNewsSection";
 import Profile from "../Pages/Profile";
@@ -21,9 +20,8 @@ import MyFeed from "../Pages/MyFeed";
 import ForumPage from "../Pages/ForumPage";
 import TopLatestNews from "../Components/sections/TopLatestNews";
 import NewsDetails from "../Pages/NewsDetails";
-import CreateDiscussion from "../Components/Component/Forum/CreateDiscussionForm";
-import DiscussionList from "../Components/Component/Forum/DiscussionList";
 import ForumDetails from "../Pages/ForumDetails";
+import Blogs from "../Pages/Blogs";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +62,10 @@ const router = createBrowserRouter([
         element: <SportsNewsSection />,
       },
       {
+        path: "blogs",
+        element: <Blogs />,
+      },
+      {
         path: "forum",
         element: <ForumPage />,
       },
@@ -71,10 +73,7 @@ const router = createBrowserRouter([
         path: "forum/forum-details/:id",
         element: <ForumDetails />,
       },
-      // {
-      //   path: "discussion",
-      //   element: <DiscussionList />,
-      // },
+
       {
         path: "/search/:category",
         element: <SearchResults />,
