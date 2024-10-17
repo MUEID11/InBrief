@@ -1,51 +1,10 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
-// import Button from "../../components/ui/Button";
-// import { getStoredReadBooks, getStoredWishedBooks, storeReadBooks, storeWishedBooks } from "../../utils/localstorage";
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 
 const BookDetails = () => {
   const { bookId } = useParams();
   const books = useLoaderData();
   const book = books.find((book) => book.bookId === Number(bookId));
-  // const [books, setBooks] = useState([]);
-  // const [book, setBook] = useState([]);
   console.log("first", book);
-  // useEffect(() => {
-  //   axios
-  //     .get("books2.json")
-  //     .then((response) => console.log("first", response.data))
-  //     .catch((error) => console.error(error));
-  // }, []);
-  // console.log(books);
-  // useEffect(() => {
-  //   setBook(books?.find((book) => book.bookId === Number(bookId)));
-  // }, [books]);
-
-  // const readBtnHandler = () => {
-  //   const storedReadBooks = getStoredReadBooks();
-  //   if (storedReadBooks.includes(Number(bookId))) {
-  //     toast.error("You have already read this book");
-  //   } else {
-  //     storeReadBooks(Number(bookId));
-  //     toast.success("Book added to read list");
-  //   }
-  // };
-
-  // const wishBtnHandler = () => {
-  //   const storedReadBooks = getStoredReadBooks();
-  //   const storedWishedBooks = getStoredWishedBooks();
-  //   if (storedWishedBooks.includes(Number(bookId))) {
-  //     toast.error('Book is already in the wishlist');
-  //   } else if (storedReadBooks.includes(Number(bookId))) {
-  //     toast.error('You have already read this book');
-  //   } else {
-  //     storeWishedBooks(Number(bookId));
-  //     toast.success('Book added to wishlist');
-  //   }
-  // };
 
   return (
     <div className="flex items-start gap-6 px-3 container mx-auto pt-5">
