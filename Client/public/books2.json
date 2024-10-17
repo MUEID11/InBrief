@@ -10,9 +10,9 @@
     "category": "Nonfiction",
     "tags": ["war", "terrorism", "journalism"],
     "publisher": "Simon & Schuster",
-    "yearOfPublishing": 2024,
-    "url": "https://www.amazon.com/War-Bob-Woodward/dp/166805227X/ref=zg_d_sccl_2/138-2626837-4017123?psc=1"
+    "yearOfPublishing": 2024
   },
+
   {
     "bookId": 2,
     "bookName": "Sunrise on the Reaping",
@@ -24,8 +24,7 @@
     "category": "Nonfiction",
     "tags": ["Fiction", "Legal Drama"],
     "publisher": "Scholastic Press",
-    "yearOfPublishing": 2025,
-    "url": "https://www.amazon.com/Sunrise-Reaping-Hunger-Games-Novel/dp/1546171460/ref=zg_d_sccl_2/138-2626837-4017123?psc=1"
+    "yearOfPublishing": 2025
   },
   {
     "bookId": 3,
@@ -38,8 +37,7 @@
     "category": "Nonfiction",
     "tags": ["Fiction", "Political Satire"],
     "publisher": "Avery",
-    "yearOfPublishing": 2024,
-    "url": "https://www.amazon.com/Good-Energy-Surprising-Connection-Metabolism/dp/0593712641/ref=zg_d_sccl_2/138-2626837-4017123?psc=1"
+    "yearOfPublishing": 2024
   },
   {
     "bookId": 4,
@@ -52,8 +50,7 @@
     "category": "Nonfiction",
     "tags": ["Fiction", "Regency"],
     "publisher": "Random House",
-    "yearOfPublishing": 2024,
-    "url": "https://www.amazon.com/Here-Great-Lisa-Marie-Presley/dp/0593733878/ref=zg_d_sccl_2/138-2626837-4017123?psc=1"
+    "yearOfPublishing": 2024
   },
   {
     "bookId": 5,
@@ -66,21 +63,58 @@
     "category": "Nonfiction",
     "tags": ["Fiction", "Cultural"],
     "publisher": "Independently published",
-    "yearOfPublishing": 2019,
-    "url": "https://www.amazon.com/Dad-Want-Hear-Your-Story/dp/1070527718/ref=zg_d_sccl_2/138-2626837-4017123?psc=1"
+    "yearOfPublishing": 2019
   },
   {
     "bookId": 6,
-    "bookName": "Be Ready When the Luck Happens: A Memoir",
-    "author": "Ina Garten",
-    "image": "https://m.media-amazon.com/images/I/81g+Hs6XF5L._SY425_.jpg",
-    "review": "Here, for the first time, Ina Garten presents an intimate, entertaining, and inspiring account of her remarkable journey. Ina’s gift is to make everything look easy, yet all her accomplishments have been the result of hard work, audacious choices, and exquisite attention to detail. In her unmistakable voice (no one tells a story like Ina), she brings her past and her process to life in a high-spirited and no-holds-barred memoir that chronicles decades of personal challenges, adventures (and misadventures) and unexpected career twists, all delivered with her signature combination of playfulness and purpose.\n\nFrom a difficult childhood to meeting the love of her life, Jeffrey, and marrying him while still in college, from a boring bureaucratic job in Washington, D.C., to answering an ad for a specialty food store in the Hamptons, from the owner of one Barefoot Contessa shop to author of bestselling cookbooks and celebrated television host, Ina has blazed her own trail and, in the meantime, taught millions of people how to cook and entertain. Now, she invites them to come closer to experience her story in vivid detail and to share the important life lessons she learned along the way: do what you love because if you love it you’ll be really good at it, swing for the fences, and always Be Ready When the Luck Happens.",
-    "totalPages": 320,
+    "bookName": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "image": "https://i.ibb.co/DGNyd5d/book6.png",
+    "review": "An enchanting adventure filled with dwarves, elves, wizards, and a courageous hobbit on a quest to reclaim treasure from a dragon. J.R.R. Tolkien's The Hobbit is a beloved fantasy novel that transports readers to the magical world of Middle-earth. The story follows Bilbo Baggins, a hobbit who embarks on a grand adventure with a group of dwarves and the wizard Gandalf to reclaim the Lonely Mountain and its treasure from the fearsome dragon Smaug. Along the way, Bilbo encounters trolls, goblins, and other fantastical creatures, testing his courage and resourcefulness. With its richly imagined world and memorable characters, The Hobbit is a timeless classic that continues to captivate readers of all ages.",
+    "totalPages": 310,
+    "rating": 4.8,
+    "category": "Fantasy",
+    "tags": ["Fiction", "Adventure"],
+    "publisher": "George Allen & Unwin",
+    "yearOfPublishing": 1937
+  },
+  {
+    "bookId": 7,
+    "bookName": "The Lord of the Rings",
+    "author": "J.R.R. Tolkien",
+    "image": "https://i.ibb.co/j6t3MWW/book7.png",
+    "review": "A monumental epic fantasy trilogy chronicling the quest to destroy the One Ring and defeat the dark lord Sauron. J.R.R. Tolkien's The Lord of the Rings is a sprawling epic that transports readers to the enchanting world of Middle-earth. Comprising three volumes—The Fellowship of the Ring, The Two Towers, and The Return of the King—the trilogy follows the journey of Frodo Baggins, a humble hobbit tasked with destroying the One Ring, an artifact of immense power that threatens to plunge the world into darkness. Alongside Frodo are a diverse cast of characters, including elves, dwarves, wizards, and men, each playing a crucial role in the battle against the forces of evil. Filled with richly detailed landscapes, intricate mythology, and themes of friendship, courage, and sacrifice, The Lord of the Rings is a timeless masterpiece that continues to captivate readers worldwide.",
+    "totalPages": 1178,
+    "rating": 4.9,
+    "category": "Fantasy",
+    "tags": ["Fiction", "Adventure"],
+    "publisher": "George Allen & Unwin",
+    "yearOfPublishing": 1954
+  },
+  {
+    "bookId": 8,
+    "bookName": "Harry Potter and the Philosopher's Stone",
+    "author": "J.K. Rowling",
+    "image": "https://i.ibb.co/R3bd4ZL/book8.png",
+    "review": "The magical tale of a young wizard, Harry Potter, and his journey through the wizarding world. J.K. Rowling's Harry Potter and the Philosopher's Stone is the enchanting first installment in the beloved Harry Potter series. The story follows Harry Potter, an orphaned boy who discovers he is a wizard on his eleventh birthday and is invited to attend Hogwarts School of Witchcraft and Wizardry. As Harry navigates the challenges of school, he uncovers dark secrets about his past and confronts the evil wizard Voldemort, whose return threatens the wizarding world. Filled with whimsy, adventure, and memorable characters, Harry Potter and the Philosopher's Stone is a magical journey that captures the imagination of readers of all ages.",
+    "totalPages": 332,
     "rating": 4.7,
-    "category": "Nonfiction",
-    "tags": ["Fiction", "Cultural"],
-    "publisher": "Crown",
-    "yearOfPublishing": 2024,
-    "url": "https://www.amazon.com/Be-Ready-When-Luck-Happens/dp/0593799895/ref=zg_d_sccl_2/138-2626837-4017123?psc=1"
+    "category": "Fantasy",
+    "tags": ["Fiction", "Magic"],
+    "publisher": "Bloomsbury Publishing",
+    "yearOfPublishing": 1997
+  },
+  {
+    "bookId": 9,
+    "bookName": "The Da Vinci Code",
+    "author": "Dan Brown",
+    "image": "https://i.ibb.co/8jcgG66/book9.png",
+    "review": "A gripping mystery thriller unraveling secrets of the past and hidden codes in famous artworks. Dan Brown's The Da Vinci Code is a fast-paced thriller that takes readers on a thrilling journey through art, history, and conspiracy. When renowned symbologist Robert Langdon is called to investigate a murder at the Louvre Museum in Paris, he uncovers a trail of clues hidden in the works of Leonardo da Vinci. As Langdon and cryptologist Sophie Neveu follow the cryptic clues, they find themselves embroiled in a deadly race against time to uncover a secret that could shake the foundations of Christianity. Packed with twists, turns, and revelations, The Da Vinci Code is a gripping page-turner that will keep readers guessing until the very end.",
+    "totalPages": 454,
+    "rating": 4.3,
+    "category": "Mystery",
+    "tags": ["Fiction", "Conspiracy"],
+    "publisher": "Doubleday",
+    "yearOfPublishing": 2003
   }
 ]

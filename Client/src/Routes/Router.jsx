@@ -23,6 +23,7 @@ import NewsDetails from "../Pages/NewsDetails";
 import ForumDetails from "../Pages/ForumDetails";
 import Blogs from "../Pages/Blogs";
 import FeaturedBooks from "../Pages/FeaturedBooks";
+import BookDetails from "../Pages/BookDetails";
 
 const router = createBrowserRouter([
   {
@@ -130,6 +131,11 @@ const router = createBrowserRouter([
       {
         path: "featured-books",
         element: <FeaturedBooks />,
+      },
+      {
+        path: "books/:bookId",
+        element: <BookDetails />,
+        loader: () => fetch("/books.json"),
       },
     ],
   },
