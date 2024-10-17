@@ -71,8 +71,8 @@ const PreferenceModal = ({ modalOpen, setModalOpen, trigger }) => {
                 {tags.map((tag) => (
                   <button
                     key={tag}
-                    className={`px-4 py-2 rounded-full border border-gray-500 text-white transition 
-            ${selectedTags.includes(tag) ? 'bg-rose-500 border-rose-500 shadow-lg shadow-red-900' : 'bg-gray-800 hover:bg-gray-600'}`}
+                    className={`px-4 py-2 capitalize rounded-full border border-gray-500 text-white transition 
+            ${selectedTags.includes(tag) ? 'bg-rose-500 border-rose-500 shadow-lg shadow-red-900' : 'bg-gray-800 hover:bg-gray-600 '}`}
                     onClick={() => toggleTag(tag)}>
                     {tag}
                   </button>

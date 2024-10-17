@@ -19,9 +19,9 @@ const CommentSection = ({ discussionId }) => {
         userImage: user?.imageUrl,
         discussionId,
       };
-      //  jhari deyen na ami localhost thik kore dibonii
+      //  jhari deyen na ami localhost thik kore dibonii(pr er somy thik kore nisi)
       const response = await axios.post(
-        `http://localhost:5000/forum/${discussionId}/comments`,
+        `${import.meta.env.VITE_API_URL}/forum/${discussionId}/comments`,
         commentData
       );
       // forum comment alada vabe save hosche

@@ -59,7 +59,7 @@ const CreateDiscussion = ({ onCreate }) => {
     console.log("megh", obj);
 
     try {
-      const response = await axios.post("http://localhost:5000/forum", obj, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/forum`, obj, {
         headers: {
           "Content-Type": "application/json",
         },
