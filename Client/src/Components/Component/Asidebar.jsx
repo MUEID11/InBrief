@@ -6,6 +6,7 @@ import { MdOutlineForum, MdOutlineSpaceDashboard } from "react-icons/md";
 import { TbBookmarks } from "react-icons/tb";
 import { AiOutlineFileAdd } from "react-icons/ai";
 import { BsNewspaper } from "react-icons/bs";
+import { PiBooks } from "react-icons/pi";
 import Weather from "./Weather";
 
 const Asidebar = () => {
@@ -20,16 +21,8 @@ const Asidebar = () => {
             to="/"
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
               pathname === "/" && "bg-gray-200 text-gray-700"
-            }`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-5 h-5"
-            >
+            }`}>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -43,8 +36,7 @@ const Asidebar = () => {
             to={"/my-feed"}
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
               pathname === "/my-feed" && "bg-gray-200 text-gray-700"
-            }`}
-          >
+            }`}>
             <BsNewspaper />
             <span className="mx-2 text-sm font-medium">My Feed</span>
           </Link>
@@ -53,8 +45,7 @@ const Asidebar = () => {
             to="/blogs"
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
               pathname === "/blogs" && "bg-gray-200 text-gray-700"
-            }`}
-          >
+            }`}>
             <IoMdBook />
             <span className="mx-2 text-sm font-medium">Blogs</span>
           </Link>
@@ -63,8 +54,7 @@ const Asidebar = () => {
             to="/about"
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
               pathname === "/about" && "bg-gray-200 text-gray-700"
-            }`}
-          >
+            }`}>
             <SlPeople />
             <span className="mx-2 text-sm font-medium">About Us</span>
           </Link>
@@ -73,8 +63,7 @@ const Asidebar = () => {
             to="/contact"
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
               pathname === "/contact" && "bg-gray-200 text-gray-700"
-            }`}
-          >
+            }`}>
             <FiPhoneCall />
             <span className="mx-2 text-sm font-medium">Contact Us </span>
           </Link>
@@ -83,8 +72,7 @@ const Asidebar = () => {
             to="/dashboard"
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
               pathname === "/dashboard/my-posts" && "bg-gray-200 text-gray-700"
-            }`}
-          >
+            }`}>
             <MdOutlineSpaceDashboard />
             <span className="mx-2 text-sm font-medium">Dashboard</span>
           </Link>
@@ -92,8 +80,7 @@ const Asidebar = () => {
             to="/forum"
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
               pathname === "/forum" && "bg-gray-200 text-gray-700"
-            }`}
-          >
+            }`}>
             <MdOutlineForum />
             <span className="mx-2 text-sm font-medium">Forum</span>
           </Link>
@@ -101,8 +88,7 @@ const Asidebar = () => {
             to={"/bookmarks"}
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
               pathname === "/bookmarks" && "bg-gray-200 text-gray-700"
-            }`}
-          >
+            }`}>
             <TbBookmarks />
             <span className="mx-2 text-sm font-medium">Bookmarks</span>
           </Link>
@@ -110,10 +96,17 @@ const Asidebar = () => {
             to={"/submit-article"}
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
               pathname === "/submit-article" && "bg-gray-200 text-gray-700"
-            }`}
-          >
+            }`}>
             <AiOutlineFileAdd />
             <span className="mx-2 text-sm font-medium">Add Article</span>
+          </Link>
+          <Link
+            to={"/featured-books"}
+            className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
+              pathname === "/featured-books" && "bg-gray-200 text-gray-700"
+            }`}>
+            <PiBooks />
+            <span className="mx-2 text-sm font-medium">Featured Books</span>
           </Link>
         </nav>
 

@@ -26,6 +26,8 @@ import UserDashboard from "../Pages/UserDashbord/UserDashboard";
 import MyPosts from "../Pages/UserDashbord/MyPosts";
 import MyVotesArticle from "../Pages/UserDashbord/MyVotesArticle";
 import MyBookmarkes from "../Pages/UserDashbord/MyBookmarkes";
+import FeaturedBooks from "../Pages/FeaturedBooks";
+import BookDetails from "../Pages/BookDetails";
 
 const router = createBrowserRouter([
   {
@@ -161,6 +163,15 @@ const router = createBrowserRouter([
             <Profile />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "featured-books",
+        element: <FeaturedBooks />,
+      },
+      {
+        path: "books/:bookId",
+        element: <BookDetails />,
+        loader: () => fetch("/books.json"),
       },
     ],
   },
