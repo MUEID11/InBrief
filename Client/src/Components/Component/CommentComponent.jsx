@@ -77,6 +77,7 @@ const CommentComponent = ({ comment }) => {
     setShowDeleteModal(false);
   };
 
+
   return (
     <div className="relative">
       <div className="bg-white p-4 rounded shadow-sm flex items-start">

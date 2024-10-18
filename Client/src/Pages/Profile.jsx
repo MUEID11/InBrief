@@ -134,7 +134,7 @@ const Profile = () => {
         {/* About Section */}
         <div className="p-6 shadow-md rounded-sm bg-white">
           <div className="flex justify-between items-center mb-4">
-            <h4 className="text-lg font-semibold">About</h4>
+            <h4 className="text-lg font-semibold">User Information</h4>
             <TbEdit
               className="text-blue-500 cursor-pointer"
               onClick={() => handleToggleEdit("about")}
@@ -176,7 +176,7 @@ const Profile = () => {
         {/* Skills Section */}
         <div className="p-6 shadow-md rounded-sm bg-white">
           <div className="flex justify-between items-center mb-4">
-            <h4 className="text-lg font-semibold">Skills</h4>
+            <h4 className="text-lg font-semibold">Interest Area</h4>
             <TbEdit
               className="text-blue-500 cursor-pointer"
               onClick={() => handleToggleEdit("skills")}
