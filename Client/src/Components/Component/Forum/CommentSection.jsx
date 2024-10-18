@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useAddForumCommentMutation } from "../../../Features/ForumComment/ForumCommentApi";
 
 const CommentSection = ({ discussionId }) => {
   const [comment, setComment] = useState("");
   const { user } = useSelector((state) => state.user);
+  const [addForumComment] = useAddForumCommentMutation() || {};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,24 +16,18 @@ const CommentSection = ({ discussionId }) => {
     if (!comment) return;
 
     try {
-      const commentData = {
-        comment,
-        username: user?.name,
-        userImage: user?.imageUrl,
+      const response = await addForumComment({
         discussionId,
-      };
-      //  jhari deyen na ami localhost thik kore dibonii(pr er somy thik kore nisi)
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/forum/${discussionId}/comments`,
-        commentData
-      );
-      // forum comment alada vabe save hosche
-      console.log(response);
-      // onComment(response.data);
-      const data = await response.data;
-      console.log(data);
-
+        data: {
+          comment: comment,
+          username: user?.name,
+          userImage: user?.imageUrl,
+          userEmail: user?.email,
+        },
+      });
+      console.log('forum Comment Added:', response);
       setComment("");
+      e.target.reset();
     } catch (error) {
       console.error("Error adding comment", error);
     }
@@ -38,24 +35,25 @@ const CommentSection = ({ discussionId }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="p-4">
-        <div className="flex items-center mb-4">
+      <form onSubmit={handleSubmit} className="">
+        {/* <div className="flex items-center mb-4">
           <img
             src={user?.imageUrl}
             alt={user?.name}
             className="w-8 h-8 rounded-full mr-2"
           />
           <h1 className="font-semibold">{user?.name}</h1>
-        </div>
+        </div> */}
         <textarea
-          placeholder="Write a comment..."
-          value={comment}
           onChange={(e) => setComment(e.target.value)}
-          className="border p-2 w-full mb-4"
-        ></textarea>
-        <button type="submit" className="bg-blue-500 text-white p-2">
-          Add Comment
-        </button>
+          className="w-full mt-1 p-2 border border-gray-300 rounded-sm"
+                  rows="2"
+                  placeholder="Write a comment..."></textarea>
+                <div className="flex justify-end ">
+                  <button type="submit" className="mt-2 bg-red-500 text-white px-2 py-1 rounded-sm  ">
+                    Comment
+                  </button>
+                </div>
       </form>
       {/* <div>{data}</div> */}
     </div>

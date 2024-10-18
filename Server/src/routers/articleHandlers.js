@@ -11,6 +11,7 @@ const {
   deleteArticle,
   getArticlesByPreferences,
   updateStatus,
+  getMyVotesArticles,
 } = require("../controllers/ArticleControllers/article.controller");
 const { searchByCategory } = require("../controllers/searchController");
 
@@ -30,5 +31,7 @@ router.patch("/updateStatus/:id", updateStatus); // Add the new updateStatus rou
 router.get("/:id", getArticleById); // Get a specific article by ID
 router.get("/user/:email", getArticlesByEmail);
 router.delete("/:id", deleteArticle);
+
+router.get("/myVotedArticles/:email", getMyVotesArticles);
 
 module.exports = router;

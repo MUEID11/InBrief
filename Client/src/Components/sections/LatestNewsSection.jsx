@@ -57,6 +57,7 @@ const LatestNewsSection = () => {
       </div>
     );
   }
+  console.log(articles)
 
   return (
     <div className="container mx-auto m-2">

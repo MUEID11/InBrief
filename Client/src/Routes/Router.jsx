@@ -5,7 +5,6 @@ import SignUp from "../Pages/Authentication/SignUp";
 import SignIn from "../Pages/Authentication/SignIn";
 import About from "../Pages/About";
 import ErrorPage from "../Pages/ErrorPage";
-import LatestNewsSection from "../Components/sections/LatestNewsSection";
 import BusinessNewsSection from "../Components/sections/BusinessNewsSection";
 import SportsNewsSection from "../Components/sections/SportsNewsSection";
 import Profile from "../Pages/Profile";
@@ -21,9 +20,14 @@ import MyFeed from "../Pages/MyFeed";
 import ForumPage from "../Pages/ForumPage";
 import TopLatestNews from "../Components/sections/TopLatestNews";
 import NewsDetails from "../Pages/NewsDetails";
-import CreateDiscussion from "../Components/Component/Forum/CreateDiscussionForm";
-import DiscussionList from "../Components/Component/Forum/DiscussionList";
 import ForumDetails from "../Pages/ForumDetails";
+import Blogs from "../Pages/Blogs";
+import UserDashboard from "../Pages/UserDashbord/UserDashboard";
+import MyPosts from "../Pages/UserDashbord/MyPosts";
+import MyVotesArticle from "../Pages/UserDashbord/MyVotesArticle";
+import MyBookmarkes from "../Pages/UserDashbord/MyBookmarkes";
+import FeaturedBooks from "../Pages/FeaturedBooks";
+import BookDetails from "../Pages/BookDetails";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +68,10 @@ const router = createBrowserRouter([
         element: <SportsNewsSection />,
       },
       {
+        path: "blogs",
+        element: <Blogs />,
+      },
+      {
         path: "forum",
         element: <ForumPage />,
       },
@@ -71,10 +79,7 @@ const router = createBrowserRouter([
         path: "forum/forum-details/:id",
         element: <ForumDetails />,
       },
-      // {
-      //   path: "discussion",
-      //   element: <DiscussionList />,
-      // },
+
       {
         path: "/search/:category",
         element: <SearchResults />,
@@ -90,9 +95,9 @@ const router = createBrowserRouter([
       {
         path: "submit-article",
         element: (
-          // <ProtectedRoute>
+          <ProtectedRoute>
             <SubmitArticleForm />
-          // </ProtectedRoute>
+           </ProtectedRoute>
         ),
       },
       {
@@ -106,9 +111,41 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: (
-          // <ProtectedRoute>
+          <ProtectedRoute>
             <Dashboard />
-          // </ProtectedRoute>
+           </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/dashboard/user",
+        element: (
+          <ProtectedRoute>
+          <UserDashboard />
+           </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/dashboard/user/my-posts",
+        element: (
+          <ProtectedRoute>
+            <MyPosts />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/dashboard/user/my-votedArticles",
+        element: (
+          <ProtectedRoute>
+            <MyVotesArticle />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/dashboard/user/my-bookmarks",
+        element: (
+          <ProtectedRoute>
+            <MyBookmarkes />
+          </ProtectedRoute>
         ),
       },
       {
@@ -126,6 +163,15 @@ const router = createBrowserRouter([
             <Profile />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "featured-books",
+        element: <FeaturedBooks />,
+      },
+      {
+        path: "books/:bookId",
+        element: <BookDetails />,
+        loader: () => fetch("/books.json"),
       },
     ],
   },

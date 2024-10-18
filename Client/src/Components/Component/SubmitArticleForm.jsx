@@ -40,7 +40,7 @@ const ArticleForm = () => {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/articles`, updatedArticleData);
       if (response.status === 201) {
         toast.success('Article submitted for approval');
-        navigate('/dashboard/my-posts');
+        navigate('/dashboard/user/my-posts');
         // Clear the form after submission
         setArticleData({
           title: '',
@@ -129,7 +129,7 @@ const ArticleForm = () => {
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
               focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
-            placeholder="Enter source"
+            placeholder="Enter source name"
           />
         </div>
 
@@ -146,7 +146,7 @@ const ArticleForm = () => {
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
               focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
-            placeholder="Enter URL"
+            placeholder="Enter source URL"
           />
         </div>
 
@@ -163,7 +163,7 @@ const ArticleForm = () => {
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
               focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
-            placeholder="Enter category"
+            placeholder="Enter article category"
           />
         </div>
 
@@ -180,7 +180,7 @@ const ArticleForm = () => {
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
               focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
-            placeholder="Enter region"
+            placeholder="Enter article region"
           />
         </div>
 

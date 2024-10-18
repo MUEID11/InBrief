@@ -9,30 +9,30 @@ import {
   RedditShareButton,
   RedditIcon,
   RedditShareCount,
-} from 'react-share';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import { useAddCommentMutation, useGetCommentQuery } from '../Features/Comment/commentsApi';
-import { useSelector } from 'react-redux';
+} from "react-share";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useAddCommentMutation, useGetCommentQuery } from "../Features/Comment/commentsApi";
+import { useSelector } from "react-redux";
 
-import { LuArrowBigUpDash } from 'react-icons/lu';
-import CommentComponent from '../Components/Component/CommentComponent';
+import { LuArrowBigUpDash } from "react-icons/lu";
+import CommentComponent from "../Components/Component/CommentComponent";
 
 const NewsDetails = () => {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
   const [error, setError] = useState(null);
   const { user } = useSelector((state) => state.user);
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
   useEffect(() => {
     const fetchArticleDetails = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/articles/${id}`);
         setArticle(response.data);
       } catch (err) {
-        setError('Error fetching article details');
-        console.error('Error fetching article:', err);
+        setError("Error fetching article details");
+        console.error("Error fetching article:", err);
       }
     };
 
@@ -41,6 +41,7 @@ const NewsDetails = () => {
   }, [id]);
 
   let { data: comments, isLoading: commentLoading, isError: commentError } = useGetCommentQuery(id) || {};
+  console.log(comments)
 
   // add comment
   const [addComment] = useAddCommentMutation() || {};
@@ -54,14 +55,14 @@ const NewsDetails = () => {
           comment: comment,
           username: user?.name,
           userImage: user?.imageUrl,
-          userGmail: user?.email,
+          userEmail: user?.email,
         },
       });
-      console.log('Comment Added:', response);
+      // console.log('Comment Added:', response);
       setComment('');
       e.target.reset();
     } catch (error) {
-      console.error('Error adding comment:', error);
+      console.error("Error adding comment:", error);
     }
   };
 
@@ -92,7 +93,7 @@ const NewsDetails = () => {
             <div className="bg-white shadow-lg rounded-sm p-6">
               <img className=" w-full h-96 object-cover mb-6" src={article?.image} alt={article?.title} />
               <h2 className="text-2xl font-bold text-gray-800 mb-4">{article?.title}</h2>
-              <p className="text-base text-gray-600 mb-6">{article?.description.slice(0, 250)} ....</p>
+              <p className="text-base text-gray-600 mb-6 whitespace-pre-wrap">{article?.description.slice(0, 250)} ....</p>
               <a href={article?.url} target="_blank" rel="noopener noreferrer" className="text-center text-blue-600 text-bold  hover:underline hover:transition-transform ">
                 Read full article
               </a>
@@ -157,7 +158,7 @@ const NewsDetails = () => {
                       <button
                         // onClick={() => handleLike(article._id)}
                         className="">
-                        <LuArrowBigUpDash className={' text-2xl text-green-500 bg-green-100 rounded-full'} />
+                        <LuArrowBigUpDash className={" text-2xl text-green-500 bg-green-100 rounded-full"} />
                       </button>
                       <span className="font-semibold text-green-500 px-1"> Votes: </span>
                       {article?.likes?.length}
@@ -217,8 +218,8 @@ const NewsDetails = () => {
               className="relative bg-cover bg-no-repeat bg-center shadow-lg rounded-lg p-6 mb-8"
               style={{
                 backgroundImage: "url('https://media.giphy.com/media/xT9IgDEI1iZyb2wqo8/giphy.gif')",
-                backgroundBlendMode: 'overlay',
-                filter: 'brightness(0.7) contrast(1.2)',
+                backgroundBlendMode: "overlay",
+                filter: "brightness(0.7) contrast(1.2)",
               }}>
               <h3 className="text-2xl font-bold text-slate-500 mb-4">Weather Forecast</h3>
 
