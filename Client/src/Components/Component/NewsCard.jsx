@@ -116,7 +116,7 @@ const NewsCard = ({ article }) => {
           {/* Date, Category, Region */}
           <div className="flex justify-between items-center mb-2 mt-1">
             <div className="flex gap-3 items-center">
-              <p className="text-black-primary font-semibold">{article?.region}</p>
+              <p className="text-black-primary text-sm font-semibold">{article?.region}</p>
               <span className="text-xs text-neutral-600">{new Date(article.createdAt).toLocaleDateString()}</span>
             </div>
             <p className="text-blue-500 font-semibold bg-blue-100 py-1 px-3 rounded-sm text-xs capitalize">{article?.category ? article?.category : 'Category'}</p>

@@ -12,6 +12,7 @@ const articleSchema = mongoose.Schema(
     postedBy: { type: String, required: true },
     likes: { type: [String], required: true },
     bookmarks: { type: [String], required: true },
+    status: { type: String , default: 'pending', enum: ['pending', 'approved', 'rejected'] },
   },
   { timestamps: true, versionKey: false }
 );

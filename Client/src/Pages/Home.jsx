@@ -35,7 +35,7 @@ const Home = () => {
         {/* topcreators */}
         <TopCreators />
         {/* newslatter subscription */}
-        <Newsletter />
+        {/* <Newsletter /> */}
         {/* Faq */}
         <Faq />
       </div>
