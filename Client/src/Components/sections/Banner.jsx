@@ -1,9 +1,11 @@
+import Headline from "./Headline";
+
 const Banner = () => {
   return (
     <section className="container w-full mx-auto md:mb-8 my-6">
       <div className="px-2 sm:px-0">
         <div
-          className="w-full mx-auto p-2 sm:p-12 border bg-repeat bg-cover sm:mb-8 mb-4 border-red-600 border-b-4 border-l-4 flex flex-col transition-all duration-200 ease-in-out hover:border-slate-600 rounded-sm"
+          className="w-full mx-auto p-2 sm:p-12 border bg-repeat bg-cover sm:mb-8 mb-4 border-b-4 border-l-4 flex flex-col transition-all duration-200 ease-in-out hover:border-slate-600 rounded-sm"
           // style={{
           //   backgroundImage: "url(https://i.ibb.co.com/hH3Gj9n/preview.jpg)",
           // }}
@@ -21,6 +23,9 @@ const Banner = () => {
           </div>
         </div>
       </div>
+<div>
+  <Headline></Headline>
+</div>
 
       {/* Banner */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-sm:mt-5 m-2 sm:m-0">

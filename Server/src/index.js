@@ -8,14 +8,17 @@ const dbConnection = require('./config/db');
 const userHandlers = require('./routers/userHandlers');
 const searchRoutes = require('./routers/search');
 const articleHandlers = require('./routers/articleHandlers');
-const CommentRoute =require('./routers/CommentRoute')
-const forumRouters = require('./routers/forumRouters');
+const CommentRoute = require('./routers/CommentRoute');
+const discussionRouter = require('./routers/ForumRouters/discussionRouter');
+const commentRouters = require('./routers/ForumRouters/commentRouter');
 
 const app = express();
 
+// app.use('/uploads', express.static('uploads')); // Serve uploaded images
+
 const rateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+  max: 1500, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
   message: '  Too many requests from this IP .  Please try again later',
 });
 
@@ -23,10 +26,12 @@ app.use(rateLimiter);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-  origin: ['http://localhost:5173', 'https://inbrief-3d9ce.web.app'], // Allow your frontend domain
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],     // Allow necessary methods                                             // Allow cookies and credentials
-}));
+app.use(
+  cors({
+    origin: ['http://localhost:5173', 'https://inbrief-3d9ce.web.app'], // Allow your frontend domain
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'], // Allow necessary methods                                             // Allow cookies and credentials
+  })
+);
 
 //USERS ROUTE
 app.use('/users', userHandlers);
@@ -34,8 +39,11 @@ app.use('/users', userHandlers);
 app.use('/articles', articleHandlers);
 //USERS ROUTE
 app.use('/users', userHandlers);
-// FORUM ROUTE
-app.use('/forum', forumRouters);
+// FORUM ROUTE (discussion route)
+app.use('/forum', discussionRouter);
+// FORUM ROUTE (comment route)
+app.use('/forum', commentRouters);
+
 // Comment ROUTES
 app.use('/comments', CommentRoute);
 

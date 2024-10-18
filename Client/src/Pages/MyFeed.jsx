@@ -25,7 +25,7 @@ const MyFeed = () => {
       <button
         ref={trigger}
         onClick={() => setModalOpen(true)}
-        className={`flex items-center px-3 py-2 bg-red-200 text-red-800 rounded-lg hover:shadow-lg transition-all duration-300 shadow-red-200`}>
+        className={`flex items-center px-3 py-2 border-red-700 border  text-red-700 rounded-lg hover:shadow-lg transition-all duration-300`}>
         <MdOutlineDashboardCustomize />
         <span className="mx-2 text-sm font-medium">Customize Feed</span>
       </button>

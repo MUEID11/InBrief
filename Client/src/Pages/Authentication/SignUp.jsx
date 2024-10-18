@@ -115,7 +115,7 @@ const SignUp = () => {
               <img className="w-auto h-7 sm:h-8" src={whitelogo} alt="Logo" />
             </div>
             <div className="mt-3">
-              <p className="text-4xl text-center text-gray-800">Welcome!</p>
+              <p className="text-4xl text-center text-black font-semibold">Welcome!</p>
             </div>
           </div>
         </div>
@@ -225,7 +225,7 @@ const SignUp = () => {
                 I agree to all the statements in
                 <a href="#" className="text-blue-500 hover:underline">
                   Terms of service
-                </a>
+                </a>s
               </label>
             </div>
 

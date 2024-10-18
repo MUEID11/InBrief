@@ -10,7 +10,7 @@ const BusinessNewsSection = ({ isHomeSection = false }) => {
   const [width, setWidth] = useState(window.innerWidth);
   let url;
   if (isHomeSection) {
-    if (width <= 1536 && width >= 1280) {
+    if (width < 1536 && width >= 1280) {
       url = `${import.meta.env.VITE_API_URL}/articles?category=business&limit=3`;
     } else if (width >= 1024 && width <= 1280) {
       url = `${import.meta.env.VITE_API_URL}/articles?category=business&limit=2`;
@@ -60,7 +60,7 @@ const BusinessNewsSection = ({ isHomeSection = false }) => {
 
   return (
     <div className="m-2 container mx-auto">
-      <NewsSection title="Business" articles={articles} link="/business" />
+      <NewsSection isHomeSection={isHomeSection} title="Business" articles={articles} link="/business" />
     </div>
   );
 };
