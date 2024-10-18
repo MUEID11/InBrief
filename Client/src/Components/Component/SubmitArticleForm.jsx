@@ -27,31 +27,36 @@ const ArticleForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    articleData.category = articleData.category.toLowerCase();
-    console.log(articleData);
     e.preventDefault();
+    articleData.category = articleData.category.toLowerCase();
+
     try {
       const updatedArticleData = {
         ...articleData,
         postedBy: user?.email,
+        status: 'pending', // Set the initial status to 'pending'
       };
 
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/articles`, updatedArticleData);
-      console.log(response);
-      toast.success('Article added successfully');
-      navigate('/dashboard/my-posts')
-      setArticleData({
-        title: '',
-        description: '',
-        image: '',
-        url: '',
-        source: '',
-        category: '',
-        region: '',
-      });
+      if (response.status === 201) {
+        toast.success('Article submitted for approval');
+        navigate('/dashboard/user/my-posts');
+        // Clear the form after submission
+        setArticleData({
+          title: '',
+          description: '',
+          image: '',
+          url: '',
+          source: '',
+          category: '',
+          region: '',
+        });
+      } else {
+        toast.error('Failed to submit the article');
+      }
     } catch (error) {
       console.error('Error creating article:', error);
-      toast.error(error.message);
+      toast.error('Error creating article');
     }
   };
 
@@ -124,7 +129,7 @@ const ArticleForm = () => {
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
               focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
-            placeholder="Enter source"
+            placeholder="Enter source name"
           />
         </div>
 
@@ -141,7 +146,7 @@ const ArticleForm = () => {
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
               focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
-            placeholder="Enter URL"
+            placeholder="Enter source URL"
           />
         </div>
 
@@ -158,7 +163,7 @@ const ArticleForm = () => {
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
               focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
-            placeholder="Enter category"
+            placeholder="Enter article category"
           />
         </div>
 
@@ -175,7 +180,7 @@ const ArticleForm = () => {
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
               focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
-            placeholder="Enter region"
+            placeholder="Enter article region"
           />
         </div>
 

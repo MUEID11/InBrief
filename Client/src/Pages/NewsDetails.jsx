@@ -41,6 +41,7 @@ const NewsDetails = () => {
   }, [id]);
 
   let { data: comments, isLoading: commentLoading, isError: commentError } = useGetCommentQuery(id) || {};
+  console.log(comments)
 
   // add comment
   const [addComment] = useAddCommentMutation() || {};
@@ -54,11 +55,11 @@ const NewsDetails = () => {
           comment: comment,
           username: user?.name,
           userImage: user?.imageUrl,
-          userGmail: user?.email,
+          userEmail: user?.email,
         },
       });
-      console.log("Comment Added:", response);
-      setComment("");
+      // console.log('Comment Added:', response);
+      setComment('');
       e.target.reset();
     } catch (error) {
       console.error("Error adding comment:", error);

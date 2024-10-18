@@ -26,6 +26,7 @@ const JoinDiscussion = ({ discussion }) => {
     <div className="join-discussion">
       <h2>{discussion.title}</h2>
       <p>{discussion.description}</p>
+hghfffffff
 
       {/* Comments Section */}
       <CommentSection comments={discussion.comments} />
