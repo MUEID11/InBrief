@@ -27,31 +27,36 @@ const ArticleForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    articleData.category = articleData.category.toLowerCase();
-    console.log(articleData);
     e.preventDefault();
+    articleData.category = articleData.category.toLowerCase();
+
     try {
       const updatedArticleData = {
         ...articleData,
         postedBy: user?.email,
+        status: 'pending', // Set the initial status to 'pending'
       };
 
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/articles`, updatedArticleData);
-      console.log(response);
-      toast.success('Article added successfully');
-      navigate('/dashboard/user/my-posts')
-      setArticleData({
-        title: '',
-        description: '',
-        image: '',
-        url: '',
-        source: '',
-        category: '',
-        region: '',
-      });
+      if (response.status === 201) {
+        toast.success('Article submitted for approval');
+        navigate('/dashboard/user/my-posts');
+        // Clear the form after submission
+        setArticleData({
+          title: '',
+          description: '',
+          image: '',
+          url: '',
+          source: '',
+          category: '',
+          region: '',
+        });
+      } else {
+        toast.error('Failed to submit the article');
+      }
     } catch (error) {
       console.error('Error creating article:', error);
-      toast.error(error.message);
+      toast.error('Error creating article');
     }
   };
 

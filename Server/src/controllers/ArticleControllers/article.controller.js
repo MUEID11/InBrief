@@ -1,15 +1,56 @@
 const Article = require('../../models/articleModel');
 const userModel = require('../../models/userModel');
 
+// const postArticle = async (req, res) => {
+//   const newArticle = new Article(req.body);
+//   try {
+//     const result = await newArticle.save();
+//     res.status(201).json({ success: true, message: 'Todo inserted successfully', result });
+//   } catch (error) {
+//     res.status(500).json(error);
+//   }
+// };
 const postArticle = async (req, res) => {
-  const newArticle = new Article(req.body);
+  const newArticle = new Article({
+    ...req.body,
+    status: 'pending', // Set the initial status to 'pending'
+  });
   try {
     const result = await newArticle.save();
-    res.status(201).json({ success: true, message: 'Todo inserted successfully', result });
+    res.status(201).json({ success: true, message: 'Article submitted for approval', result });
   } catch (error) {
     res.status(500).json(error);
   }
 };
+
+                                     //this function for updating the status
+const updateStatus = async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  try {
+    const article = await Article.findByIdAndUpdate(id, { status }, { new: true });
+    if (!article) {
+      return res.status(404).json({ message: 'Article not found' });
+    }
+    res.status(200).json({ success: true, message: 'Article status updated', article });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal Server Error', error });
+  }
+};
+// const updateStatus = async (req, res) => {
+//   const { id } = req.params;
+//   const { status } = req.body;
+//   console.log(`Updating article ${id} with status: ${status}`); // Log the received values
+  
+//   try {
+//     const article = await Article.findByIdAndUpdate(id, { status: [status] }, { new: true });
+//     // ... rest of the code
+//   } catch (error) {
+//     console.error("Error in updateStatus:", error); // Log the error
+//     res.status(500).json({ message: 'Internal Server Error', error });
+//   }
+// };
+
 
 const getArticles = async (req, res) => {
   const category = req.query?.category;
@@ -201,5 +242,6 @@ module.exports = {
   getArticlesByPreferences,
   getArticlesByEmail,
   deleteArticle,
+  updateStatus,
   getMyVotesArticles
 };

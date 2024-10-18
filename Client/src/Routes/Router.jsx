@@ -97,7 +97,7 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <SubmitArticleForm />
-          </ProtectedRoute>
+           </ProtectedRoute>
         ),
       },
       {
@@ -113,15 +113,15 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Dashboard />
-          </ProtectedRoute>
+           </ProtectedRoute>
         ),
       },
       {
         path: "/dashboard/user",
         element: (
-          // <ProtectedRoute>
+          <ProtectedRoute>
           <UserDashboard />
-          // </ProtectedRoute>
+           </ProtectedRoute>
         ),
       },
       {

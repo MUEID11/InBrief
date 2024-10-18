@@ -4,41 +4,19 @@ import { Pie, Line, Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import "tailwindcss/tailwind.css";
 import { FaNewspaper, FaEye, FaList } from "react-icons/fa";
-import { FaFirefoxBrowser, FaChrome, FaSafari } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify"; // Import Toastify
+import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
 
 const Dashboard = () => {
+  const [articles, setArticles] = useState([]);
   const [articlesCount, setArticlesCount] = useState(0);
   const [totalViews, setTotalViews] = useState(0);
   const [categoryCount, setCategoryCount] = useState(0);
   const [categoryDistribution, setCategoryDistribution] = useState([]);
   const [viewsData, setViewsData] = useState([]);
-  const [browserUsage, setBrowserUsage] = useState([
-    {
-      name: "Chrome",
-      percentage: 65,
-      color: "bg-gradient-to-r from-green-400 to-blue-500",
-    },
-    {
-      name: "Firefox",
-      percentage: 20,
-      color: "bg-gradient-to-r from-orange-400 to-red-500",
-    },
-    {
-      name: "Safari",
-      percentage: 10,
-      color: "bg-gradient-to-r from-blue-400 to-purple-500",
-    },
-    {
-      name: "Others",
-      percentage: 5,
-      color: "bg-gradient-to-r from-gray-400 to-gray-600",
-    },
-  ]);
-  const [browserState, setBrowserState] = useState({
-    currentURL: window.location.href,
-    userAgent: navigator.userAgent,
-    onlineStatus: navigator.onLine ? "Online" : "Offline",
-  });
+  const [modalVisible, setModalVisible] = useState(false);
+  const [pendingArticleId, setPendingArticleId] = useState(null); // Store the article ID for actions
+  const [actionType, setActionType] = useState(""); // Store the action type (approve/reject)
 
   const fetchArticlesData = async () => {
     try {
@@ -46,13 +24,14 @@ const Dashboard = () => {
         `${import.meta.env.VITE_API_URL}/articles`
       );
       if (response.status === 200) {
-        const articles = response.data.data;
-        setArticlesCount(articles.length);
+        const articlesData = response.data.data;
+        setArticles(articlesData);
+        setArticlesCount(articlesData.length);
 
         let totalViewsCount = 0;
         const uniqueCategories = new Set();
 
-        articles.forEach((article) => {
+        articlesData.forEach((article) => {
           const category = article.category;
           if (category) {
             uniqueCategories.add(category);
@@ -64,7 +43,7 @@ const Dashboard = () => {
         setCategoryCount(uniqueCategories.size);
 
         const categoryCountMap = {};
-        articles.forEach((article) => {
+        articlesData.forEach((article) => {
           const category = article.category;
           if (category) {
             categoryCountMap[category] = (categoryCountMap[category] || 0) + 1;
@@ -77,7 +56,7 @@ const Dashboard = () => {
         }));
         setCategoryDistribution(distribution);
 
-        const views = articles.map((article, index) => ({
+        const views = articlesData.map((article, index) => ({
           day: `Day ${index + 1}`,
           views: article.views || 0,
         }));
@@ -87,6 +66,48 @@ const Dashboard = () => {
       }
     } catch (error) {
       console.error("Error fetching articles:", error);
+    }
+  };
+
+  const handleApproveArticle = async () => {
+    try {
+      const response = await axios.patch(
+        `${import.meta.env.VITE_API_URL}/articles/updateStatus/${pendingArticleId}`,
+        { status: "approved" }
+      );
+      if (response.status === 200) {
+        toast.success("Article approved successfully!"); // Use toast for success message
+        fetchArticlesData(); // Refresh articles data after approval
+      } else {
+        console.error("Failed to approve article");
+      }
+    } catch (error) {
+      console.error("Error approving article:", error);
+      toast.error("Failed to approve article."); // Use toast for error message
+    } finally {
+      setModalVisible(false); // Close modal after action
+      setPendingArticleId(null); // Reset pendingArticleId
+    }
+  };
+
+  const handleRejectArticle = async () => {
+    try {
+      const response = await axios.patch(
+        `${import.meta.env.VITE_API_URL}/articles/updateStatus/${pendingArticleId}`,
+        { status: "rejected" }
+      );
+      if (response.status === 200) {
+        toast.success("Article rejected successfully!"); // Use toast for success message
+        fetchArticlesData(); // Refresh articles data after rejection
+      } else {
+        console.error("Failed to reject article");
+      }
+    } catch (error) {
+      console.error("Error rejecting article:", error);
+      toast.error("Failed to reject article."); // Use toast for error message
+    } finally {
+      setModalVisible(false); // Close modal after action
+      setPendingArticleId(null); // Reset pendingArticleId
     }
   };
 
@@ -145,6 +166,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-slate-100 via-slate-200 to-slate-200">
+      <ToastContainer /> {/* Add ToastContainer here */}
       <header className="p-4">
         <div className="text-2xl text-black font-bold">Admin Dashboard</div>
       </header>
@@ -182,70 +204,112 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="bg-gradient-to-r from-slate-500 to-slate-200 text-white text-xl font-semibold mb-4 p-2 rounded-lg">
-              News Categories Distribution
-            </h2>
+        <div className="grid grid-cols-3 gap-4">
+          <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-4 shadow-md">
+            <h3 className="text-lg font-semibold">Category Distribution</h3>
             <Pie data={pieData} />
           </div>
 
-          <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-            <h2 className="bg-gradient-to-r from-slate-300 to-slate-500 text-white text-xl font-semibold mb-4 p-2 rounded-lg">
-              Views Over Time
-            </h2>
+          <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-4 shadow-md">
+            <h3 className="text-lg font-semibold">Views per Day</h3>
             <Line data={lineData} />
           </div>
 
-          <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-            <h2 className="bg-gradient-to-r from-slate-300 to-slate-500 text-white text-xl font-semibold mb-4 p-2 rounded-lg">
-              Articles Count by Category
-            </h2>
+          <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-4 shadow-md">
+            <h3 className="text-lg font-semibold">Articles Count per Category</h3>
             <Bar data={barData} />
           </div>
         </div>
 
-        {/* Browser Usage Section */}
-        <div className="mt-6 bg-gradient-to-r from-slate-300 to-slate-50 p-6 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">
-            Browser Usage Statistics
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {browserUsage.map((browser, index) => (
-              <div
-                key={index}
-                className={`p-4 rounded-lg shadow-md ${browser.color}`}
-              >
-                <div className="flex items-center">
-                  {browser.name === "Chrome" && (
-                    <FaChrome className="text-3xl mr-2" />
+        <h3 className="text-xl font-semibold mt-8 mb-4">Pending Articles</h3>
+        <table className="min-w-full bg-white border border-gray-200">
+          <thead>
+            <tr className="bg-red-50 ">
+              <th className="py-2 px-4 border">Title</th>
+              <th className="py-2 px-4 border">Status</th>
+              <th className="py-2 px-4 border">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {articles.map((article) => (
+              <tr key={article._id}>
+                <td className="py-2 px-4 border">{article.title}</td>
+                <td className="py-2 px-4 border">{article.status}</td>
+                <td className="py-2 px-4 border">
+                  {article.status === "pending" ? (
+                // Inside the <td> for actions
+<td className="py-2 px-4 border">
+  {article.status === "pending" ? (
+    <>
+      <button
+        onClick={() => {
+          setPendingArticleId(article._id);
+          setActionType("approve");
+          setModalVisible(true);
+        }}
+        className="bg-gradient-to-r from-green-600 to-green-800 text-white px-4 py-2 rounded mr-2 transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        Approve
+      </button>
+      <button
+        onClick={() => {
+          setPendingArticleId(article._id);
+          setActionType("reject");
+          setModalVisible(true);
+        }}
+        className="bg-gradient-to-r from-red-600 to-red-900 text-white px-4 py-2 rounded transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        Reject
+      </button>
+    </>
+  ) : (
+    <span className="text-gray-500">N/A</span>
+  )}
+</td>
+
+                  ) : (
+                    <span className="text-gray-500">N/A</span> // Show N/A for actions if not pending
                   )}
-                  {browser.name === "Firefox" && (
-                    <FaFirefoxBrowser className="text-3xl mr-2" />
-                  )}
-                  {browser.name === "Safari" && (
-                    <FaSafari className="text-3xl mr-2" />
-                  )}
-                  {browser.name === "Others" && (
-                    <FaList className="text-3xl mr-2" />
-                  )}
-                  <div>
-                    <p className="text-lg font-semibold">{browser.name}</p>
-                    <p className="text-md">{browser.percentage}% usage</p>
-                  </div>
-                </div>
-              </div>
+                </td>
+              </tr>
             ))}
+          </tbody>
+        </table>
+      </main>
+
+      {modalVisible && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded shadow-md">
+            <h2 className="text-lg font-semibold mb-4">
+              {actionType === "approve"
+                ? "Confirm Approval"
+                : "Confirm Rejection"}
+            </h2>
+            <p>
+              Are you sure you want to{" "}
+              {actionType === "approve" ? "approve" : "reject"} this article?
+            </p>
+            <div className="mt-4 flex justify-end">
+              <button
+                onClick={() => setModalVisible(false)}
+                className="bg-gray-300 px-4 py-2 rounded mr-2"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={
+                  actionType === "approve"
+                    ? handleApproveArticle
+                    : handleRejectArticle
+                }
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+              >
+                {actionType === "approve" ? "Approve" : "Reject"}
+              </button>
+            </div>
           </div>
         </div>
-
-        {/* <div className="mt-6 bg-gradient-to-r from-slate-100 to-slate-200 p-6 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">Browser State Information</h2>
-          <p className="mb-2">Current URL: <strong>{browserState.currentURL}</strong></p>
-          <p className="mb-2">User Agent: <strong>{browserState.userAgent}</strong></p>
-          <p className="mb-2">Online Status: <strong>{browserState.onlineStatus}</strong></p>
-        </div> */}
-      </main>
+      )}
     </div>
   );
 };
