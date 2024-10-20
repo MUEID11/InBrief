@@ -1,10 +1,11 @@
+
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "../Features/Authenticate/userSlice";
 import { bookmarksApi } from "../services/bookmarksApi";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import articleReducer from "../Features/Articles/articleSlice";
 import { commentsApi } from "../Features/Comment/commentsApi";
-import { infoUpdateApi } from "../Features/UserInfoUpdate/infoUpdateApi";
+import forumReducer from "../Features/Forum/ForumSlice";
 import { forumcommentsApi } from "../Features/ForumComment/ForumCommentApi";
 import { votesApi } from "../Features/Forum/Votes/votesApi";
 const store = configureStore({
@@ -16,7 +17,6 @@ const store = configureStore({
     [commentsApi.reducerPath]: commentsApi.reducer,
     [forumcommentsApi.reducerPath]: forumcommentsApi.reducer,
     [votesApi.reducerPath]: votesApi.reducer,
-    [infoUpdateApi.reducerPath]: infoUpdateApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
