@@ -9,6 +9,7 @@ import {
 } from "../../services/Votes/votesApi";
 import { LuArrowBigUpDash } from "react-icons/lu";
 import toast from "react-hot-toast";
+import { PiEmptyBold } from "react-icons/pi";
 
 const MyVotesArticle = () => {
   const { user } = useSelector((state) => state.user);
@@ -165,9 +166,9 @@ const MyVotesArticle = () => {
             {" "}
             <span>
               {" "}
-              <PiEmptyBold />
+              <PiEmptyBold/>
             </span>{" "}
-            <span>No Articles By You Yet</span>
+            <span>No voted Article Found Yet!</span>
           </h3>
         </>
       )}

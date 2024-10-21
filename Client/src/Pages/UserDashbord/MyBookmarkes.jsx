@@ -178,9 +178,9 @@ const MyBookmarkes = () => {
             {" "}
             <span>
               {" "}
-              <PiEmptyBold />
+              <PiEmptyBold/>
             </span>{" "}
-            <span>No Articles By You Yet</span>
+            <span>No Bookmarked Article Found Yet!</span>
           </h3>
         </>
       )}

@@ -9,9 +9,9 @@ const Dashboard = () => {
 
   return (
     <div>
-      {user.role === "user" && <UserDashboard/> }
+      {user?.role === "user" && <UserDashboard/> }
    
-      {user.role === "admin" && <AdminDashboard/>}
+      {user?.role === "admin" && <AdminDashboard/>}
     </div>
   );
 };
