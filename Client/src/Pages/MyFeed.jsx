@@ -37,7 +37,7 @@ const MyFeed = () => {
             onChange={(e) => setSort(e.target.value)}
             value={sort}
             name="HeadlineAct"
-            className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-200 focus:ring block w-full p-2.5 focus-visible:outline-none ">
+            className="border border-red-700  text-red-700 text-sm rounded-lg focus:ring-red-200 focus:ring block w-full p-2 focus-visible:outline-none ">
             <option value="DSC">Latest to Oldest</option>
             <option value="ASC">Oldest to Latest</option>
           </select>

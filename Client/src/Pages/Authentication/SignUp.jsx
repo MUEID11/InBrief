@@ -1,17 +1,17 @@
-import { Link, useNavigate } from 'react-router-dom';
-import logo from './../../assets/logo.png';
-import whitelogo from './../../assets/whitelogo.png';
-import { FcGoogle } from 'react-icons/fc';
+import { Link, useNavigate } from "react-router-dom";
+import logo from "./../../assets/logo.png";
+import whitelogo from "./../../assets/whitelogo.png";
+import { FcGoogle } from "react-icons/fc";
 // import { signUpUser } from "../../Features/Authenticate/authAction";
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
-import userThunk from '../../Features/thunks/userThunks';
-import toast from 'react-hot-toast';
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import userThunk from "../../Features/thunks/userThunks";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState(false);
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleChange = async (e) => {
@@ -22,10 +22,10 @@ const SignUp = () => {
     if (!image) {
       return;
     }
-    image.append('file', userImage);
-    image.append('upload_preset', 'a4roznw9');
+    image.append("file", userImage);
+    image.append("upload_preset", "a4roznw9");
     const response = await fetch(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/image/upload`, {
-      method: 'POST',
+      method: "POST",
       body: image,
     });
     const data = await response.json();
@@ -33,7 +33,7 @@ const SignUp = () => {
     console.log(url);
     if (!url) {
       setLoading(false);
-      return alert('image upload failed');
+      return alert("image upload failed");
     } else {
       setImageUrl(url);
       setLoading(false);
@@ -51,11 +51,11 @@ const SignUp = () => {
     const confirmPassword = formData.confirmPassword.value;
     const age = formData.age.value;
 
-    const user = { name, email, password, age, imageUrl };
+    const user = { name, email, password, age, imageUrl, role: "user" };
     console.log(user);
     // Password confirmation check
     if (password !== confirmPassword) {
-      return setError('Passwords do not match');
+      return setError("Passwords do not match");
     } else {
       setError(null);
     }
@@ -63,30 +63,30 @@ const SignUp = () => {
     try {
       // Make POST request to create a user
       const response = await fetch(`${import.meta.env.VITE_API_URL}/users/createuser`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
       });
 
       // Handle the response data
       const data = await response.json(); //token on data
-      localStorage.setItem('token', data);
+      localStorage.setItem("token", data);
       // Check if there is an error in the response
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to create user');
+        throw new Error(data.message || "Failed to create user");
       }
 
       // Successful creation
-      console.log('User created:', data);
+      console.log("User created:", data);
 
       // Optionally, reset form
       formData.reset();
       dispatch(userThunk());
-      navigate('/');
+      navigate("/");
       toast("Welcome to InBrief 📰", {
-        icon: '✔️',
+        icon: "✔️",
         style: {
           borderRadius: "10px",
           background: "#333",
@@ -95,7 +95,7 @@ const SignUp = () => {
       });
     } catch (error) {
       // Handle errors
-      console.error('Error creating user:', error.message);
+      console.error("Error creating user:", error.message);
       setError(error.message);
     }
   };
@@ -225,7 +225,8 @@ const SignUp = () => {
                 I agree to all the statements in
                 <a href="#" className="text-blue-500 hover:underline">
                   Terms of service
-                </a>s
+                </a>
+                s
               </label>
             </div>
 
