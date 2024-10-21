@@ -36,7 +36,7 @@ const NewsDetails = () => {
   const [bookmarked, setBookmarked] = useState(
     article?.bookmarks?.includes(user?.email)
   );
-  const [addBookmark, { isError, error: bookmarkerror, data: toggleBookmarkMsg, isSuccess }] =
+  const [addBookmark, { isError, error: bookmarkError, data: toggleBookmarkMsg, isSuccess }] =
     useAddBookmarkMutation();
     
   const [addVotes] = useAddVotesMutation();
@@ -105,7 +105,7 @@ const NewsDetails = () => {
     }
 
     if (isError) {
-      toast(bookmarkerror.data.message || "Something went wrong", {
+      toast(bookmarkError.data.message || "Something went wrong", {
         icon: "❌",
         style: {
           borderRadius: "10px",
@@ -114,7 +114,7 @@ const NewsDetails = () => {
         },
       });
     }
-  }, [bookmarkerror, isError, isSuccess, toggleBookmarkMsg]);
+  }, [bookmarkError, isError, isSuccess, toggleBookmarkMsg]);
 
   let {
     data: comments,
