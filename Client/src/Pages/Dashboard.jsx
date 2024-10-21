@@ -6,7 +6,7 @@ import "tailwindcss/tailwind.css";
 import { FaNewspaper, FaEye, FaList } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify"; // Import Toastify
 import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
-
+import { FaCheck, FaTimes, FaInfoCircle } from "react-icons/fa";
 const Dashboard = () => {
   const [articles, setArticles] = useState([]);
   const [articlesCount, setArticlesCount] = useState(0);
@@ -239,34 +239,45 @@ const Dashboard = () => {
                     <td className="p-2 border-b">{article.title}</td>
                     <td className="p-2 border-b">{article.category}</td>
                     <td className="p-2 border-b">{article.status}</td>
-                    <td className="p-2 border-b flex space-x-2">
-                      <button
-                        className="bg-green-500 text-white px-2 py-1 rounded text-sm"
-                        onClick={() => {
-                          setModalVisible(true);
-                          setPendingArticleId(article._id);
-                          setActionType("approve");
-                        }}
-                      >
-                        Approve
-                      </button>
-                      <button
-                        className="bg-red-500 text-white px-2 py-1 rounded text-sm"
-                        onClick={() => {
-                          setModalVisible(true);
-                          setPendingArticleId(article._id);
-                          setActionType("reject");
-                        }}
-                      >
-                        Reject
-                      </button>
-                      <a
-                        href={`/articles/${article._id}`}
-                        className="bg-blue-500 text-white px-2 py-1 rounded text-sm"
-                      >
-                        View Details
-                      </a>
-                    </td>
+
+
+                    <td className="p-2 border-b">
+  {article.status === "approved" ? (
+    <span className="text-gray-500">N/A</span> // Display "N/A" for approved articles
+  ) : (
+    <div className="flex space-x-2">
+      <button
+        className="bg-green-500 text-white p-2 rounded-full"
+        onClick={() => {
+          setModalVisible(true);
+          setPendingArticleId(article._id);
+          setActionType("approve");
+        }}
+      >
+        <FaCheck /> {/* Approve icon */}
+      </button>
+      <button
+        className="bg-red-500 text-white p-2 rounded-full"
+        onClick={() => {
+          setModalVisible(true);
+          setPendingArticleId(article._id);
+          setActionType("reject");
+        }}
+      >
+        <FaTimes /> {/* Reject icon */}
+      </button>
+      <a
+        href={`/articles/${article._id}`}
+        className="bg-blue-800 text-white p-2 rounded-full"
+      >
+        <FaInfoCircle /> {/* View Details icon */}
+      </a>
+    </div>
+  )}
+</td>
+
+
+
                   </tr>
                 ))}
               </tbody>
