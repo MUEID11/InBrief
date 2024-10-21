@@ -42,7 +42,11 @@ const router = createBrowserRouter([
       },
       {
         path: "my-feed",
-        element: <MyFeed />,
+        element: (
+          <ProtectedRoute>
+            <MyFeed />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "about",
@@ -98,7 +102,7 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <SubmitArticleForm />
-           </ProtectedRoute>
+          </ProtectedRoute>
         ),
       },
       {
@@ -114,15 +118,15 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Dashboard />
-           </ProtectedRoute>
+          </ProtectedRoute>
         ),
       },
       {
         path: "/dashboard/user",
         element: (
           <ProtectedRoute>
-          <UserDashboard />
-           </ProtectedRoute>
+            <UserDashboard />
+          </ProtectedRoute>
         ),
       },
       {

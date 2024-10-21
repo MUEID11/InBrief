@@ -44,11 +44,13 @@ const NewsCard = ({ article }) => {
       // console.log(data.message);
     } catch (error) {
       console.error("Failed to toggle like:", error);
+      console.error("Failed to toggle like:", error);
     }
   };
 
   const handleBookmark = (id) => {
     if (!user.email) {
+      navigate("/signin");
       navigate("/signin");
       return;
     }
@@ -57,6 +59,7 @@ const NewsCard = ({ article }) => {
       .unwrap()
       .then((payload) => console.log("fulfilled", payload))
       .catch((error) => console.error("rejected", error));
+      
   };
 
   useEffect(() => {
@@ -64,7 +67,11 @@ const NewsCard = ({ article }) => {
       setBookmarked(!bookmarked);
       toast(toggleBookmarkMsg.message, {
         icon: "✔️",
+        icon: "✔️",
         style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
@@ -73,9 +80,13 @@ const NewsCard = ({ article }) => {
     }
 
     if (isError) {
+      
       toast(error.data.message || "Something went wrong", {
         icon: "❌",
         style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
