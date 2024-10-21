@@ -24,17 +24,17 @@ const NewsCard = ({ article }) => {
   );
   const [addBookmark, { isError, error, data: toggleBookmarkMsg, isSuccess }] =
     useAddBookmarkMutation();
-  console.log({ toggleBookmarkMsg, error, isError });
   const [addVotes] = useAddVotesMutation();
 
-  const handleLike = (id) => {
+  const handleLike = async (id) => {
     if (!user.email) {
       navigate("/signin");
       return;
     }
 
     try {
-      addVotes({ id, userEmail: user?.email });
+      const response = await addVotes({ id, userEmail: user?.email });
+
       if (liked) {
         setLikes(likes - 1);
       } else {

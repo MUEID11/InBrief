@@ -153,7 +153,7 @@ const AddLike = async (req, res) => {
       const result = await Article.updateOne({ _id: articleId }, { $pull: { likes: userEmail } });
 
       if (result.modifiedCount > 0) {
-        res.status(200).json({ message: 'Like removed successfully!' });
+        res.status(200).json({ message: 'Vote removed successfully!' });
       } else {
         res.status(404).json({ message: 'Article not found' });err
       }
@@ -162,7 +162,7 @@ const AddLike = async (req, res) => {
       const result = await Article.updateOne({ _id: articleId }, { $addToSet: { likes: userEmail } });
 
       if (result.matchedCount > 0) {
-        res.status(200).json({ message: 'Article liked successfully!' });
+        res.status(200).json({ message: 'Article Votes successfully!' });
       } else {
         res.status(404).json({ message: 'Article not found' });
       }

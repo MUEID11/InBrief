@@ -1,23 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useGetVotesQuery } from "../../Features/Forum/Votes/votesApi";
 import { FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { TbFileDislike, TbListDetails } from "react-icons/tb";
-
+import {
+  useAddVotesMutation,
+  useGetVotesQuery,
+} from "../../services/Votes/votesApi";
+import { LuArrowBigUpDash } from "react-icons/lu";
+import toast from "react-hot-toast";
 
 const MyVotesArticle = () => {
   const { user } = useSelector((state) => state.user);
   const { data, isLoading, isError } = useGetVotesQuery(user?.email);
   const votedArticles = data?.data;
-  // console.log(votedArticles)
+  const [addVotes] = useAddVotesMutation();
+
+  const handleLike = async (id) => {
+    if (!user.email) {
+      navigate("/signin");
+      return;
+    }
+
+    try {
+      const response = await addVotes({ id, userEmail: user?.email });
+      toast("Vote removed successfully!", {
+        icon: "✔️",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+    } catch (error) {
+      console.error("Failed to toggle like:", error);
+    }
+  };
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center p-4">
-        <p className="text-xl">
-          Loading voteded Articles
-        </p>
+        <p className="text-xl">Loading voteded Articles</p>
       </div>
     );
   }
@@ -109,10 +132,12 @@ const MyVotesArticle = () => {
                           <td className="px-4 py-4 text-sm whitespace-nowrap">
                             <div className="flex items-center gap-x-2">
                               <button
-                                className="px-3 py-1 rounded-full text-xl  bg-blue-100/60"
+                                onClick={() => handleLike(votedArticle._id)}
+                                className=""
                               >
-                                 <TbFileDislike/>
-
+                                <LuArrowBigUpDash
+                                  className={`text-2xl font-medium text-gray-500 bg-gray-200 rounded-full`}
+                                />
                               </button>
                             </div>
                           </td>
