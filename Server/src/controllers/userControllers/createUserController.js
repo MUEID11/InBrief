@@ -1,9 +1,9 @@
-const userModel = require('../../models/userModel');
-const generateJwt = require('../Validation/generateJwt');
-const hashPass = require('../Validation/hashPass');
+const userModel = require("../../models/userModel");
+const generateJwt = require("../Validation/generateJwt");
+const hashPass = require("../Validation/hashPass");
 
 const createUser = async (req, res) => {
-  const { name, email, age, imageUrl, password } = req.body;
+  const { name, email, age, imageUrl, password, role } = req.body;
   // console.log(req.body);
   const hashedPassword = await hashPass(password);
   // console.log("consoling hashed pass form create",hashedPassword)
@@ -14,6 +14,7 @@ const createUser = async (req, res) => {
       age,
       imageUrl,
       password: hashedPassword,
+      role,
     });
     const token = generateJwt({ id: user?._id, email: user?.email, age: user?.age });
     console.log(user);
