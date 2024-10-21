@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import { LuArrowBigUpDash } from 'react-icons/lu';
-import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { IoBookmarksOutline, IoBookmarksSharp } from 'react-icons/io5';
-import toast from 'react-hot-toast';
-import { useAddBookmarkMutation } from '../../services/bookmarksApi';
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import { LuArrowBigUpDash } from "react-icons/lu";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
+import toast from "react-hot-toast";
+import { useAddBookmarkMutation } from "../../services/bookmarksApi";
 
 const NewsCard = ({ article }) => {
   const navigate = useNavigate();
@@ -20,21 +20,21 @@ const NewsCard = ({ article }) => {
 
   const handleLike = async (id) => {
     if (!user.email) {
-      navigate('/signin');
+      navigate("/signin");
 
       return;
     }
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/articles/addLike`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ articleId: id, userEmail: user?.email }),
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
 
       const data = await response.json();
@@ -47,42 +47,42 @@ const NewsCard = ({ article }) => {
       setLiked(!liked);
       // console.log(data.message);
     } catch (error) {
-      console.error('Failed to toggle like:', error);
+      console.error("Failed to toggle like:", error);
     }
   };
 
   const handleBookmark = (id) => {
     if (!user.email) {
-      navigate('/signin');
+      navigate("/signin");
       return;
     }
 
     addBookmark({ id, userEmail: user?.email })
       .unwrap()
-      .then((payload) => console.log('fulfilled', payload))
-      .catch((error) => console.error('rejected', error));
+      .then((payload) => console.log("fulfilled", payload))
+      .catch((error) => console.error("rejected", error));
   };
 
   useEffect(() => {
     if (toggleBookmarkMsg && toggleBookmarkMsg.message && isSuccess) {
       setBookmarked(!bookmarked);
       toast(toggleBookmarkMsg.message, {
-        icon: '✔️',
+        icon: "✔️",
         style: {
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
         },
       });
     }
 
     if (isError) {
-      toast(error.data.message || 'Something went wrong', {
-        icon: '❌',
+      toast(error.data.message || "Something went wrong", {
+        icon: "❌",
         style: {
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
         },
       });
     }
@@ -119,7 +119,7 @@ const NewsCard = ({ article }) => {
               <p className="text-black-primary text-sm font-semibold">{article?.region}</p>
               <span className="text-xs text-neutral-600">{new Date(article.createdAt).toLocaleDateString()}</span>
             </div>
-            <p className="text-blue-500 font-semibold bg-blue-100 py-1 px-3 rounded-sm text-xs capitalize">{article?.category ? article?.category : 'Category'}</p>
+            <p className="text-blue-500 font-semibold bg-blue-100 py-1 px-3 rounded-sm text-xs capitalize">{article?.category ? article?.category : "Category"}</p>
           </div>
           {/* Description */}
           <p className="text-sm text-gray-600 mb-4 flex-grow">{`${article.description.substring(0, 100)}...`}</p>
@@ -134,7 +134,7 @@ const NewsCard = ({ article }) => {
           <div>
             <div className="flex items-center gap-2">
               <button onClick={() => handleLike(article._id)} className="">
-                <LuArrowBigUpDash className={`text-2xl font-medium ${liked ? 'text-blue-500 bg-blue-100 rounded-full' : 'text-gray-500 bg-gray-200 rounded-full'}`} />
+                <LuArrowBigUpDash className={`text-2xl font-medium ${liked ? "text-blue-500 bg-blue-100 rounded-full" : "text-gray-500 bg-gray-200 rounded-full"}`} />
               </button>
               <p className="text-gray-700 text-sm"> {likes} Votes</p>
               {bookmarked ? (
