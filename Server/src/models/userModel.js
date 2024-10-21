@@ -15,10 +15,6 @@ const userSchema = new Schema({
     type: Number,
     required: [true, 'Please provide your age'],
   },
-  role: {
-    type: String,
-    required:true,
-  },
   password: {
     type: String,
     required: true,

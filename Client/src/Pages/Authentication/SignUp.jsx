@@ -50,9 +50,8 @@ const SignUp = () => {
     const password = formData.password.value;
     const confirmPassword = formData.confirmPassword.value;
     const age = formData.age.value;
-  
 
-    const user = { name, email, password, age, imageUrl,role:'user' };
+    const user = { name, email, password, age, imageUrl };
     console.log(user);
     // Password confirmation check
     if (password !== confirmPassword) {
@@ -85,7 +84,7 @@ const SignUp = () => {
       // Optionally, reset form
       formData.reset();
       dispatch(userThunk());
-      // navigate('/');
+      navigate('/');
       toast("Welcome to InBrief 📰", {
         icon: '✔️',
         style: {
