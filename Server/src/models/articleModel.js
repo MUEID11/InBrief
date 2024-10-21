@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const articleSchema = mongoose.Schema(
   {
@@ -12,11 +12,12 @@ const articleSchema = mongoose.Schema(
     postedBy: { type: String, required: true },
     likes: { type: [String], required: true },
     bookmarks: { type: [String], required: true },
-    status: { type: String , default: 'pending', enum: ['pending', 'approved', 'rejected'] },
+    status: { type: String, default: "pending", enum: ["pending", "approved", "rejected"] },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
   },
   { timestamps: true, versionKey: false }
 );
 
-const Article = new mongoose.model('Article', articleSchema);
+const Article = new mongoose.model("Article", articleSchema);
 
 module.exports = Article;
