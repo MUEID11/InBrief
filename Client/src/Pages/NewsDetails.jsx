@@ -20,6 +20,10 @@ import {
   useAddCommentMutation,
   useGetCommentQuery,
 } from "../services/Comment/commentsApi";
+import { useAddVotesMutation } from "../services/Votes/votesApi";
+import toast from "react-hot-toast";
+import { useAddBookmarkMutation } from "../services/bookmarksApi";
+import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
 
 const NewsDetails = () => {
   const { id } = useParams();
@@ -27,6 +31,16 @@ const NewsDetails = () => {
   const [error, setError] = useState(null);
   const { user } = useSelector((state) => state.user);
   const [comment, setComment] = useState("");
+  const [likes, setLikes] = useState(article?.likes?.length || 0);
+  const [liked, setLiked] = useState(article?.likes?.includes(user?.email));
+  const [bookmarked, setBookmarked] = useState(
+    article?.bookmarks?.includes(user?.email)
+  );
+  const [addBookmark, { isError, error: bookmarkerror, data: toggleBookmarkMsg, isSuccess }] =
+    useAddBookmarkMutation();
+    
+  const [addVotes] = useAddVotesMutation();
+
   useEffect(() => {
     const fetchArticleDetails = async () => {
       try {
@@ -43,6 +57,64 @@ const NewsDetails = () => {
     fetchArticleDetails();
     fetchArticleDetails();
   }, [id]);
+
+  const handleLike = async (id) => {
+    if (!user.email) {
+      navigate("/signin");
+      return;
+    }
+
+    try {
+      const response = await addVotes({ id, userEmail: user?.email });
+
+      if (liked) {
+        setLikes(likes - 1);
+      } else {
+        setLikes(likes + 1);
+      }
+      setLiked(!liked);
+      // console.log(data.message);
+    } catch (error) {
+      console.error("Failed to toggle like:", error);
+    }
+  };
+
+  const handleBookmark = (id) => {
+    if (!user.email) {
+      navigate("/signin");
+      return;
+    }
+
+    addBookmark({ id, userEmail: user?.email })
+      .unwrap()
+      .then((payload) => console.log("fulfilled", payload))
+      .catch((error) => console.error("rejected", error));
+  };
+
+  useEffect(() => {
+    if (toggleBookmarkMsg && toggleBookmarkMsg.message && isSuccess) {
+      setBookmarked(!bookmarked);
+      toast(toggleBookmarkMsg.message, {
+        icon: "✔️",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+    }
+
+    if (isError) {
+      toast(bookmarkerror.data.message || "Something went wrong", {
+        icon: "❌",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+    }
+  }, [bookmarkerror, isError, isSuccess, toggleBookmarkMsg]);
 
   let {
     data: comments,
@@ -214,37 +286,33 @@ const NewsDetails = () => {
                   </fieldset>
                   {/* Likes and Bookmarks */}
                   <div className="flex items-center space-x-6">
-                    <p className="flex items-center text-gray-500">
-                      <button
-                        // onClick={() => handleLike(article._id)}
-                        className=""
-                      >
-                        <LuArrowBigUpDash
-                          className={
-                            " text-2xl text-green-500 bg-green-100 rounded-full"
-                          }
-                        />
-                      </button>
-                      <span className="font-semibold text-green-500 px-1">
-                        {" "}
-                        Votes:{" "}
-                      </span>
-                      {article?.likes?.length}
-                    </p>
-                    <p className="flex items-center text-gray-500">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        className="w-5 h-5 text-blue-500 mr-2"
-                      >
-                        <path d="M6 2C4.9 2 4 2.9 4 4v16l8-4 8 4V4c0-1.1-.9-2-2-2H6z" />
-                      </svg>
-                      <span className="font-semibold text-[#2D2D2D]">
-                        Bookmarks:{" "}
-                      </span>
-                      {article?.bookmarks?.length}
-                    </p>
+                  <div className="flex items-center gap-2">
+                  <button
+                  title="Vote"
+                  onClick={() => handleLike(article._id)} className="">
+                <LuArrowBigUpDash
+                  className={`text-2xl font-medium ${
+                    liked
+                      ? "text-blue-500 bg-blue-100 rounded-full"
+                      : "text-gray-500 bg-gray-200 rounded-full"
+                  }`}
+                />
+              </button>
+              <p className="text-gray-700 text-sm"> {likes} Votes</p>
+                  </div>
+              {bookmarked ? (
+                <IoBookmarksSharp
+                  title="Bookmark"
+                  className="cursor-pointer text-red-500"
+                  onClick={() => handleBookmark(article._id)}
+                />
+              ) : (
+                <IoBookmarksOutline
+                  title="Bookmark"
+                  className="cursor-pointer text-red-600"
+                  onClick={() => handleBookmark(article._id)}
+                />
+              )}
                   </div>
                 </div>
               </div>
