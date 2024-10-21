@@ -109,7 +109,7 @@ const MyVotesArticle = () => {
                           <td className="px-4 py-4 text-sm whitespace-nowrap">
                             <div className="flex items-center gap-x-2">
                               <button
-                                className="px-3 py-1 rounded-full text-red-500  bg-blue-100/60"
+                                className="px-3 py-1 rounded-full text-xl  bg-blue-100/60"
                               >
                                  <TbFileDislike/>
 

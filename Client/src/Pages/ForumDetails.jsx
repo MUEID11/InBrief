@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CommentSection from "../Components/Component/Forum/CommentSection";
-import { useGetForumCommentQuery } from "../Features/ForumComment/ForumCommentApi";
 import ForumCommentt from "../Components/Component/Forum/ForumCommentt";
+import { useGetForumCommentQuery } from "../services/ForumComment/forumCommentApi";
 
 const ForumDetails = () => {
   const [forum, setForum] = useState({});

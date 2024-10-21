@@ -155,7 +155,7 @@ const AddLike = async (req, res) => {
       if (result.modifiedCount > 0) {
         res.status(200).json({ message: 'Like removed successfully!' });
       } else {
-        res.status(404).json({ message: 'Article not found' });
+        res.status(404).json({ message: 'Article not found' });err
       }
     } else {
       // If user has not liked the post, add their like
