@@ -7,6 +7,7 @@ import { FaNewspaper, FaEye, FaList } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css"; 
 import { FaCheck, FaTimes, FaInfoCircle } from "react-icons/fa";
+
 const Dashboard = () => {
   const [articles, setArticles] = useState([]);
   const [articlesCount, setArticlesCount] = useState(0);
@@ -77,6 +78,7 @@ const Dashboard = () => {
       );
       if (response.status === 200) {
         toast.success("Article approved successfully!"); 
+        fetchArticlesData(); // Fetch articles data again after approval
       } else {
         console.error("Failed to approve article");
       }
@@ -183,7 +185,7 @@ const Dashboard = () => {
           </div>
 
           <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-6 shadow-md relative w-1/4">
-            <FaEye className="absolute top-4 left-4 text-green-500 text-3xl" />
+            <FaEye className="absolute top-4 left-4 text-blue-500 text-3xl" />
             <div className="ml-12">
               <h2 className="text-gray-900 text-xl font-semibold mb-2">
                 Total Views
@@ -193,128 +195,131 @@ const Dashboard = () => {
           </div>
 
           <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-6 shadow-md relative w-1/4">
-            <FaList className="absolute top-4 left-4 text-red-500 text-3xl" />
+            <FaList className="absolute top-4 left-4 text-blue-500 text-3xl" />
             <div className="ml-12">
               <h2 className="text-gray-900 text-xl font-semibold mb-2">
-                Total Categories
+                Unique Categories
               </h2>
               <p className="text-3xl font-bold">{categoryCount}</p>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
-          <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-4 shadow-md">
-            <h3 className="text-lg font-semibold">Category Distribution</h3>
+        <div className="grid grid-cols-3 gap-6">
+          <div className="bg-white shadow-md rounded-lg p-4">
+            <h3 className="text-lg font-bold mb-4">Category Distribution</h3>
             <Pie data={pieData} />
           </div>
 
-          <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-4 shadow-md">
-            <h3 className="text-lg font-semibold">Views per Day</h3>
+          <div className="bg-white shadow-md rounded-lg p-4">
+            <h3 className="text-lg font-bold mb-4">Views Over Time</h3>
             <Line data={lineData} />
           </div>
 
-          <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-4 shadow-md">
-            <h3 className="text-lg font-semibold">Articles Count per Category</h3>
+          <div className="bg-white shadow-md rounded-lg p-4">
+            <h3 className="text-lg font-bold mb-4">Articles Count by Category</h3>
             <Bar data={barData} />
           </div>
         </div>
 
-        <div className="mt-8 bg-white rounded-lg shadow-md p-4">
-          <h3 className="text-lg font-semibold">Articles Table</h3>
-          <div className="overflow-x-auto">
-            <table className="w-full table-auto border-collapse">
-              <thead>
-                <tr>
-                  <th className="p-2 border-b">Title</th>
-                  <th className="p-2 border-b">Category</th>
-                  <th className="p-2 border-b">Status</th>
-                  <th className="p-2 border-b">Actions</th>
+        <div className="mt-6 bg-white shadow-md rounded-lg p-4">
+          <h3 className="text-lg font-bold mb-4">Pending Articles</h3>
+          <table className="min-w-full">
+            <thead>
+              <tr className="border-b">
+                <th className="p-2 text-left">Title</th>
+                <th className="p-2 text-left">Category</th>
+                <th className="p-2 text-left">Status</th>
+                <th className="p-2 text-left">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {articles.map((article) => (
+                <tr key={article._id}>
+                  <td className="p-2 border-b">{article.title}</td>
+                  <td className="p-2 border-b">{article.category}</td>
+                  <td className="p-2 border-b">
+                    <span
+                      className={`font-bold rounded-full ${
+                        article.status === "approved"
+                          ? "text-green-400"
+                          : article.status === "pending"
+                          ? "text-orange-400"
+                          : "text-red-600"
+                      }`}
+                    >
+                      {article.status}
+                    </span>
+                  </td>
+                  <td className="p-2 border-b">
+                    {article.status === "approved" ? (
+                      <span className="text-gray-500">N/A</span>
+                    ) : (
+                      <div className="flex space-x-2">
+                        <button
+                          className="bg-green-500 text-white p-2 rounded-full"
+                          onClick={() => {
+                            setModalVisible(true);
+                            setPendingArticleId(article._id);
+                            setActionType("approve");
+                          }}
+                        >
+                          <FaCheck />
+                        </button>
+                        <button
+                          className="bg-red-500 text-white p-2 rounded-full"
+                          onClick={() => {
+                            setModalVisible(true);
+                            setPendingArticleId(article._id);
+                            setActionType("reject");
+                          }}
+                        >
+                          <FaTimes />
+                        </button>
+                        <a
+                          href={`/articles/${article._id}`}
+                          className="bg-blue-800 text-white p-2 rounded-full"
+                        >
+                          <FaInfoCircle />
+                        </a>
+                      </div>
+                    )}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {articles.map((article) => (
-                  <tr key={article._id}>
-                    <td className="p-2 border-b">{article.title}</td>
-                    <td className="p-2 border-b">{article.category}</td>
-                    <td className="p-2 border-b text-orange-500  font-bold rounded-full ">{article.status}</td>
-
-
-                    <td className="p-2 border-b">
-  {article.status === "approved" ? (
-    <span className="text-gray-500">N/A</span> // Display "N/A" for approved articles
-  ) : (
-    <div className="flex space-x-2">
-      <button
-        className="bg-green-500 text-white p-2 rounded-full"
-        onClick={() => {
-          setModalVisible(true);
-          setPendingArticleId(article._id);
-          setActionType("approve");
-        }}
-      >
-        <FaCheck /> {/* Approve icon */}
-      </button>
-      <button
-        className="bg-red-500 text-white p-2 rounded-full"
-        onClick={() => {
-          setModalVisible(true);
-          setPendingArticleId(article._id);
-          setActionType("reject");
-        }}
-      >
-        <FaTimes /> {/* Reject icon */}
-      </button>
-      <a
-        href={`/articles/${article._id}`}
-        className="bg-blue-800 text-white p-2 rounded-full"
-      >
-        <FaInfoCircle /> {/* View Details icon */}
-      </a>
-    </div>
-  )}
-</td>
-
-
-
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
-      </main>
 
-      {modalVisible && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h4 className="text-lg font-semibold mb-4">
-              Are you sure you want to {actionType} this article?
-            </h4>
-            <div className="flex space-x-4">
-              <button
-                className="bg-green-500 text-white px-4 py-2 rounded"
-                onClick={
-                  actionType === "approve"
-                    ? handleApproveArticle
-                    : handleRejectArticle
-                }
-              >
-                Yes, {actionType}
-              </button>
-              <button
-                className="bg-gray-500 text-white px-4 py-2 rounded"
-                onClick={() => {
-                  setModalVisible(false);
-                  setPendingArticleId(null);
-                }}
-              >
-                Cancel
-              </button>
+        {modalVisible && (
+          <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+            <div className="bg-white p-6 rounded shadow-md">
+              <h2 className="text-lg font-bold mb-4">
+                {actionType === "approve" ? "Approve Article" : "Reject Article"}
+              </h2>
+              <p>Are you sure you want to {actionType} this article?</p>
+              <div className="mt-4 flex justify-end">
+                <button
+                  className="bg-gray-500 text-white p-2 rounded mr-2"
+                  onClick={() => setModalVisible(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className={`${
+                    actionType === "approve" ? "bg-green-500" : "bg-red-500"
+                  } text-white p-2 rounded`}
+                  onClick={
+                    actionType === "approve" ? handleApproveArticle : handleRejectArticle
+                  }
+                >
+                  {actionType === "approve" ? "Approve" : "Reject"}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </main>
     </div>
   );
 };
