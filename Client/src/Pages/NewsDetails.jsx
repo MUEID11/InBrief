@@ -11,7 +11,7 @@ import {
   RedditShareCount,
 } from "react-share";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { LuArrowBigUpDash } from "react-icons/lu";
@@ -49,7 +49,7 @@ const NewsDetails = () => {
     isLoading: commentLoading,
     isError: commentError,
   } = useGetCommentQuery(id) || {};
-  console.log(comments);
+  // console.log(comments);
 
   // add comment
   const [addComment] = useAddCommentMutation() || {};
@@ -139,7 +139,18 @@ const NewsDetails = () => {
                 </p>
                 <p className="text-gray-500">
                   <span className="font-semibold">Posted by: </span>
-                  {article?.postedBy}
+                  <Link
+                    to={`/articles/creator/${article?.postedBy}`}
+                    title="Click Here to get all articles posted by this creator"
+                  >
+                    {" "}
+                    <span
+                      className="font-semibold text-blue-600
+"
+                    >
+                      {article?.postedBy}
+                    </span>
+                  </Link>
                 </p>
 
                 <div className="flex justify-between mt-4 ">
