@@ -4,8 +4,8 @@ import { Pie, Line, Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import "tailwindcss/tailwind.css";
 import { FaNewspaper, FaEye, FaList } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify"; // Import Toastify
-import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
+import { ToastContainer, toast } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 import { FaCheck, FaTimes, FaInfoCircle } from "react-icons/fa";
 const Dashboard = () => {
   const [articles, setArticles] = useState([]);
@@ -15,8 +15,8 @@ const Dashboard = () => {
   const [categoryDistribution, setCategoryDistribution] = useState([]);
   const [viewsData, setViewsData] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
-  const [pendingArticleId, setPendingArticleId] = useState(null); // Store the article ID for actions
-  const [actionType, setActionType] = useState(""); // Store the action type (approve/reject)
+  const [pendingArticleId, setPendingArticleId] = useState(null); 
+  const [actionType, setActionType] = useState(""); 
 
   const fetchArticlesData = async () => {
     try {
@@ -76,17 +76,16 @@ const Dashboard = () => {
         { status: "approved" }
       );
       if (response.status === 200) {
-        toast.success("Article approved successfully!"); // Use toast for success message
-        fetchArticlesData(); // Refresh articles data after approval
+        toast.success("Article approved successfully!"); 
       } else {
         console.error("Failed to approve article");
       }
     } catch (error) {
       console.error("Error approving article:", error);
-      toast.error("Failed to approve article."); // Use toast for error message
+      toast.error("Failed to approve article."); 
     } finally {
-      setModalVisible(false); // Close modal after action
-      setPendingArticleId(null); // Reset pendingArticleId
+      setModalVisible(false); 
+      setPendingArticleId(null); 
     }
   };
 
@@ -97,17 +96,17 @@ const Dashboard = () => {
         { status: "rejected" }
       );
       if (response.status === 200) {
-        toast.success("Article rejected successfully!"); // Use toast for success message
-        fetchArticlesData(); // Refresh articles data after rejection
+        toast.success("Article rejected successfully!"); 
+        fetchArticlesData(); 
       } else {
         console.error("Failed to reject article");
       }
     } catch (error) {
       console.error("Error rejecting article:", error);
-      toast.error("Failed to reject article."); // Use toast for error message
+      toast.error("Failed to reject article."); 
     } finally {
-      setModalVisible(false); // Close modal after action
-      setPendingArticleId(null); // Reset pendingArticleId
+      setModalVisible(false); 
+      setPendingArticleId(null); 
     }
   };
 
@@ -238,7 +237,7 @@ const Dashboard = () => {
                   <tr key={article._id}>
                     <td className="p-2 border-b">{article.title}</td>
                     <td className="p-2 border-b">{article.category}</td>
-                    <td className="p-2 border-b">{article.status}</td>
+                    <td className="p-2 border-b text-orange-500  font-bold rounded-full ">{article.status}</td>
 
 
                     <td className="p-2 border-b">
