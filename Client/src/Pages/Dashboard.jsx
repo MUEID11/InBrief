@@ -257,7 +257,7 @@ const Dashboard = () => {
                     ) : (
                       <div className="flex space-x-2">
                         <button
-                          className="hover:scale-100 bg-green-500 text-white p-2 rounded-full"
+                          className="hover:text-2xl bg-green-500 text-white p-2 rounded-full"
                           onClick={() => {
                             setModalVisible(true);
                             setPendingArticleId(article._id);
