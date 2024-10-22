@@ -223,7 +223,7 @@ const Dashboard = () => {
         </div>
 
         <div className="mt-6 bg-white shadow-md rounded-lg p-4">
-          <h3 className="text-lg font-bold mb-4">Pending Articles</h3>
+          <h3 className="bg-zinc-400 text-lg font-bold mb-4">Pending Articles</h3>
           <table className="min-w-full">
             <thead>
               <tr className="border-b">
@@ -278,7 +278,7 @@ const Dashboard = () => {
                         </button>
                         <a
                           href={`/articles/${article._id}`}
-                          className="bg-blue-800 hover:rounded-3xl text-white p-2 rounded-full"
+                          className="bg-blue-800 hover:rounded-xl text-white p-2 rounded-full"
                         >
                           <FaInfoCircle />
                         </a>
