@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { MdOutlineDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
-import {
-  useAddForumReplyMutation,
-  useDeleteForumCommentMutation,
-} from "../../../Features/ForumComment/ForumCommentApi";
+// import {
+//   useAddForumReplyMutation,
+//   useDeleteForumCommentMutation,
+// } from "../../../Features/ForumComment/ForumCommentApi";
 import { FaRegCommentDots } from "react-icons/fa";
 import ForumReply from "./ForumReply";
+import { useAddForumReplyMutation, useDeleteForumCommentMutation } from "../../../services/ForumComment/forumCommentApi";
 
 const ForumCommentt = ({ comment }) => {
   const { user } = useSelector((state) => state.user);
