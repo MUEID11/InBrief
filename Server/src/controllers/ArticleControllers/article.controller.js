@@ -164,16 +164,16 @@ const AddLike = async (req, res) => {
       const result = await Article.updateOne({ _id: articleId }, { $pull: { likes: userEmail } });
 
       if (result.modifiedCount > 0) {
-        res.status(200).json({ message: "Like removed successfully!" });
+        res.status(200).json({ message: 'Vote removed successfully!' });
       } else {
-        res.status(404).json({ message: "Article not found" });
+        res.status(404).json({ message: 'Article not found' });err
       }
     } else {
       // If user has not liked the post, add their like
       const result = await Article.updateOne({ _id: articleId }, { $addToSet: { likes: userEmail } });
 
       if (result.matchedCount > 0) {
-        res.status(200).json({ message: "Article liked successfully!" });
+        res.status(200).json({ message: 'Article Votes successfully!' });
       } else {
         res.status(404).json({ message: "Article not found" });
       }
@@ -201,7 +201,7 @@ const getArticlesByEmail = async (req, res) => {
   const email = req.params.email;
 
   try {
-    const articles = await Article.find({ postedBy: email });
+    const articles = await Article.find({ postedBy: email }).populate("createdBy");
 
     if (articles.length === 0) {
       return res.status(404).json({ message: "No products found for this email" });

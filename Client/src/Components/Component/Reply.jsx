@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MdOutlineDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
-import { useDeleteReplyMutation } from "../../Features/Comment/commentsApi";
+import { useDeleteReplyMutation } from "../../services/Comment/commentsApi";
 
 const Reply = ({ reply }) => {
   const { user } = useSelector((state) => state.user);
