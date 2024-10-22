@@ -53,7 +53,25 @@ export const updateUser = createAsyncThunk("user/updateUser", async (user, { rej
 export const createUserWithGoogle = createAsyncThunk("user/createWithGoogle", async (_, { rejectWithValue }) => {
   try {
     const userCredential = await signInWithPopup(auth, googleProvider);
-    return userCredential.user; // Return user object for fulfilled case
+    const user = userCredential.user; // Return user object for fulfilled case
+    const userData = { name: user?.displayName, email: user?.email, imageUrl: user?.photoURL, role: "user" };
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/users/createuser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    // Handle the response data
+    const data = await response.json(); //token on data
+    localStorage.setItem("token", data?.token);
+    // Check if there is an error in the response
+    if (!response.ok) {
+      throw new Error(data.message || "Failed to create user");
+    }
+
+    return data?.user;
   } catch (error) {
     return rejectWithValue(error.message); // Pass error message for rejected case
   }
@@ -64,9 +82,24 @@ export const checkAuthState = createAsyncThunk("auth/checkAuthState", async (_, 
   return new Promise((resolve, reject) => {
     onAuthStateChanged(
       auth,
-      (user) => {
+      async (user) => {
         if (user) {
-          resolve(user); // Resolve with user object if logged in
+          const userData = { name: user?.displayName, email: user?.email, imageUrl: user?.photoURL, role: "user" };
+          const response = await fetch(`${import.meta.env.VITE_API_URL}/users/createuser`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userData),
+          });
+
+          // Handle the response data
+          const data = await response.json(); //token on data
+          // Check if there is an error in the response
+          if (!response.ok) {
+            throw new Error(data.message);
+          }
+          resolve(data?.user); // Resolve with user object if logged in
         } else {
           resolve(null); // Resolve with null if logged out
         }

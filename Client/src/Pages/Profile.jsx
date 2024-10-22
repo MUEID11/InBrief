@@ -52,11 +52,11 @@ const Profile = () => {
         {/* User Info Card */}
         <div className="col-span-2 p-6 shadow-md rounded-sm bg-white space-y-5">
           <h5 className="text-lg font-semibold flex items-center">
-            User Name: {user?.name}
+            User Name: {user?.name || user?.displayName}
             <TbEdit className="ml-4 text-blue-500 cursor-pointer" />
           </h5>
           <h5 className="text-lg font-semibold">User Email: {user?.email}</h5>
-          <h5 className="text-lg font-semibold">User Id: {user?._id?.slice(0, 6)}</h5>
+          <h5 className="text-lg font-semibold">User Id: {user?._id?.slice(0, 6) || user?.uid}</h5>
         </div>
 
         {/* Bookmarks Card */}

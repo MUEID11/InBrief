@@ -36,7 +36,7 @@ const createUser = async (req, res) => {
     const token = generateJwt({ id: user?._id, email: user?.email });
     console.log(user);
     console.log(token);
-    res.json(token);
+    res.json({ token, user });
   } catch (error) {
     console.log(error.message);
     res.send(error);

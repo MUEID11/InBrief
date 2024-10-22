@@ -11,26 +11,27 @@ const SocialLogin = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-      const user = await dispatch(createUserWithGoogle());
-      const userData = { name: user?.payload?.displayName, email: user?.payload?.email, imageUrl: user?.payload?.photoURL, role: "user" };
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/createuser`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+      await dispatch(createUserWithGoogle());
+      // const user = await dispatch(createUserWithGoogle());
+      // const userData = { name: user?.payload?.displayName, email: user?.payload?.email, imageUrl: user?.payload?.photoURL, role: "user" };
+      // const response = await fetch(`${import.meta.env.VITE_API_URL}/users/createuser`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(userData),
+      // });
 
-      // Handle the response data
-      const data = await response.json(); //token on data
-      localStorage.setItem("token", data);
-      // Check if there is an error in the response
-      if (!response.ok) {
-        throw new Error(data.message || "Failed to create user");
-      }
+      // // Handle the response data
+      // const data = await response.json(); //token on data
+      // localStorage.setItem("token", data);
+      // // Check if there is an error in the response
+      // if (!response.ok) {
+      //   throw new Error(data.message || "Failed to create user");
+      // }
 
       // Successful creation
-      console.log("User created->origin-google:", data);
+      // console.log("User created->origin-google:", data);
       navigate("/");
       toast("Welcome to InBrief 📰", {
         icon: "✔️",

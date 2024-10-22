@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children }) => {
       </div>
     );
   }
-  if (!user || !user?.user) {
+  if (!user) {
     //token remove koretei hobe.....
     // localStorage.removeItem('token');
     return <Navigate to="/signin" />;
