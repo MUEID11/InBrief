@@ -7,10 +7,10 @@ import ProfileLoadingTest from "../Components/Component/ProfileLoadingTest";
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  useEffect(() => {
-    dispatch(userThunk());
-  }, [dispatch]);
+  const user = useSelector((state) => state.user || state.user?.user);
+  // useEffect(() => {
+  //   dispatch(userThunk());
+  // }, [dispatch]);
   console.log("use protection", user);
   if (user?.isLoading) {
     return (
@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children }) => {
       </div>
     );
   }
-  if (!token || user?.error) {
+  if (!user || !user?.user) {
     //token remove koretei hobe.....
     // localStorage.removeItem('token');
     return <Navigate to="/signin" />;

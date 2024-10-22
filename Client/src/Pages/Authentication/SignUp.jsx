@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import userThunk from "../../Features/thunks/userThunks";
 import toast from "react-hot-toast";
+import SocialLogin from "../../Components/Component/SocialLogin";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -127,13 +128,7 @@ const SignUp = () => {
             <img className="w-auto h-7 sm:h-8" src={logo} alt="Logo" />
           </div>
 
-          {/* Google Sign-In Button */}
-          <a href="#" className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg hover:bg-gray-50 ">
-            <div className="px-4 py-2">
-              <FcGoogle className="text-2xl" />
-            </div>
-            <span className="w-5/6 px-4 py-3 font-bold text-center">Sign in with Google</span>
-          </a>
+          <SocialLogin />
 
           {/* Separator */}
           <div className="flex items-center justify-between mt-4">

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "./../../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import userThunk from "../../Features/thunks/userThunks";
+import userThunk, { firebaseLogout } from "../../Features/thunks/userThunks";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { resetUser } from "../../Features/Authenticate/userSlice";
 import { RiMenu3Line } from "react-icons/ri";
@@ -28,9 +28,9 @@ const Navbar = () => {
   const { pathname } = useLocation();
   const { user } = useSelector((state) => state?.user);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(userThunk());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(userThunk());
+  // }, []);
   console.log(user);
 
   // Search start
@@ -44,6 +44,7 @@ const Navbar = () => {
 
   const handleSignOut = async (e) => {
     e.preventDefault();
+    dispatch(firebaseLogout());
     dispatch(resetUser());
     navigate("/signin");
     toast.success("User logged out");
@@ -125,14 +126,14 @@ const Navbar = () => {
                 {isDropDownOpen ? (
                   <img
                     className="relative size-10 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
-                    src={user?.imageUrl}
+                    src={user?.imageUrl || user?.photoURL}
                     alt="Medium avatar"
                   />
                 ) : (
                   <div>
                     <img
                       className="relative size-10 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
-                      src={user?.imageUrl}
+                      src={user?.imageUrl || user?.photoURL}
                       alt="Medium avatar"
                     />
                   </div>
