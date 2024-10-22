@@ -124,11 +124,11 @@ const AdminDashboard = () => {
       {
         data: categoryDistribution.map((item) => item?.count),
         backgroundColor: [
-          "rgba(76, 81, 191, 0.😎",
-          "rgba(56, 178, 172, 0.😎",
-          "rgba(237, 137, 54, 0.😎",
-          "rgba(229, 62, 62, 0.😎",
-          "rgba(49, 151, 149, 0.😎",
+        "rgba(76, 81, 191, 0.8)",
+          "rgba(56, 178, 172, 0.8)",
+          "rgba(237, 137, 54, 0.8)",
+          "rgba(229, 62, 62, 0.8)",
+          "rgba(49, 151, 149, 0.8)",
         ],
         hoverBackgroundColor: [
           "rgba(76, 81, 191, 1)",
