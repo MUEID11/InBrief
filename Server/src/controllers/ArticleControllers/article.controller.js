@@ -201,7 +201,7 @@ const getArticlesByEmail = async (req, res) => {
   const email = req.params.email;
 
   try {
-    const articles = await Article.find({ postedBy: email });
+    const articles = await Article.find({ postedBy: email }).populate("createdBy");
 
     if (articles.length === 0) {
       return res.status(404).json({ message: "No products found for this email" });

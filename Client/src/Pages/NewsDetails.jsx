@@ -220,7 +220,7 @@ const NewsDetails = () => {
                       className="font-semibold text-blue-600
 "
                     >
-                      {article?.postedBy}
+                      {article?.createdBy?.name}
                     </span>
                   </Link>
                 </p>
