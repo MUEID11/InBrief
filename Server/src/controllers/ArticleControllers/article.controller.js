@@ -87,7 +87,7 @@ const getArticlesByPreferences = async (req, res) => {
   try {
     const user = await userModel.findById(id);
     if (!user || !user.preferences || user.preferences.length === 0) {
-      const articles = await Article.find().sort({ createdAt: -1 });
+      const articles = await Article.find().sort({ createdAt: sort === "DSC" ? -1 : 1 });
       return res.status(200).json({ success: true, count: articles.length, data: articles });
     }
 
@@ -186,7 +186,7 @@ const AddLike = async (req, res) => {
 const getArticleById = async (req, res) => {
   try {
     const articleId = req.params.id;
-    const article = await Article.findById(articleId);
+    const article = await Article.findById(articleId).populate("createdBy");
 
     if (!article) {
       return res.status(404).json({ message: "Article not found" });
