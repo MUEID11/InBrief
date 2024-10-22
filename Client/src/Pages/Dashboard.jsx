@@ -3,9 +3,10 @@ import axios from "axios";
 import { Pie, Line, Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import "tailwindcss/tailwind.css";
-import { FaNewspaper, FaEye, FaList, FaCheck, FaTimes, FaInfoCircle } from "react-icons/fa";
+import { FaNewspaper, FaEye, FaList } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css"; 
+import { FaCheck, FaTimes, FaInfoCircle } from "react-icons/fa";
 
 const Dashboard = () => {
   const [articles, setArticles] = useState([]);
@@ -77,7 +78,7 @@ const Dashboard = () => {
       );
       if (response.status === 200) {
         toast.success("Article approved successfully!"); 
-        fetchArticlesData(); 
+        fetchArticlesData(); // Fetch articles data again after approval
       } else {
         console.error("Failed to approve article");
       }
@@ -165,152 +166,170 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-slate-100 via-slate-200 to-slate-200 p-4">
-      <ToastContainer />
-      <header className="mb-4">
-        <h1 className="text-2xl font-bold">Admin Dashboard</h1>
+    <div className="min-h-screen bg-gradient-to-r from-slate-100 via-slate-200 to-slate-200">
+      <ToastContainer /> {/* Add ToastContainer here */}
+      <header className="p-4">
+        <div className="text-2xl text-black font-bold">Admin Dashboard</div>
       </header>
 
-      <main>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-6 shadow-md rounded-lg relative">
-            <FaNewspaper className="absolute top-4 left-4 text-blue-500 text-3xl" />
-            <div className="ml-12">
-              <h2 className="text-gray-900 text-xl font-semibold mb-2">Total Articles</h2>
-              <p className="text-3xl font-bold">{articlesCount}</p>
-            </div>
-          </div>
+      <main className="p-4">  
 
-          <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-6 shadow-md rounded-lg relative">
-            <FaEye className="absolute top-4 left-4 text-blue-500 text-3xl" />
-            <div className="ml-12">
-              <h2 className="text-gray-900 text-xl font-semibold mb-2">Total Views</h2>
-              <p className="text-3xl font-bold">{totalViews}</p>
-            </div>
-          </div>
+      <div className="flex flex-wrap justify-between mb-6">
+  {/* Total Articles Card */}
+  <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-6 shadow-md relative w-full sm:w-1/2 md:w-1/4 mb-4">
+    <FaNewspaper className="absolute top-4 left-4 text-blue-500 text-3xl" />
+    <div className="ml-12">
+      <h2 className="text-gray-900 text-xl font-semibold mb-2">
+        Total Articles
+      </h2>
+      <p className="text-3xl font-bold">{articlesCount}</p>
+    </div>
+  </div>
 
-          <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-6 shadow-md rounded-lg relative">
-            <FaList className="absolute top-4 left-4 text-blue-500 text-3xl" />
-            <div className="ml-12">
-              <h2 className="text-gray-900 text-xl font-semibold mb-2">Unique Categories</h2>
-              <p className="text-3xl font-bold">{categoryCount}</p>
-            </div>
-          </div>
-        </div>
+ 
+  <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-6 shadow-md relative w-full sm:w-1/2 md:w-1/4 mb-4">
+    <FaEye className="absolute top-4 left-4 text-blue-500 text-3xl" />
+    <div className="ml-12">
+      <h2 className="text-gray-900 text-xl font-semibold mb-2">
+        Total Views
+      </h2>
+      <p className="text-3xl font-bold">{totalViews}</p>
+    </div>
+  </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-          <div className="bg-white shadow-md rounded-lg p-4">
-            <h3 className="text-lg font-bold mb-4">Category Distribution</h3>
-            <Pie data={pieData} />
-          </div>
+  {/* Unique Categories Card */}
+  <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-6 shadow-md relative w-full sm:w-1/2 md:w-1/4 mb-4">
+    <FaList className="absolute top-4 left-4 text-blue-500 text-3xl" />
+    <div className="ml-12">
+      <h2 className="text-gray-900 text-xl font-semibold mb-2">
+        Unique Categories
+      </h2>
+      <p className="text-3xl font-bold">{categoryCount}</p>
+    </div>
+  </div>
+</div>
 
-          <div className="bg-white shadow-md rounded-lg p-4">
-            <h3 className="text-lg font-bold mb-4">Views Over Time</h3>
-            <Line data={lineData} />
-          </div>
 
-          <div className="bg-white shadow-md rounded-lg p-4">
-            <h3 className="text-lg font-bold mb-4">Articles Count by Category</h3>
-            <Bar data={barData} />
-          </div>
-        </div>
+       
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {/* Category Distribution */}
+  <div className="bg-white shadow-md rounded-lg p-4">
+    <h3 className="text-lg font-bold mb-4">Category Distribution</h3>
+    <Pie data={pieData} />
+  </div>
 
-        <div className="bg-white shadow-md rounded-lg p-4 overflow-x-auto">
-          <h3 className="text-lg font-bold mb-4 text-center">Articles Status</h3>
-          <table className="min-w-full">
-            <thead>
-              <tr className="border-b">
-                <th className="py-2 px-4 text-left">Title</th>
-                <th className="py-2 px-4 text-left hidden sm:table-cell">Category</th>
-                <th className="py-2 px-4 text-left hidden md:table-cell">Posted By</th>
-                <th className="py-2 px-4 text-left">Status</th>
-                <th className="py-2 px-4 text-left">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {articles.map((article) => (
-                <tr key={article._id} className="border-b">
-                  <td className="py-2 px-4">{article.title}</td>
-                  <td className="py-2 px-4 hidden sm:table-cell">{article.category}</td>
-                  <td className="py-2 px-4 hidden md:table-cell">{article.postedBy}</td>
-                  <td className="py-2 px-4">
-                    <span
-                      className={`px-2 py-1 rounded-full ${
-                        article.status === "pending"
-                          ? "bg-yellow-200 text-yellow-800"
-                          : article.status === "approved"
-                          ? "bg-green-200 text-green-800"
-                          : "bg-red-200 text-red-800"
-                      }`}
-                    >
-                      {article.status}
-                    </span>
-                  </td>
-                  <td className="py-2 px-4 flex items-center space-x-2">
-                    {article.status === "pending" ? (
-                      <>
-                        <button
-                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
-                          onClick={() => {
-                            // Show article details logic here
-                          }}
-                        >
-                          <FaInfoCircle />
-                        </button>
-                        <button
-                          className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded"
-                          onClick={() => {
-                            setModalVisible(true); 
-                            setPendingArticleId(article._id); 
-                            setActionType("approve"); 
-                          }}
-                        >
-                          <FaCheck />
-                        </button>
-                        <button
-                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
-                          onClick={() => {
-                            setModalVisible(true); 
-                            setPendingArticleId(article._id); 
-                            setActionType("reject"); 
-                          }}
-                        >
-                          <FaTimes />
-                        </button>
-                      </>
-                    ) : (
-                      <span>N/A</span>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+  {/* Views Over Time */}
+  <div className="bg-white shadow-md rounded-lg p-4">
+    <h3 className="text-lg font-bold mb-4">Views Over Time</h3>
+    <Line data={lineData} />
+  </div>
+
+  {/* Articles Count by Category */}
+  <div className="bg-white shadow-md rounded-lg p-4">
+    <h3 className="text-lg font-bold mb-4">Articles Count by Category</h3>
+    <Bar data={barData} />
+  </div>
+</div>
+
+
+<div className="mt-6 bg-white shadow-md rounded-lg p-4">
+  <h3 className="bg-zinc-200 text-center text-lg p-6 font-bold mb-4">Pending Articles</h3>
+
+  <div className="overflow-x-auto">
+    <table className="min-w-full bg-slate-50 rounded-md">
+      <thead>
+        <tr className="border-b bg-red-50">
+          <th className="p-2 text-left text-sm sm:text-base">Title</th>
+          <th className="p-2 text-left text-sm sm:text-base hidden sm:table-cell">Category</th>
+          <th className="p-2 text-left text-sm sm:text-base">Status</th>
+          <th className="p-2 text-left text-sm sm:text-base">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {articles.map((article) => (
+          <tr key={article._id} className="border-b">
+            <td className="p-2 text-sm sm:text-base">{article.title}</td>
+            <td className="p-2 text-sm sm:text-base hidden sm:table-cell">{article.category}</td>
+            <td className="p-2 text-sm sm:text-base">
+              <span
+                className={`font-bold rounded-full ${
+                  article.status === "approved"
+                    ? "text-green-400"
+                    : article.status === "pending"
+                    ? "text-orange-400"
+                    : "text-red-600"
+                }`}
+              >
+                {article.status}
+              </span>
+            </td>
+            <td className="p-2">
+              {article.status === "approved" ? (
+                <span className="text-gray-500">N/A</span>
+              ) : (
+                <div className="flex flex-wrap lg:my-0    sm:flex-nowrap space-x-2">
+                  <button
+                    className="hover:rounded-xl my-1 lg:my-0 ml-2 lg:ml-0  bg-green-500 text-white p-2 rounded-full"
+                    onClick={() => {
+                      setModalVisible(true);
+                      setPendingArticleId(article._id);
+                      setActionType("approve");
+                    }}
+                  >
+                    <FaCheck className="" />
+                  </button>
+                  <button
+                    className="bg-red-600 my-1 lg:my-0 shadow-2xl shadow-neutral-500 text-white p-2 rounded-full"
+                    onClick={() => {
+                      setModalVisible(true);
+                      setPendingArticleId(article._id);
+                      setActionType("reject");
+                    }}
+                  >
+                    <FaTimes />
+                  </button>
+                  <a
+                    href={`/articles/${article._id}`}
+                    className="bg-blue-800 my-1 lg:my-0 hover:rounded-xl text-white p-2 rounded-full"
+                  >
+                    <FaInfoCircle />
+                  </a>
+                </div>
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
 
         {modalVisible && (
-          <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="bg-white p-6 rounded shadow-lg">
-              <h2 className="text-xl font-bold mb-4">Confirm Action</h2>
-              <p className="mb-4">
-                Are you sure you want to {actionType} this article?
-              </p>
-              <div className="flex justify-end">
+          <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+            <div className="bg-white p-6 rounded shadow-md">
+              <h2 className="text-lg font-bold mb-4">
+                {actionType === "approve" ? "Approve Article" : "Reject Article"}
+              </h2>
+              <p>Are you sure you want to {actionType} this article?</p>
+              <div className="mt-4 flex justify-end">
                 <button
-                  className="bg-gray-500 text-white font-bold py-1 px-4 rounded mr-2"
+                  className="bg-gray-500 text-white p-2 rounded mr-2"
                   onClick={() => setModalVisible(false)}
                 >
                   Cancel
                 </button>
                 <button
-                  className="bg-blue-500 text-white font-bold py-1 px-4 rounded"
+                  className={`${
+                    actionType === "approve" ? "bg-green-500" : "bg-red-600"
+                  } text-white p-2 rounded`}
                   onClick={
-                    actionType === "approve"
-                      ? handleApproveArticle
-                      : handleRejectArticle
+                    actionType === "approve" ? handleApproveArticle : handleRejectArticle
                   }
                 >
-                  Confirm
+                  {actionType === "approve" ? "Approve" : "Reject"}
                 </button>
               </div>
             </div>
