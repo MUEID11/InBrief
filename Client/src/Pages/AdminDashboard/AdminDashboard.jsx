@@ -6,8 +6,9 @@ import "tailwindcss/tailwind.css";
 import { FaNewspaper, FaEye, FaList } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css"; 
-import { FaCheck, FaTimes, FaInfoCircle } from "react-icons/fa";
+import { FaCheck, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { TbListDetails } from "react-icons/tb";
 
 const AdminDashboard = () => {
   const [articles, setArticles] = useState([]);
@@ -118,10 +119,10 @@ const AdminDashboard = () => {
   }, []);
 
   const pieData = {
-    labels: categoryDistribution.map((item) => item.category),
+    labels: categoryDistribution.map((item) => item?.category),
     datasets: [
       {
-        data: categoryDistribution.map((item) => item.count),
+        data: categoryDistribution.map((item) => item?.count),
         backgroundColor: [
           "rgba(76, 81, 191, 0.😎",
           "rgba(56, 178, 172, 0.😎",
@@ -167,7 +168,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-slate-100 via-slate-200 to-slate-200">
+    <div className="min-h-screen ">
       <ToastContainer /> {/* Add ToastContainer here */}
       <header className="p-4 flex gap-3 items-center">
         <h2 className="text-2xl text-black font-bold">Admin Dashboard</h2>
@@ -178,7 +179,7 @@ const AdminDashboard = () => {
 
       <div className="flex flex-wrap justify-between mb-6">
   {/* Total Articles Card */}
-  <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-6 shadow-md relative w-full sm:w-1/2 md:w-1/4 mb-4">
+  <div className=" p-6 shadow-lg relative w-full sm:w-1/2 md:w-1/4 mb-4">
     <FaNewspaper className="absolute top-4 left-4 text-blue-500 text-3xl" />
     <div className="ml-12">
       <h2 className="text-gray-900 text-xl font-semibold mb-2">
@@ -189,7 +190,7 @@ const AdminDashboard = () => {
   </div>
 
  
-  <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-6 shadow-md relative w-full sm:w-1/2 md:w-1/4 mb-4">
+  <div className=" p-6 shadow-lg relative w-full sm:w-1/2 md:w-1/4 mb-4">
     <FaEye className="absolute top-4 left-4 text-blue-500 text-3xl" />
     <div className="ml-12">
       <h2 className="text-gray-900 text-xl font-semibold mb-2">
@@ -200,7 +201,7 @@ const AdminDashboard = () => {
   </div>
 
   {/* Unique Categories Card */}
-  <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-6 shadow-md relative w-full sm:w-1/2 md:w-1/4 mb-4">
+  <div className=" p-6 shadow-lg relative w-full sm:w-1/2 md:w-1/4 mb-4">
     <FaList className="absolute top-4 left-4 text-blue-500 text-3xl" />
     <div className="ml-12">
       <h2 className="text-gray-900 text-xl font-semibold mb-2">
@@ -267,7 +268,7 @@ const AdminDashboard = () => {
             </td>
             <td className="p-2">
               {article.status === "approved" ? (
-                <span className="text-gray-500">N/A</span>
+                <button className="bg-gray-300 hover:rounded-xl  p-2 rounded-full"><TbListDetails/></button>
               ) : (
                 <div className="flex flex-wrap lg:my-0    sm:flex-nowrap space-x-2">
                   <button
@@ -292,9 +293,9 @@ const AdminDashboard = () => {
                   </button>
                   <a
                     href={`/articles/${article._id}`}
-                    className="bg-blue-800 my-1 lg:my-0 hover:rounded-xl text-white p-2 rounded-full"
+                    className="bg-gray-300 my-1 lg:my-0 hover:rounded-xl  p-2 rounded-full"
                   >
-                    <FaInfoCircle />
+                     <TbListDetails/>
                   </a>
                 </div>
               )}
