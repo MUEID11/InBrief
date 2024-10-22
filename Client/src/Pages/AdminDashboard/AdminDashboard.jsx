@@ -148,7 +148,7 @@ const AdminDashboard = () => {
         label: "Views per Day",
         data: viewsData.map((item) => item.views),
         fill: false,
-        backgroundColor: "rgba(237, 137, 54, 0.😎",
+        backgroundColor: "rgba(237, 137, 54, 0.8",
         borderColor: "rgba(237, 137, 54, 1)",
       },
     ],
@@ -160,7 +160,7 @@ const AdminDashboard = () => {
       {
         label: "Articles Count",
         data: categoryDistribution.map((item) => item.count),
-        backgroundColor: "rgba(56, 178, 172, 0.😎",
+        backgroundColor: "rgba(56, 178, 172, 0.8",
         borderColor: "rgba(56, 178, 172, 1)",
         borderWidth: 1,
       },
