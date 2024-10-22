@@ -116,17 +116,17 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: (
-          // <ProtectedRoute>
+          <ProtectedRoute>
             <Dashboard />
-          // </ProtectedRoute>
+           </ProtectedRoute>
         ),
       },
       {
         path: "/dashboard/user",
         element: (
-          // <ProtectedRoute>
+          <ProtectedRoute>
             <UserDashboard />
-          // </ProtectedRoute>
+           </ProtectedRoute>
         ),
       },
       {
