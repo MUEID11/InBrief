@@ -257,7 +257,7 @@ const Dashboard = () => {
                     ) : (
                       <div className="flex space-x-2">
                         <button
-                          className="hover:rounded-3xl bg-green-500 text-white p-2 rounded-full"
+                          className="hover:rounded-xl bg-green-500 text-white p-2 rounded-full"
                           onClick={() => {
                             setModalVisible(true);
                             setPendingArticleId(article._id);
@@ -278,7 +278,7 @@ const Dashboard = () => {
                         </button>
                         <a
                           href={`/articles/${article._id}`}
-                          className="bg-blue-800 text-white p-2 rounded-full"
+                          className="bg-blue-800 hover:rounded-3xl text-white p-2 rounded-full"
                         >
                           <FaInfoCircle />
                         </a>
