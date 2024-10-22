@@ -267,7 +267,7 @@ const Dashboard = () => {
                           <FaCheck />
                         </button>
                         <button
-                          className="bg-red-500 text-white p-2 rounded-full"
+                          className="bg-red-600 shadow-2xl shadow-neutral-500 text-white p-2 rounded-full"
                           onClick={() => {
                             setModalVisible(true);
                             setPendingArticleId(article._id);
@@ -307,7 +307,7 @@ const Dashboard = () => {
                 </button>
                 <button
                   className={`${
-                    actionType === "approve" ? "bg-green-500" : "bg-red-500"
+                    actionType === "approve" ? "bg-green-500" : "bg-red-600"
                   } text-white p-2 rounded`}
                   onClick={
                     actionType === "approve" ? handleApproveArticle : handleRejectArticle
