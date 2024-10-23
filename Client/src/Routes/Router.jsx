@@ -29,7 +29,7 @@ import MyBookmarkes from "../Pages/UserDashbord/MyBookmarkes";
 import FeaturedBooks from "../Pages/FeaturedBooks";
 import BookDetails from "../Pages/BookDetails";
 import CreatorArticles from "../Pages/CreatorArticles";
-import Magazine from "../Pages/Magazine/Magazine";
+import Magazine from "../Pages/Magazine";
 
 const router = createBrowserRouter([
   {
