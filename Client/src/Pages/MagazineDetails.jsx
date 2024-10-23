@@ -1,6 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faTag, faUserFriends, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { FaUserCircle, FaTag, FaUserFriends } from 'react-icons/fa';
 
 const App = () => {
   const magazine = {
@@ -36,7 +35,7 @@ const App = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Topics */}
           <div className="flex items-center">
-            <FontAwesomeIcon icon={faTag} className="text-gray-600 mr-3" />
+            <FaTag className="text-gray-600 mr-3" />
             <div>
               <h2 className="text-lg font-semibold">Topics</h2>
               <p className="text-gray-600">{magazine.topics}</p>
@@ -45,7 +44,7 @@ const App = () => {
 
           {/* Followers */}
           <div className="flex items-center">
-            <FontAwesomeIcon icon={faUserFriends} className="text-gray-600 mr-3" />
+            <FaUserFriends className="text-gray-600 mr-3" />
             <div>
               <h2 className="text-lg font-semibold">Followers</h2>
               <ul className="text-gray-600 list-disc pl-5">
@@ -58,7 +57,7 @@ const App = () => {
 
           {/* Created By */}
           <div className="flex items-center">
-            <FontAwesomeIcon icon={faUserCircle} className="text-gray-600 mr-3" />
+            <FaUserCircle className="text-gray-600 mr-3" />
             <div>
               <h2 className="text-lg font-semibold">Created By</h2>
               <p className="text-gray-600">{magazine.createdBy}</p>
