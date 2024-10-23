@@ -67,15 +67,7 @@ const Asidebar = () => {
             <FiPhoneCall />
             <span className="mx-2 text-sm font-medium">Contact Us </span>
           </Link>
-          {/* Dashboard */}
-          <Link
-            to="/dashboard"
-            className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-              pathname === "/dashboard/my-posts" && "bg-gray-200 text-gray-700"
-            }`}>
-            <MdOutlineSpaceDashboard />
-            <span className="mx-2 text-sm font-medium">Dashboard</span>
-          </Link>
+
           <Link
             to="/forum"
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
@@ -84,14 +76,7 @@ const Asidebar = () => {
             <MdOutlineForum />
             <span className="mx-2 text-sm font-medium">Forum</span>
           </Link>
-          <Link
-            to={"/bookmarks"}
-            className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-              pathname === "/bookmarks" && "bg-gray-200 text-gray-700"
-            }`}>
-            <TbBookmarks />
-            <span className="mx-2 text-sm font-medium">Bookmarks</span>
-          </Link>
+
           <Link
             to={"/submit-article"}
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${

@@ -28,6 +28,7 @@ import MyVotesArticle from "../Pages/UserDashbord/MyVotesArticle";
 import MyBookmarkes from "../Pages/UserDashbord/MyBookmarkes";
 import FeaturedBooks from "../Pages/FeaturedBooks";
 import BookDetails from "../Pages/BookDetails";
+import CreatorArticles from "../Pages/CreatorArticles";
 
 const router = createBrowserRouter([
   {
@@ -115,17 +116,17 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: (
-          // <ProtectedRoute>
+          <ProtectedRoute>
             <Dashboard />
-          // </ProtectedRoute>
+           </ProtectedRoute>
         ),
       },
       {
         path: "/dashboard/user",
         element: (
-          // <ProtectedRoute>
+          <ProtectedRoute>
             <UserDashboard />
-          // </ProtectedRoute>
+           </ProtectedRoute>
         ),
       },
       {
@@ -157,6 +158,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <NewsDetails />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/articles/creator/:email",
+        element: (
+          <ProtectedRoute>
+          <CreatorArticles/>
           </ProtectedRoute>
         ),
       },

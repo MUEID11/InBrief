@@ -2,13 +2,9 @@ import { useState } from "react";
 import { BiLike, BiSolidLike } from "react-icons/bi";
 import { FaRegCommentDots } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
-import {
-  useAddLikeCommentMutation,
-  useAddReplyMutation,
-  useDeleteCommentMutation,
-} from "../../Features/Comment/commentsApi";
 import { useSelector } from "react-redux";
 import Reply from "./Reply";
+import { useAddLikeCommentMutation, useAddReplyMutation, useDeleteCommentMutation } from "../../services/Comment/commentsApi";
 
 const CommentComponent = ({ comment }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);

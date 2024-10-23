@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { useAddForumCommentMutation } from "../../../Features/ForumComment/ForumCommentApi";
+import { useAddForumCommentMutation } from "../../../services/ForumComment/forumCommentApi";
 
 const CommentSection = ({ discussionId }) => {
   const [comment, setComment] = useState("");
