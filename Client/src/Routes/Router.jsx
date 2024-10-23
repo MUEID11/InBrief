@@ -29,6 +29,7 @@ import MyBookmarkes from "../Pages/UserDashbord/MyBookmarkes";
 import FeaturedBooks from "../Pages/FeaturedBooks";
 import BookDetails from "../Pages/BookDetails";
 import CreatorArticles from "../Pages/CreatorArticles";
+import MagazineDetails from "../Pages/MagazineDetails";
 
 const router = createBrowserRouter([
   {
@@ -183,7 +184,7 @@ const router = createBrowserRouter([
       },
       {
         path: "magazine-details",
-        element: <MagazineDetail />,
+        element: <MagazineDetails />,
       },
       {
         path: "books/:bookId",
