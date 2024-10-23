@@ -260,30 +260,30 @@ const AdminDashboard = () => {
               </thead>
               <tbody>
                 {articles.map((article) => (
-                  <tr key={article._id} className="border-b">
+                  <tr key={article?._id} className="border-b">
                     <td className="p-2 text-sm sm:text-base">
-                      {article.title}
+                      {article?.title}
                     </td>
                     <td className="p-2 text-sm sm:text-base hidden sm:table-cell">
-                      {article.category}
+                      {article?.category}
                     </td>
                     <td className="p-2 text-sm sm:text-base">
                       <span
                         className={`font-bold rounded-full ${
-                          article.status === "approved"
+                          article?.status === "approved"
                             ? "text-green-400"
-                            : article.status === "pending"
+                            : article?.status === "pending"
                             ? "text-orange-400"
                             : "text-red-600"
                         }`}
                       >
-                        {article.status}
+                        {article?.status}
                       </span>
                     </td>
                    
                     <td className="p-2">
-                      {article.status === "approved" ? (
-                        <Link to={`/articles/${article._id}`}>
+                      {article?.status === "approved" ? (
+                        <Link to={`/articles/${article?._id}`}>
                           {" "}
                           <button className="bg-gray-300 hover:rounded-xl  p-2 rounded-full">
                             <TbListDetails />
@@ -295,7 +295,7 @@ const AdminDashboard = () => {
                             className="hover:rounded-xl my-1 lg:my-0 ml-2 lg:ml-0  bg-green-500 text-white p-2 rounded-full"
                             onClick={() => {
                               setModalVisible(true);
-                              setPendingArticleId(article._id);
+                              setPendingArticleId(article?._id);
                               setActionType("approve");
                             }}
                           >
@@ -305,14 +305,14 @@ const AdminDashboard = () => {
                             className="bg-red-600 my-1 lg:my-0 shadow-2xl shadow-neutral-500 text-white p-2 rounded-full"
                             onClick={() => {
                               setModalVisible(true);
-                              setPendingArticleId(article._id);
+                              setPendingArticleId(article?._id);
                               setActionType("reject");
                             }}
                           >
                             <FaTimes />
                           </button>
                           <a
-                            href={`/articles/${article._id}`}
+                            href={`/articles/${article?._id}`}
                             className="bg-gray-300 my-1 lg:my-0 hover:rounded-xl  p-2 rounded-full"
                           >
                             <TbListDetails />

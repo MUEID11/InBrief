@@ -13,21 +13,21 @@ const TopCreators = () => {
     },
     {
       image:
-        "https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?size=338&ext=jpg&ga=GA1.1.386372595.1726531200&semt=ais_hybrid",
-      name: "Joe Alen",
+        "https://i.pinimg.com/736x/f6/ee/13/f6ee1311d121ea0cef159ff502d21720.jpg",
+      name: "Nur Islam",
       channel: "CNN",
     },
     {
       image:
-        "https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?size=338&ext=jpg&ga=GA1.1.386372595.1726531200&semt=ais_hybrid",
-      name: "Alexa Timber",
-      channel: "Formula 1",
+        "https://www.shutterstock.com/image-photo/portrait-one-young-happy-cheerful-600nw-1980856400.jpg",
+      name: "Joe Alen",
+      channel: "Sky News",
     },
     {
       image:
-        "https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?size=338&ext=jpg&ga=GA1.1.386372595.1726531200&semt=ais_hybrid",
+        "https://www.shutterstock.com/image-photo/close-headshot-portrait-smiling-young-260nw-1916406272.jpg",
       name: "Asley Star",
-      channel: "Goal",
+      channel: "Fox News",
     },
   ];
 

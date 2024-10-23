@@ -178,9 +178,9 @@ const NewsCard = ({ article }) => {
             </div>
           </div>
           {/* Read More Button */}
-          <button className="text-red-600 self-end font-medium">
+          <Link to={`/articles/${article?._id}`}><button className="text-red-600 self-end font-medium">
             Read More
-          </button>
+          </button></Link>
         </div>
       </div>
     </article>
