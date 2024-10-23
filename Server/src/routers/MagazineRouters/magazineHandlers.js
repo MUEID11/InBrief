@@ -3,10 +3,12 @@ const { createMagazine } = require("../../controllers/MagazineControllers/create
 const addArticle = require("../../controllers/MagazineControllers/addArticle");
 const { followMagazine, unfollowMagazine } = require("../../controllers/MagazineControllers/followMagazine");
 const getAllMagazines = require("../../controllers/MagazineControllers/getAllMagazines");
+const getAMagazine = require("../../controllers/MagazineControllers/getAMagazine");
 const router = express.Router();
 
 router.post("/", createMagazine);
 router.get("/", getAllMagazines);
+router.get("/:magazineId", getAMagazine);
 router.post("/addArticle/:magazineId", addArticle);
 router.patch("/followMagazine/:magazineId", followMagazine);
 router.patch("/unfollowMagazine/:magazineId", unfollowMagazine);
