@@ -2,9 +2,11 @@ const express = require("express");
 const { createMagazine } = require("../../controllers/MagazineControllers/createMagazine");
 const addArticle = require("../../controllers/MagazineControllers/addArticle");
 const { followMagazine, unfollowMagazine } = require("../../controllers/MagazineControllers/followMagazine");
+const getAllMagazines = require("../../controllers/MagazineControllers/getAllMagazines");
 const router = express.Router();
 
 router.post("/", createMagazine);
+router.get("/", getAllMagazines);
 router.post("/addArticle/:magazineId", addArticle);
 router.patch("/followMagazine/:magazineId", followMagazine);
 router.patch("/unfollowMagazine/:magazineId", unfollowMagazine);
