@@ -36,10 +36,7 @@ const App = () => {
           {/* Topics */}
           <div className="flex items-center">
             <FaTag className="text-gray-600 mr-3" />
-            <div>
-              <h2 className="text-lg font-semibold">Topics</h2>
-              <p className="text-gray-600">{magazine.topics}</p>
-            </div>
+          
           </div>
 
           {/* Followers */}
