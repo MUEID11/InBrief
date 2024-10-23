@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "./../../assets/logo.png";
-import userThunk from "../../Features/thunks/userThunks";
-import { useDispatch } from "react-redux";
+import userThunk, { signInByEmailAndPass } from "../../Features/thunks/userThunks";
+import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import whitelogo from "./../../assets/whitelogo.png";
 import SocialLogin from "../../Components/Component/SocialLogin";
@@ -9,6 +9,7 @@ import SocialLogin from "../../Components/Component/SocialLogin";
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { error } = useSelector((state) => state.user);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -16,29 +17,21 @@ const SignIn = () => {
     const email = form.email.value;
     const password = form.password.value;
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/signin`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
-      console.log(data);
-      const token = localStorage.setItem("token", data);
-      console.log(token);
-      console.log(response.ok);
-      if (response.ok) {
-        dispatch(userThunk());
-        navigate("/");
-        toast("Welcome back!", {
-          icon: "✔️",
-          style: {
-            borderRadius: "10px",
-            background: "#333",
-            color: "#fff",
-          },
-        });
-      } else {
-        toast(data?.message, {
+      await dispatch(signInByEmailAndPass({ email, password }));
+      // const response = await fetch(`${import.meta.env.VITE_API_URL}/users/signin`, {
+      //   method: "POST",
+      //   headers: { "content-type": "application/json" },
+      //   body: JSON.stringify({ email, password }),
+      // });
+      // const data = await response.json();
+      // console.log(data);
+      // const token = localStorage.setItem("token", data);
+      // console.log(token);
+      // console.log(response.ok);
+
+      if (error) {
+        const msg = error.split(':')[1]
+        toast(msg, {
           icon: "❌",
           style: {
             borderRadius: "10px",
@@ -46,7 +39,18 @@ const SignIn = () => {
             color: "#fff",
           },
         });
+        return;
       }
+
+      navigate("/");
+      toast("Welcome back!", {
+        icon: "✔️",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
     } catch (error) {
       toast(error?.message, {
         icon: "❌",

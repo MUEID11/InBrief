@@ -127,6 +127,7 @@ const Navbar = () => {
                   <img
                     className="relative size-10 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
                     src={user?.imageUrl || user?.photoURL}
+                    referrerPolicy="no-referer"
                     alt="Medium avatar"
                   />
                 ) : (
@@ -134,6 +135,7 @@ const Navbar = () => {
                     <img
                       className="relative size-10 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
                       src={user?.imageUrl || user?.photoURL}
+                      referrerPolicy="no-referer"
                       alt="Medium avatar"
                     />
                   </div>
@@ -152,16 +154,16 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                  <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                  Dashboard
+                    <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                      Dashboard
                     </Link>
                   </li>
                   <li>
-                  <Link to="/bookmarks" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                  Bookmarks
+                    <Link to="/bookmarks" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                      Bookmarks
                     </Link>
                   </li>
-                
+
                   <li>
                     <Link onClick={handleSignOut} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                       Sign Out

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import userThunk, { checkAuthState, createUserWithGoogle, firebaseLogout, updateUser } from "../thunks/userThunks";
+import userThunk, { checkAuthState, createUserByEmailAndPass, createUserWithGoogle, firebaseLogout, signInByEmailAndPass, updateUser } from "../thunks/userThunks";
 
 const initialState = {
   user: null,
@@ -25,8 +25,37 @@ const userSlice = createSlice({
         console.log("load", action.payload);
         state.isLoading = false;
         state.user = action.payload || null;
+        state.error = null;
       })
       .addCase(createUserWithGoogle.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(createUserByEmailAndPass.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(createUserByEmailAndPass.fulfilled, (state, action) => {
+        console.log("load", action.payload);
+        state.isLoading = false;
+        state.user = action.payload || null;
+        state.error = null;
+      })
+      .addCase(createUserByEmailAndPass.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(signInByEmailAndPass.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(signInByEmailAndPass.fulfilled, (state, action) => {
+        console.log("load", action.payload);
+        state.isLoading = false;
+        state.user = action.payload || null;
+        state.error = null;
+      })
+      .addCase(signInByEmailAndPass.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
@@ -58,6 +87,7 @@ const userSlice = createSlice({
       .addCase(firebaseLogout.fulfilled, (state) => {
         state.user = null; // Clear user state on successful logout
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(firebaseLogout.rejected, (state, action) => {
         state.isLoading = false;
@@ -67,10 +97,12 @@ const userSlice = createSlice({
     builder
       .addCase(checkAuthState.pending, (state) => {
         state.isLoading = true;
+        state.error = null;
       })
       .addCase(checkAuthState.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
+        state.error = null;
       })
       .addCase(checkAuthState.rejected, (state, action) => {
         state.isLoading = false;

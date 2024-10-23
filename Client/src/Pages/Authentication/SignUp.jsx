@@ -3,9 +3,9 @@ import logo from "./../../assets/logo.png";
 import whitelogo from "./../../assets/whitelogo.png";
 import { FcGoogle } from "react-icons/fc";
 // import { signUpUser } from "../../Features/Authenticate/authAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import userThunk from "../../Features/thunks/userThunks";
+import userThunk, { createUserByEmailAndPass } from "../../Features/thunks/userThunks";
 import toast from "react-hot-toast";
 import SocialLogin from "../../Components/Component/SocialLogin";
 
@@ -14,6 +14,7 @@ const SignUp = () => {
   const [error, setError] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const { error: stateError } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const handleChange = async (e) => {
     e.preventDefault();
@@ -63,28 +64,40 @@ const SignUp = () => {
 
     try {
       // Make POST request to create a user
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/createuser`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
+      // const response = await fetch(`${import.meta.env.VITE_API_URL}/users/createuser`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(user),
+      // });
+      await dispatch(createUserByEmailAndPass(user));
 
       // Handle the response data
-      const data = await response.json(); //token on data
-      localStorage.setItem("token", data);
+      // const data = await response.json(); //token on data
+      // localStorage.setItem("token", data);
       // Check if there is an error in the response
-      if (!response.ok) {
-        throw new Error(data.message || "Failed to create user");
-      }
+      // if (!response.ok) {
+      //   throw new Error(data.message || "Failed to create user");
+      // }
 
       // Successful creation
-      console.log("User created:", data);
-
+      // console.log("User created:", data);
+      if (stateError) {
+        const msg = stateError.split(":")[1];
+        toast(msg, {
+          icon: "❌",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+        return;
+      }
       // Optionally, reset form
       formData.reset();
-      dispatch(userThunk());
+      // dispatch(userThunk());
       navigate("/");
       toast("Welcome to InBrief 📰", {
         icon: "✔️",

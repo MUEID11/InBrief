@@ -46,7 +46,7 @@ const Profile = () => {
       <div className="grid grid-cols-4 gap-8 sm:min-h-80 ">
         {/* Profile Image Card */}
         <div className="col-span-1 ">
-          <img src={user?.imageUrl || user?.photoURL} className="w-48 h-48 lg:w-64 lg:h-64  object-cover mx-auto rounded-full" alt="User" />
+          <img src={user?.imageUrl || user?.photoURL} referrerPolicy="no-referer" className="w-48 h-48 lg:w-64 lg:h-64  object-cover mx-auto rounded-full" alt="User" />
         </div>
 
         {/* User Info Card */}
