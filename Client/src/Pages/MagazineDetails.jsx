@@ -5,26 +5,20 @@ const App = () => {
   const magazine = {
     name: 'Politics in Everything',
     topics: 'Politics',
-    coverImageUrl: 'https://i.ibb.co.com/ssgbwzY/pngwing-1.png', // Replace with a valid image URL
+    coverImageUrl: 'https://i.ibb.co/ssgbwzY/pngwing-1.png', // Replace with a valid image URL
     followers: ['user1', 'user2', 'user3'],
     createdBy: 'user123',
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="max-w-3xl w-full bg-white shadow-lg rounded-lg p-6">
-        {/* Cover Image */}
-        <div className="mb-6">
-          <img
-            src={magazine.coverImageUrl}
-            alt={magazine.name}
-            className="w-full h-72 bg-cover object-fit rounded-lg"
-          />
-        </div>
-
+    <div
+      className="min-h-screen bg-cover bg-right flex items-center justify-center"
+      style={{ backgroundImage: `url(${magazine.coverImageUrl})` }}
+    >
+      <div className="bg-white bg-opacity-80 max-w-3xl w-full shadow-lg rounded-lg p-6">
         {/* Magazine Name */}
         <div className="mb-4 text-center">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">{magazine.name}</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">{magazine.name}</h1>
           <p className="text-gray-500">A deep dive into the world of politics</p>
         </div>
 
@@ -36,7 +30,10 @@ const App = () => {
           {/* Topics */}
           <div className="flex items-center">
             <FaTag className="text-gray-600 mr-3" />
-          
+            <div>
+              <h2 className="text-lg font-semibold">Topics</h2>
+              <p className="text-gray-600">{magazine.topics}</p>
+            </div>
           </div>
 
           {/* Followers */}
