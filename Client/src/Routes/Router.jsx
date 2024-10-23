@@ -29,6 +29,7 @@ import MyBookmarkes from "../Pages/UserDashbord/MyBookmarkes";
 import FeaturedBooks from "../Pages/FeaturedBooks";
 import BookDetails from "../Pages/BookDetails";
 import CreatorArticles from "../Pages/CreatorArticles";
+import Magazine from "../Pages/Magazine/Magazine";
 
 const router = createBrowserRouter([
   {
@@ -102,6 +103,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <SubmitArticleForm />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/magazine",
+        element: (
+          <ProtectedRoute>
+           <Magazine/>
           </ProtectedRoute>
         ),
       },
