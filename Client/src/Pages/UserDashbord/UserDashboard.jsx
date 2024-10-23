@@ -8,7 +8,7 @@ const UserDashboard = () => {
 
 
   return (
-    <div>
+    <div className="container mx-auto">
       <h3 className="text-xl md:text-2xl text-black font-bold p-4">
         User Dashboard
       </h3>
