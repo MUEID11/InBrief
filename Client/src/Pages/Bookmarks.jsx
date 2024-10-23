@@ -7,7 +7,7 @@ const Bookmarks = () => {
   const { user } = useSelector((state) => state.user);
   const { data, isLoading, isError } = useGetBookmarksQuery(user?.email);
   const bookmarks = data?.data;
-  console.log('bookmarksRTK=>', bookmarks);
+
 
   if (isLoading) {
     return (
