@@ -97,15 +97,21 @@ const MyPosts = () => {
 
                         <th
                           scope="col"
-                          className="py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                          className="py-3.5  px-2 text-sm font-normal text-left rtl:text-right text-gray-500"
                         >
                           <span>Votes</span>
                         </th>
                         <th
                           scope="col"
-                          className="py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
+                          className="py-3.5 px-2 text-sm font-normal text-left rtl:text-right text-gray-500"
                         >
                           <span>Bookmarks </span>
+                        </th>
+                        <th
+                          scope="col"
+                          className="py-3.5 pl-8 text-sm font-normal text-left rtl:text-right text-gray-500"
+                        >
+                          <span>Status </span>
                         </th>
                         <th
                           scope="col"
@@ -141,7 +147,41 @@ const MyPosts = () => {
                           <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
                             {article?.bookmarks?.length}
                           </td>
-
+                          <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                            <div
+                              className={`inline-flex items-center px-3 py-1 rounded-full gap-x-2 ${
+                                article?.status === "pending" &&
+                                "bg-yellow-100/60 text-yellow-500"
+                              }
+                                 ${
+                                  article?.status === "approved" &&
+                                   "bg-emerald-100/60 text-emerald-500"
+                                 } 
+                                 ${
+                                  article?.status === "rejected" &&
+                                   "bg-emerald-100/60 text-red-500"
+                                 } 
+                                `}
+                            >
+                              <span
+                                className={`h-1.5 w-1.5 rounded-full ${
+                                  article?.status === "pending" &&
+                                  "bg-yellow-500"
+                                }  ${
+                                  article?.status === "approved" &&
+                                  "bg-green-500"
+                                }  
+                                  ${
+                                    article?.status === "rejected" &&
+                                    "bg-red-500"
+                                  }  
+                                  `}
+                              ></span>
+                              <h2 className="text-sm font-normal ">
+                                { article?.status}
+                              </h2>
+                            </div>
+                          </td>
                           <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
                             {new Date(article?.createdAt).toLocaleDateString()}
                           </td>
