@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "./../../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import userThunk from "../../Features/thunks/userThunks";
+import userThunk, { firebaseLogout } from "../../Features/thunks/userThunks";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { resetUser } from "../../Features/Authenticate/userSlice";
 import { RiMenu3Line } from "react-icons/ri";
@@ -28,9 +28,9 @@ const Navbar = () => {
   const { pathname } = useLocation();
   const { user } = useSelector((state) => state?.user);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(userThunk());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(userThunk());
+  // }, []);
   console.log(user);
 
   // Search start
@@ -44,6 +44,7 @@ const Navbar = () => {
 
   const handleSignOut = async (e) => {
     e.preventDefault();
+    dispatch(firebaseLogout());
     dispatch(resetUser());
     navigate("/signin");
     toast.success("User logged out");
@@ -125,14 +126,16 @@ const Navbar = () => {
                 {isDropDownOpen ? (
                   <img
                     className="relative size-10 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
-                    src={user?.imageUrl}
+                    src={user?.imageUrl || user?.photoURL}
+                    referrerPolicy="no-referer"
                     alt="Medium avatar"
                   />
                 ) : (
                   <div>
                     <img
                       className="relative size-10 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-red-600 cursor-pointer"
-                      src={user?.imageUrl}
+                      src={user?.imageUrl || user?.photoURL}
+                      referrerPolicy="no-referer"
                       alt="Medium avatar"
                     />
                   </div>
@@ -151,16 +154,16 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                  <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                  Dashboard
+                    <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                      Dashboard
                     </Link>
                   </li>
                   <li>
-                  <Link to="/bookmarks" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                  Bookmarks
+                    <Link to="/bookmarks" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                      Bookmarks
                     </Link>
                   </li>
-                
+
                   <li>
                     <Link onClick={handleSignOut} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                       Sign Out
