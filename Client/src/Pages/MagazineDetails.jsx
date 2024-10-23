@@ -5,7 +5,7 @@ const App = () => {
   const magazine = {
     name: 'Politics in Everything',
     topics: 'Politics',
-    coverImageUrl: 'https://example.com/cover-image.jpg', // Replace with a valid image URL
+    coverImageUrl: 'https://i.ibb.co.com/ssgbwzY/pngwing-1.png', // Replace with a valid image URL
     followers: ['user1', 'user2', 'user3'],
     createdBy: 'user123',
   };
