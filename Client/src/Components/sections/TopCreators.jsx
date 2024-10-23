@@ -13,7 +13,7 @@ const TopCreators = () => {
     },
     {
       image:
-        "https://i.pinimg.com/736x/f6/ee/13/f6ee1311d121ea0cef159ff502d21720.jpg",
+        "https://img.freepik.com/premium-photo/muslim-woman-hijab-job-interview-embracing-diversity-career-opportunities-concept-diversity-workplace-muslim-women-professionals-crosscultural-professionalism_918839-53445.jpg",
       name: "Nur Islam",
       channel: "CNN",
     },
@@ -54,7 +54,7 @@ const TopCreators = () => {
             <div>
               <img
                 src={creator.image}
-                className="rounded-full size-14 sm:size-20"
+                className="rounded-full size-14 sm:size-20 object-cover"
               />
             </div>
             <div>
