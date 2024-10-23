@@ -57,10 +57,10 @@ const getArticles = async (req, res) => {
   const queryLimit = req.query?.limit;
 
   let limit = 0;
-  let query = {};
+  let query = { status: "approved" };
   let sortOption = {};
   if (category) {
-    query = { category: { $regex: category, $options: "i" } };
+    query = { category: { $regex: category, $options: "i" }, status: "approved" };
   }
   if (sort) {
     sortOption = { createdAt: sort === "dsc" ? -1 : 1 };
@@ -87,13 +87,13 @@ const getArticlesByPreferences = async (req, res) => {
   try {
     const user = await userModel.findById(id);
     if (!user || !user.preferences || user.preferences.length === 0) {
-      const articles = await Article.find().sort({ createdAt: sort === "DSC" ? -1 : 1 });
+      const articles = await Article.find({ status: "approved" }).sort({ createdAt: sort === "DSC" ? -1 : 1 });
       return res.status(200).json({ success: true, count: articles.length, data: articles });
     }
 
     const categories = user.preferences;
 
-    let query = { category: { $in: categories } };
+    let query = { category: { $in: categories }, status: "approved" };
     let options = {};
     if (sort) {
       options = { createdAt: sort === "DSC" ? -1 : 1 };
@@ -164,16 +164,17 @@ const AddLike = async (req, res) => {
       const result = await Article.updateOne({ _id: articleId }, { $pull: { likes: userEmail } });
 
       if (result.modifiedCount > 0) {
-        res.status(200).json({ message: 'Vote removed successfully!' });
+        res.status(200).json({ message: "Vote removed successfully!" });
       } else {
-        res.status(404).json({ message: 'Article not found' });err
+        res.status(404).json({ message: "Article not found" });
+        err;
       }
     } else {
       // If user has not liked the post, add their like
       const result = await Article.updateOne({ _id: articleId }, { $addToSet: { likes: userEmail } });
 
       if (result.matchedCount > 0) {
-        res.status(200).json({ message: 'Article Votes successfully!' });
+        res.status(200).json({ message: "Article Votes successfully!" });
       } else {
         res.status(404).json({ message: "Article not found" });
       }
