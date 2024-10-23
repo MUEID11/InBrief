@@ -7,7 +7,7 @@ const addArticle = async (req, res) => {
     const magazine = await Magazine.findById(magazineId);
 
     if (!magazine) {
-      return res.status(404).json({ error: "Magazine not found" });
+      return res.status(404).json({ message: "Magazine not found" });
     }
 
     // Check if user is the creator or a collaborator
@@ -23,7 +23,7 @@ const addArticle = async (req, res) => {
 
     res.status(200).json({ message: "Article added to magazine" });
   } catch (error) {
-    res.status(500).json({ error: "Error adding article to magazine" });
+    res.status(500).json({ message: "Error adding article to magazine" });
   }
 };
 
