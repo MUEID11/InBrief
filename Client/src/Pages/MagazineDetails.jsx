@@ -18,7 +18,7 @@ const App = () => {
           <img
             src={magazine.coverImageUrl}
             alt={magazine.name}
-            className="w-full h-72 object-cover rounded-lg"
+            className="w-full h-72 bg-cover object-fit rounded-lg"
           />
         </div>
 
