@@ -45,7 +45,11 @@ const MyFeed = () => {
       </div>
 
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mt-6">
-        {articles && articles?.length > 0 && articles.map((article) => <NewsCard key={article._id} article={article} />)}
+        {articles && articles?.length > 0 ? (
+          articles.map((article) => <NewsCard key={article._id} article={article} />)
+        ) : (
+          <p className="text-center text-red-500 w-full col-span-4 text-lg mt-6">Sorry! No data available to show for the selected topics</p>
+        )}
       </div>
 
       {/* modal */}

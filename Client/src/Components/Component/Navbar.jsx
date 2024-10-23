@@ -26,7 +26,7 @@ const Navbar = () => {
   const userDropdownRef = useRef(null);
   const menuDropdownRef = useRef(null);
   const { pathname } = useLocation();
-  const { user } = useSelector((state) => state?.user);
+  const { user, isLoading } = useSelector((state) => state?.user);
   const dispatch = useDispatch();
   // useEffect(() => {
   //   dispatch(userThunk());
@@ -149,17 +149,17 @@ const Navbar = () => {
                 } transition-all duration-300`}>
                 <ul className="py-2 text-sm text-gray-600 dark:text-gray-200">
                   <li>
-                    <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    <Link to="/profile" onClick={() => setIsDropDownOpen(false)} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                       Profile
                     </Link>
                   </li>
                   <li>
-                    <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    <Link to="/dashboard" onClick={() => setIsDropDownOpen(false)} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                       Dashboard
                     </Link>
                   </li>
                   <li>
-                    <Link to="/bookmarks" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    <Link to="/bookmarks" onClick={() => setIsDropDownOpen(false)} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                       Bookmarks
                     </Link>
                   </li>
@@ -218,6 +218,7 @@ const Navbar = () => {
               {/* Home */}
               <Link
                 to="/"
+                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/" && "bg-gray-200 text-gray-700"
                 }`}>
@@ -233,6 +234,7 @@ const Navbar = () => {
               {/* My Feed */}
               <Link
                 to={"/my-feed"}
+                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/my-feed" && "bg-gray-200 text-gray-700"
                 }`}>
@@ -242,6 +244,7 @@ const Navbar = () => {
               {/* Stories */}
               <Link
                 to="/blogs"
+                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/blogs" && "bg-gray-200 text-gray-700"
                 }`}>
@@ -251,6 +254,7 @@ const Navbar = () => {
               {/* About us */}
               <Link
                 to="/about"
+                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/about" && "bg-gray-200 text-gray-700"
                 }`}>
@@ -260,6 +264,7 @@ const Navbar = () => {
               {/* Contact us */}
               <Link
                 to="/contact"
+                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/contact" && "bg-gray-200 text-gray-700"
                 }`}>
@@ -269,6 +274,7 @@ const Navbar = () => {
               {/* Dashboard */}
               <Link
                 to="/dashboard"
+                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/dashboard/my-posts" && "bg-gray-200 text-gray-700"
                 }`}>
@@ -277,6 +283,7 @@ const Navbar = () => {
               </Link>
               <Link
                 to="/forum"
+                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/forum" && "bg-gray-200 text-gray-700"
                 }`}>
@@ -285,6 +292,7 @@ const Navbar = () => {
               </Link>
               <Link
                 to={"/bookmarks"}
+                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/bookmarks" && "bg-gray-200 text-gray-700"
                 }`}>
@@ -293,6 +301,7 @@ const Navbar = () => {
               </Link>
               <Link
                 to={"/submit-article"}
+                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/submit-article" && "bg-gray-200 text-gray-700"
                 }`}>
@@ -301,6 +310,7 @@ const Navbar = () => {
               </Link>
               <Link
                 to={"/featured-books"}
+                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/featured-books" && "bg-gray-200 text-gray-700"
                 }`}>
