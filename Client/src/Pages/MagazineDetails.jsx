@@ -12,7 +12,7 @@ const App = () => {
 
   return (
     <div
-      className="min-h-screen bg-cover bg-right flex items-center justify-center"
+      className="min-h-screen bg-no-repeat object-cover bg-right flex items-center justify-center"
       style={{ backgroundImage: `url(${magazine.coverImageUrl})` }}
     >
       <div className="bg-white bg-opacity-80 max-w-3xl w-full shadow-lg rounded-lg p-6">
