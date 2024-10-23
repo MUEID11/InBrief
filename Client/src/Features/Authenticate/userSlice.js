@@ -98,11 +98,12 @@ const userSlice = createSlice({
       .addCase(checkAuthState.pending, (state) => {
         state.isLoading = true;
         state.error = null;
+        state.user = null; // Reset user state on auth state change listener
       })
       .addCase(checkAuthState.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.user = action.payload;
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(checkAuthState.rejected, (state, action) => {
         state.isLoading = false;
