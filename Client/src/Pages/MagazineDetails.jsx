@@ -3,25 +3,27 @@ import { FaUserCircle, FaTag, FaUserFriends } from 'react-icons/fa';
 
 const App = () => {
   const magazine = {
-    name: 'Politics in Everything',
-    topics: 'Politics',
+    title: 'Politics in Everything',
+    topic: 'Politics',
     coverImageUrl: 'https://i.ibb.co/ssgbwzY/pngwing-1.png', // Replace with a valid image URL
-    followers: ['user1', 'user2', 'user3'],
-    createdBy: 'user123',
+    followers: ['user1', 'user2', 'user3'], // Replace with actual user names or IDs
+    creator: 'user123', // Replace with creator's name or ID
   };
 
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Cover Image */}
-      <div className="w-full h-64 bg-no-repeat object-cover bg-center" style={{ backgroundImage: `url(${magazine.coverImageUrl})` }}>
-      </div>
+      <div
+        className="w-full h-64 bg-no-repeat bg-center"
+        style={{ backgroundImage: `url(${magazine.coverImageUrl})` }}
+      ></div>
 
       {/* Magazine Details */}
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-4">
-        {/* Magazine Name */}
+        {/* Magazine Title */}
         <div className="mb-4 text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">{magazine.name}</h1>
-          <p className="text-gray-500">A deep dive into the world of politics</p>
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">{magazine.title}</h1>
+          <p className="text-gray-500">A deep dive into the world of {magazine.topic}</p>
         </div>
 
         {/* Divider */}
@@ -33,8 +35,8 @@ const App = () => {
           <div className="flex items-center">
             <FaTag className="text-gray-600 mr-3" />
             <div>
-              <h2 className="text-lg font-semibold">Topics</h2>
-              <p className="text-gray-600">{magazine.topics}</p>
+              <h2 className="text-lg font-semibold">Topic</h2>
+              <p className="text-gray-600">{magazine.topic}</p>
             </div>
           </div>
 
@@ -56,7 +58,7 @@ const App = () => {
             <FaUserCircle className="text-gray-600 mr-3" />
             <div>
               <h2 className="text-lg font-semibold">Created By</h2>
-              <p className="text-gray-600">{magazine.createdBy}</p>
+              <p className="text-gray-600">{magazine.creator}</p>
             </div>
           </div>
         </div>
