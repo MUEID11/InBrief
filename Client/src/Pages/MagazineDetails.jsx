@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaUserCircle, FaTag, FaUserFriends, FaPlusCircle, FaRegCheckCircle } from 'react-icons/fa';
 import axios from 'axios';
+import NewsCard from '../Components/Component/NewsCard';
 
 const MagazineDetails = () => {
   const { magazineId } = useParams();
@@ -30,14 +31,14 @@ const MagazineDetails = () => {
     fetchMagazine();
   }, [magazineId]);
 
-  
+  console.log(magazine?.articles)
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
   if (!magazine) return <p>No magazine details available</p>;
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 container">
       {/* Cover Image */}
       <div
         className="w-full h-72 bg-no-repeat bg-center bg-cover"
@@ -59,7 +60,7 @@ const MagazineDetails = () => {
       </div>
 
       {/* Magazine Details */}
-      <div className=" p-2  ">
+      <div className=" p-2 mb-10 ">
       
 
 
@@ -90,6 +91,13 @@ const MagazineDetails = () => {
          
         </div>
       </div>
+      {/* magazine articles */}
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 px-8">
+        {magazine?.articles?.length > 0 && magazine?.articles?.map((article,index)=>(
+          <NewsCard key={index} article={article}/>
+        ))}
+      </div>
+      
     </div>
   );
 };
