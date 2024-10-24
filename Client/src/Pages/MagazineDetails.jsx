@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaUserCircle, FaTag, FaUserFriends } from 'react-icons/fa';
 
-const App = () => {
+const MagazineDetails = () => {
   const magazine = {
     title: 'Politics in Everything',
     topic: 'Politics',
@@ -71,4 +71,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default MagazineDetails;
