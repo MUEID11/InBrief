@@ -11,6 +11,13 @@ const createNewCollabReq = async (req, res) => {
       return res.status(404).json({ message: "Magazine not found or the magazine is private" });
     }
 
+    // Check if a collaboration request already exists for this magazineId and userId
+    const existingCollabReq = await MagazineCollaborator.findOne({ magazineId, userId });
+
+    if (existingCollabReq) {
+      return res.status(400).json({ message: "Collaboration request already sent! Please wait for confirmation." });
+    }
+
     const result = new MagazineCollaborator({ magazineId, userId, role, status });
     const collaboratorReq = await result.save();
     res.status(200).json({ message: "Collaboration request sent", collaboratorReq });
