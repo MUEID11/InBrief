@@ -13,22 +13,48 @@ const Magazine = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const visibility = formData.get("visibility");
-    const isPublic = visibility === "public" ? true : false;
-    const magazineData = {
-      title: formData.get("title"),
-      topic: formData.get("topic"),
-      description: formData.get("description"),
-      isPublic,
-      image: formData.get("image"),
-      creator: user._id,
-    };
+    const isPublic = visibility === "public";
+
+    const magazineImage = formData.get("image");
+
+    const image = new FormData();
+    image.append("file", magazineImage);
+    image.append("upload_preset", "a4roznw9");
 
     try {
       setLoading(true);
+
+      const cloudinaryResponse = await fetch(
+        `https://api.cloudinary.com/v1_1/${
+          import.meta.env.VITE_CLOUD_NAME
+        }/image/upload`,
+        {
+          method: "POST",
+          body: image,
+        }
+      );
+
+      const imageData = await cloudinaryResponse.json();
+console.log(imageData)
+
+      if (!imageData.secure_url) {
+        throw new Error("Image upload failed");
+      }
+
+      const magazineData = {
+        title: formData.get("title"),
+        topic: formData.get("topic"),
+        description: formData.get("description"),
+        isPublic,
+        image: imageData.secure_url, 
+        creator: user._id,
+      };
+
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/magazines`,
         magazineData
       );
+
       if (response.status === 201) {
         setLoading(false);
         setShowModal(false);
@@ -42,14 +68,7 @@ const Magazine = () => {
         });
         console.log("Magazine created successfully:", response.data);
       } else {
-        toast("Something went wrong", {
-          icon: "❌",
-          style: {
-            borderRadius: "10px",
-            background: "#333",
-            color: "#fff",
-          },
-        });
+        throw new Error("Magazine creation failed");
       }
     } catch (error) {
       console.error("Error creating magazine:", error);
@@ -63,6 +82,7 @@ const Magazine = () => {
       });
     }
   };
+
   useEffect(() => {
     if (user) {
       getData();
@@ -102,7 +122,10 @@ const Magazine = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {magazines?.length > 0 &&
           magazines?.map((magazine) => (
-            <div key={magazine?._id} className="relative w-full h-70 rounded-sm overflow-hidden">
+            <div
+              key={magazine?._id}
+              className="relative w-full h-70 rounded-sm overflow-hidden"
+            >
               <img
                 src={magazine?.image}
                 alt={magazine?.title}
@@ -111,10 +134,10 @@ const Magazine = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
               <div className="px-1 text-white flex-col items-center justify-center">
                 <h3 className="text-xl font-semibold absolute bottom-24 px-1">
-                {magazine?.title}
+                  {magazine?.title}
                 </h3>
                 <h3 className="text-lg font-medium absolute bottom-16 px-1">
-                {magazine?.description} 
+                  {magazine?.description}
                 </h3>
               </div>
             </div>
