@@ -7,7 +7,6 @@ import { PiEmptyBold } from "react-icons/pi";
 const Magazine = () => {
   const [showModal, setShowModal] = useState(false);
   const { user } = useSelector((state) => state.user);
-  const [loading, setLoading] = useState(false);
   const [magazines, setMagazines] = useState([]);
 
   const handleCreateMagazine = async (e) => {
@@ -23,7 +22,6 @@ const Magazine = () => {
     image.append("upload_preset", "a4roznw9");
 
     try {
-      setLoading(true);
 
       const cloudinaryResponse = await fetch(
         `https://api.cloudinary.com/v1_1/${
@@ -57,8 +55,8 @@ const Magazine = () => {
       );
 
       if (response.status === 201) {
-        setLoading(false);
         setShowModal(false);
+        getData();
         toast("Magazine Created!", {
           icon: "✔️",
           style: {
@@ -215,7 +213,7 @@ const Magazine = () => {
                 type="submit"
                 className="bg-blue-500 text-white px-4 py-2 rounded"
               >
-                {loading ? "Creating..." : "Create"}
+                Create
               </button>
             </form>
           </div>
