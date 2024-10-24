@@ -187,7 +187,7 @@ const router = createBrowserRouter([
         element: <FeaturedBooks />,
       },
       {
-        path: "magazines/:magazineId",
+        path: "/magazines/:magazineId",
         element: <MagazineDetails />,
       },
       {

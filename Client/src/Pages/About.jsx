@@ -226,50 +226,16 @@ const About = () => {
         </main>
       </section>
 
-      {/* Join With us  */}
-      <section className="mt-28 flex max-sm:flex-col gap-10 items-center justify-center">
-        <div className="w-1/2 max-sm:w-full">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium uppercase">
-            Join with Us
-          </h2>
-          <p className="mt-5 text-stone-600 max-w-[500px] font-medium">
-            Join us at InBrief, where news isn't just gathered—it's tailored for
-            you. We’re creating a platform that brings together the latest, most
-            relevant stories from trusted sources, ensuring you stay informed
-            and engaged. Be a part of our community and experience news that
-            fits your world."
-            <br />
-            <br />
-            Together, let's reshape how news is discovered, shared, and
-            discussed in a way that connects us all.
-          </p>
-          <Link to="/signup">
-            <button className="bg-red-600 text-white font-semibold py-3 px-10 rounded-lg transition-all duration-500 hover:bg-red-700 mt-6">
-              Join Us Now
-            </button>
-          </Link>
-        </div>
-
-        {/* JOIN US CTA */}
-        <div className="w-1/2 max-sm:w-full">
-          <img src={about3} alt="" />
-        </div>
-      </section>
+     
 
       {/* Our team */}
       <section>
-        <header className="mt-14 mb-5">
+        <header className="mt-16 mb-5">
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-inter text-center mb-3 font-semibold uppercase">
             Our Team
           </h3>
           <p className="text-center px-4">
-            Welcome to InBrief, a news aggregation platform developed by a team
-            of five dedicated individuals. Our goal is to bring you the latest
-            and most relevant news from various sources, all in one place. With
-            a focus on providing a seamless and user-friendly experience,
-            InBrief helps you stay informed on topics that matter most—whether
-            it's global events, regional news, or your favorite interests. We
-            aim to make news browsing effortless and engaging for everyone.
+          At InBrief, our success stems from the powerful collaboration of our five dedicated team members. Each individual brings unique strengths and talents, allowing us to tackle challenges creatively and efficiently. Our commitment to open communication and mutual support has fostered a positive environment where ideas flourish. Together, we strive to achieve our shared vision and make a meaningful impact in the world of news aggregation.
           </p>
         </header>
         <main className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3 ">
@@ -297,6 +263,35 @@ const About = () => {
             </div>
           ))}
         </main>
+      </section>
+       {/* Join With us  */}
+       <section className="mt-28 flex max-sm:flex-col gap-10 items-center justify-center">
+        <div className="w-1/2 max-sm:w-full">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium uppercase">
+            Join with Us
+          </h2>
+          <p className="mt-5 text-stone-600 max-w-[500px] font-medium">
+            Join us at InBrief, where news isn't just gathered—it's tailored for
+            you. We’re creating a platform that brings together the latest, most
+            relevant stories from trusted sources, ensuring you stay informed
+            and engaged. Be a part of our community and experience news that
+            fits your world."
+            <br />
+            <br />
+            Together, let's reshape how news is discovered, shared, and
+            discussed in a way that connects us all.
+          </p>
+          <Link to="/signup">
+            <button className="bg-red-600 text-white font-semibold py-3 px-10 rounded-lg transition-all duration-500 hover:bg-red-700 mt-6">
+              Join Us Now
+            </button>
+          </Link>
+        </div>
+
+        {/* JOIN US CTA */}
+        <div className="w-1/2 max-sm:w-full">
+          <img src={about3} alt="" />
+        </div>
       </section>
     </div>
   );

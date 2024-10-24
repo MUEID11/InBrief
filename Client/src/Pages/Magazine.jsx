@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { PiEmptyBold } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 const Magazine = () => {
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +23,6 @@ const Magazine = () => {
     image.append("upload_preset", "a4roznw9");
 
     try {
-
       const cloudinaryResponse = await fetch(
         `https://api.cloudinary.com/v1_1/${
           import.meta.env.VITE_CLOUD_NAME
@@ -118,41 +118,44 @@ const Magazine = () => {
       </div>
 
       {/* Magazine content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {magazines?.length > 0 &&
           magazines?.map((magazine) => (
-            <div
-              key={magazine?._id}
-              className="relative w-full h-64 rounded-sm overflow-hidden"
-            >
-              <img
-                src={magazine?.image}
-                alt={magazine?.title}
-                className="w-full h-full object-cover opacity-90"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-              <div className="px-1 text-white flex-col items-center justify-center">
-                <h3 className="text-xl font-semibold absolute bottom-24 px-1">
-                  {magazine?.title}
-                </h3>
-                <h3 className=" font-medium absolute bottom-10 px-1">
-                  {`${magazine?.description.substring(0, 70)}...`}
-                </h3>
+            <Link to={`/magazines/${magazine?._id}`}>
+              {" "}
+              <div
+                key={magazine?._id}
+                className="relative w-full h-64 rounded-sm overflow-hidden"
+              >
+                <img
+                  src={magazine?.image}
+                  alt={magazine?.title}
+                  className="w-full h-full object-cover opacity-90"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                <div className="px-1 text-white flex-col items-center justify-center">
+                  <h3 className="text-xl font-semibold absolute bottom-24 px-1">
+                    {magazine?.title}
+                  </h3>
+                  <h3 className=" font-medium absolute bottom-10 px-1">
+                    {`${magazine?.description.substring(0, 70)}...`}
+                  </h3>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
       </div>
 
       {showModal && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 pt-20 p-6"
+          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 pt-24 p-6"
           onClick={() => setShowModal(false)}
         >
           <div
             className="bg-white p-6 rounded-lg w-96"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="text-lg font-semibold mb-2">Create Playlist</h2>
+            <h2 className="text-lg font-semibold mb-2 ">Create Playlist</h2>
             <form onSubmit={handleCreateMagazine}>
               <div className="mb-2">
                 <label className="block text-sm font-medium mb-1">Title</label>
