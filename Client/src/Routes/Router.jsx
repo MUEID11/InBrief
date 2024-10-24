@@ -21,7 +21,6 @@ import ForumPage from "../Pages/ForumPage";
 import TopLatestNews from "../Components/sections/TopLatestNews";
 import NewsDetails from "../Pages/NewsDetails";
 import ForumDetails from "../Pages/ForumDetails";
-import Blogs from "../Pages/Blogs";
 import UserDashboard from "../Pages/UserDashbord/UserDashboard";
 import MyPosts from "../Pages/UserDashbord/MyPosts";
 import MyVotesArticle from "../Pages/UserDashbord/MyVotesArticle";
@@ -73,10 +72,7 @@ const router = createBrowserRouter([
         path: "sports",
         element: <SportsNewsSection />,
       },
-      {
-        path: "blogs",
-        element: <Blogs />,
-      },
+    
       {
         path: "forum",
         element: <ForumPage />,

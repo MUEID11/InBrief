@@ -29,14 +29,14 @@ const ForumPage = () => {
   };
 
   return (
-    <div className="flex">
+    <div className=" flex flex-col justify-center items-center container mx-auto">
       {/* Create Discussion Section */}
-      <div className="w-1/2 p-4 border-r">
+      <div className="  mx-auto p-4 border-r">
         <CreateDiscussion onCreate={handleCreateDiscussion} />
       </div>
 
       {/* Join Discussion Section */}
-      <div className="w-1/2 p-4">
+      <div className=" p-4  mx-auto">
         <h2 className="text-xl font-bold mb-2">Join Discussion</h2>
         {discussionsS?.map((discussion) => (
           <div

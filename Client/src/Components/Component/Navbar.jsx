@@ -47,8 +47,14 @@ const Navbar = () => {
     dispatch(firebaseLogout());
     dispatch(resetUser());
     navigate("/signin");
-    toast.success("User logged out");
-  };
+    toast("User Logged Out!", {
+      icon: "✔️",
+      style: {
+        borderRadius: "10px",
+        background: "#333",
+        color: "#fff",
+      },
+    });  };
   // Search end
 
   // Close the dropdown if clicking outside of it

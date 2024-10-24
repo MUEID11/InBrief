@@ -130,7 +130,7 @@ const NewsCard = ({ article }) => {
                 {article?.region}
               </p>
               <span className="text-xs text-neutral-600">
-                {new Date(article.createdAt).toLocaleDateString()}
+                {new Date(article?.createdAt).toLocaleDateString()}
               </span>
             </div>
             <p className="text-blue-500 font-semibold bg-blue-100 py-1 px-3 rounded-sm text-xs capitalize">
@@ -138,7 +138,7 @@ const NewsCard = ({ article }) => {
             </p>
           </div>
           {/* Description */}
-          <p className="text-sm text-gray-600 mb-4 flex-grow">{`${article.description.substring(
+          <p className="text-sm text-gray-600 mb-4 flex-grow">{`${article?.description.substring(
             0,
             100
           )}...`}</p>
@@ -152,7 +152,7 @@ const NewsCard = ({ article }) => {
         <div className="flex justify-between items-center">
           <div>
             <div className="flex items-center gap-2">
-              <button onClick={() => handleLike(article._id)} className="">
+              <button onClick={() => handleLike(article?._id)} className="">
                 <LuArrowBigUpDash
                   className={`text-2xl font-medium ${
                     liked
