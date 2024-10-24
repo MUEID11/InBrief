@@ -23,8 +23,8 @@ const CreatorArticles = () => {
   };
   console.log(articles);
   return (
-    <div className="container max-auto p-2">
-      <div>
+    <div className="container max-auto p-2 ">
+      <div className="mb-4">
         {articles.length > 0 &&
           articles[0]?.createdBy?.imageUrl &&
           articles[0]?.createdBy?.name &&
@@ -35,6 +35,7 @@ const CreatorArticles = () => {
                 alt={name}
                 className="w-20 h-20 rounded-full"
               />
+          
               <div>
                 <p className="text-xl ml-4 font-semibold">
                   {articles[0]?.createdBy?.name}
@@ -44,9 +45,9 @@ const CreatorArticles = () => {
             </div>
           )}
       </div>
-
+<hr className="px-4 pb-4  w-3/4 container mx-auto" />
       <div>
-        <p className="text-2xl py-4 ">
+        <p className=" text-lg md:text-xl py-4 pl-2  md:pl-3">
           {" "}
           Articles Posted By {articles[0]?.createdBy?.name}
         </p>
