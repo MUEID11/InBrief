@@ -24,7 +24,11 @@ import { useAddVotesMutation } from "../services/Votes/votesApi";
 import toast from "react-hot-toast";
 import { useAddBookmarkMutation } from "../services/bookmarksApi";
 import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
-
+import { useState } from 'react';
+const MagazineModal = ({ userId }) => {
+  const [magazines, setMagazines] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+};
 const NewsDetails = () => {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
@@ -58,6 +62,18 @@ const NewsDetails = () => {
     fetchArticleDetails();
     fetchArticleDetails();
   }, [id]);
+  // fetch mega-->
+  const fetchMagazines = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/magazines?creatorId=${userId}`
+      );
+      setMagazines(response.data); // Set the magazines data in the state
+      setShowModal(true); // Show the modal
+    } catch (error) {
+      console.error("Error fetching magazines:", error);
+    }
+  };
 
   const handleLike = async (id) => {
     if (!user.email) {
@@ -407,6 +423,35 @@ Example Code Snippet"
           </div>
         </div>
       </main>
+      {/* button for new work */}
+      <div>
+      <button onClick={fetchMagazines} className="bg-blue-500 text-white py-2 px-4 rounded">
+        Show My Magazines
+      </button>
+
+      {showModal && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded shadow-lg">
+            <h2 className="text-2xl font-bold mb-4">My Magazines</h2>
+            <button onClick={() => setShowModal(false)} className="absolute top-0 right-0 m-4">
+              Close
+            </button>
+            {magazines.length > 0 ? (
+              <ul>
+                {magazines.map((magazine) => (
+                  <li key={magazine._id} className="mb-2">
+                    <h3 className="font-medium">{magazine.title}</h3>
+                    <p>{magazine.description}</p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No magazines found.</p>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
     </div>
   );
 };
