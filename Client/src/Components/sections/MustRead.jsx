@@ -5,16 +5,11 @@ const MustRead = () => {
   return (
     <div className="my-2 p-2 container mx-auto mt-4 sm:mt-12 max-sm:px-2">
       {/* Must read title */}
-      <div className="flex justify-between items-center rounded-sm">
+      <div className="flex justify-start items-center rounded-sm">
         <h2 className="text-2xl md:text-3xl font-inter font-semibold  ">
           Must read
         </h2>
-        <Link
-          to={"/mustread"}
-          className="flex items-center gap-1 font-bold text-red-600 hover:text-red-700 transition-colors duration-300"
-        >
-          See All <FaArrowRight />
-        </Link>
+       
       </div>
       {/* must read cards */}
       <div className="my-6 grid grid-cols-1  lg:grid-cols-3 gap-6">

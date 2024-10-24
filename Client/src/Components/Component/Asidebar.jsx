@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { IoMdBook } from "react-icons/io";
 import { SlPeople } from "react-icons/sl";
 import { FiPhoneCall } from "react-icons/fi";
-import { MdOutlineForum, MdOutlineSpaceDashboard } from "react-icons/md";
+import { MdOutlineFeed, MdOutlineForum, MdOutlineSpaceDashboard } from "react-icons/md";
 import { TbBookmarks } from "react-icons/tb";
 import { AiOutlineFileAdd } from "react-icons/ai";
 import { BsNewspaper } from "react-icons/bs";
@@ -39,6 +39,15 @@ const Asidebar = () => {
             }`}>
             <BsNewspaper />
             <span className="mx-2 text-sm font-medium">My Feed</span>
+          </Link>
+          {/* Magazine*/}
+          <Link
+            to={"/magazine"}
+            className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
+              pathname === "/magazine" && "bg-gray-200 text-gray-700"
+            }`}>
+            <MdOutlineFeed className="text-[19px]" />
+            <span className="mx-2 text-sm font-medium">Magazine</span>
           </Link>
           {/* Stories */}
           <Link

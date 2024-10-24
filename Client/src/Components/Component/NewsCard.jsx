@@ -44,13 +44,11 @@ const NewsCard = ({ article }) => {
       // console.log(data.message);
     } catch (error) {
       console.error("Failed to toggle like:", error);
-      console.error("Failed to toggle like:", error);
     }
   };
 
   const handleBookmark = (id) => {
     if (!user.email) {
-      navigate("/signin");
       navigate("/signin");
       return;
     }
@@ -67,11 +65,7 @@ const NewsCard = ({ article }) => {
       setBookmarked(!bookmarked);
       toast(toggleBookmarkMsg.message, {
         icon: "✔️",
-        icon: "✔️",
         style: {
-          borderRadius: "10px",
-          background: "#333",
-          color: "#fff",
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
@@ -84,9 +78,6 @@ const NewsCard = ({ article }) => {
       toast(error.data.message || "Something went wrong", {
         icon: "❌",
         style: {
-          borderRadius: "10px",
-          background: "#333",
-          color: "#fff",
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
@@ -175,21 +166,21 @@ const NewsCard = ({ article }) => {
                 <IoBookmarksSharp
                   title="Bookmark"
                   className="cursor-pointer text-red-500"
-                  onClick={() => handleBookmark(article._id)}
+                  onClick={() => handleBookmark(article?._id)}
                 />
               ) : (
                 <IoBookmarksOutline
                   title="Bookmark"
                   className="cursor-pointer text-red-600"
-                  onClick={() => handleBookmark(article._id)}
+                  onClick={() => handleBookmark(article?._id)}
                 />
               )}
             </div>
           </div>
           {/* Read More Button */}
-          <button className="text-red-600 self-end font-medium">
+          <Link to={`/articles/${article?._id}`}><button className="text-red-600 self-end font-medium">
             Read More
-          </button>
+          </button></Link>
         </div>
       </div>
     </article>
