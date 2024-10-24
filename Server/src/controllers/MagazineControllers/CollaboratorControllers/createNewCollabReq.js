@@ -1,4 +1,3 @@
-// const MagazineCollaborator = require("../../models/Magazine/magazineCollaboratorsModel");
 const MagazineCollaborator = require("../../../models/Magazine/magazineCollaboratorsModel");
 const Magazine = require("../../../models/Magazine/magazineModel");
 
