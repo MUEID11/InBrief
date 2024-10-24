@@ -49,15 +49,7 @@ const Asidebar = () => {
             <MdOutlineFeed className="text-[19px]" />
             <span className="mx-2 text-sm font-medium">Magazine</span>
           </Link>
-          {/* Stories */}
-          <Link
-            to="/blogs"
-            className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-              pathname === "/blogs" && "bg-gray-200 text-gray-700"
-            }`}>
-            <IoMdBook />
-            <span className="mx-2 text-sm font-medium">Blogs</span>
-          </Link>
+         
           {/* About us */}
           <Link
             to="/about"
