@@ -29,7 +29,7 @@ import FeaturedBooks from "../Pages/FeaturedBooks";
 import BookDetails from "../Pages/BookDetails";
 import CreatorArticles from "../Pages/CreatorArticles";
 import Magazine from "../Pages/Magazine";
-
+import MagazineDetails from "../Pages/MagazineDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -185,6 +185,10 @@ const router = createBrowserRouter([
       {
         path: "featured-books",
         element: <FeaturedBooks />,
+      },
+      {
+        path: "magazines/:magazineId",
+        element: <MagazineDetails />,
       },
       {
         path: "books/:bookId",
