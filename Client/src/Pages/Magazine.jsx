@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { PiEmptyBold } from "react-icons/pi";
 
 const Magazine = () => {
   const [showModal, setShowModal] = useState(false);
@@ -35,7 +36,7 @@ const Magazine = () => {
       );
 
       const imageData = await cloudinaryResponse.json();
-console.log(imageData)
+      console.log(imageData);
 
       if (!imageData.secure_url) {
         throw new Error("Image upload failed");
@@ -46,7 +47,7 @@ console.log(imageData)
         topic: formData.get("topic"),
         description: formData.get("description"),
         isPublic,
-        image: imageData.secure_url, 
+        image: imageData.secure_url,
         creator: user._id,
       };
 
@@ -124,7 +125,7 @@ console.log(imageData)
           magazines?.map((magazine) => (
             <div
               key={magazine?._id}
-              className="relative w-full h-70 rounded-sm overflow-hidden"
+              className="relative w-full h-64 rounded-sm overflow-hidden"
             >
               <img
                 src={magazine?.image}
@@ -136,8 +137,8 @@ console.log(imageData)
                 <h3 className="text-xl font-semibold absolute bottom-24 px-1">
                   {magazine?.title}
                 </h3>
-                <h3 className="text-lg font-medium absolute bottom-16 px-1">
-                  {magazine?.description}
+                <h3 className=" font-medium absolute bottom-10 px-1">
+                  {`${magazine?.description.substring(0, 70)}...`}
                 </h3>
               </div>
             </div>
@@ -219,6 +220,18 @@ console.log(imageData)
             </form>
           </div>
         </div>
+      )}
+      {!magazines?.length > 0 && (
+        <>
+          <h3 className="text-center text-xl mt-20 font-medium text-red-500 flex justify-center items-center gap-2">
+            {" "}
+            <span>
+              {" "}
+              <PiEmptyBold />
+            </span>{" "}
+            <span>No Magazine Found</span>
+          </h3>
+        </>
       )}
     </div>
   );

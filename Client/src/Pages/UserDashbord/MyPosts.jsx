@@ -216,7 +216,7 @@ const MyPosts = () => {
         </>
       ) : (
         <>
-          <h3 className="text-center text-2xl mt-20 font-medium text-red-500 flex justify-center items-center gap-2">
+          <h3 className="text-center text-xl mt-20 font-medium text-red-500 flex justify-center items-center gap-2">
             {" "}
             <span>
               {" "}
