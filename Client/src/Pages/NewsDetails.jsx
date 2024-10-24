@@ -358,18 +358,15 @@ const NewsDetails = () => {
 
               <ul className="space-y-4">
                 <li  className="hover:underline text-blue-600">
-                   <a href="https://www.moneycontrol.com/markets/global-indices/"></a> Global Market Updates
+                   a Global Market Updates
                 </li>
                 <li className="hover:underline text-blue-600">
-                <a href="https://www.moneycontrol.com/markets/global-indices/">
                   Tech Industry News
                 </li>
                 <li className="hover:underline text-blue-600">
-                <a href="https://www.moneycontrol.com/markets/global-indices/">
                   Health & Fitness Trends
                 </li>
                 <li className="hover:underline text-blue-600">
-                <a href="https://www.moneycontrol.com/markets/global-indices/">
                   Travel & Tourism
                 </li>
               </ul>
