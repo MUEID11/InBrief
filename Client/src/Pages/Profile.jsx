@@ -1,10 +1,15 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { TbBookmark, TbEdit, TbPlus } from "react-icons/tb";
+import { useGetBookmarksQuery } from "../services/bookmarksApi";
+import { IoBookmarksSharp } from "react-icons/io5";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.user);
+  const { data, isLoading, isError } = useGetBookmarksQuery(user?.email);
+  const bookmarks = data?.data;
 
+  console.log("bookmarksRTK=>", bookmarks);
   const [isEditing, setIsEditing] = useState({
     education: false,
     about: false,
@@ -61,11 +66,24 @@ const Profile = () => {
 
         {/* Bookmarks Card */}
         <div className="col-span-1 p-6 shadow-md rounded-sm bg-white">
-          <h5 className="flex items-center text-xl font-semibold text-blue-500">
-            <TbBookmark className="mr-2" /> Bookmarks
-            <span className="bg-blue-100 py-1 px-2 rounded-full ml-2">0</span>
+          <h5 className="flex items-center text-xl font-semibold text-blue-500 ">
+            <IoBookmarksSharp className="mr-2" /> Bookmarks
+            <span className="bg-blue-100 py-1 px-2 rounded-full ml-auto text-sm">
+              {bookmarks?.length}
+            </span>
           </h5>
+          {bookmarks?.length === 0 && (
+            <div className="text-sm mt-4">Never lost the news you wanted to read. Add them to Bookmarks</div>
+          )}
+          {bookmarks?.length > 0 && bookmarks.map(bookmark => <div className="mt-2 flex items-center justify-between" key={bookmark._id}><ul><li className="space-y-2 text-sm"><a className="hover:text-blue-500 hover:underline" target="_blank" href={bookmark?.url}>{bookmark?.title.slice(0,20)}...</a></li></ul> <img className="w-8" src={bookmark?.image} /></div>)}
         </div>
+        {isLoading && (
+          <div className="col-span-1 p-6 shadow-md rounded-sm bg-white">
+            <h5 className="flex items-center text-xl font-semibold text-blue-500">
+              <TbBookmark className="mr-2" /> Loading....
+            </h5>
+          </div>
+        )}
       </div>
 
       <hr className="my-6" />
