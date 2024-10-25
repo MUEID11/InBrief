@@ -25,6 +25,56 @@ import toast from "react-hot-toast";
 import { useAddBookmarkMutation } from "../services/bookmarksApi";
 import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
 
+const MagazineModal = ({ userId, showModal, setShowModal }) => {
+  const [magazines, setMagazines] = useState([]);
+
+  const fetchMagazines = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/magazines?creatorId=${userId}`
+      );
+      setMagazines(response.data);
+    } catch (error) {
+      console.error("Error fetching magazines:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (showModal) {
+      fetchMagazines();
+    }
+  }, [showModal]);
+
+  return showModal ? (
+    <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
+      <div className="bg-white w-full max-w-3xl p-8 rounded-lg shadow-2xl relative mx-4 md:mx-0">
+        <button
+          onClick={() => setShowModal(false)}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition"
+        >
+          <span className="text-xl font-bold">✕</span>
+        </button>
+        <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">My Magazines</h2>
+        <div className="max-h-96 overflow-y-auto">
+          {magazines.length > 0 ? (
+            <ul className="space-y-4">
+              {magazines.map((magazine) => (
+                <li key={magazine._id} className="p-4 text-center bg-gray-100 rounded-lg shadow-sm">
+                  <h3 className="text-lg font-lg   text-gray-700"> <span className="font-bold text-xl">TITLE : </span> {magazine.title}</h3>
+                  {/* <p className="text-gray-600">{magazine.description}</p> */}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-center text-gray-500">No magazines found.</p>
+          )}
+        </div>
+      </div>
+    </div>
+  ) : null;
+};
+
+
 const NewsDetails = () => {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
@@ -36,9 +86,10 @@ const NewsDetails = () => {
   const [bookmarked, setBookmarked] = useState(
     article?.bookmarks?.includes(user?.email)
   );
+
   const [addBookmark, { isError, error: bookmarkError, data: toggleBookmarkMsg, isSuccess }] =
     useAddBookmarkMutation();
-    
+  const [showModal, setShowModal] = useState(false); 
   const [addVotes] = useAddVotesMutation();
 
   useEffect(() => {
@@ -315,6 +366,18 @@ const NewsDetails = () => {
                 />
               )}
                   </div>
+{/* show modal */}
+<div>
+
+
+
+</div>
+<button
+                    className="bg-gray-200 px-3 py-1 text-sm font-semibold rounded-lg hover:bg-blue-400 hover:text-white transition-all duration-300"
+                    onClick={() => setShowModal(true)}
+                  >
+                    Show Magazines
+                  </button>
                 </div>
               </div>
             </div>
@@ -407,6 +470,13 @@ Example Code Snippet"
           </div>
         </div>
       </main>
+
+      <MagazineModal
+        userId={user?._id}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
+
     </div>
   );
 };
