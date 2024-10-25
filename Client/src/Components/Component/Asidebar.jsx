@@ -47,9 +47,18 @@ const Asidebar = () => {
               pathname === "/magazine" && "bg-gray-200 text-gray-700"
             }`}>
             <MdOutlineFeed className="text-[19px]" />
-            <span className="mx-2 text-sm font-medium">Magazine</span>
+            <span className="mx-2 text-sm font-medium">All Magazines</span>
           </Link>
-         
+
+          <Link
+            to={"/my-magazines"}
+            className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
+              pathname === "/my-magazines" && "bg-gray-200 text-gray-700"
+            }`}>
+            <MdOutlineFeed className="text-[19px]" />
+            <span className="mx-2 text-sm font-medium">My Magazines</span>
+          </Link>
+
           {/* About us */}
           <Link
             to="/about"
