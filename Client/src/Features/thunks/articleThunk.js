@@ -1,11 +1,11 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getArticleByPreference = createAsyncThunk('articles/getArticleByPreference', async (id, { rejectWithValue }) => {
+export const getArticleByPreference = createAsyncThunk("articles/getArticleByPreference", async ({ id, sort }, { rejectWithValue }) => {
   try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/articles/getArticleByPreferences/${id}`, {
-      method: 'GET',
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/articles/getArticleByPreferences/${id}?sort=${sort}`, {
+      method: "GET",
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
     });
     const data = await response.json();
@@ -15,6 +15,6 @@ export const getArticleByPreference = createAsyncThunk('articles/getArticleByPre
     }
   } catch (error) {
     console.log(error);
-    rejectWithValue('failed to fetch articles');
+    rejectWithValue("failed to fetch articles");
   }
 });

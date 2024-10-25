@@ -12,11 +12,23 @@ export const votesApi = createApi({
       }),
       providesTags: ["votes"],
     }),
-  
+
+    addVotes: builder.mutation({
+      query: (data) => {
+        const { id, ...body } = data;
+        return {
+          url: '/articles/addLike',
+          method: 'PATCH',
+          body: { articleId: id, ...body },
+        };
+      },
+      invalidatesTags: ["votes"],
+    }),
 
   }),
 });
 
 export const {
-useGetVotesQuery
+useGetVotesQuery,
+useAddVotesMutation
 } = votesApi;

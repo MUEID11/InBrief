@@ -1,21 +1,21 @@
-import { useState } from 'react';
-import axios from 'axios';
-import toast from 'react-hot-toast';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const ArticleForm = () => {
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   const [articleData, setArticleData] = useState({
-    title: '',
-    description: '',
-    image: '',
-    url: '',
-    source: '',
-    category: '',
-    region: '',
+    title: "",
+    description: "",
+    image: "",
+    url: "",
+    source: "",
+    category: "",
+    region: "",
   });
 
   // State to manage if the input is focused (clicked)
@@ -34,29 +34,30 @@ const ArticleForm = () => {
       const updatedArticleData = {
         ...articleData,
         postedBy: user?.email,
-        status: 'pending', // Set the initial status to 'pending'
+        createdBy: user?._id,
+        status: "pending", // Set the initial status to 'pending'
       };
 
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/articles`, updatedArticleData);
       if (response.status === 201) {
-        toast.success('Article submitted for approval');
-        navigate('/dashboard/user/my-posts');
+        toast.success("Article submitted for approval");
+        navigate("/dashboard/user/my-posts");
         // Clear the form after submission
         setArticleData({
-          title: '',
-          description: '',
-          image: '',
-          url: '',
-          source: '',
-          category: '',
-          region: '',
+          title: "",
+          description: "",
+          image: "",
+          url: "",
+          source: "",
+          category: "",
+          region: "",
         });
       } else {
-        toast.error('Failed to submit the article');
+        toast.error("Failed to submit the article");
       }
     } catch (error) {
-      console.error('Error creating article:', error);
-      toast.error('Error creating article');
+      console.error("Error creating article:", error);
+      toast.error("Error creating article");
     }
   };
 
@@ -77,7 +78,7 @@ const ArticleForm = () => {
             onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`}
             placeholder="Enter article title"
           />
         </div>
@@ -93,7 +94,7 @@ const ArticleForm = () => {
             onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`}
             rows="4"
             placeholder="Enter article description"
           />
@@ -111,7 +112,7 @@ const ArticleForm = () => {
             onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`}
             placeholder="Enter image URL"
           />
         </div>
@@ -128,7 +129,7 @@ const ArticleForm = () => {
             onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`}
             placeholder="Enter source name"
           />
         </div>
@@ -145,7 +146,7 @@ const ArticleForm = () => {
             onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`}
             placeholder="Enter source URL"
           />
         </div>
@@ -162,7 +163,7 @@ const ArticleForm = () => {
             onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`}
             placeholder="Enter article category"
           />
         </div>
@@ -179,7 +180,7 @@ const ArticleForm = () => {
             onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? 'border-gradient-to-r from-red-500 to-pink-500' : 'border-gray-300'}`}
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`}
             placeholder="Enter article region"
           />
         </div>

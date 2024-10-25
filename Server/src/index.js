@@ -1,16 +1,18 @@
-const express = require('express');
-const morgan = require('morgan');
-const cors = require('cors');
-const createError = require('http-errors');
-const rateLimit = require('express-rate-limit');
-const { port } = require('../secret');
-const dbConnection = require('./config/db');
-const userHandlers = require('./routers/userHandlers');
-const searchRoutes = require('./routers/search');
-const articleHandlers = require('./routers/articleHandlers');
-const CommentRoute = require('./routers/CommentRoute');
-const discussionRouter = require('./routers/ForumRouters/discussionRouter');
-const commentRouters = require('./routers/ForumRouters/commentRouter');
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+const createError = require("http-errors");
+const rateLimit = require("express-rate-limit");
+const { port } = require("../secret");
+const dbConnection = require("./config/db");
+const userHandlers = require("./routers/userHandlers");
+const searchRoutes = require("./routers/search");
+const articleHandlers = require("./routers/articleHandlers");
+const CommentRoute = require("./routers/CommentRoute");
+const discussionRouter = require("./routers/ForumRouters/discussionRouter");
+const commentRouters = require("./routers/ForumRouters/commentRouter");
+const magazineHandlers = require("./routers/MagazineRouters/magazineHandlers");
+const magazineCollaboratorHandlers = require("./routers/MagazineRouters/magazineCollaboratorHandlers");
 
 const app = express();
 
@@ -19,50 +21,53 @@ const app = express();
 const rateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 1500, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
-  message: '  Too many requests from this IP .  Please try again later',
+  message: "  Too many requests from this IP .  Please try again later",
 });
 
 app.use(rateLimiter);
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'https://inbrief-3d9ce.web.app'], // Allow your frontend domain
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'], // Allow necessary methods                                             // Allow cookies and credentials
+    origin: ["http://localhost:5173", "https://inbrief-3d9ce.web.app"], // Allow your frontend domain
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Allow necessary methods                                             // Allow cookies and credentials
   })
 );
 
 //USERS ROUTE
-app.use('/users', userHandlers);
+app.use("/users", userHandlers);
 // APPLICATION ROUTES
-app.use('/articles', articleHandlers);
+app.use("/articles", articleHandlers);
 //USERS ROUTE
-app.use('/users', userHandlers);
+app.use("/users", userHandlers);
 // FORUM ROUTE (discussion route)
-app.use('/forum', discussionRouter);
+app.use("/forum", discussionRouter);
 // FORUM ROUTE (comment route)
-app.use('/forum', commentRouters);
+app.use("/forum", commentRouters);
 
 // Comment ROUTES
-app.use('/comments', CommentRoute);
+app.use("/comments", CommentRoute);
+// Magazine
+app.use("/magazines", magazineHandlers);
+app.use("/magazineCollab", magazineCollaboratorHandlers);
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).send({
-    message: 'server is working finee',
+    message: "server is working finee",
   });
 });
-app.get('/test', (req, res) => {
+app.get("/test", (req, res) => {
   res.status(200).send({
-    message: 'api security testing',
+    message: "api security testing",
   });
 });
 // Search feature
-app.use('/api', searchRoutes);
+app.use("/api", searchRoutes);
 
 // client error handling
 app.use((req, res, next) => {
-  next(createError(404, 'route not found'));
+  next(createError(404, "route not found"));
 });
 
 // server error handling -> all the errors will come here

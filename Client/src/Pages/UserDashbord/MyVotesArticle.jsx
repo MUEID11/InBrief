@@ -1,23 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useGetVotesQuery } from "../../Features/Forum/Votes/votesApi";
 import { FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { TbFileDislike, TbListDetails } from "react-icons/tb";
-
+import {
+  useAddVotesMutation,
+  useGetVotesQuery,
+} from "../../services/Votes/votesApi";
+import { LuArrowBigUpDash } from "react-icons/lu";
+import toast from "react-hot-toast";
+import { PiEmptyBold } from "react-icons/pi";
 
 const MyVotesArticle = () => {
   const { user } = useSelector((state) => state.user);
   const { data, isLoading, isError } = useGetVotesQuery(user?.email);
   const votedArticles = data?.data;
-  // console.log(votedArticles)
+  const [addVotes] = useAddVotesMutation();
+
+  const handleLike = async (id) => {
+    if (!user.email) {
+      navigate("/signin");
+      return;
+    }
+
+    try {
+      const response = await addVotes({ id, userEmail: user?.email });
+      toast("Vote removed successfully!", {
+        icon: "✔️",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+    } catch (error) {
+      console.error("Failed to toggle like:", error);
+    }
+  };
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center p-4">
-        <p className="text-xl">
-          Loading voteded Articles
-        </p>
+        <p className="text-xl">Loading voteded Articles</p>
       </div>
     );
   }
@@ -70,6 +94,13 @@ const MyVotesArticle = () => {
                         </th>
                         <th
                           scope="col"
+                          className="py-3.5 pl-8 text-sm font-normal text-left rtl:text-right text-gray-500"
+                        >
+                          <span>Status </span>
+                        </th>
+
+                        <th
+                          scope="col"
                           className="py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
                         >
                           <span>CreatedAt</span>
@@ -99,6 +130,41 @@ const MyVotesArticle = () => {
                           <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
                             {votedArticle?.category}
                           </td>
+                          <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                            <div
+                              className={`inline-flex items-center px-3 py-1 rounded-full gap-x-2 ${
+                                votedArticle?.status === "pending" &&
+                                "bg-yellow-100/60 text-yellow-500"
+                              }
+                                 ${
+                                  votedArticle?.status === "approved" &&
+                                   "bg-emerald-100/60 text-emerald-500"
+                                 } 
+                                 ${
+                                  votedArticle?.status === "rejected" &&
+                                   "bg-emerald-100/60 text-red-500"
+                                 } 
+                                `}
+                            >
+                              <span
+                                className={`h-1.5 w-1.5 rounded-full ${
+                                  votedArticle?.status === "pending" &&
+                                  "bg-yellow-500"
+                                }  ${
+                                  votedArticle?.status === "approved" &&
+                                  "bg-green-500"
+                                }  
+                                  ${
+                                    votedArticle?.status === "rejected" &&
+                                    "bg-red-500"
+                                  }  
+                                  `}
+                              ></span>
+                              <h2 className="text-sm font-normal ">
+                                { votedArticle?.status}
+                              </h2>
+                            </div>
+                          </td>
 
                           <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
                             {new Date(
@@ -109,10 +175,12 @@ const MyVotesArticle = () => {
                           <td className="px-4 py-4 text-sm whitespace-nowrap">
                             <div className="flex items-center gap-x-2">
                               <button
-                                className="px-3 py-1 rounded-full text-red-500  bg-blue-100/60"
+                                onClick={() => handleLike(votedArticle._id)}
+                                className=""
                               >
-                                 <TbFileDislike/>
-
+                                <LuArrowBigUpDash
+                                  className={`text-2xl font-medium text-gray-500 bg-gray-200 rounded-full`}
+                                />
                               </button>
                             </div>
                           </td>
@@ -136,13 +204,13 @@ const MyVotesArticle = () => {
         </>
       ) : (
         <>
-          <h3 className="text-center text-2xl mt-20 font-medium text-red-500 flex justify-center items-center gap-2">
+          <h3 className="text-center text-xl mt-20 font-medium text-red-500 flex justify-center items-center gap-2">
             {" "}
             <span>
               {" "}
-              <PiEmptyBold />
+              <PiEmptyBold/>
             </span>{" "}
-            <span>No Articles By You Yet</span>
+            <span>No voted Article Found Yet!</span>
           </h3>
         </>
       )}

@@ -2,15 +2,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
-import userThunk from "../Features/thunks/userThunks";
+import userThunk, { checkAuthState } from "../Features/thunks/userThunks";
 import ProfileLoadingTest from "../Components/Component/ProfileLoadingTest";
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  useEffect(() => {
-    dispatch(userThunk());
-  }, [dispatch]);
+  // useEffet(() => {
+  //   dispatch(userThunk());
+  // }, [dispatch]);
+  // On mount, check if the user is authenticated
   console.log("use protection", user);
   if (user?.isLoading) {
     return (
@@ -19,13 +20,13 @@ const ProtectedRoute = ({ children }) => {
       </div>
     );
   }
-  if (!token || user?.error) {
+  if (user?.user || token) {
     //token remove koretei hobe.....
     // localStorage.removeItem('token');
-    return <Navigate to="/signin" />;
+    return children;
   }
 
-  return children;
+  return <Navigate to="/signin" />;
 };
 ProtectedRoute.propTypes = {
   children: PropTypes.node.isRequired,

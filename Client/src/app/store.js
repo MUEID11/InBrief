@@ -4,10 +4,10 @@ import userReducer from "../Features/Authenticate/userSlice";
 import { bookmarksApi } from "../services/bookmarksApi";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import articleReducer from "../Features/Articles/articleSlice";
-import { commentsApi } from "../Features/Comment/commentsApi";
+import { commentsApi } from "../services/Comment/commentsApi";
 import forumReducer from "../Features/Forum/ForumSlice";
-import { forumcommentsApi } from "../Features/ForumComment/ForumCommentApi";
-import { votesApi } from "../Features/Forum/Votes/votesApi";
+import { forumcommentsApi } from "../services/ForumComment/forumCommentApi";
+import { votesApi } from "../services/Votes/votesApi";
 const store = configureStore({
   reducer: {
     user: userReducer,

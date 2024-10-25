@@ -11,13 +11,91 @@ import {
   RedditShareCount,
 } from "react-share";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import { useAddCommentMutation, useGetCommentQuery } from "../Features/Comment/commentsApi";
 import { useSelector } from "react-redux";
-
 import { LuArrowBigUpDash } from "react-icons/lu";
 import CommentComponent from "../Components/Component/CommentComponent";
+import { useAddCommentMutation, useGetCommentQuery } from "../services/Comment/commentsApi";
+import { useAddVotesMutation } from "../services/Votes/votesApi";
+import toast from "react-hot-toast";
+import { useAddBookmarkMutation } from "../services/bookmarksApi";
+import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
+import { FaPlusCircle } from "react-icons/fa";
+import { FaEarthAfrica } from "react-icons/fa6";
+import { FaUserLock } from "react-icons/fa6";
+
+const MagazineModal = ({ userId, showModal, setShowModal, articleId }) => {
+  const [magazines, setMagazines] = useState([]);
+  const [selected, setSelected] = useState("");
+
+  const fetchMagazines = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/magazines?creatorId=${userId}`);
+      setMagazines(response.data);
+    } catch (error) {
+      console.error("Error fetching magazines:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (showModal) {
+      fetchMagazines();
+    }
+  }, [showModal]);
+
+  const submitModal = async (id) => {
+    console.log(id, userId, articleId, "ajkdhakj");
+    if (selected) {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/magazines/addArticle/${id}`, {
+        userId,
+        articleId,
+      });
+      console.log(response);
+      toast.success("Magazine added successfully!");
+      setShowModal(false);
+    } else {
+      toast.error("Please select a magazine");
+    }
+  };
+
+  return showModal ? (
+    <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
+      <div className="bg-white w-full max-w-3xl p-8 rounded-lg shadow-2xl relative mx-4 md:mx-0">
+        <button onClick={() => setShowModal(false)} className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition">
+          <span className="text-xl font-bold">✕</span>
+        </button>
+        <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">My Magazines</h2>
+        <div className="max-h-96 overflow-y-auto">
+          {magazines.length > 0 ? (
+            <div className="space-y-4">
+              {magazines.map((magazine) => (
+                <>
+                  <p
+                    onClick={() => setSelected(magazine?.title)}
+                    key={magazine._id}
+                    className={`p-4 cursor-pointer flex justify-between items-center bg-gray-100 ${
+                      selected === magazine.title ? "bg-blue-400 text-white" : "bg-gray-100 text-gray-700"
+                    }  rounded-lg shadow-sm`}>
+                    <h3 className="text-lg font-lg">{magazine.title}</h3>
+                    {magazine?.isPublic ? <FaEarthAfrica /> : <FaUserLock />}
+                  </p>
+                  <button
+                    onClick={() => submitModal(magazine?._id)}
+                    className="border border-blue-500 hover:bg-blue-500 hover:text-white mt-6 w-full text-blue-500 px-4 py-2 rounded">
+                    Save
+                  </button>
+                </>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-gray-500">No magazines found.</p>
+          )}
+        </div>
+      </div>
+    </div>
+  ) : null;
+};
 
 const NewsDetails = () => {
   const { id } = useParams();
@@ -25,6 +103,14 @@ const NewsDetails = () => {
   const [error, setError] = useState(null);
   const { user } = useSelector((state) => state.user);
   const [comment, setComment] = useState("");
+  const [likes, setLikes] = useState(article?.likes?.length || 0);
+  const [liked, setLiked] = useState(article?.likes?.includes(user?.email));
+  const [bookmarked, setBookmarked] = useState(article?.bookmarks?.includes(user?.email));
+
+  const [addBookmark, { isError, error: bookmarkError, data: toggleBookmarkMsg, isSuccess }] = useAddBookmarkMutation();
+  const [showModal, setShowModal] = useState(false);
+  const [addVotes] = useAddVotesMutation();
+
   useEffect(() => {
     const fetchArticleDetails = async () => {
       try {
@@ -40,8 +126,66 @@ const NewsDetails = () => {
     fetchArticleDetails();
   }, [id]);
 
+  const handleLike = async (id) => {
+    if (!user.email) {
+      navigate("/signin");
+      return;
+    }
+
+    try {
+      const response = await addVotes({ id, userEmail: user?.email });
+
+      if (liked) {
+        setLikes(likes - 1);
+      } else {
+        setLikes(likes + 1);
+      }
+      setLiked(!liked);
+      // console.log(data.message);
+    } catch (error) {
+      console.error("Failed to toggle like:", error);
+    }
+  };
+
+  const handleBookmark = (id) => {
+    if (!user.email) {
+      navigate("/signin");
+      return;
+    }
+
+    addBookmark({ id, userEmail: user?.email })
+      .unwrap()
+      .then((payload) => console.log("fulfilled", payload))
+      .catch((error) => console.error("rejected", error));
+  };
+
+  useEffect(() => {
+    if (toggleBookmarkMsg && toggleBookmarkMsg.message && isSuccess) {
+      setBookmarked(!bookmarked);
+      toast(toggleBookmarkMsg.message, {
+        icon: "✔️",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+    }
+
+    if (isError) {
+      toast(bookmarkError.data.message || "Something went wrong", {
+        icon: "❌",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+    }
+  }, [bookmarkError, isError, isSuccess, toggleBookmarkMsg]);
+
   let { data: comments, isLoading: commentLoading, isError: commentError } = useGetCommentQuery(id) || {};
-  console.log(comments)
+  // console.log(comments);
 
   // add comment
   const [addComment] = useAddCommentMutation() || {};
@@ -59,7 +203,7 @@ const NewsDetails = () => {
         },
       });
       // console.log('Comment Added:', response);
-      setComment('');
+      setComment("");
       e.target.reset();
     } catch (error) {
       console.error("Error adding comment:", error);
@@ -112,10 +256,13 @@ const NewsDetails = () => {
                 </p>
                 <p className="text-gray-500">
                   <span className="font-semibold">Posted by: </span>
-                  {article?.postedBy}
+                  <Link to={`/articles/creator/${article?.postedBy}`} title="Click Here to get all articles posted by this creator">
+                    {" "}
+                    <span className="font-semibold text-blue-600">{article?.createdBy?.name}</span>
+                  </Link>
                 </p>
 
-                <div className="flex justify-between mt-4 ">
+                <div className="flex max-sm:flex-col max-sm:gap-2 max-sm:items-start items-center justify-between mt-4 ">
                   <fieldset className="flex items-center gap-4 border-2 border-gray-300 rounded-lg px-4 py-1 max-w-sm">
                     <legend>Share</legend>
                     <div>
@@ -146,30 +293,35 @@ const NewsDetails = () => {
                       <RedditShareButton url={article?.url} title={article?.title} windowWidth={660} windowHeight={460} className="Demo__some-network__share-button">
                         <RedditIcon size={32} round />
                       </RedditShareButton>
-
-                      <div>
-                        <RedditShareCount url={article?.url} className="Demo__some-network__share-count" />
-                      </div>
                     </div>
                   </fieldset>
                   {/* Likes and Bookmarks */}
-                  <div className="flex items-center space-x-6">
-                    <p className="flex items-center text-gray-500">
-                      <button
-                        // onClick={() => handleLike(article._id)}
-                        className="">
-                        <LuArrowBigUpDash className={" text-2xl text-green-500 bg-green-100 rounded-full"} />
+                  <div className="flex items-center justify-center gap-5">
+                    <div className="flex items-center space-x-6">
+                      <div className="flex items-center gap-2">
+                        <button title="Vote" onClick={() => handleLike(article._id)} className="">
+                          <LuArrowBigUpDash className={`text-2xl font-medium ${liked ? "text-blue-500 bg-blue-100 rounded-full" : "text-gray-500 bg-gray-200 rounded-full"}`} />
+                        </button>
+                        <p className="text-gray-700 text-sm"> {likes} Votes</p>
+                      </div>
+                      {bookmarked ? (
+                        <IoBookmarksSharp title="Bookmark" className="cursor-pointer text-red-500" onClick={() => handleBookmark(article._id)} />
+                      ) : (
+                        <IoBookmarksOutline title="Bookmark" className="cursor-pointer text-red-600" onClick={() => handleBookmark(article._id)} />
+                      )}
+                    </div>
+                    {/* show modal */}
+                    {/* <button
+                      className="bg-gray-200 px-3 py-1 text-sm font-semibold rounded-lg hover:bg-blue-400 hover:text-white transition-all duration-300"
+                      onClick={() => setShowModal(true)}>
+                      Show Magazines
+                    </button> */}
+                    <div>
+                      <button className="text-sm px-3 py-2 flex items-center gap-2 border border-red-500 text-red-500 rounded-lg " onClick={() => setShowModal(true)}>
+                        <FaPlusCircle />
+                        Add to Magazines
                       </button>
-                      <span className="font-semibold text-green-500 px-1"> Votes: </span>
-                      {article?.likes?.length}
-                    </p>
-                    <p className="flex items-center text-gray-500">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5 text-blue-500 mr-2">
-                        <path d="M6 2C4.9 2 4 2.9 4 4v16l8-4 8 4V4c0-1.1-.9-2-2-2H6z" />
-                      </svg>
-                      <span className="font-semibold text-[#2D2D2D]">Bookmarks: </span>
-                      {article?.bookmarks?.length}
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -239,6 +391,8 @@ Example Code Snippet"
           </div>
         </div>
       </main>
+
+      <MagazineModal userId={user?._id} showModal={showModal} setShowModal={setShowModal} articleId={article?._id} />
     </div>
   );
 };

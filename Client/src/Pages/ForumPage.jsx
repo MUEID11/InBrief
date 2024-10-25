@@ -29,21 +29,17 @@ const ForumPage = () => {
   };
 
   return (
-    <div className="flex">
+    <div className=" flex flex-col justify-center items-center container mx-auto">
       {/* Create Discussion Section */}
-      <div className="w-1/2 p-4 border-r">
+      <div className="  mx-auto p-4 border-r">
         <CreateDiscussion onCreate={handleCreateDiscussion} />
       </div>
 
       {/* Join Discussion Section */}
-      <div className="w-1/2 p-4">
-        <h2 className="text-xl font-bold mb-2">Join Discussion</h2>
+      <div className="p-4 sm:grid sm:grid-cols-2 mx-auto">
+        <h2 className="text-xl font-bold mb-2 sm:col-span-full">Join Discussion</h2>
         {discussionsS?.map((discussion) => (
-          <div
-            key={discussion._id}
-            onClick={() => handleSelectDiscussion(discussion)}
-            className="cursor-pointer border p-2 mb-2"
-          >
+          <div key={discussion._id} onClick={() => handleSelectDiscussion(discussion)} className="cursor-pointer border p-2 mb-1 sm:m-2">
             <DiscussionDetails discussion={discussion} />
             {/* <Link
               to={`forum-details/${discussion?._id}`}
