@@ -21,7 +21,6 @@ import ForumPage from "../Pages/ForumPage";
 import TopLatestNews from "../Components/sections/TopLatestNews";
 import NewsDetails from "../Pages/NewsDetails";
 import ForumDetails from "../Pages/ForumDetails";
-import Blogs from "../Pages/Blogs";
 import UserDashboard from "../Pages/UserDashbord/UserDashboard";
 import MyPosts from "../Pages/UserDashbord/MyPosts";
 import MyVotesArticle from "../Pages/UserDashbord/MyVotesArticle";
@@ -29,7 +28,8 @@ import MyBookmarkes from "../Pages/UserDashbord/MyBookmarkes";
 import FeaturedBooks from "../Pages/FeaturedBooks";
 import BookDetails from "../Pages/BookDetails";
 import CreatorArticles from "../Pages/CreatorArticles";
-
+import Magazine from "../Pages/Magazine";
+import MagazineDetails from "../Pages/MagazineDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -72,10 +72,7 @@ const router = createBrowserRouter([
         path: "sports",
         element: <SportsNewsSection />,
       },
-      {
-        path: "blogs",
-        element: <Blogs />,
-      },
+    
       {
         path: "forum",
         element: <ForumPage />,
@@ -102,6 +99,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <SubmitArticleForm />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/magazine",
+        element: (
+          <ProtectedRoute>
+           <Magazine/>
           </ProtectedRoute>
         ),
       },
@@ -180,6 +185,10 @@ const router = createBrowserRouter([
       {
         path: "featured-books",
         element: <FeaturedBooks />,
+      },
+      {
+        path: "/magazines/:magazineId",
+        element: <MagazineDetails />,
       },
       {
         path: "books/:bookId",

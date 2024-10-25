@@ -44,13 +44,11 @@ const NewsCard = ({ article }) => {
       // console.log(data.message);
     } catch (error) {
       console.error("Failed to toggle like:", error);
-      console.error("Failed to toggle like:", error);
     }
   };
 
   const handleBookmark = (id) => {
     if (!user.email) {
-      navigate("/signin");
       navigate("/signin");
       return;
     }
@@ -67,11 +65,7 @@ const NewsCard = ({ article }) => {
       setBookmarked(!bookmarked);
       toast(toggleBookmarkMsg.message, {
         icon: "✔️",
-        icon: "✔️",
         style: {
-          borderRadius: "10px",
-          background: "#333",
-          color: "#fff",
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
@@ -84,9 +78,6 @@ const NewsCard = ({ article }) => {
       toast(error.data.message || "Something went wrong", {
         icon: "❌",
         style: {
-          borderRadius: "10px",
-          background: "#333",
-          color: "#fff",
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
@@ -139,7 +130,7 @@ const NewsCard = ({ article }) => {
                 {article?.region}
               </p>
               <span className="text-xs text-neutral-600">
-                {new Date(article.createdAt).toLocaleDateString()}
+                {new Date(article?.createdAt).toLocaleDateString()}
               </span>
             </div>
             <p className="text-blue-500 font-semibold bg-blue-100 py-1 px-3 rounded-sm text-xs capitalize">
@@ -147,7 +138,7 @@ const NewsCard = ({ article }) => {
             </p>
           </div>
           {/* Description */}
-          <p className="text-sm text-gray-600 mb-4 flex-grow">{`${article.description.substring(
+          <p className="text-sm text-gray-600 mb-4 flex-grow">{`${article?.description.substring(
             0,
             100
           )}...`}</p>
@@ -161,7 +152,7 @@ const NewsCard = ({ article }) => {
         <div className="flex justify-between items-center">
           <div>
             <div className="flex items-center gap-2">
-              <button onClick={() => handleLike(article._id)} className="">
+              <button onClick={() => handleLike(article?._id)} className="">
                 <LuArrowBigUpDash
                   className={`text-2xl font-medium ${
                     liked
@@ -175,21 +166,21 @@ const NewsCard = ({ article }) => {
                 <IoBookmarksSharp
                   title="Bookmark"
                   className="cursor-pointer text-red-500"
-                  onClick={() => handleBookmark(article._id)}
+                  onClick={() => handleBookmark(article?._id)}
                 />
               ) : (
                 <IoBookmarksOutline
                   title="Bookmark"
                   className="cursor-pointer text-red-600"
-                  onClick={() => handleBookmark(article._id)}
+                  onClick={() => handleBookmark(article?._id)}
                 />
               )}
             </div>
           </div>
           {/* Read More Button */}
-          <button className="text-red-600 self-end font-medium">
+          <Link to={`/articles/${article?._id}`}><button className="text-red-600 self-end font-medium">
             Read More
-          </button>
+          </button></Link>
         </div>
       </div>
     </article>

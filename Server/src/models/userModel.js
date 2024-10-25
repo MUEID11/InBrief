@@ -13,12 +13,11 @@ const userSchema = new Schema({
   },
   age: {
     type: Number,
-    required: [true, "Please provide your age"],
+    required: [false, "Please provide your age"],
   },
   password: {
     type: String,
-    required: true,
-    minLength: 6,
+    required: false,
   },
   imageUrl: {
     type: String,

@@ -4,11 +4,11 @@ import { Pie, Line, Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import "tailwindcss/tailwind.css";
 import { FaNewspaper, FaEye, FaList } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify"; 
-import "react-toastify/dist/ReactToastify.css"; 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { FaCheck, FaTimes } from "react-icons/fa";
-import { TbListDetails } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { TbListDetails } from "react-icons/tb";
 
 const AdminDashboard = () => {
   const [articles, setArticles] = useState([]);
@@ -18,14 +18,14 @@ const AdminDashboard = () => {
   const [categoryDistribution, setCategoryDistribution] = useState([]);
   const [viewsData, setViewsData] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
-  const [pendingArticleId, setPendingArticleId] = useState(null); 
-  const [actionType, setActionType] = useState(""); 
+  const [pendingArticleId, setPendingArticleId] = useState(null);
+  const [actionType, setActionType] = useState("");
 
   const fetchArticlesData = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/articles`
-      );
+      const response = await axios.get(` 
+        ${import.meta.env.VITE_API_URL}/articles
+      `);
       if (response.status === 200) {
         const articlesData = response.data.data;
         setArticles(articlesData);
@@ -74,43 +74,47 @@ const AdminDashboard = () => {
 
   const handleApproveArticle = async () => {
     try {
-      const response = await axios.patch(
-        `${import.meta.env.VITE_API_URL}/articles/updateStatus/${pendingArticleId}`,
+      const response = await axios.patch(` 
+        ${
+          import.meta.env.VITE_API_URL
+        }/articles/updateStatus/${pendingArticleId},
         { status: "approved" }
-      );
+      `);
       if (response.status === 200) {
-        toast.success("Article approved successfully!"); 
+        toast.success("Article approved successfully!");
         fetchArticlesData(); // Fetch articles data again after approval
       } else {
         console.error("Failed to approve article");
       }
     } catch (error) {
       console.error("Error approving article:", error);
-      toast.error("Failed to approve article."); 
+      toast.error("Failed to approve article.");
     } finally {
-      setModalVisible(false); 
-      setPendingArticleId(null); 
+      setModalVisible(false);
+      setPendingArticleId(null);
     }
   };
 
   const handleRejectArticle = async () => {
     try {
-      const response = await axios.patch(
-        `${import.meta.env.VITE_API_URL}/articles/updateStatus/${pendingArticleId}`,
+      const response = await axios.patch(` 
+        ${
+          import.meta.env.VITE_API_URL
+        }/articles/updateStatus/${pendingArticleId},
         { status: "rejected" }
-      );
+      `);
       if (response.status === 200) {
-        toast.success("Article rejected successfully!"); 
-        fetchArticlesData(); 
+        toast.success("Article rejected successfully!");
+        fetchArticlesData();
       } else {
         console.error("Failed to reject article");
       }
     } catch (error) {
       console.error("Error rejecting article:", error);
-      toast.error("Failed to reject article."); 
+      toast.error("Failed to reject article.");
     } finally {
-      setModalVisible(false); 
-      setPendingArticleId(null); 
+      setModalVisible(false);
+      setPendingArticleId(null);
     }
   };
 
@@ -119,10 +123,10 @@ const AdminDashboard = () => {
   }, []);
 
   const pieData = {
-    labels: categoryDistribution.map((item) => item.category),
+    labels: categoryDistribution.map((item) => item?.category),
     datasets: [
       {
-        data: categoryDistribution.map((item) => item.count),
+        data: categoryDistribution.map((item) => item?.count),
         backgroundColor: [
           "rgba(76, 81, 191, 0.8)",
           "rgba(56, 178, 172, 0.8)",
@@ -148,7 +152,7 @@ const AdminDashboard = () => {
         label: "Views per Day",
         data: viewsData.map((item) => item.views),
         fill: false,
-        backgroundColor: "rgba(237, 137, 54, 0.8)",
+        backgroundColor: "rgba(237, 137, 54, 0.8",
         borderColor: "rgba(237, 137, 54, 1)",
       },
     ],
@@ -160,7 +164,7 @@ const AdminDashboard = () => {
       {
         label: "Articles Count",
         data: categoryDistribution.map((item) => item.count),
-        backgroundColor: "rgba(56, 178, 172, 0.8)",
+        backgroundColor: "rgba(56, 178, 172, 0.8",
         borderColor: "rgba(56, 178, 172, 1)",
         borderWidth: 1,
       },
@@ -168,16 +172,20 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-slate-100 via-slate-200 to-slate-200">
+    <div className="min-h-screen ">
       <ToastContainer /> {/* Add ToastContainer here */}
-      <header className="p-4 flex items-center gap-3">
+      <header className="p-4 flex gap-3 items-center">
         <h2 className="text-2xl text-black font-bold">Admin Dashboard</h2>
-      <Link to={"/dashboard/user"}>  <button className="text-sm bg-white px-4 py-1 rounded-lg"> View as user</button></Link>
+        <Link to={"/dashboard/user"}>
+          <button className="text-sm px-3 py-1 bg-gray-300 rounded-lg">
+            View as user
+          </button>
+        </Link>
       </header>
-
       <main className="p-4">
-        <div className="flex justify-between mb-6">
-          <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-6 shadow-md relative w-1/4">
+        <div className="flex flex-wrap justify-between mb-6">
+          {/* Total Articles Card */}
+          <div className=" p-6 shadow-lg relative w-full sm:w-1/2 md:w-1/4 mb-4">
             <FaNewspaper className="absolute top-4 left-4 text-blue-500 text-3xl" />
             <div className="ml-12">
               <h2 className="text-gray-900 text-xl font-semibold mb-2">
@@ -187,7 +195,7 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-6 shadow-md relative w-1/4">
+          <div className=" p-6 shadow-lg relative w-full sm:w-1/2 md:w-1/4 mb-4">
             <FaEye className="absolute top-4 left-4 text-blue-500 text-3xl" />
             <div className="ml-12">
               <h2 className="text-gray-900 text-xl font-semibold mb-2">
@@ -197,7 +205,8 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-slate-300 to-slate-50 p-6 shadow-md relative w-1/4">
+          {/* Unique Categories Card */}
+          <div className=" p-6 shadow-lg relative w-full sm:w-1/2 md:w-1/4 mb-4">
             <FaList className="absolute top-4 left-4 text-blue-500 text-3xl" />
             <div className="ml-12">
               <h2 className="text-gray-900 text-xl font-semibold mb-2">
@@ -208,97 +217,123 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Category Distribution */}
           <div className="bg-white shadow-md rounded-lg p-4">
             <h3 className="text-lg font-bold mb-4">Category Distribution</h3>
             <Pie data={pieData} />
           </div>
 
+          {/* Views Over Time */}
           <div className="bg-white shadow-md rounded-lg p-4">
             <h3 className="text-lg font-bold mb-4">Views Over Time</h3>
             <Line data={lineData} />
           </div>
 
+          {/* Articles Count by Category */}
           <div className="bg-white shadow-md rounded-lg p-4">
-            <h3 className="text-lg font-bold mb-4">Articles Count by Category</h3>
+            <h3 className="text-lg font-bold mb-4">
+              Articles Count by Category
+            </h3>
             <Bar data={barData} />
           </div>
         </div>
 
         <div className="mt-6 bg-white shadow-md rounded-lg p-4">
-          <h3 className="text-lg font-bold mb-4">Pending Articles</h3>
-          <table className="min-w-full">
-            <thead>
-              <tr className="border-b">
-                <th className="p-2 text-left">Title</th>
-                <th className="p-2 text-left">Category</th>
-                <th className="p-2 text-left">Status</th>
-                <th className="p-2 text-left">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {articles.map((article) => (
-                <tr key={article?._id}>
-                  <td className="p-2 border-b">{article?.title}</td>
-                  <td className="p-2 border-b">{article?.category}</td>
-                  <td className="p-2 border-b">
-                    <span
-                      className={`font-bold rounded-full ${
-                        article?.status === "approved"
-                          ? "text-green-400"
-                          : article?.status === "pending"
-                          ? "text-orange-400"
-                          : "text-red-600"
-                      }`}
-                    >
-                      {article?.status}
-                    </span>
-                  </td>
-                  <td className="p-2 border-b">
-                    {article?.status === "approved" ? (
-                      <span className="text-gray-500"></span>
-                    ) : (
-                      <div className="flex space-x-2">
-                        <button
-                          className="bg-green-500 text-white p-2 rounded-full"
-                          onClick={() => {
-                            setModalVisible(true);
-                            setPendingArticleId(article?._id);
-                            setActionType("approve");
-                          }}
-                        >
-                          <FaCheck />
-                        </button>
-                        <button
-                          className="bg-red-500 text-white p-2 rounded-full"
-                          onClick={() => {
-                            setModalVisible(true);
-                            setPendingArticleId(article?._id);
-                            setActionType("reject");
-                          }}
-                        >
-                          <FaTimes />
-                        </button>
-                        <a
-                          href={`/articles/${article?._id}`}
-                          className="bg-gray-300 p-2 rounded-full"
-                        >
-                             <TbListDetails />
-                        </a>
-                      </div>
-                    )}
-                  </td>
+          <h3 className="bg-zinc-200 text-center text-lg p-6 font-bold mb-4">
+            Pending Articles
+          </h3>
+
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-slate-50 rounded-md">
+              <thead>
+                <tr className="border-b bg-red-50">
+                  <th className="p-2 text-left text-sm sm:text-base">Title</th>
+                  <th className="p-2 text-left text-sm sm:text-base hidden sm:table-cell">
+                    Category
+                  </th>
+                  <th className="p-2 text-left text-sm sm:text-base">Status</th>
+                  <th className="p-2 text-left text-sm sm:text-base">
+                    Actions
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {articles.map((article) => (
+                  <tr key={article?._id} className="border-b">
+                    <td className="p-2 text-sm sm:text-base">
+                      {article?.title}
+                    </td>
+                    <td className="p-2 text-sm sm:text-base hidden sm:table-cell">
+                      {article?.category}
+                    </td>
+                    <td className="p-2 text-sm sm:text-base">
+                      <span
+                        className={`font-bold rounded-full ${
+                          article?.status === "approved"
+                            ? "text-green-400"
+                            : article?.status === "pending"
+                            ? "text-orange-400"
+                            : "text-red-600"
+                        }`}
+                      >
+                        {article?.status}
+                      </span>
+                    </td>
+                   
+                    <td className="p-2">
+                      {article?.status === "approved" ? (
+                        <Link to={`/articles/${article?._id}`}>
+                          {" "}
+                          <button className="bg-gray-300 hover:rounded-xl  p-2 rounded-full">
+                            <TbListDetails />
+                          </button>
+                        </Link>
+                      ) : (
+                        <div className="flex flex-wrap lg:my-0    sm:flex-nowrap space-x-2">
+                          <button
+                            className="hover:rounded-xl my-1 lg:my-0 ml-2 lg:ml-0  bg-green-500 text-white p-2 rounded-full"
+                            onClick={() => {
+                              setModalVisible(true);
+                              setPendingArticleId(article?._id);
+                              setActionType("approve");
+                            }}
+                          >
+                            <FaCheck className="" />
+                          </button>
+                          <button
+                            className="bg-red-600 my-1 lg:my-0 shadow-2xl shadow-neutral-500 text-white p-2 rounded-full"
+                            onClick={() => {
+                              setModalVisible(true);
+                              setPendingArticleId(article?._id);
+                              setActionType("reject");
+                            }}
+                          >
+                            <FaTimes />
+                          </button>
+                          <a
+                            href={`/articles/${article?._id}`}
+                            className="bg-gray-300 my-1 lg:my-0 hover:rounded-xl  p-2 rounded-full"
+                          >
+                            <TbListDetails />
+                          </a>
+                        </div>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         {modalVisible && (
           <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center">
             <div className="bg-white p-6 rounded shadow-md">
               <h2 className="text-lg font-bold mb-4">
-                {actionType === "approve" ? "Approve Article" : "Reject Article"}
+                {actionType === "approve"
+                  ? "Approve Article"
+                  : "Reject Article"}
               </h2>
               <p>Are you sure you want to {actionType} this article?</p>
               <div className="mt-4 flex justify-end">
@@ -310,10 +345,12 @@ const AdminDashboard = () => {
                 </button>
                 <button
                   className={`${
-                    actionType === "approve" ? "bg-green-500" : "bg-red-500"
+                    actionType === "approve" ? "bg-green-500" : "bg-red-600"
                   } text-white p-2 rounded`}
                   onClick={
-                    actionType === "approve" ? handleApproveArticle : handleRejectArticle
+                    actionType === "approve"
+                      ? handleApproveArticle
+                      : handleRejectArticle
                   }
                 >
                   {actionType === "approve" ? "Approve" : "Reject"}

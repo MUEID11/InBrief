@@ -14,7 +14,7 @@ const WeatherCard = () => {
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${import.meta.env.VITE_WEATHER_API}`
       );
-      console.log(response);
+      // console.log(response);
       setWeather(response.data);
     } catch (error) {
       console.error('Error fetching weather data:', error);

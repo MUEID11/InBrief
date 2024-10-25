@@ -17,13 +17,7 @@ const Profile = () => {
   });
 
   const [formData, setFormData] = useState({
-    education: [
-      {
-        institution: "Example University",
-        degree: "Bachelor's in CS",
-        year: "2020",
-      },
-    ],
+    education: [{ institution: "Example University", degree: "Bachelor's in CS", year: "2020" }],
     about: [
       { title: "Birthday", value: "1995-01-01" },
       { title: "Contact", value: "+123456789" },
@@ -57,23 +51,17 @@ const Profile = () => {
       <div className="grid grid-cols-4 gap-8 sm:min-h-80 ">
         {/* Profile Image Card */}
         <div className="col-span-1 ">
-          <img
-            src={user?.imageUrl}
-            className="w-48 h-48 lg:w-64 lg:h-64  object-cover mx-auto rounded-full"
-            alt="User"
-          />
+          <img src={user?.imageUrl || user?.photoURL} referrerPolicy="no-referer" className="w-48 h-48 lg:w-64 lg:h-64  object-cover mx-auto rounded-full" alt="User" />
         </div>
 
         {/* User Info Card */}
         <div className="col-span-2 p-6 shadow-md rounded-sm bg-white space-y-5">
           <h5 className="text-lg font-semibold flex items-center">
-            User Name: {user?.name}
+            User Name: {user?.name || user?.displayName}
             <TbEdit className="ml-4 text-blue-500 cursor-pointer" />
           </h5>
           <h5 className="text-lg font-semibold">User Email: {user?.email}</h5>
-          <h5 className="text-lg font-semibold">
-            User Id: {user?._id.slice(0, 6)}
-          </h5>
+          <h5 className="text-lg font-semibold">User Id: {user?._id?.slice(0, 6) || user?.uid}</h5>
         </div>
 
         {/* Bookmarks Card */}
@@ -105,13 +93,8 @@ const Profile = () => {
         {/* Education Section */}
         <div className="p-6 shadow-md rounded-sm bg-white">
           <div className="flex justify-between items-center mb-4">
-            <h4 className="text-xl font-semibold">
-              Education & Qualifications
-            </h4>
-            <TbEdit
-              className="text-blue-500 cursor-pointer"
-              onClick={() => handleToggleEdit("education")}
-            />
+            <h4 className="text-xl font-semibold">Education & Qualifications</h4>
+            <TbEdit className="text-blue-500 cursor-pointer" onClick={() => handleToggleEdit("education")} />
           </div>
           {isEditing.education
             ? formData.education.map((edu, index) => (
@@ -120,32 +103,21 @@ const Profile = () => {
                     type="text"
                     placeholder="Institution"
                     value={edu.institution}
-                    onChange={(e) =>
-                      handleChange(
-                        "education",
-                        index,
-                        "institution",
-                        e.target.value
-                      )
-                    }
+                    onChange={(e) => handleChange("education", index, "institution", e.target.value)}
                     className="w-full border rounded-sm p-2"
                   />
                   <input
                     type="text"
                     placeholder="Degree"
                     value={edu.degree}
-                    onChange={(e) =>
-                      handleChange("education", index, "degree", e.target.value)
-                    }
+                    onChange={(e) => handleChange("education", index, "degree", e.target.value)}
                     className="w-full border rounded-sm p-2"
                   />
                   <input
                     type="text"
                     placeholder="Year"
                     value={edu.year}
-                    onChange={(e) =>
-                      handleChange("education", index, "year", e.target.value)
-                    }
+                    onChange={(e) => handleChange("education", index, "year", e.target.value)}
                     className="w-full border rounded-sm p-2"
                   />
                 </div>
@@ -164,10 +136,7 @@ const Profile = () => {
         <div className="p-6 shadow-md rounded-sm bg-white">
           <div className="flex justify-between items-center mb-4">
             <h4 className="text-lg font-semibold">User Information</h4>
-            <TbEdit
-              className="text-blue-500 cursor-pointer"
-              onClick={() => handleToggleEdit("about")}
-            />
+            <TbEdit className="text-blue-500 cursor-pointer" onClick={() => handleToggleEdit("about")} />
           </div>
           {isEditing.about
             ? formData.about.map((item, index) => (
@@ -176,18 +145,14 @@ const Profile = () => {
                     type="text"
                     placeholder="Title"
                     value={item.title}
-                    onChange={(e) =>
-                      handleChange("about", index, "title", e.target.value)
-                    }
+                    onChange={(e) => handleChange("about", index, "title", e.target.value)}
                     className="w-full border rounded-sm p-2"
                   />
                   <input
                     type="text"
                     placeholder="Value"
                     value={item.value}
-                    onChange={(e) =>
-                      handleChange("about", index, "value", e.target.value)
-                    }
+                    onChange={(e) => handleChange("about", index, "value", e.target.value)}
                     className="w-full border rounded-sm p-2"
                   />
                 </div>
@@ -204,10 +169,7 @@ const Profile = () => {
         <div className="p-6 shadow-md rounded-sm bg-white">
           <div className="flex justify-between items-center mb-4">
             <h4 className="text-lg font-semibold">Interest Area</h4>
-            <TbEdit
-              className="text-blue-500 cursor-pointer"
-              onClick={() => handleToggleEdit("skills")}
-            />
+            <TbEdit className="text-blue-500 cursor-pointer" onClick={() => handleToggleEdit("skills")} />
           </div>
           {isEditing.skills
             ? formData.skills.map((skill, index) => (
@@ -216,23 +178,14 @@ const Profile = () => {
                     type="text"
                     placeholder="Category"
                     value={skill.category}
-                    onChange={(e) =>
-                      handleChange("skills", index, "category", e.target.value)
-                    }
+                    onChange={(e) => handleChange("skills", index, "category", e.target.value)}
                     className="w-full border rounded-sm p-2"
                   />
                   <input
                     type="text"
                     placeholder="Items (comma-separated)"
                     value={skill.items.join(", ")}
-                    onChange={(e) =>
-                      handleChange(
-                        "skills",
-                        index,
-                        "items",
-                        e.target.value.split(", ")
-                      )
-                    }
+                    onChange={(e) => handleChange("skills", index, "items", e.target.value.split(", "))}
                     className="w-full border rounded-sm p-2"
                   />
                 </div>

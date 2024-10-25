@@ -48,6 +48,7 @@ const NewsDetails = () => {
           `${import.meta.env.VITE_API_URL}/articles/${id}`
         );
         setArticle(response.data);
+       
       } catch (err) {
         setError("Error fetching article details");
         console.error("Error fetching article:", err);
@@ -357,8 +358,8 @@ const NewsDetails = () => {
               </h3>
 
               <ul className="space-y-4">
-                <li className="hover:underline text-blue-600">
-                  Global Market Updates
+                <li  className="hover:underline text-blue-600">
+                    Global Market Updates
                 </li>
                 <li className="hover:underline text-blue-600">
                   Tech Industry News

@@ -10,7 +10,7 @@ const DiscussionDetails = ({ discussion }) => {
           <img
             src={discussion?.userImage}
             alt={discussion?.username}
-            className="w-10 h-10 rounded-full border-[3px] border-solid border-green-600 mr-2"
+            className="w-10 h-10 rounded-full  border-solid border-green-600 mr-2"
           />
           <h1 className="font-semibold">{discussion?.username}</h1>
         </div>
