@@ -17,6 +17,8 @@ const CommentComponent = ({ comment }) => {
   const [deleteComment] = useDeleteCommentMutation() || {};
   const hasLiked = comment?.likes?.includes(user?.email);
 
+  console.log(user)
+
   //   add reply to comment
   const submitReply = async (e) => {
     e.preventDefault();
