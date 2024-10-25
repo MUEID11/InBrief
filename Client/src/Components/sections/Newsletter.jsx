@@ -4,7 +4,6 @@ const Newsletter = () => {
       <div className="border border-gray-200 border-r-4 border-b-4 container mx-auto sm:p-10 px-4 sm:py-16 max-sm:py-8 mt-12 flex flex-col md:flex-row items-center justify-between gap-4 ">
         <div className="w-full md:w-1/2 text-center">
           <p className="font-bold max-sm:text-sm text-gray-600 uppercase tracking-[0.3em]">
-            {" "}
             GET FIRST UPDATE
           </p>
           <h3 className="font-bold text-lg md:text-xl lg:text-2xl mt-2 font-inter ">
