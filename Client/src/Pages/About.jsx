@@ -85,14 +85,14 @@ const teamInfo = [
     id: 1,
     name: "Sumaiya Urmi",
     image:
-      "https://res.cloudinary.com/dv8zsvl4z/image/upload/v1729838505/IMG_20231220_183830_1_1_crbw8a.jpg",
+      "https://res.cloudinary.com/duiymk5mu/image/upload/v1729949701/6f6eee42-bb74-4f06-ba94-9d72fb5d1d6a_lvm550.jpg",
     link: "https://www.linkedin.com/in/sumaiya-urmi021",
   },
   {
     id: 2,
     name: "Meherun Nesa Meghla",
     image:
-      "https://res.cloudinary.com/duiymk5mu/image/upload/v1729768028/1688748225552_oni8xh.jpg",
+      "https://res.cloudinary.com/duiymk5mu/image/upload/v1729951283/462534405_471498485266793_3279693328074206836_n_iunusw.jpg",
     link: "https://www.linkedin.com/in/meherun-nesa-meghla/",
   },
   {

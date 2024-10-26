@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
-import NewsSection from './NewsSection';
+import { useEffect, useState } from "react";
+import NewsSection from "./NewsSection";
 
 const TopLatestNews = ({ isHomeSection = false }) => {
   const [articles, setArticles] = useState([]);
@@ -8,7 +8,7 @@ const TopLatestNews = ({ isHomeSection = false }) => {
   const [error, setError] = useState(false);
 
   const [width, setWidth] = useState(window.innerWidth);
-  console.log(width);
+  // console.log(width);
   let url;
   if (isHomeSection) {
     if (width <= 1536 && width >= 1280) {
@@ -29,7 +29,7 @@ const TopLatestNews = ({ isHomeSection = false }) => {
     fetch(url)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json();
       })
@@ -38,7 +38,7 @@ const TopLatestNews = ({ isHomeSection = false }) => {
         setLoading(false);
       })
       .catch((err) => {
-        console.error('Error fetching Latest News:', err);
+        console.error("Error fetching Latest News:", err);
         setError(true);
         setLoading(false);
       });
@@ -55,14 +55,21 @@ const TopLatestNews = ({ isHomeSection = false }) => {
   if (error) {
     return (
       <div className="flex items-center justify-center p-4">
-        <p className="text-xl text-red-600">Failed to load Latest News. Please try again later.</p>
+        <p className="text-xl text-red-600">
+          Failed to load Latest News. Please try again later.
+        </p>
       </div>
     );
   }
 
   return (
     <div className="container mx-auto m-2">
-      <NewsSection isHomeSection={isHomeSection} title="Latest News" articles={articles} link="/latest-news" />
+      <NewsSection
+        isHomeSection={isHomeSection}
+        title="Latest News"
+        articles={articles}
+        link="/latest-news"
+      />
     </div>
   );
 };
