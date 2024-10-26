@@ -27,6 +27,7 @@ const postArticle = async (req, res) => {
 const updateStatus = async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
+  console.log(id, status);
   try {
     const article = await Article.findByIdAndUpdate(id, { status }, { new: true });
     if (!article) {
@@ -73,6 +74,23 @@ const getArticles = async (req, res) => {
     res.status(200).json({ success: true, count: articles.length, data: articles });
   } catch (error) {
     res.status(500).json({ success: false, error });
+  }
+};
+
+const getAllArticles = async (req, res) => {
+  try {
+    const articles = await Article.find().sort({
+      createdAt: "desc",
+    });
+
+    if (articles.length === 0) {
+      return res.status(404).json({ message: "No Articles found " });
+    }
+
+    res.status(200).json({ success: true, count: articles.length, data: articles });
+  } catch (error) {
+    console.error("Error fetching Articles:", error);
+    res.status(500).json({ message: "Internal Server Error", error });
   }
 };
 
@@ -256,4 +274,5 @@ module.exports = {
   deleteArticle,
   updateStatus,
   getMyVotesArticles,
+  getAllArticles,
 };
