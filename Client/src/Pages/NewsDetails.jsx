@@ -27,8 +27,21 @@ import { FaUserLock } from "react-icons/fa6";
 
 const MagazineModal = ({ userId, showModal, setShowModal, articleId }) => {
   const [magazines, setMagazines] = useState([]);
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState([]);
 
+  useEffect(() => {
+    // const mags =
+    const mags = magazines?.filter((m) => m?.articles?.some((a) => a._id === articleId));
+    // magazines.map(m => m.articles?.)
+    mags.forEach((m) => {
+      if (!selected.includes(m._id)) {
+        setSelected((prevSelected) => [...prevSelected, m._id]);
+      }
+    });
+    // setSelected(mags);
+  }, [magazines]);
+
+  console.log("firsthah", magazines, selected);
   const fetchMagazines = async () => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_API_URL}/magazines?creatorId=${userId}`);
@@ -46,11 +59,16 @@ const MagazineModal = ({ userId, showModal, setShowModal, articleId }) => {
 
   const submitModal = async () => {
     console.log(selected, userId, articleId, "ajkdhakj");
-    if (selected) {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/magazines/addArticle/${selected}`, {
+    if (selected.length > 0) {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/magazines/addArticle`, {
         userId,
         articleId,
+        magazineId: selected,
       });
+      // const response = await axios.post(`${import.meta.env.VITE_API_URL}/magazines/addArticle/${selected}`, {
+      //   userId,
+      //   articleId,
+      // });
       console.log(response);
       toast.success("Magazine added successfully!");
       setShowModal(false);
@@ -62,7 +80,11 @@ const MagazineModal = ({ userId, showModal, setShowModal, articleId }) => {
   return showModal ? (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
       <div className="bg-white w-full max-w-xl p-8 rounded-lg shadow-2xl relative mx-4 md:mx-0">
-        <button onClick={() => setShowModal(false)} className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition">
+        <button
+          onClick={() => {
+            setShowModal(false);
+          }}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition">
           <span className="text-xl font-bold">✕</span>
         </button>
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Your Magazines</h2>
@@ -72,10 +94,25 @@ const MagazineModal = ({ userId, showModal, setShowModal, articleId }) => {
               <div className="space-y-4">
                 {magazines.map((magazine) => (
                   <p
-                    onClick={() => setSelected(magazine?._id)}
+                    onClick={async () => {
+                      // setSelected((prevSelected) => (prevSelected.includes(magazine._id) ? prevSelected.filter((id) => id !== magazine._id) : [...prevSelected, magazine._id]));
+                      if (!selected.includes(magazine._id)) {
+                        setSelected((prevSelected) => [...prevSelected, magazine._id]);
+                      } else {
+                        setSelected((prevSelected) => prevSelected.filter((id) => id !== magazine._id));
+                        const response = await axios.patch(`${import.meta.env.VITE_API_URL}/magazines/removeArticle/${magazine?._id}`, {
+                          userId,
+                          articleId,
+                        });
+                        if (response.status == 200) {
+                          toast.success("Magazine removed successfully!");
+                        }
+                        console.log(response);
+                      }
+                    }}
                     key={magazine?._id}
                     className={`p-4 cursor-pointer flex justify-between items-center bg-gray-100 ${
-                      selected === magazine._id ? "bg-rose-950 text-white" : "bg-gray-100 text-gray-700"
+                      selected.includes(magazine._id) ? "bg-rose-950 text-white" : "bg-gray-100 text-gray-700"
                     }  rounded-lg shadow-sm transition-all duration-200`}>
                     <h3 className="">{magazine?.title}</h3>
                     {magazine?.isPublic ? <FaEarthAfrica /> : <FaUserLock />}
