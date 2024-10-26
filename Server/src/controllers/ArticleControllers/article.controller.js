@@ -223,12 +223,12 @@ const getArticlesByEmail = async (req, res) => {
     const articles = await Article.find({ postedBy: email }).populate("createdBy");
 
     if (articles.length === 0) {
-      return res.status(404).json({ message: "No products found for this email" });
+      return res.status(404).json({ message: "No article found for this email" });
     }
 
     res.status(200).json(articles);
   } catch (error) {
-    console.error("Error fetching products:", error);
+    console.error("Error fetching articles:", error);
     res.status(500).json({ message: "Internal Server Error", error });
   }
 };
