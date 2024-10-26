@@ -52,7 +52,8 @@ const ArticleForm = () => {
           category: "",
           region: "",
         });
-      } else {
+      }
+       else {
         toast.error("Failed to submit the article");
       }
     } catch (error) {
