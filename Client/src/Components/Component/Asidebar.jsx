@@ -2,12 +2,12 @@ import { Link, useLocation } from "react-router-dom";
 import { IoMdBook } from "react-icons/io";
 import { SlPeople } from "react-icons/sl";
 import { FiPhoneCall } from "react-icons/fi";
-import { MdOutlineFeed, MdOutlineForum, MdOutlineSpaceDashboard } from "react-icons/md";
-import { TbBookmarks } from "react-icons/tb";
+import { MdOutlineFeed, MdOutlineForum, } from "react-icons/md";
+// import { TbBookmarks } from "react-icons/tb";
 import { AiOutlineFileAdd } from "react-icons/ai";
 import { BsNewspaper } from "react-icons/bs";
 import { PiBooks } from "react-icons/pi";
-import Weather from "./Weather";
+// import Weather from "./Weather";
 
 const Asidebar = () => {
   const { pathname } = useLocation();
@@ -96,9 +96,9 @@ const Asidebar = () => {
           </Link>
         </nav>
 
-        <div className="mt-6">
+        {/* <div className="mt-6">
           <Weather />
-        </div>
+        </div> */}
       </div>
     </div>
   );

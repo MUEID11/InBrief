@@ -37,7 +37,7 @@ const WeatherCard = () => {
 
   return (
     <div className="flex justify-center items-center bg-primary-black shadow-lg">
-      <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 shadow-lg w-72">
+      <div className="bg-white/10 backdrop-blur-md rounded-sm p-6 shadow-lg w-full">
         <div className="flex items-center bg-white/20 px-3 py-2 mb-5">
           <input
             type="text"
