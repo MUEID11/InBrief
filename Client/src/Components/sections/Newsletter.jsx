@@ -18,6 +18,8 @@ const Newsletter = () => {
 
       if (response.data.success) {
         setModalMessage("Thank you for subscribing!");
+        setEmail("");
+
         const templateParams = {
           to_name: email, 
           from_name: "The InBrief Team",
@@ -31,18 +33,22 @@ const Newsletter = () => {
           import.meta.env.VITE_EMAILJS_USER_ID
         );
 
-        setEmail("");
       } else if (response.data.message === "Email is already subscribed") {
         setModalMessage("This Email is already subscribed!");
+        setEmail("");
+
       } else {
         setModalMessage("Failed to subscribe!");
+        setEmail("");
+
       }
     } catch (error) {
       console.error("Error during subscription:", error);
       setModalMessage("There was an error processing your subscription.");
+      
     }
 
-    setModalOpen(true); // Show the modal after setting the message
+    setModalOpen(true); 
   };
 
   return (
@@ -77,7 +83,7 @@ const Newsletter = () => {
         </div>
       </div>
 
-      {/* Modal code directly inside return */}
+{/* modal  */}
       {modalOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-5 rounded shadow-lg max-w-xs w-full text-center">
