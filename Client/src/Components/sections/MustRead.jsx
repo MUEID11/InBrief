@@ -1,7 +1,12 @@
-import { FaArrowRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const MustRead = () => {
+  useEffect(() => {
+    Aos.init();
+  });
+
   return (
     <div className="my-2 p-2 container mx-auto mt-4 sm:mt-12 max-sm:px-2">
       {/* Must read title */}
@@ -9,10 +14,13 @@ const MustRead = () => {
         <h2 className="text-2xl md:text-3xl font-inter font-semibold  ">
           Must read
         </h2>
-       
       </div>
       {/* must read cards */}
-      <div className="my-6 grid grid-cols-1  lg:grid-cols-3 gap-6">
+      <div
+        data-aos="fade-up"
+        data-aos-duration="2000"
+        className="my-6 grid grid-cols-1  lg:grid-cols-3 gap-6"
+      >
         {/* 1st part */}
         <div className="">
           <img
@@ -95,13 +103,14 @@ const MustRead = () => {
                 <p>10 hours ago</p>
               </div>
               <h3 className="text-sm font-semibold font-inter">
-              Global Climate Summit 2024: Key Decisions Made
+                Global Climate Summit 2024: Key Decisions Made
               </h3>
               <p className="text-sm mt-1 text-gray-600 font-medium">
                 Ukraine CNN -
               </p>
               <p className="text-xs mb-1 text-gray-600 font-medium">
-              World leaders gather at the Global Climate Summit to tackle pressing environmental issues.
+                World leaders gather at the Global Climate Summit to tackle
+                pressing environmental issues.
               </p>
               <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
                 <p className="text-red-600 text-sm">War.</p>
@@ -124,13 +133,14 @@ const MustRead = () => {
                 <p>10 hours ago</p>
               </div>
               <h3 className="text-sm font-semibold font-inter">
-              Revolutionary AI Tool Transforms Healthcare
+                Revolutionary AI Tool Transforms Healthcare
               </h3>
               <p className="text-sm mt-1 text-gray-600 font-medium">
                 Ukraine CNN -
               </p>
               <p className="text-xs mb-1 text-gray-600 font-medium">
-              A new AI-powered tool is set to revolutionize healthcare, promising faster diagnostics.
+                A new AI-powered tool is set to revolutionize healthcare,
+                promising faster diagnostics.
               </p>
               <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
                 <p className="text-red-600 text-sm">War.</p>
