@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import emailjs from "emailjs-com";
-import toast from "react-hot-toast";
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,16 +15,9 @@ const Newsletter = () => {
         `${import.meta.env.VITE_API_URL}/newsletters`,
         { email }
       );
-console.log(response)
+
       if (response.data.success) {
-        toast("Thank you for subscribing!", {
-          icon: "✔️",
-          style: {
-            borderRadius: "10px",
-            background: "#333",
-            color: "#fff",
-          },
-        });
+        setModalMessage("Thank you for subscribing!");
         const templateParams = {
           to_name: email, 
           from_name: "The InBrief Team",
@@ -37,33 +31,18 @@ console.log(response)
           import.meta.env.VITE_EMAILJS_USER_ID
         );
 
-       
         setEmail("");
-      } 
-      else if(response.data.message ==="Email is already subscribed" ){
-        toast("This Email is already subscribed !", {
-          icon: "",
-          style: {
-            borderRadius: "10px",
-            background: "#333",
-            color: "#fff",
-          },
-        });
-        setEmail("");
-      }
-      else {
-        toast("Failed to subscribe!", {
-          icon: "❌",
-          style: {
-            borderRadius: "10px",
-            background: "#333",
-            color: "#fff",
-          },
-        });
+      } else if (response.data.message === "Email is already subscribed") {
+        setModalMessage("This Email is already subscribed!");
+      } else {
+        setModalMessage("Failed to subscribe!");
       }
     } catch (error) {
       console.error("Error during subscription:", error);
+      setModalMessage("There was an error processing your subscription.");
     }
+
+    setModalOpen(true); // Show the modal after setting the message
   };
 
   return (
@@ -97,6 +76,21 @@ console.log(response)
           </form>
         </div>
       </div>
+
+      {/* Modal code directly inside return */}
+      {modalOpen && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-5 rounded shadow-lg max-w-xs w-full text-center">
+            <p>{modalMessage}</p>
+            <button
+              onClick={() => setModalOpen(false)}
+              className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
