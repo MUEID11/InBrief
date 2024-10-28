@@ -8,6 +8,7 @@ import { commentsApi } from "../services/Comment/commentsApi";
 import forumReducer from "../Features/Forum/ForumSlice";
 import { forumcommentsApi } from "../services/ForumComment/forumCommentApi";
 import { votesApi } from "../services/Votes/votesApi";
+import { infoUpdateApi } from "../Features/UserInfoUpdate/infoUpdateApi";
 const store = configureStore({
   reducer: {
     user: userReducer,
@@ -17,6 +18,7 @@ const store = configureStore({
     [commentsApi.reducerPath]: commentsApi.reducer,
     [forumcommentsApi.reducerPath]: forumcommentsApi.reducer,
     [votesApi.reducerPath]: votesApi.reducer,
+    [infoUpdateApi.reducerPath]: infoUpdateApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -24,6 +26,7 @@ const store = configureStore({
       .concat(commentsApi.middleware)
       .concat(forumcommentsApi.middleware)
       .concat(votesApi.middleware)
+      .concat(infoUpdateApi.middleware)
 });
 
 setupListeners(store.dispatch);
