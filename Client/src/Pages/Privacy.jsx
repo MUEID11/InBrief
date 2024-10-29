@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeftIcon, UserIcon, ShieldCheckIcon, LockClosedIcon, CogIcon, InformationCircleIcon } from '@heroicons/react/24/solid';
+import { ArrowLeftIcon, UserIcon, ShieldCheckIcon, LockClosedIcon, InformationCircleIcon } from '@heroicons/react/24/solid';
 
 const Privacy = () => {
   const navigate = useNavigate();
@@ -19,71 +19,56 @@ const Privacy = () => {
         Back
       </button>
       
-      <h1 className="text-4xl font-bold mb-8 text-center">Privacy Policy</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center">Privacy Policy</h1>
 
       <section className="mb-8">
         <div className="flex items-center mb-4">
           <UserIcon className="h-6 w-6 text-blue-600 mr-3" />
-          <h2 className="text-2xl font-semibold">1. Information Collection</h2>
+          <h2 className="text-xl font-semibold">Information Collection</h2>
         </div>
         <p className="ml-9 text-gray-700">
-          At INBRIEF, we collect basic personal information to enhance your experience. This may include your name, email, and any contributions (e.g., comments or articles) you make on our platform.
+          We collect information to enhance your experience, including your name, email, and any interactions on INBRIEF, such as comments or shared articles.
         </p>
       </section>
 
       <section className="mb-8">
         <div className="flex items-center mb-4">
-          <CogIcon className="h-6 w-6 text-green-600 mr-3" />
-          <h2 className="text-2xl font-semibold">2. Use of Information</h2>
+          <ShieldCheckIcon className="h-6 w-6 text-green-600 mr-3" />
+          <h2 className="text-xl font-semibold">Data Usage</h2>
         </div>
         <p className="ml-9 text-gray-700">
-          Your information is used to improve and personalize the services on INBRIEF. Rest assured, we do not share your personal data with third parties without consent.
+          Information is used solely to improve INBRIEF services and provide a personalized experience. We do not share personal data with third parties without consent.
         </p>
       </section>
 
       <section className="mb-8">
         <div className="flex items-center mb-4">
-          <ShieldCheckIcon className="h-6 w-6 text-red-600 mr-3" />
-          <h2 className="text-2xl font-semibold">3. Data Security</h2>
+          <LockClosedIcon className="h-6 w-6 text-red-600 mr-3" />
+          <h2 className="text-xl font-semibold">Data Security</h2>
         </div>
         <p className="ml-9 text-gray-700">
-          We prioritize your data's safety, employing modern encryption and security measures. Although we work hard to protect your data, please be aware that no system is entirely secure.
+          Security measures are in place to protect your information. However, no system is 100% secure.
         </p>
       </section>
 
       <section className="mb-8">
         <div className="flex items-center mb-4">
-          <LockClosedIcon className="h-6 w-6 text-yellow-600 mr-3" />
-          <h2 className="text-2xl font-semibold">4. Cookies and Tracking</h2>
+          <InformationCircleIcon className="h-6 w-6 text-yellow-600 mr-3" />
+          <h2 className="text-xl font-semibold">Policy Updates</h2>
         </div>
         <p className="ml-9 text-gray-700">
-          INBRIEF uses cookies to track preferences and enhance the user experience. You can disable cookies in your browser, though some site functions may be impacted.
+          Updates to our policy will be posted here, and we encourage you to review it periodically.
         </p>
       </section>
 
       <section className="mb-8">
         <div className="flex items-center mb-4">
-          <InformationCircleIcon className="h-6 w-6 text-purple-600 mr-3" />
-          <h2 className="text-2xl font-semibold">5. Changes to the Privacy Policy</h2>
+          <UserIcon className="h-6 w-6 text-purple-600 mr-3" />
+          <h2 className="text-xl font-semibold">Contact Us</h2>
         </div>
         <p className="ml-9 text-gray-700">
-          INBRIEF may update this Privacy Policy to reflect changes in law or our practices. Changes will be posted here, and we recommend you review this page periodically.
+          Questions? Reach us at <a href="mailto:support@inbrief.com" className="text-blue-500 underline">support@inbrief.com</a>.
         </p>
-      </section>
-
-      <section className="mb-8">
-        <div className="flex items-center mb-4">
-          <UserIcon className="h-6 w-6 text-teal-600 mr-3" />
-          <h2 className="text-2xl font-semibold">6. Contact Us</h2>
-        </div>
-        <p className="ml-9 text-gray-700">
-          For any questions regarding our Privacy Policy, feel free to reach out at <a href="mailto:support@inbrief.com" className="text-blue-500 underline">support@inbrief.com</a>.
-        </p>
-      </section>
-
-      <p className="text-center text-gray-500 mt-10">Last Updated: [Date]</p>
-    </div>
-  );
-};
+  
 
 export default Privacy;
