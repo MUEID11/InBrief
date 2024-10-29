@@ -16,23 +16,22 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { LuArrowBigUpDash } from "react-icons/lu";
 import CommentComponent from "../Components/Component/CommentComponent";
-import {
-  useAddCommentMutation,
-  useGetCommentQuery,
-} from "../services/Comment/commentsApi";
+import { useAddCommentMutation, useGetCommentQuery } from "../services/Comment/commentsApi";
 import { useAddVotesMutation } from "../services/Votes/votesApi";
 import toast from "react-hot-toast";
 import { useAddBookmarkMutation } from "../services/bookmarksApi";
 import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
+import { FaPlusCircle } from "react-icons/fa";
+import { FaEarthAfrica } from "react-icons/fa6";
+import { FaUserLock } from "react-icons/fa6";
 
-const MagazineModal = ({ userId, showModal, setShowModal }) => {
+const MagazineModal = ({ userId, showModal, setShowModal, articleId }) => {
   const [magazines, setMagazines] = useState([]);
+  const [selected, setSelected] = useState("");
 
   const fetchMagazines = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/magazines?creatorId=${userId}`
-      );
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/magazines?creatorId=${userId}`);
       setMagazines(response.data);
     } catch (error) {
       console.error("Error fetching magazines:", error);
@@ -45,26 +44,50 @@ const MagazineModal = ({ userId, showModal, setShowModal }) => {
     }
   }, [showModal]);
 
+  const submitModal = async (id) => {
+    console.log(id, userId, articleId, "ajkdhakj");
+    if (selected) {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/magazines/addArticle/${id}`, {
+        userId,
+        articleId,
+      });
+      console.log(response);
+      toast.success("Magazine added successfully!");
+      setShowModal(false);
+    } else {
+      toast.error("Please select a magazine");
+    }
+  };
+
   return showModal ? (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
       <div className="bg-white w-full max-w-3xl p-8 rounded-lg shadow-2xl relative mx-4 md:mx-0">
-        <button
-          onClick={() => setShowModal(false)}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition"
-        >
+        <button onClick={() => setShowModal(false)} className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition">
           <span className="text-xl font-bold">✕</span>
         </button>
         <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">My Magazines</h2>
         <div className="max-h-96 overflow-y-auto">
           {magazines.length > 0 ? (
-            <ul className="space-y-4">
+            <div className="space-y-4">
               {magazines.map((magazine) => (
-                <li key={magazine._id} className="p-4 text-center bg-gray-100 rounded-lg shadow-sm">
-                  <h3 className="text-lg font-lg   text-gray-700"> <span className="font-bold text-xl">TITLE : </span> {magazine.title}</h3>
-                  {/* <p className="text-gray-600">{magazine.description}</p> */}
-                </li>
+                <>
+                  <p
+                    onClick={() => setSelected(magazine?.title)}
+                    key={magazine._id}
+                    className={`p-4 cursor-pointer flex justify-between items-center bg-gray-100 ${
+                      selected === magazine.title ? "bg-blue-400 text-white" : "bg-gray-100 text-gray-700"
+                    }  rounded-lg shadow-sm`}>
+                    <h3 className="text-lg font-lg">{magazine.title}</h3>
+                    {magazine?.isPublic ? <FaEarthAfrica /> : <FaUserLock />}
+                  </p>
+                  <button
+                    onClick={() => submitModal(magazine?._id)}
+                    className="border border-blue-500 hover:bg-blue-500 hover:text-white mt-6 w-full text-blue-500 px-4 py-2 rounded">
+                    Save
+                  </button>
+                </>
               ))}
-            </ul>
+            </div>
           ) : (
             <p className="text-center text-gray-500">No magazines found.</p>
           )}
@@ -74,7 +97,6 @@ const MagazineModal = ({ userId, showModal, setShowModal }) => {
   ) : null;
 };
 
-
 const NewsDetails = () => {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
@@ -83,23 +105,17 @@ const NewsDetails = () => {
   const [comment, setComment] = useState("");
   const [likes, setLikes] = useState(article?.likes?.length || 0);
   const [liked, setLiked] = useState(article?.likes?.includes(user?.email));
-  const [bookmarked, setBookmarked] = useState(
-    article?.bookmarks?.includes(user?.email)
-  );
+  const [bookmarked, setBookmarked] = useState(article?.bookmarks?.includes(user?.email));
 
-  const [addBookmark, { isError, error: bookmarkError, data: toggleBookmarkMsg, isSuccess }] =
-    useAddBookmarkMutation();
-  const [showModal, setShowModal] = useState(false); 
+  const [addBookmark, { isError, error: bookmarkError, data: toggleBookmarkMsg, isSuccess }] = useAddBookmarkMutation();
+  const [showModal, setShowModal] = useState(false);
   const [addVotes] = useAddVotesMutation();
 
   useEffect(() => {
     const fetchArticleDetails = async () => {
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/articles/${id}`
-        );
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/articles/${id}`);
         setArticle(response.data);
-       
       } catch (err) {
         setError("Error fetching article details");
         console.error("Error fetching article:", err);
@@ -168,11 +184,7 @@ const NewsDetails = () => {
     }
   }, [bookmarkError, isError, isSuccess, toggleBookmarkMsg]);
 
-  let {
-    data: comments,
-    isLoading: commentLoading,
-    isError: commentError,
-  } = useGetCommentQuery(id) || {};
+  let { data: comments, isLoading: commentLoading, isError: commentError } = useGetCommentQuery(id) || {};
   // console.log(comments);
 
   // add comment
@@ -204,17 +216,11 @@ const NewsDetails = () => {
   ultimateTotal = ultimateTotal + comments?.length;
 
   if (error) {
-    return (
-      <div className="text-center mt-10 text-red-500 font-semibold">
-        {error}
-      </div>
-    );
+    return <div className="text-center mt-10 text-red-500 font-semibold">{error}</div>;
   }
 
   if (!article) {
-    return (
-      <div className="text-center mt-10 text-lg text-gray-500">Loading...</div>
-    );
+    return <div className="text-center mt-10 text-lg text-gray-500">Loading...</div>;
   }
 
   // const shareUrl = 'http://github.com';
@@ -229,23 +235,10 @@ const NewsDetails = () => {
           {/* Article Section */}
           <div className="md:w-3/4">
             <div className="bg-white shadow-lg rounded-sm p-6">
-              <img
-                className=" w-full h-96 object-cover mb-6"
-                src={article?.image}
-                alt={article?.title}
-              />
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                {article?.title}
-              </h2>
-              <p className="text-base text-gray-600 mb-6 whitespace-pre-wrap">
-                {article?.description.slice(0, 250)} ....
-              </p>
-              <a
-                href={article?.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-center text-blue-600 text-bold  hover:underline hover:transition-transform "
-              >
+              <img className=" w-full h-96 object-cover mb-6" src={article?.image} alt={article?.title} />
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">{article?.title}</h2>
+              <p className="text-base text-gray-600 mb-6 whitespace-pre-wrap">{article?.description.slice(0, 250)} ....</p>
+              <a href={article?.url} target="_blank" rel="noopener noreferrer" className="text-center text-blue-600 text-bold  hover:underline hover:transition-transform ">
                 Read full article
               </a>
               <div className="mt-6">
@@ -263,141 +256,87 @@ const NewsDetails = () => {
                 </p>
                 <p className="text-gray-500">
                   <span className="font-semibold">Posted by: </span>
-                  <Link
-                    to={`/articles/creator/${article?.postedBy}`}
-                    title="Click Here to get all articles posted by this creator"
-                  >
+                  <Link to={`/articles/creator/${article?.postedBy}`} title="Click Here to get all articles posted by this creator">
                     {" "}
-                    <span
-                      className="font-semibold text-blue-600
-"
-                    >
-                      {article?.createdBy?.name}
-                    </span>
+                    <span className="font-semibold text-blue-600">{article?.createdBy?.name}</span>
                   </Link>
                 </p>
 
-                <div className="flex justify-between mt-4 ">
+                <div className="flex max-sm:flex-col max-sm:gap-2 max-sm:items-start items-center justify-between mt-4 ">
                   <fieldset className="flex items-center gap-4 border-2 border-gray-300 rounded-lg px-4 py-1 max-w-sm">
                     <legend>Share</legend>
                     <div>
-                      <FacebookShareButton
-                        url={article?.url}
-                        className="Demo__some-network__share-button"
-                      >
+                      <FacebookShareButton url={article?.url} className="Demo__some-network__share-button">
                         <FacebookIcon size={32} round />
                       </FacebookShareButton>
 
                       <div>
-                        <FacebookShareCount
-                          url={article?.url}
-                          className="Demo__some-network__share-count"
-                        >
+                        <FacebookShareCount url={article?.url} className="Demo__some-network__share-count">
                           {(count) => count}
                         </FacebookShareCount>
                       </div>
                     </div>
 
                     <div className="Demo__some-network">
-                      <TwitterShareButton
-                        url={article?.url}
-                        title={article?.title}
-                        className="Demo__some-network__share-button"
-                      >
+                      <TwitterShareButton url={article?.url} title={article?.title} className="Demo__some-network__share-button">
                         <XIcon size={32} round />
                       </TwitterShareButton>
                     </div>
 
                     <div className="Demo__some-network">
-                      <LinkedinShareButton
-                        url={article?.url}
-                        className="Demo__some-network__share-button"
-                      >
+                      <LinkedinShareButton url={article?.url} className="Demo__some-network__share-button">
                         <LinkedinIcon size={32} round />
                       </LinkedinShareButton>
                     </div>
 
                     <div className="Demo__some-network">
-                      <RedditShareButton
-                        url={article?.url}
-                        title={article?.title}
-                        windowWidth={660}
-                        windowHeight={460}
-                        className="Demo__some-network__share-button"
-                      >
+                      <RedditShareButton url={article?.url} title={article?.title} windowWidth={660} windowHeight={460} className="Demo__some-network__share-button">
                         <RedditIcon size={32} round />
                       </RedditShareButton>
-
-                      <div>
-                        <RedditShareCount
-                          url={article?.url}
-                          className="Demo__some-network__share-count"
-                        />
-                      </div>
                     </div>
                   </fieldset>
                   {/* Likes and Bookmarks */}
-                  <div className="flex items-center space-x-6">
-                  <div className="flex items-center gap-2">
-                  <button
-                  title="Vote"
-                  onClick={() => handleLike(article._id)} className="">
-                <LuArrowBigUpDash
-                  className={`text-2xl font-medium ${
-                    liked
-                      ? "text-blue-500 bg-blue-100 rounded-full"
-                      : "text-gray-500 bg-gray-200 rounded-full"
-                  }`}
-                />
-              </button>
-              <p className="text-gray-700 text-sm"> {likes} Votes</p>
+                  <div className="flex items-center justify-center gap-5">
+                    <div className="flex items-center space-x-6">
+                      <div className="flex items-center gap-2">
+                        <button title="Vote" onClick={() => handleLike(article._id)} className="">
+                          <LuArrowBigUpDash className={`text-2xl font-medium ${liked ? "text-blue-500 bg-blue-100 rounded-full" : "text-gray-500 bg-gray-200 rounded-full"}`} />
+                        </button>
+                        <p className="text-gray-700 text-sm"> {likes} Votes</p>
+                      </div>
+                      {bookmarked ? (
+                        <IoBookmarksSharp title="Bookmark" className="cursor-pointer text-red-500" onClick={() => handleBookmark(article._id)} />
+                      ) : (
+                        <IoBookmarksOutline title="Bookmark" className="cursor-pointer text-red-600" onClick={() => handleBookmark(article._id)} />
+                      )}
+                    </div>
+                    {/* show modal */}
+                    {/* <button
+                      className="bg-gray-200 px-3 py-1 text-sm font-semibold rounded-lg hover:bg-blue-400 hover:text-white transition-all duration-300"
+                      onClick={() => setShowModal(true)}>
+                      Show Magazines
+                    </button> */}
+                    <div>
+                      <button className="text-sm px-3 py-2 flex items-center gap-2 border border-red-500 text-red-500 rounded-lg " onClick={() => setShowModal(true)}>
+                        <FaPlusCircle />
+                        Add to Magazines
+                      </button>
+                    </div>
                   </div>
-              {bookmarked ? (
-                <IoBookmarksSharp
-                  title="Bookmark"
-                  className="cursor-pointer text-red-500"
-                  onClick={() => handleBookmark(article._id)}
-                />
-              ) : (
-                <IoBookmarksOutline
-                  title="Bookmark"
-                  className="cursor-pointer text-red-600"
-                  onClick={() => handleBookmark(article._id)}
-                />
-              )}
-                  </div>
-{/* show modal */}
-<div>
-
-
-
-</div>
-<button
-                    className="bg-gray-200 px-3 py-1 text-sm font-semibold rounded-lg hover:bg-blue-400 hover:text-white transition-all duration-300"
-                    onClick={() => setShowModal(true)}
-                  >
-                    Show Magazines
-                  </button>
                 </div>
               </div>
             </div>
             {/* Comments Section */}
             <form onSubmit={submitHandler}>
               <div className="bg-white shadow-lg rounded-sm  p-6 mb-1">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">
-                  Comments ({Number(ultimateTotal)})
-                </h3>
+                <h3 className="text-xl font-bold text-gray-800 mb-4">Comments ({Number(ultimateTotal)})</h3>
                 <textarea
                   onChange={(e) => setComment(e.target.value)}
                   className="w-full mt-1 p-2 border border-gray-300 rounded-sm"
                   rows="2"
-                  placeholder="Write a comment..."
-                ></textarea>
+                  placeholder="Write a comment..."></textarea>
                 <div className="flex justify-end ">
-                  <button
-                    type="submit"
-                    className="mt-2 bg-red-500 text-white px-2 py-1 rounded-sm  "
-                  >
+                  <button type="submit" className="mt-2 bg-red-500 text-white px-2 py-1 rounded-sm  ">
                     Comment
                   </button>
                 </div>
@@ -406,9 +345,7 @@ const NewsDetails = () => {
             <div>
               <hr />
               {comments?.map((comment) => {
-                return (
-                  <CommentComponent key={comment?._id} comment={comment} />
-                );
+                return <CommentComponent key={comment?._id} comment={comment} />;
               })}
             </div>
           </div>
@@ -416,23 +353,13 @@ const NewsDetails = () => {
           {/* Sidebar Section */}
           <div className="md:w-1/4">
             <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
-              <h3 className="text-xl font-bold text-gray-800 mb-4">
-                Related Articles
-              </h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-4">Related Articles</h3>
 
               <ul className="space-y-4">
-                <li  className="hover:underline text-blue-600">
-                    Global Market Updates
-                </li>
-                <li className="hover:underline text-blue-600">
-                  Tech Industry News
-                </li>
-                <li className="hover:underline text-blue-600">
-                  Health & Fitness Trends
-                </li>
-                <li className="hover:underline text-blue-600">
-                  Travel & Tourism
-                </li>
+                <li className="hover:underline text-blue-600">Global Market Updates</li>
+                <li className="hover:underline text-blue-600">Tech Industry News</li>
+                <li className="hover:underline text-blue-600">Health & Fitness Trends</li>
+                <li className="hover:underline text-blue-600">Travel & Tourism</li>
               </ul>
             </div>
 
@@ -442,15 +369,11 @@ const NewsDetails = () => {
             <div
               className="relative bg-cover bg-no-repeat bg-center shadow-lg rounded-lg p-6 mb-8"
               style={{
-                backgroundImage:
-                  "url('https://media.giphy.com/media/xT9IgDEI1iZyb2wqo8/giphy.gif')",
+                backgroundImage: "url('https://media.giphy.com/media/xT9IgDEI1iZyb2wqo8/giphy.gif')",
                 backgroundBlendMode: "overlay",
                 filter: "brightness(0.7) contrast(1.2)",
-              }}
-            >
-              <h3 className="text-2xl font-bold text-slate-500 mb-4">
-                Weather Forecast
-              </h3>
+              }}>
+              <h3 className="text-2xl font-bold text-slate-500 mb-4">Weather Forecast</h3>
 
               <div className="flex justify-center mb-4">
                 <img
@@ -462,21 +385,14 @@ Example Code Snippet"
               </div>
 
               <div className="text-center">
-                <p className="text-orange-500 text-opacity-80 text-lg">
-                  Stay updated with the latest weather trends.
-                </p>
+                <p className="text-orange-500 text-opacity-80 text-lg">Stay updated with the latest weather trends.</p>
               </div>
             </div>
           </div>
         </div>
       </main>
 
-      <MagazineModal
-        userId={user?._id}
-        showModal={showModal}
-        setShowModal={setShowModal}
-      />
-
+      <MagazineModal userId={user?._id} showModal={showModal} setShowModal={setShowModal} articleId={article?._id} />
     </div>
   );
 };

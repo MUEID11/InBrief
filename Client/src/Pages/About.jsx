@@ -83,31 +83,31 @@ const sponsorData = [
 const teamInfo = [
   {
     id: 1,
-    name: "Mehedi Hasan",
+    name: "Sumaiya Urmi",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaV3Th3XDShqNB7kBAxoBkWtvUuFn97Bis2g&s",
-    link: "",
+      "https://res.cloudinary.com/dv8zsvl4z/image/upload/v1729838505/IMG_20231220_183830_1_1_crbw8a.jpg",
+    link: "https://www.linkedin.com/in/sumaiya-urmi021",
   },
   {
     id: 2,
-    name: "MD. Ziad Arman Ujan",
-    image:
-      "https://res.cloudinary.com/duiymk5mu/image/upload/v1729767533/e70fc84c-3a1e-46c5-8d3d-bb14e836bf79_mmzr4t.jpg",
-    link: "https://www.linkedin.com/in/md-ziad/?fbclid=IwY2xjawGG_U5leHRuA2FlbQIxMAABHQpXaS69gVXcWw-cVOP3a2P9mZbMoavcKbrWJzU7bm4W5FeaTOI2f_ULjg_aem_P2thxR4ZdtCMjVJdGw9BTg",
-  },
-  {
-    id: 3,
-    name: "Sumaiya Urmi",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaV3Th3XDShqNB7kBAxoBkWtvUuFn97Bis2g&s",
-    link: "",
-  },
-  {
-    id: 4,
     name: "Meherun Nesa Meghla",
     image:
       "https://res.cloudinary.com/duiymk5mu/image/upload/v1729768028/1688748225552_oni8xh.jpg",
     link: "https://www.linkedin.com/in/meherun-nesa-meghla/",
+  },
+  {
+    id: 3,
+    name: "Mehedi Hasan",
+    image:
+      "https://res.cloudinary.com/ddaa3wb4w/image/upload/v1729840870/me_2_ki5lqw.jpg",
+    link: "www.linkedin.com/in/mehedirangpur",
+  },
+  {
+    id: 4,
+    name: "MD. Ziad Arman Ujan",
+    image:
+      "https://res.cloudinary.com/duiymk5mu/image/upload/v1729767533/e70fc84c-3a1e-46c5-8d3d-bb14e836bf79_mmzr4t.jpg",
+    link: "https://www.linkedin.com/in/md-ziad/?fbclid=IwY2xjawGG_U5leHRuA2FlbQIxMAABHQpXaS69gVXcWw-cVOP3a2P9mZbMoavcKbrWJzU7bm4W5FeaTOI2f_ULjg_aem_P2thxR4ZdtCMjVJdGw9BTg",
   },
   {
     id: 5,
@@ -226,8 +226,6 @@ const About = () => {
         </main>
       </section>
 
-     
-
       {/* Our team */}
       <section>
         <header className="mt-16 mb-5">
@@ -235,7 +233,13 @@ const About = () => {
             Our Team
           </h3>
           <p className="text-center px-4">
-          At InBrief, our success stems from the powerful collaboration of our five dedicated team members. Each individual brings unique strengths and talents, allowing us to tackle challenges creatively and efficiently. Our commitment to open communication and mutual support has fostered a positive environment where ideas flourish. Together, we strive to achieve our shared vision and make a meaningful impact in the world of news aggregation.
+            At InBrief, our success stems from the powerful collaboration of our
+            five dedicated team members. Each individual brings unique strengths
+            and talents, allowing us to tackle challenges creatively and
+            efficiently. Our commitment to open communication and mutual support
+            has fostered a positive environment where ideas flourish. Together,
+            we strive to achieve our shared vision and make a meaningful impact
+            in the world of news aggregation.
           </p>
         </header>
         <main className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3 ">
@@ -264,8 +268,8 @@ const About = () => {
           ))}
         </main>
       </section>
-       {/* Join With us  */}
-       <section className="mt-28 flex max-sm:flex-col gap-10 items-center justify-center">
+      {/* Join With us  */}
+      <section className="mt-28 flex max-sm:flex-col gap-10 items-center justify-center">
         <div className="w-1/2 max-sm:w-full">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium uppercase">
             Join with Us
