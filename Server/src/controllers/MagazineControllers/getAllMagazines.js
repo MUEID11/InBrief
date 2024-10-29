@@ -6,7 +6,7 @@ const getAllMagazines = async (req, res) => {
 
     let query = { isPublic: true };
     if (creatorId) {
-      query = { isPublic: true, creator: creatorId };
+      query = { creator: creatorId };
     }
     // Retrieve all magazines from the database
     const magazines = await Magazine.find(query).populate("followers", "name").populate("articles", "title").populate("collaborators", "name");

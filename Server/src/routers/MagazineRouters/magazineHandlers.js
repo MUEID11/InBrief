@@ -5,13 +5,15 @@ const { followMagazine, unfollowMagazine } = require("../../controllers/Magazine
 const getAllMagazines = require("../../controllers/MagazineControllers/getAllMagazines");
 const getAMagazine = require("../../controllers/MagazineControllers/getAMagazine");
 const deleteMagazine = require("../../controllers/MagazineControllers/deleteMagazine");
+const removeArticle = require("../../controllers/MagazineControllers/removeArticle");
 const router = express.Router();
 
 router.post("/", createMagazine);
 router.get("/", getAllMagazines);
 router.get("/:magazineId", getAMagazine);
 router.delete("/:magazineId", deleteMagazine);
-router.post("/addArticle/:magazineId", addArticle);
+router.post("/addArticle", addArticle);
+router.patch("/removeArticle/:magazineId", removeArticle);
 router.patch("/followMagazine/:magazineId", followMagazine);
 router.patch("/unfollowMagazine/:magazineId", unfollowMagazine);
 
