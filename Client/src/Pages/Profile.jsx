@@ -165,17 +165,21 @@ const Profile = () => {
 
         {/* User Info Card */}
         <div className="col-span-2 p-6 shadow-md rounded-sm bg-white space-y-5">
-          <h5 className="text-lg font-semibold flex items-center">
-            User Name: {user?.name || user?.displayName}
+          <h5 className="font-semibold flex items-center text-neutral-900">
+            <span className="text-neutral-700 mr-1">User Name: </span> {user?.name || user?.displayName}
             <TbEdit className="ml-4 text-blue-500 cursor-pointer" />
           </h5>
-          <h5 className="text-lg font-semibold">User Email: {user?.email}</h5>
-          <h5 className="text-lg font-semibold">User Id: {user?._id?.slice(0, 6) || user?.uid}</h5>
+          <h5 className="font-semibold text-neutral-900">
+            <span className="text-neutral-700">User Email:</span> {user?.email}
+          </h5>
+          <h5 className="font-semibold text-neutral-900">
+            <span className="text-neutral-700">User Id:</span> {user?._id?.slice(0, 6) || user?.uid}
+          </h5>
         </div>
 
         {/* Bookmarks Card */}
         <div className="col-span-1 p-6 shadow-md rounded-sm bg-white">
-          <h5 className="flex items-center text-xl font-semibold text-blue-500 ">
+          <h5 className="flex items-center text-xl font-semibold text-red-800 ">
             <IoBookmarksSharp className="mr-2" /> Bookmarks
             <span className="bg-blue-100 py-1 px-2 rounded-full ml-auto text-sm">{bookmarks?.length}</span>
           </h5>
@@ -251,7 +255,7 @@ const Profile = () => {
 
         <div className="p-6 shadow-md rounded-sm bg-white">
           <div className="flex justify-between items-center pr-1">
-            <h1 className="text-xl font-semibold">Your Magazines</h1>
+            <h1 className="text-xl font-semibold text-red-800">Your Magazines</h1>
             <FaRegSquarePlus className="text-blue-500 cursor-pointer " onClick={() => setIsCreateMagazineModalOpen(true)} />
 
             <div
@@ -318,7 +322,7 @@ const Profile = () => {
         {/* About Section */}
         <div className="p-6 shadow-md rounded-sm bg-white">
           <div className="flex justify-between items-center mb-4">
-            <h4 className="text-lg font-semibold">User Information</h4>
+            <h4 className="text-lg font-semibold text-red-800">User Information</h4>
             <TbEdit className="text-blue-500 cursor-pointer" onClick={() => handleToggleEdit("about")} />
           </div>
           {isEditing.about
@@ -342,8 +346,8 @@ const Profile = () => {
               ))
             : formData.about.map((item, index) => (
                 <div key={index} className="mb-4">
-                  <p className="text-lg font-medium">{item.title}</p>
-                  <p>{item.value}</p>
+                  <p className="text-lg font-medium text-neutral-800">{item.title}</p>
+                  <p className="text-neutral-700">{item.value}</p>
                 </div>
               ))}
         </div>
@@ -351,7 +355,7 @@ const Profile = () => {
         {/* Skills Section */}
         <div className="p-6 shadow-md rounded-sm bg-white">
           <div className="flex justify-between items-center mb-4">
-            <h4 className="text-lg font-semibold">Interest Area</h4>
+            <h4 className="text-lg font-semibold text-red-800">Interest Area</h4>
             <TbEdit className="text-blue-500 cursor-pointer" onClick={() => handleToggleEdit("skills")} />
           </div>
           {isEditing.skills
@@ -375,8 +379,8 @@ const Profile = () => {
               ))
             : formData.skills.map((skill, index) => (
                 <div key={index} className="mb-4">
-                  <p className="text-lg font-medium">{skill.category}</p>
-                  <p>{skill.items.join(", ")}</p>
+                  <p className="text-lg font-medium text-neutral-800">{skill.category}</p>
+                  <p className="text-neutral-700">{skill.items.join(", ")}</p>
                 </div>
               ))}
         </div>
