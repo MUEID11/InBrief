@@ -7,6 +7,9 @@ import fox from "../../assets/sourceIcons/foxNews.png";
 import aljazeera from "../../assets/sourceIcons/aljazeera.png";
 import businessInsider from "../../assets/sourceIcons/businessInsider.webp";
 import dailyStar from "../../assets/sourceIcons/the-daily-star.png";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const sponsorData = [
   {
@@ -78,6 +81,9 @@ const sponsorData = [
 ];
 
 const Sponsors = () => {
+  useEffect(() => {
+    Aos.init();
+  });
   return (
     <section className="container mx-auto sm:mt-14 mt-6 max-sm:px-1">
       <header className="mb-8">
@@ -86,7 +92,7 @@ const Sponsors = () => {
       <main>
         <Marquee pauseOnHover={true}>
           {sponsorData.map((data) => (
-            <div key={data.id} className="flex flex-col items-center justify-center mr-16">
+            <div data-aos="fade" data-aos-duration="1500" key={data.id} className="flex flex-col items-center justify-center mr-16">
               <Link to={data.link}>
                 <div className="bg-gradient-to-b from-red-500 via-[#ea510e] to-[#ef7d00] border-5 border-red-500 rounded-full size-28 flex items-center justify-center p-[3px]">
                   <div className="bg-transparent h-full flex flex-col justify-center items-center rounded-full border-4 border-white p-2 overflow-hidden">

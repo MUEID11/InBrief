@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
-import NewsSection from './NewsSection';
+import { useEffect, useState } from "react";
+import NewsSection from "./NewsSection";
 
 const SportsNewsSection = ({ isHomeSection = false }) => {
   const [articles, setArticles] = useState([]);
@@ -13,7 +13,7 @@ const SportsNewsSection = ({ isHomeSection = false }) => {
   // let url = `${import.meta.env.VITE_API_URL}/articles?category=sports`;
 
   if (isHomeSection) {
-    if (width <= 1536 && width >= 1280) {
+    if (width <= 1500 && width >= 1280) {
       url = `${import.meta.env.VITE_API_URL}/articles?category=sports&limit=3`;
     } else if (width >= 1024 && width <= 1280) {
       url = `${import.meta.env.VITE_API_URL}/articles?category=sports&limit=2`;
@@ -29,7 +29,7 @@ const SportsNewsSection = ({ isHomeSection = false }) => {
     fetch(url)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json();
       })
@@ -38,7 +38,7 @@ const SportsNewsSection = ({ isHomeSection = false }) => {
         setLoading(false);
       })
       .catch((err) => {
-        console.error('Error fetching Business News:', err);
+        console.error("Error fetching Business News:", err);
         setError(true);
         setLoading(false);
       });
@@ -55,14 +55,21 @@ const SportsNewsSection = ({ isHomeSection = false }) => {
   if (error) {
     return (
       <div className="flex items-center justify-center p-4">
-        <p className="text-xl text-red-600">Failed to load Sports News. Please try again later.</p>
+        <p className="text-xl text-red-600">
+          Failed to load Sports News. Please try again later.
+        </p>
       </div>
     );
   }
 
   return (
     <div className="container mx-auto">
-      <NewsSection isHomeSection={isHomeSection} title="Sports" articles={articles} link="/sports" />
+      <NewsSection
+        isHomeSection={isHomeSection}
+        title="Sports"
+        articles={articles}
+        link="/sports"
+      />
     </div>
   );
 };

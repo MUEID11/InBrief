@@ -1,13 +1,13 @@
-import Banner from '../Components/sections/Banner';
-import TopLatestNews from '../Components/sections/TopLatestNews';
-import Sponsors from '../Components/sections/Sponsors';
-import MustRead from '../Components/sections/MustRead';
-import EditorPicks from '../Components/sections/EditorPicks';
-import BusinessNewsSection from '../Components/sections/BusinessNewsSection';
-import SportsNewsSection from '../Components/sections/SportsNewsSection';
-import TopCreators from '../Components/sections/TopCreators';
-import Newsletter from '../Components/sections/Newsletter';
-import Faq from '../Components/sections/Faq';
+import Banner from "../Components/sections/Banner";
+import TopLatestNews from "../Components/sections/TopLatestNews";
+import Sponsors from "../Components/sections/Sponsors";
+import MustRead from "../Components/sections/MustRead";
+import EditorPicks from "../Components/sections/EditorPicks";
+import BusinessNewsSection from "../Components/sections/BusinessNewsSection";
+import SportsNewsSection from "../Components/sections/SportsNewsSection";
+import TopCreators from "../Components/sections/TopCreators";
+import Newsletter from "../Components/sections/Newsletter";
+import Faq from "../Components/sections/Faq";
 // import LatestNewsSection from '../Components/sections/LatestNewsSection';
 // import { useState } from 'react';
 
@@ -35,7 +35,7 @@ const Home = () => {
         {/* topcreators */}
         <TopCreators />
         {/* newslatter subscription */}
-        {/* <Newsletter /> */}
+        <Newsletter />
         {/* Faq */}
         <Faq />
       </div>

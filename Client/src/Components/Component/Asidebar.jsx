@@ -13,7 +13,7 @@ const Asidebar = () => {
   const { pathname } = useLocation();
   console.log(pathname);
   return (
-    <div className="sticky top-[85px] w-64 p-4 flex flex-col md:w-64 h-[calc(100vh-70px)] overflow-y-auto bg-gray-100 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 max-lg:hidden overflow-hidden no-scrollbar">
+    <div className="sticky top-[85px] max-w-60 p-4 flex flex-col md:max-w-52 h-[calc(100vh-70px)] overflow-y-auto bg-gray-100 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 max-lg:hidden overflow-hidden no-scrollbar">
       <div className="flex flex-col justify-between flex-1 mt-4">
         <nav className="-mx-4 space-y-3">
           {/* Home */}
@@ -47,9 +47,18 @@ const Asidebar = () => {
               pathname === "/magazine" && "bg-gray-200 text-gray-700"
             }`}>
             <MdOutlineFeed className="text-[19px]" />
-            <span className="mx-2 text-sm font-medium">Magazine</span>
+            <span className="mx-2 text-sm font-medium">All Magazines</span>
           </Link>
-         
+
+          <Link
+            to={"/my-magazines"}
+            className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
+              pathname === "/my-magazines" && "bg-gray-200 text-gray-700"
+            }`}>
+            <MdOutlineFeed className="text-[19px]" />
+            <span className="mx-2 text-sm font-medium">My Magazines</span>
+          </Link>
+
           {/* About us */}
           <Link
             to="/about"
