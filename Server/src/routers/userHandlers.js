@@ -14,6 +14,6 @@ userHandlers.post("/createuser", createUser);
 userHandlers.post("/socialCreateUser", socialCreateUser);
 userHandlers.get("/uservalidation", verifyJwt, userValidation);
 userHandlers.post("/signin", signInController);
-userHandlers.put("/updateUser", updateUser);
+userHandlers.patch("/:userId/updateUser", updateUser);
 
 module.exports = userHandlers;
