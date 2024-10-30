@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "./../../assets/logo.png";
-import userThunk, { signInByEmailAndPass } from "../../Features/thunks/userThunks";
+import userThunk, {
+  signInByEmailAndPass,
+} from "../../Features/thunks/userThunks";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import whitelogo from "./../../assets/whitelogo.png";
@@ -18,19 +20,9 @@ const SignIn = () => {
     const password = form.password.value;
     try {
       await dispatch(signInByEmailAndPass({ email, password }));
-      // const response = await fetch(`${import.meta.env.VITE_API_URL}/users/signin`, {
-      //   method: "POST",
-      //   headers: { "content-type": "application/json" },
-      //   body: JSON.stringify({ email, password }),
-      // });
-      // const data = await response.json();
-      // console.log(data);
-      // const token = localStorage.setItem("token", data);
-      // console.log(token);
-      // console.log(response.ok);
 
       if (error) {
-        const msg = error.split(':')[1]
+        const msg = error.split(":")[1];
         toast(msg, {
           icon: "❌",
           style: {
@@ -73,14 +65,17 @@ const SignIn = () => {
           style={{
             backgroundImage:
               "url('https://images.unsplash.com/photo-1689421755395-c18b8cd24db3?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-          }}>
+          }}
+        >
           {" "}
           <div className="flex flex-col items-center justify-center h-full">
             <div>
               <img className="w-auto h-7 sm:h-8" src={whitelogo} alt="Logo" />
             </div>
             <div className="mt-3">
-              <p className="text-4xl text-center text-black font-semibold">Welcome back!</p>
+              <p className="text-4xl text-center text-black font-semibold">
+                Welcome back!
+              </p>
             </div>
           </div>
         </div>
@@ -92,14 +87,19 @@ const SignIn = () => {
             <img className="w-auto h-7 sm:h-8" src={Logo} alt="Logo" />
           </div>
 
-          <p className="mt-3 text-xl text-center text-gray-600">Welcome back!</p>
+          <p className="mt-3 text-xl text-center text-gray-600">
+            Welcome back!
+          </p>
 
           <SocialLogin />
 
           {/* Separator */}
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b  lg:w-1/4"></span>
-            <a href="#" className="text-xs text-center text-gray-500 uppercase  hover:underline">
+            <a
+              href="#"
+              className="text-xs text-center text-gray-500 uppercase  hover:underline"
+            >
               or login with email
             </a>
             <span className="w-1/5 border-b  lg:w-1/4"></span>
@@ -108,7 +108,10 @@ const SignIn = () => {
           {/* Login Form */}
           <form onSubmit={handleSignIn}>
             <div className="mt-4">
-              <label className="block mb-2 text-sm font-medium text-gray-600 " htmlFor="LoggingEmailAddress">
+              <label
+                className="block mb-2 text-sm font-medium text-gray-600 "
+                htmlFor="LoggingEmailAddress"
+              >
                 Email Address
               </label>
               <input
@@ -121,7 +124,10 @@ const SignIn = () => {
 
             <div className="mt-4">
               <div className="flex justify-between">
-                <label className="block mb-2 text-sm font-medium text-gray-600 " htmlFor="loggingPassword">
+                <label
+                  className="block mb-2 text-sm font-medium text-gray-600 "
+                  htmlFor="loggingPassword"
+                >
                   Password
                 </label>
                 <a href="#" className="text-xs text-gray-500 hover:underline">
@@ -149,7 +155,8 @@ const SignIn = () => {
             <div className="mt-6">
               <button
                 type="submit"
-                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-800 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-800 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
+              >
                 Sign In Now
               </button>
             </div>
@@ -158,7 +165,10 @@ const SignIn = () => {
           {/* Sign Up Link */}
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b  md:w-1/4"></span>
-            <Link to="/signup" className="text-xs text-gray-500 uppercase hover:underline">
+            <Link
+              to="/signup"
+              className="text-xs text-gray-500 uppercase hover:underline"
+            >
               or sign up
             </Link>
             <span className="w-1/5 border-b md:w-1/4"></span>

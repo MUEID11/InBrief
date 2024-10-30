@@ -37,21 +37,16 @@ const ForumPage = () => {
 
       {/* Join Discussion Section */}
       <div className="p-4 sm:grid sm:grid-cols-2 mx-auto">
-        <h2 className="text-xl font-bold mb-2 sm:col-span-full">Join Discussion</h2>
+        <h2 className="text-xl font-bold mb-2 sm:col-span-full">
+          Join Discussion
+        </h2>
         {discussionsS?.map((discussion) => (
-          <div key={discussion._id} onClick={() => handleSelectDiscussion(discussion)} className="cursor-pointer border p-2 mb-1 sm:m-2">
+          <div
+            key={discussion._id}
+            onClick={() => handleSelectDiscussion(discussion)}
+            className="cursor-pointer border p-2 mb-1 sm:m-2"
+          >
             <DiscussionDetails discussion={discussion} />
-            {/* <Link
-              to={`forum-details/${discussion?._id}`}
-              className="mt-6"
-              onClose={closeModal}
-            >
-              <DiscussionDetails discussion={selectedDiscussion} />
-              <CommentSection
-                discussionId={selectedDiscussion._id}
-                onComment={handleAddComment}
-              />
-            </Link> */}
           </div>
         ))}
       </div>
