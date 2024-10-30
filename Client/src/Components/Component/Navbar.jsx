@@ -234,19 +234,20 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu      === (Shown when the hamburger icon is clicked) */}
+      {/* Mobile Menu === (Shown when the hamburger icon is clicked) */}
       <div className={`relative lg:hidden `}>
         <div
           ref={menuDropdownRef}
           id="dropdown"
-          className={`absolute  z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-full h-screen dark:bg-gray-600 ${
+          className={`absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-full max-h-screen overflow-y-auto overflow-x-hidden dark:bg-gray-600 ${
             !isOpen ? "-left-full" : "left-0"
+
           } transition-all duration-300 overflow-hidden`}
         >
-          <div className="flex flex-col justify-between flex-1 mt-4 h-[calc(100vh-95px)]">
+          <div className="flex flex-col justify-between flex-1 mt-4 h-[calc(100vh-90px)]">
+
             <nav className=" space-y-3">
-              {/* <form onSubmit={handleSearch} className="flex w-full max-w-sm px-3">
+              <form onSubmit={handleSearch} className="max-sm:flex hidden w-full max-w-sm px-3">
                 <input
                   type="text"
                   value={category}
@@ -259,7 +260,7 @@ const Navbar = () => {
                   className="bg-red-600 text-white px-4 py-2 rounded-r-sm hover:bg-red-700 focus:ring-2 focus:ring-red-400 focus:ring-opacity-50 shadow-sm transition duration-300 ease-in-out">
                   Search
                 </button>
-              </form> */}
+              </form>
               {/* Home */}
               <Link
                 to="/"

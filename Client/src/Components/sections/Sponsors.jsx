@@ -87,34 +87,21 @@ const Sponsors = () => {
   return (
     <section className="container mx-auto sm:mt-14 mt-6 max-sm:px-1">
       <header className="mb-8">
-        <h3 className="text-2xl md:text-3xl font-inter font-semibold">
-          Sources
-        </h3>
+        <h3 className="text-2xl md:text-3xl font-inter font-semibold">Sources</h3>
       </header>
       <main>
         <Marquee pauseOnHover={true}>
           {sponsorData.map((data) => (
-            <div
-              data-aos="fade-up"
-              data-aos-duration="1500"
-              key={data.id}
-              className="flex flex-col items-center justify-center mr-16"
-            >
+            <div data-aos="fade" data-aos-duration="1500" key={data.id} className="flex flex-col items-center justify-center mr-16">
               <Link to={data.link}>
                 <div className="bg-gradient-to-b from-red-500 via-[#ea510e] to-[#ef7d00] border-5 border-red-500 rounded-full size-28 flex items-center justify-center p-[3px]">
                   <div className="bg-transparent h-full flex flex-col justify-center items-center rounded-full border-4 border-white p-2 overflow-hidden">
-                    <img
-                      src={data.logo}
-                      className="w-full object-cover"
-                      alt=""
-                    />
+                    <img src={data.logo} className="w-full object-cover" alt="" />
                   </div>
                 </div>
               </Link>
               <Link to={data.link}>
-                <p className="sm:text-xl font-semibold text-orange-700 mt-3">
-                  {data.name}
-                </p>
+                <p className="sm:text-xl font-semibold text-orange-700 mt-3">{data.name}</p>
               </Link>
             </div>
           ))}

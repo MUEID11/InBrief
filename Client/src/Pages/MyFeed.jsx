@@ -4,6 +4,7 @@ import PreferenceModal from "../Components/Component/PreferenceModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getArticleByPreference } from "../Features/thunks/articleThunk";
 import NewsCard from "../Components/Component/NewsCard";
+import ProfileLoadingTest from "../Components/Component/ProfileLoadingTest";
 
 const MyFeed = () => {
   const [sort, setSort] = useState("DSC");
@@ -16,18 +17,23 @@ const MyFeed = () => {
     dispatch(getArticleByPreference({ id: user?._id, sort }));
   }, [user, sort]);
 
-  const { articles } = useSelector((state) => state.preferredArticles);
+  const { articles, isLoading } = useSelector((state) => state.preferredArticles);
   console.log(articles);
   const [modalOpen, setModalOpen] = useState(false);
 
   const trigger = useRef(null);
+
+  if (isLoading) {
+    return <ProfileLoadingTest />;
+  }
+
   return (
     <div className="px-3 pt-5 container">
       <div className="flex justify-between items-center">
         <button
           ref={trigger}
           onClick={() => setModalOpen(true)}
-          className={`flex items-center px-3 py-2 border-red-700 border  text-red-700 rounded-lg hover:shadow-lg transition-all duration-300`}>
+          className={`flex items-center px-3 py-2 border-red-700 border  text-red-700 rounded-lg hover:shadow-lg hover:bg-red-800 hover:text-white transition-all duration-300`}>
           <MdOutlineDashboardCustomize />
           <span className="mx-2 text-sm font-medium">Customize Feed</span>
         </button>
