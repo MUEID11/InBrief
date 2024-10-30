@@ -62,7 +62,7 @@ const ForumDetails = () => {
         </div>
         <h2 className="text-xl font-bold mb-2">{forum.title}</h2>
         <img className="w-full h-72 object-cover mb-5 rounded-md" src={forum?.image} alt="" />
-        <p className="text-neutral-800">{forum.content}</p>
+        <p className="text-neutral-800 font-medium">{forum.content}</p>
         <button className="absolute top-7 right-3 text-gray-500 hover:text-gray-800 focus:outline-none"></button>
 
         <h3 className="text-xl  md:text-2xl font-bold text-gray-800 pb-2 pt-10 ">Comments ({Number(ultimateTotal)})</h3>

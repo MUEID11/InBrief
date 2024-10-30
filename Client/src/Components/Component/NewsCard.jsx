@@ -118,7 +118,7 @@ const NewsCard = ({ article }) => {
             <p className="text-blue-500 font-semibold bg-blue-100 py-1 px-3 rounded-sm text-xs capitalize">{article?.category ? article?.category : "Category"}</p>
           </div>
           {/* Description */}
-          <p className="text-sm text-gray-600 mb-4 flex-grow">{`${article?.description.substring(0, 100)}...`}</p>
+          <p className="text-sm text-gray-600 mb-4 font-semibold flex-grow">{`${article?.description.substring(0, 100)}...`}</p>
         </div>
       </Link>
 

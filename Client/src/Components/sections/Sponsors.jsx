@@ -86,8 +86,8 @@ const Sponsors = () => {
   });
   return (
     <section className="container mx-auto sm:mt-14 mt-6 max-sm:px-1">
-      <header className="mb-8">
-        <h3 className="text-2xl md:text-3xl font-inter font-semibold">Sources</h3>
+      <header className="mb-8 px-1">
+        <h3 className="text-2xl md:text-3xl text-neutral-900 font-inter font-bold">Sources</h3>
       </header>
       <main>
         <Marquee pauseOnHover={true}>
