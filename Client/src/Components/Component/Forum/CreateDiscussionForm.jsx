@@ -2,7 +2,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import toast from "react-hot-toast"
 import { ImSpinner9 } from "react-icons/im";
+
 
 const CreateDiscussion = ({ onCreate }) => {
   const [title, setTitle] = useState("");
@@ -40,13 +42,6 @@ const CreateDiscussion = ({ onCreate }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const formData = new FormData();
-    // formData.append('title', title);
-    // formData.append('content', content);
-    // formData.append('image', image);
-    // formData.append('username', user?.name);
-    // formData.append('userImage', user?.imageUrl);
-
     const obj = { title, content };
     obj.image = image;
     obj.username = user?.name;
@@ -55,15 +50,28 @@ const CreateDiscussion = ({ onCreate }) => {
     console.log("megh", obj);
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/forum`, obj, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/forum`,
+        obj,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       onCreate(response.data);
+
       setImage(null);
       setTitle("");
       setContent("");
+      toast("Discussion Create Successfully", {
+        icon: "✅",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
       e.target.reset();
     } catch (error) {
       console.error("Error creating discussion", error);
