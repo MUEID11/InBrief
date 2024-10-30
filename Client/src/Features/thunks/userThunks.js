@@ -35,8 +35,8 @@ const userThunk = createAsyncThunk("user/userThunk", async (_, { rejectWithValue
 
 export const updateUser = createAsyncThunk("user/updateUser", async (user, { rejectWithValue }) => {
   try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/users/updateUser`, {
-      method: "PUT",
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${user._id}/updateUser`, {
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
       },

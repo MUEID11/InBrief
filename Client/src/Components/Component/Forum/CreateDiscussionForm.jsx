@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { ImSpinner9 } from "react-icons/im";
 
 const CreateDiscussion = ({ onCreate }) => {
   const [title, setTitle] = useState("");
@@ -75,6 +76,7 @@ const CreateDiscussion = ({ onCreate }) => {
           color: "#fff",
         },
       });
+      e.target.reset();
     } catch (error) {
       console.error("Error creating discussion", error);
     }
@@ -108,13 +110,17 @@ const CreateDiscussion = ({ onCreate }) => {
         className="mb-4 border p-2 w-full"
       />
       <div className="flex justify-end">
-        <button
-          type="submit"
-          disabled={loading}
-          className="bg-blue-500 text-white p-2"
-        >
-          Create Discussion
-        </button>
+        {loading ? (
+          <ImSpinner9 className="animate-spin text-blue-500 mr-20" />
+        ) : (
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-blue-500 text-white p-2"
+          >
+            Create Discussion
+          </button>
+        )}
       </div>
     </form>
   );
