@@ -24,6 +24,7 @@ import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
 import { FaPlusCircle } from "react-icons/fa";
 import { FaEarthAfrica } from "react-icons/fa6";
 import { FaUserLock } from "react-icons/fa6";
+import { ImSpinner9 } from "react-icons/im";
 
 const MagazineModal = ({ userId, showModal, setShowModal, articleId }) => {
   const [magazines, setMagazines] = useState([]);
@@ -257,7 +258,11 @@ const NewsDetails = () => {
   }
 
   if (!article) {
-    return <div className="text-center mt-10 text-lg text-gray-500">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-[calc(100vh-100px)]">
+        <ImSpinner9 className="animate-spin text-red-900 text-6xl" />
+      </div>
+    );
   }
 
   // const shareUrl = 'http://github.com';
@@ -274,7 +279,7 @@ const NewsDetails = () => {
             <div className="bg-white shadow-lg rounded-sm p-6">
               <img className=" w-full h-96 object-cover mb-6" src={article?.image} alt={article?.title} />
               <h2 className="text-2xl font-bold text-gray-800 mb-4">{article?.title}</h2>
-              <p className="text-base text-gray-600 mb-6 whitespace-pre-wrap">{article?.description.slice(0, 250)} ....</p>
+              <p className="text-base text-gray-600 mb-6 whitespace-pre-wrap">{article?.description?.slice(0, 600)} ....</p>
               <a href={article?.url} target="_blank" rel="noopener noreferrer" className="text-center text-blue-600 text-bold  hover:underline hover:transition-transform ">
                 Read full article
               </a>
@@ -294,7 +299,6 @@ const NewsDetails = () => {
                 <p className="text-gray-500">
                   <span className="font-semibold">Posted by: </span>
                   <Link to={`/articles/creator/${article?.postedBy}`} title="Click Here to get all articles posted by this creator">
-                    {" "}
                     <span className="font-semibold text-blue-600">{article?.createdBy?.name}</span>
                   </Link>
                 </p>

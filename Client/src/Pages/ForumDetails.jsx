@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom";
 import CommentSection from "../Components/Component/Forum/CommentSection";
 import ForumCommentt from "../Components/Component/Forum/ForumCommentt";
 import { useGetForumCommentQuery } from "../services/ForumComment/forumCommentApi";
+import { ImSpinner9 } from "react-icons/im";
 
 const ForumDetails = () => {
   const [forum, setForum] = useState({});
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
   // const [selectedDiscussion, setSelectedDiscussion] = useState(null);
 
   // Handle adding a comment to the selected discussion
@@ -20,11 +22,14 @@ const ForumDetails = () => {
   useEffect(() => {
     const fetchForum = async () => {
       try {
+        setLoading(true);
         const response = await fetch(`${import.meta.env.VITE_API_URL}/forum/${id}`);
         const data = await response.json();
         setForum(data);
+        setLoading(false); // after fetching data, set loading to false
         console.log(response);
       } catch (error) {
+        setLoading(false);
         console.error("Error fetching articles:", error);
       }
     };
@@ -39,6 +44,14 @@ const ForumDetails = () => {
   let totals = comments?.map((item) => item?.replies?.length);
   let ultimateTotal = totals?.reduce((acc, item) => acc + item, 0);
   ultimateTotal = ultimateTotal + comments?.length;
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[calc(100vh-100px)]">
+        <ImSpinner9 className="animate-spin text-red-900 text-6xl" />
+      </div>
+    );
+  }
 
   return (
     <div className="flex justify-center items-center">

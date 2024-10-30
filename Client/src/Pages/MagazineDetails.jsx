@@ -4,6 +4,8 @@ import { FaUserCircle, FaTag, FaUserFriends, FaPlusCircle, FaRegCheckCircle } fr
 import axios from "axios";
 import NewsCard from "../Components/Component/NewsCard";
 import { useSelector } from "react-redux";
+import ProfileLoadingTest from "../Components/Component/ProfileLoadingTest";
+import { ImSpinner9 } from "react-icons/im";
 
 const MagazineDetails = () => {
   const { magazineId } = useParams();
@@ -72,7 +74,13 @@ const MagazineDetails = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[calc(100vh-100px)]">
+        <ImSpinner9 className="animate-spin text-red-900 text-6xl" />
+      </div>
+    );
+  }
   if (error) return <p>{error}</p>;
   if (!magazine) return <p>No magazine details available</p>;
 
@@ -91,14 +99,14 @@ const MagazineDetails = () => {
             {magazine?.followers?.includes(user?._id) ? (
               <button onClick={() => handleUnFollow()} className="flex items-center shadow-lg py-2 rounded-full bg-white pt-2 mt-4 px-3">
                 {" "}
-                <FaRegCheckCircle className=" mr-2 text-2xl" />
-                <h3 className="text-lgfont-">Following</h3>{" "}
+                <FaRegCheckCircle className=" mr-2" />
+                <h3 className="">Following</h3>{" "}
               </button>
             ) : (
               <button onClick={() => handleFollow()} className="flex items-center shadow-lg py-2 rounded-full bg-white pt-2 mt-4 px-3">
                 {" "}
-                <FaPlusCircle className=" mr-2 text-2xl " />
-                <h3 className="text-lg ">Follow</h3>
+                <FaPlusCircle className="mr-2" />
+                <h3 className=" ">Follow</h3>
               </button>
             )}
           </div>
