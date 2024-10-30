@@ -31,6 +31,7 @@ import CreatorArticles from "../Pages/CreatorArticles";
 import Magazine from "../Pages/Magazine";
 import MagazineDetails from "../Pages/MagazineDetails";
 import MyMagazines from "../Pages/MyMagazines";
+import TermsAndConditions from "../Pages/TermsAndConditions";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
       {
         path: "signin",
         element: <SignIn />,
+      },
+      {
+        path: "tearm",
+        element: <TermsAndConditions />,
       },
       {
         path: "submit-article",
