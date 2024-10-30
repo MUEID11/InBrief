@@ -106,9 +106,9 @@ const NewsCard = ({ article }) => {
           </div>
 
           {/* Headline */}
-          <a href={article.url} target="_blank" rel="noopener noreferrer">
+          <p target="_blank" rel="noopener noreferrer">
             <h3 className="font-bold text-lg mt-2">{article?.title}</h3>
-          </a>
+          </p>
           {/* Date, Category, Region */}
           <div className="flex justify-between items-center mb-2 mt-1">
             <div className="flex gap-3 items-center">
