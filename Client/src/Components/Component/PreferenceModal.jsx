@@ -26,7 +26,7 @@ const PreferenceModal = ({ modalOpen, setModalOpen, trigger }) => {
 
   const prefSubmit = () => {
     // submit selected tags here
-    console.log('selectedTags=> ', selectedTags);
+    // console.log('selectedTags=> ', selectedTags);
     dispatch(updateUser({ ...user, preferences: selectedTags }));
     setModalOpen(false);
   };

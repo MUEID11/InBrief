@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const infoUpdateApi  = createApi({
-  reducerPath: "infoUpdateApi ",
+  reducerPath: "infoUpdateApi",
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
   tagTypes: ["infoUpdate"],
   endpoints: (builder) => ({
     getInfo: builder.query({
       query: (userId) => ({
-        url: `/users/${userId}/users`,
+        url: `/users/${userId}`,
         method: "GET",
       }),
       providesTags: ["infoUpdate"],
