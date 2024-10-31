@@ -25,7 +25,7 @@ const NewsCard = ({ article }) => {
   });
 
   const handleLike = async (id) => {
-    if (!user.email) {
+    if (!user?.email) {
       navigate("/signin");
       return;
     }
@@ -46,15 +46,15 @@ const NewsCard = ({ article }) => {
   };
 
   const handleBookmark = (id) => {
-    if (!user.email) {
-      navigate("/signin");
+    if (!user?.email) {
+      toast.error('Plese Sign In')
       return;
-    }
-
-    addBookmark({ id, userEmail: user?.email })
+    }else{
+      addBookmark({ id, userEmail: user?.email })
       .unwrap()
       .then((payload) => console.log("fulfilled", payload))
       .catch((error) => console.error("rejected", error));
+    }
   };
 
   useEffect(() => {

@@ -29,7 +29,8 @@ const userSchema = new Schema({
     default: [],
   },
   role: { type: String, required: true },
-});
+  
+},{strict: false});
 
 userSchema.plugin(mongooseUniqueValidator, {
   message: "{PATH} must be unique",
