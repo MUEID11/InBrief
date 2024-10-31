@@ -6,7 +6,7 @@ import { AiOutlineFileAdd } from "react-icons/ai";
 import { BsNewspaper } from "react-icons/bs";
 import { PiBooks } from "react-icons/pi";
 import Weather from "./Weather";
-
+import { HiOutlineNewspaper } from "react-icons/hi";
 const Asidebar = () => {
   const { pathname } = useLocation();
   return (
@@ -52,7 +52,7 @@ const Asidebar = () => {
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
               pathname === "/my-magazines" && "bg-gray-200 text-gray-700"
             }`}>
-            <MdOutlineFeed className="text-[19px]" />
+            <HiOutlineNewspaper className="text-[19px]" />
             <span className="mx-2 text-sm font-semibold">My Magazines</span>
           </Link>
 
