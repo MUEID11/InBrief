@@ -35,7 +35,7 @@ const Home = () => {
         <BusinessNewsSection isHomeSection={true} />
         <SportsNewsSection isHomeSection={true} />
         {/* topcreators */}
-        <TopCreators />
+        {/* <TopCreators /> */}
         {/* newslatter subscription */}
         <Newsletter />
         {/* Faq */}
