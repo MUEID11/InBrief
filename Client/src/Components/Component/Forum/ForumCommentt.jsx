@@ -47,7 +47,6 @@ const ForumCommentt = ({ comment }) => {
         commentId: comment._id,
       });
       setShowDeleteModal(false);
-      console.log("Delete forum Comment:", response);
     } catch (error) {
       console.error("Error deleting forum comment:", error);
     }

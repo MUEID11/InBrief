@@ -12,9 +12,7 @@ const Headline = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/articles?sort=dsc&limit=8`
-        );
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/articles?sort=dsc&limit=8`);
 
         setArticles(data.data);
         setLoading(false);
@@ -26,7 +24,6 @@ const Headline = () => {
     };
     getData();
   }, []);
-  console.log(articles);
 
   if (loading) {
     return (
@@ -39,9 +36,7 @@ const Headline = () => {
   if (error) {
     return (
       <div className="flex items-center justify-center p-4">
-        <p className="text-xl text-red-600">
-          Failed to load headlines. Please try again later.
-        </p>
+        <p className="text-xl text-red-600">Failed to load headlines. Please try again later.</p>
       </div>
     );
   }
@@ -54,17 +49,9 @@ const Headline = () => {
       </div>
 
       <div className="bg-white flex-1  rounded-r-lg ">
-        <Marquee
-          pauseOnHover={true}
-          speed={30}
-          className="text-gray-800 text-lg font-semibold"
-        >
+        <Marquee pauseOnHover={true} speed={30} className="text-gray-800 text-lg font-semibold">
           {articles.map((article, index) => (
-            <Link
-              key={index}
-              to={`/articles/${article?._id}`}
-              className="mx-4 hover:text-red-500"
-            >
+            <Link key={index} to={`/articles/${article?._id}`} className="mx-4 hover:text-red-500">
               {article.title}
             </Link>
           ))}

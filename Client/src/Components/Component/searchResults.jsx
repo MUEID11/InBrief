@@ -15,14 +15,12 @@ const SearchResults = () => {
       try {
         setLoading(true);
         const response = await fetch(`${import.meta.env.VITE_API_URL}/articles/search?category=${category}`);
-        console.log(response);
 
         if (!response.ok) {
           throw new Error(`Error fetching data: ${response.statusText}`);
         }
 
         const data = await response.json();
-        console.log(data);
 
         setResults(data); // Assuming `data.data` contains the search results
         setLoading(false);

@@ -10,7 +10,6 @@ const ForumReply = ({ reply }) => {
   const [deleteForumReply] = useDeleteForumReplyMutation() || {};
 
   const handleDeleteReply = async () => {
-    console.log("Reply Deleted:", reply?._id);
     try {
       const response = await deleteForumReply({
         commentId: reply?.commentId,

@@ -29,8 +29,6 @@ const userSchema = new Schema({
     default: [],
   },
   role: { type: String, required: true },
-  
-
 });
 
 userSchema.plugin(mongooseUniqueValidator, {
