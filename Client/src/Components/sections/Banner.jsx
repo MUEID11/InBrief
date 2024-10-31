@@ -53,7 +53,7 @@ const Banner = () => {
             <h2 className="mt-2 text-3xl font-bold text-gray-900">
             Major Tech Merger Shakes Global Markets
             </h2>
-            <p className="mt-3 text-xl text-gray-600">
+            <p className="mt-3 texts-sm text-gray-600">
             Two leading tech giants announce a historic merger, sending shockwaves through the global market. The deal is expected to reshape the tech landscape and impact millions of users worldwide.
             </p>
             {/* <p className="mt-2 text-gray-600">
