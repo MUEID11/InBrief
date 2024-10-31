@@ -40,7 +40,7 @@ const EditorPicks = () => {
             news?.map((n) => (
               <div
                 key={n.uuid}
-                className="shadow-lg p-5 border  border-r-2 border-b-2 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:bg-gray-200 hover:scale-102  rounded-sm text-white group hover:text-neutral-900">
+                className="shadow-lg p-5 border bg-slate-500/30 backdrop-blur-sm hover:backdrop-blur-none border-b-2 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:bg-gray-200 rounded-sm text-white group hover:text-neutral-900">
                 <Link to={n?.url} className="">
                   {/* Link wrapping Image */}
 
@@ -51,7 +51,7 @@ const EditorPicks = () => {
                     {/* Source Section */}
                     <div className="flex gap-2 items-center">
                       <div className="size-2 bg-red-600 rounded-full"></div>
-                      <span className="text-sm text-gray-600">{n?.source}</span>
+                      <span className="text-sm text-gray-100 group-hover:text-neutral-600">{n?.source}</span>
                     </div>
 
                     {/* Headline */}
@@ -62,7 +62,7 @@ const EditorPicks = () => {
                     <div className="flex justify-between items-center mb-2 mt-1">
                       <div className="flex gap-3 items-center">
                         <p className="text-black-primary text-sm font-semibold">{n?.locale}</p>
-                        <span className="text-xs text-neutral-600">{new Date(n?.published_at).toLocaleDateString()}</span>
+                        <span className="text-xs text-neutral-300 group-hover:text-neutral-600">{new Date(n?.published_at).toLocaleDateString()}</span>
                       </div>
                       <p className="text-blue-500 font-semibold bg-blue-100 py-1 px-3 rounded-sm text-xs capitalize">{n?.categories[0]}</p>
                     </div>
