@@ -1,9 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import { IoMdBook } from "react-icons/io";
 import { SlPeople } from "react-icons/sl";
 import { FiPhoneCall } from "react-icons/fi";
-import { MdOutlineFeed, MdOutlineForum, MdOutlineSpaceDashboard } from "react-icons/md";
-import { TbBookmarks } from "react-icons/tb";
+import { MdOutlineFeed, MdOutlineForum} from "react-icons/md";
 import { AiOutlineFileAdd } from "react-icons/ai";
 import { BsNewspaper } from "react-icons/bs";
 import { PiBooks } from "react-icons/pi";
