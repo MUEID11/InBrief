@@ -28,11 +28,15 @@ const EditorPicks = () => {
       style={{ backgroundSize: "cover", backgroundPosition: "center" }} // Ensuring the image covers and is centered
     >
       <div className="bg-black/40 rounded-sm">
-        <div className="pt-24 space-y-7 text-white mb-8 overflow-auto px-6">
-          <h1 className="text-lg sm:text-3xl font-bold  ">Editor&apos;s Picks</h1>
+        <div className="pt-8 space-y-7 text-white mb-8 overflow-auto px-6">
+          <h1 className="text-lg sm:text-3xl font-bold  ">
+            Editor&apos;s Picks
+          </h1>
           <p className="text-sm">
-            Discover the most insightful and trending articles selected by our editorial team. From breaking news to deep-dive features, these picks are curated to keep you
-            informed, engaged, and inspired. Stay ahead with stories that matter, chosen just for you.
+            Discover the most insightful and trending articles selected by our
+            editorial team. From breaking news to deep-dive features, these
+            picks are curated to keep you informed, engaged, and inspired. Stay
+            ahead with stories that matter, chosen just for you.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-6 px-2">
@@ -40,18 +44,27 @@ const EditorPicks = () => {
             news?.map((n) => (
               <div
                 key={n?.id}
-                className="shadow-lg p-5 bg-gray-800/30 backdrop-blur-lg hover:backdrop-blur-none border border-gray-500 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:bg-gray-200 rounded-sm text-white group hover:text-neutral-900">
+                className="shadow-lg p-5 bg-gray-800/30 backdrop-blur-lg hover:backdrop-blur-none border border-gray-500 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:bg-gray-200 rounded-sm text-white group hover:text-neutral-900"
+              >
                 <Link to={n?.url} className="">
                   {/* Link wrapping Image */}
 
-                  <img src={n.social_image} alt={n.title} className="h-56 object-cover rounded-sm w-full" loading="lazy" />
+                  <img
+                    src={n.social_image}
+                    alt={n.title}
+                    className="h-56 object-cover rounded-sm w-full"
+                    loading="lazy"
+                  />
 
                   {/* Info Section */}
                   <div className="mt-4 flex flex-col">
                     {/* Source Section */}
                     <div className="flex gap-2 items-center">
                       <div className="size-2 bg-red-600 rounded-full"></div>
-                      <Link to="https://dev.to/" className="text-sm text-gray-100 group-hover:text-neutral-600">
+                      <Link
+                        to="https://dev.to/"
+                        className="text-sm text-gray-100 group-hover:text-neutral-600"
+                      >
                         Dev.to
                       </Link>
                     </div>
@@ -63,12 +76,16 @@ const EditorPicks = () => {
                     {/* Date, Category, Region */}
                     <div className="flex justify-between items-center mb-2 mt-1">
                       <div className="flex gap-3 items-center">
-                        <span className="text-xs text-neutral-300 group-hover:text-neutral-600">{new Date(n?.published_at).toLocaleDateString()}</span>
+                        <span className="text-xs text-neutral-300 group-hover:text-neutral-600">
+                          {new Date(n?.published_at).toLocaleDateString()}
+                        </span>
                       </div>
                       {/* <p className="text-blue-500 font-semibold bg-blue-100 py-1 px-3 rounded-sm text-xs capitalize">{n?.categories[0]}</p> */}
                     </div>
                     {/* Description */}
-                    <p className="text-sm mb-4 text-gray-300 group-hover:text-gray-700 font-semibold flex-grow">{n?.description}</p>
+                    <p className="text-sm mb-4 text-gray-300 group-hover:text-gray-700 font-semibold flex-grow">
+                      {n?.description}
+                    </p>
                   </div>
                 </Link>
               </div>

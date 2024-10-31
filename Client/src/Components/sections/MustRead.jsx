@@ -11,98 +11,128 @@ const MustRead = () => {
     <div className="my-2 p-2 container mx-auto mt-4 sm:mt-12 max-sm:px-2">
       {/* Must read title */}
       <div className="flex justify-start items-center rounded-sm">
-        <h2 className="text-2xl md:text-3xl text-neutral-900 font-inter font-bold">Must read</h2>
+        <h2 className="text-2xl md:text-3xl font-inter font-semibold  ">
+          Must read
+        </h2>
       </div>
       {/* must read cards */}
-      <div data-aos="fade-up" data-aos-duration="2000" className="my-6 grid grid-cols-1  lg:grid-cols-3 gap-6">
+      <div
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        className="my-6 grid grid-cols-1  lg:grid-cols-3 gap-6"
+      >
         {/* 1st part */}
-        <div className="">
-          <img src="https://images.pexels.com/photos/20258/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600" className="w-full rounded-sm" alt="" />
+        <a
+          href="https://metalinjection.net/news/brujeria-cancels-all-tour-dates-due-to-severe-medical-emergency"
+          target="-blank"
+        >
+          <div className="flex-col flex-1">
+            <img
+              src="https://cdn-p.smehost.net/sites/7f9737f2506941499994d771a29ad47a/wp-content/uploads/2023/07/Brujeria-2023.png"
+              className="w-full rounded-sm h-96 object-cover"
+              alt=""
+            />
 
-          <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
-            <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">CNN</button>
-            <p>CNN.</p>
-            <p>10 hours ago</p>
+            <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
+              <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">
+                TD
+              </button>
+              <p>The Daily Star.</p>
+              <p>10 hours ago</p>
+            </div>
+
+            <h3 className="text-xl font-semibold font-inter">
+              BRUJERIA Cancels All Tour Dates Due To 'Severe Medical Emergency
+            </h3>
+            <p className="text-sm mt-1 text-gray-600 font-medium">
+              Tech Daily -
+            </p>
+            <p className="text-[13px] mb-1 text-gray-600 font-medium">
+              Brujeria has had to cancel their tour dates due to a severe
+              medical emergency. More updates will follow soon..
+            </p>
+            <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
+              <p className="text-red-600 text-sm">Music.</p>
+
+              <p>8 min read</p>
+            </div>
           </div>
-
-          <h3 className="text-xl font-semibold font-inter">Ukraine`s slience along southern front fuels counteroffensive...</h3>
-          <p className="text-sm mt-1 text-gray-600 font-medium">Ukraine CNN -</p>
-          <p className="text-[13px] mb-1 text-gray-600 font-medium">
-            Miles of empty feilds where ou might expect a build up of army Tanks tracks that emerge in the mud frome nowhere...
-          </p>
-          <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
-            <p className="text-red-600 text-sm">War.</p>
-
-            <p>8 min read</p>
-          </div>
-        </div>
+        </a>
         {/* 2nd part */}
-        <div className="bg-gray-800 shadow-xl relative md:min-h-[500px] rounded-sm">
-          <img
-            className="absolute  inset-0 w-full h-full object-cover opacity-40 rounded-sm"
-            src="https://static.vecteezy.com/system/resources/previews/029/630/494/non_2x/handsome-young-male-singer-holds-a-microphone-stand-and-performs-on-a-concert-stage-free-photo.jpeg"
-            alt="singer"
-          />
+        <a
+          href="https://www.bbc.com/future/article/20241030-the-island-ruled-by-alien-snakes-and-spiders"
+          target="_blank"
+        >
+          <div className="bg-gray-800 shadow-xl relative md:min-h-[500px] h-full rounded-sm">
+            <img
+              className="absolute  inset-0 w-full h-full object-cover opacity-40 rounded-sm"
+              src="https://ichef.bbci.co.uk/images/ic/1024xn/p0k17t9t.jpg.webp"
+              alt="singer"
+            />
 
-          <div className="relative p-4 h-full flex items-end">
-            <div>
-              <div className="flex gap-2 text-sm my-2 text-white">
-                <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">CNN</button>
-                <p className="opacity-70">CNN.</p>
-                <p className="opacity-70">10 hours ago</p>
-              </div>
-              <h2 className="text-2xl font-serif font-semibold text-white">John Legend is sending a poweful message to woman on the Eras ...</h2>
-              <p className="text-white  text-[13px] line-clamp-2  ">
-                My first singing of discomfort at jhon legend show in Las vegas hit after the infected beast faded from fan favourite crual summer the...
-              </p>
-              <div className="flex gap-2 text-[13px] text-white opacity-50">
-                <p>Entertainment :</p>
-                <p>10 min read</p>
+            <div className="relative p-4 h-full flex items-end">
+              <div>
+                <div className="flex gap-2 text-sm my-2 text-white">
+                  <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">
+                    BBC
+                  </button>
+                  <p className="opacity-70">BBC.</p>
+                  <p className="opacity-70">12 hours ago</p>
+                </div>
+                <h2 className="text-2xl font-serif font-semibold text-white">
+                  The US island ruled by alien snakes and spiders...
+                </h2>
+                <p className="text-white  text-[13px] line-clamp-2  ">
+                  Guam has 40 times more spiders than neighbouring islands – and
+                  a population of invasive snakes so voracious, they have
+                  emptied the forests of every bird...
+                </p>
+                <div className="flex gap-2 text-[13px] text-white opacity-50">
+                  <p>Earth :</p>
+                  <p>12 min read</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </a>
+
         {/* 3rd part */}
-        <div className="gap-6 grid grid-row-2 grid-cols-1 rounded-sm">
-          <div className="row-span-1 flex items-center justify-center space-x-4 min-h-full">
-            <div className="relative h-full w-full rounded-sm">
-              <img src="https://business.itn.co.uk/wp-content/uploads/2024/04/keyclimatedates.jpg" className="h-full w-full object-cover rounded-sm" alt="" />
+        <a
+          href="https://www.brookings.edu/articles/how-artificial-intelligence-is-transforming-the-world/"
+          target="_blank"
+        >
+          <div className="">
+            <img
+              src="https://www.mushroomnetworks.com/wp-content/uploads/2023/12/ai-in-networking.jpg"
+              className="w-full rounded-sm"
+              alt=""
+            />
+
+            <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
+              <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">
+                TD
+              </button>
+              <p>Tech Daily.</p>
+              <p>10 hours ago</p>
             </div>
-            <div className="p-2 flex-col space-y-2 justify-between">
-              <div className="flex items-center space-x-3 text-sm">
-                <div className="size-4 bg-red-400 rounded-full"></div>
-                <p>CNN.</p>
-                <p>10 hours ago</p>
-              </div>
-              <h3 className="text-sm font-semibold font-inter">Global Climate Summit 2024: Key Decisions Made</h3>
-              <p className="text-sm mt-1 text-gray-600 font-medium">Ukraine CNN -</p>
-              <p className="text-xs mb-1 text-gray-600 font-medium">World leaders gather at the Global Climate Summit to tackle pressing environmental issues.</p>
-              <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
-                <p className="text-red-600 text-sm">War.</p>
-                <p>8 min read</p>
-              </div>
-            </div>
-          </div>
-          <div className="row-span-1 flex items-center justify-center space-x-4 min-h-full">
-            <div className="relative h-full w-full">
-              <img src="https://www.kevinmd.com/wp-content/uploads/unnamed-42.jpg" className="h-full w-full object-cover rounded-sm" alt="" />
-            </div>
-            <div className="p-2 flex-col space-y-2">
-              <div className="flex items-center space-x-3 text-sm">
-                <div className="size-4 bg-red-400 rounded-full"></div>
-                <p>CNN.</p>
-                <p>10 hours ago</p>
-              </div>
-              <h3 className="text-sm font-semibold font-inter">Revolutionary AI Tool Transforms Healthcare</h3>
-              <p className="text-sm mt-1 text-gray-600 font-medium">Ukraine CNN -</p>
-              <p className="text-xs mb-1 text-gray-600 font-medium">A new AI-powered tool is set to revolutionize healthcare, promising faster diagnostics.</p>
-              <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
-                <p className="text-red-600 text-sm">War.</p>
-                <p>8 min read</p>
-              </div>
+
+            <h3 className="text-xl font-semibold font-inter">
+              New Technology Revolutionizes Artificial Intelligence
+            </h3>
+            <p className="text-sm mt-1 text-gray-600 font-medium">
+              Tech Daily -
+            </p>
+            <p className="text-[13px] mb-1 text-gray-600 font-medium">
+              A breakthrough in artificial intelligence promises to reshape
+              industries worldwide, offering faster and more....
+            </p>
+            <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
+              <p className="text-red-600 text-sm">Technology.</p>
+
+              <p>8 min read</p>
             </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   );

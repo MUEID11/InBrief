@@ -22,10 +22,15 @@ const CreateDiscussion = ({ onCreate }) => {
     }
     image.append("file", userImage);
     image.append("upload_preset", "a4roznw9");
-    const response = await fetch(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/image/upload`, {
-      method: "POST",
-      body: image,
-    });
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${
+        import.meta.env.VITE_CLOUD_NAME
+      }/image/upload`,
+      {
+        method: "POST",
+        body: image,
+      }
+    );
     const data = await response.json();
     const url = data.secure_url;
     if (!url) {
@@ -72,14 +77,39 @@ const CreateDiscussion = ({ onCreate }) => {
   return (
     <form onSubmit={handleSubmit} className="p-2">
       <h1 className="font-bold text-xl mb-2">Create Discussion</h1>
-      <input required type="text" placeholder="Title" value={title} name="title" onChange={(e) => setTitle(e.target.value)} className="border p-2 w-full mb-4" />
-      <textarea required name="content" placeholder="Discussion content" value={content} onChange={(e) => setContent(e.target.value)} className="border p-2 w-full mb-4"></textarea>
-      <input required name="image" type="file" onChange={handleChange} className="mb-4 border p-2 w-full" />
+      <input
+        required
+        type="text"
+        placeholder="Title"
+        value={title}
+        name="title"
+        onChange={(e) => setTitle(e.target.value)}
+        className="border p-2 w-full mb-4"
+      />
+      <textarea
+        required
+        name="content"
+        placeholder="Discussion content"
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        className="border p-2 w-full mb-4"
+      ></textarea>
+      <input
+        required
+        name="image"
+        type="file"
+        onChange={handleChange}
+        className="mb-4 border p-2 w-full"
+      />
       <div className="flex justify-end">
         {loading ? (
           <ImSpinner9 className="animate-spin text-blue-500 mr-20" />
         ) : (
-          <button type="submit" disabled={loading} className="bg-blue-500 text-white p-2">
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-blue-500 text-white p-2"
+          >
             Create Discussion
           </button>
         )}

@@ -101,6 +101,7 @@ const ArticleForm = () => {
           <label className="text-lg font-semibold text-gray-800 mb-1">
             Title
           </label>
+
           <input
             type="text"
             name="title"
@@ -258,7 +259,7 @@ const ArticleForm = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full p-3 bg-red-600 rounded-sm text-white font-semibold rounded-sm shadow-lg hover:bg-red-700 transition-all duration-300"
+          className="w-full p-3 bg-red-600 rounded-sm text-white font-semibold  shadow-lg transition-all duration-300"
         >
           Submit Article
         </button>

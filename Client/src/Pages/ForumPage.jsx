@@ -11,7 +11,9 @@ import toast from "react-hot-toast";
 const ForumPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [discussions, setDiscussions] = useState([]);
-  const { forums: discussionsS, isLoading } = useSelector((state) => state.forumsR);
+  const { forums: discussionsS, isLoading } = useSelector(
+    (state) => state.forumsR
+  );
   console.log("discussion", discussions);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -54,18 +56,29 @@ const ForumPage = () => {
       {/* Join Discussion Section */}
       <div className="p-4 mx-auto">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl text-neutral-800 font-bold mb-2 sm:col-span-full">Join Discussions</h2>
+          <h2 className="text-2xl text-neutral-800 font-bold mb-2 sm:col-span-full">
+            Join Discussions
+          </h2>
           <button
             className="px-3 py-2 flex items-center gap-2 border border-red-900 hover:bg-red-950 text-red-900 hover:text-neutral-50 transition-all duration-300 rounded mb-4"
-            onClick={() => setIsModalOpen(true)}>
+            onClick={() => setIsModalOpen(true)}
+          >
             <FaPlusCircle />
             Create Forum
           </button>
-          <CreateForumModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} onCreateHandler={handleCreateDiscussion} />
+          <CreateForumModal
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            onCreateHandler={handleCreateDiscussion}
+          />
         </div>
         <div className=" sm:grid sm:grid-cols-2 ">
           {discussionsS?.map((discussion) => (
-            <div key={discussion._id} onClick={() => handleSelectDiscussion(discussion)} className="cursor-pointer shadow-md hover:bg-gray-200 border p-2 mb-1 sm:m-2">
+            <div
+              key={discussion._id}
+              onClick={() => handleSelectDiscussion(discussion)}
+              className="cursor-pointer shadow-md hover:bg-gray-200 border p-2 mb-1 sm:m-2"
+            >
               <DiscussionDetails discussion={discussion} />
               {/* <Link
                 to={`forum-details/${discussion?._id}`}
