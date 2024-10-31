@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { SlPeople } from "react-icons/sl";
 import { FiPhoneCall } from "react-icons/fi";
-import { MdOutlineFeed, MdOutlineForum} from "react-icons/md";
+import { MdOutlineFeed, MdOutlineForum } from "react-icons/md";
 import { AiOutlineFileAdd } from "react-icons/ai";
 import { BsNewspaper } from "react-icons/bs";
 import { PiBooks } from "react-icons/pi";
@@ -10,7 +10,7 @@ import Weather from "./Weather";
 const Asidebar = () => {
   const { pathname } = useLocation();
   return (
-    <div className="sticky top-[85px] max-w-60 p-4 flex flex-col md:max-w-52 h-[calc(100vh-70px)] overflow-y-auto bg-gray-100 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 max-lg:hidden overflow-hidden no-scrollbar">
+    <div className="sticky top-[85px] min-w-60 p-4 flex flex-col md:max-w-52 h-[calc(100vh-70px)] overflow-y-auto bg-gray-100 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 max-lg:hidden overflow-hidden no-scrollbar">
       <div className="flex flex-col justify-between flex-1 mt-4">
         <nav className="-mx-4 space-y-3">
           {/* Home */}
