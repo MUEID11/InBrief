@@ -11,7 +11,6 @@ import Weather from "./Weather";
 
 const Asidebar = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
   return (
     <div className="sticky top-[85px] max-w-60 p-4 flex flex-col md:max-w-52 h-[calc(100vh-70px)] overflow-y-auto bg-gray-100 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 max-lg:hidden overflow-hidden no-scrollbar">
       <div className="flex flex-col justify-between flex-1 mt-4">

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../../Features/thunks/userThunks';
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../Features/thunks/userThunks";
 
 const PreferenceModal = ({ modalOpen, setModalOpen, trigger }) => {
   const { user } = useSelector((state) => state?.user);
@@ -12,9 +12,7 @@ const PreferenceModal = ({ modalOpen, setModalOpen, trigger }) => {
     setSelectedTags(user?.preferences || []);
   }, [user]);
 
-  console.log(selectedTags);
-
-  const tags = ['music', 'business', 'war', 'technology', 'sports', 'global warming'];
+  const tags = ["music", "business", "war", "technology", "sports", "global warming"];
 
   const toggleTag = (tag) => {
     if (selectedTags.includes(tag)) {
@@ -26,7 +24,6 @@ const PreferenceModal = ({ modalOpen, setModalOpen, trigger }) => {
 
   const prefSubmit = () => {
     // submit selected tags here
-    console.log('selectedTags=> ', selectedTags);
     dispatch(updateUser({ ...user, preferences: selectedTags }));
     setModalOpen(false);
   };
@@ -41,8 +38,8 @@ const PreferenceModal = ({ modalOpen, setModalOpen, trigger }) => {
       setSelectedTags(user?.preferences || []);
       setModalOpen(false);
     };
-    document.addEventListener('click', clickHandler);
-    return () => document.removeEventListener('click', clickHandler);
+    document.addEventListener("click", clickHandler);
+    return () => document.removeEventListener("click", clickHandler);
   });
 
   // close if the esc key is pressed
@@ -52,8 +49,8 @@ const PreferenceModal = ({ modalOpen, setModalOpen, trigger }) => {
       setSelectedTags(user?.preferences || []);
       setModalOpen(false);
     };
-    document.addEventListener('keydown', keyHandler);
-    return () => document.removeEventListener('keydown', keyHandler);
+    document.addEventListener("keydown", keyHandler);
+    return () => document.removeEventListener("keydown", keyHandler);
   });
 
   return (
@@ -61,7 +58,7 @@ const PreferenceModal = ({ modalOpen, setModalOpen, trigger }) => {
       <div className="container mx-auto">
         <div
           className={`mt-10 fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-gray-900/70 px-4 py-5 ${
-            modalOpen ? 'opacity-100' : 'opacity-0 pointer-events-none select-none'
+            modalOpen ? "opacity-100" : "opacity-0 pointer-events-none select-none"
           } transition-all duration-300`}>
           <div ref={modal} className="w-full max-w-[600px] rounded-[20px] bg-white px-8 py-12 text-center md:px-[70px] md:pt-[60px] ">
             <h3 className="pb-[18px] text-xl font-bold text-gray-800 sm:text-4xl">Select Your Favorite Topics</h3>
@@ -72,7 +69,7 @@ const PreferenceModal = ({ modalOpen, setModalOpen, trigger }) => {
                   <button
                     key={tag}
                     className={`px-4 py-2 capitalize rounded-full border border-gray-500 text-white transition 
-            ${selectedTags.includes(tag) ? 'bg-rose-500 border-rose-500 shadow-lg shadow-red-900' : 'bg-gray-800 hover:bg-gray-600 '}`}
+            ${selectedTags.includes(tag) ? "bg-rose-500 border-rose-500 shadow-lg shadow-red-900" : "bg-gray-800 hover:bg-gray-600 "}`}
                     onClick={() => toggleTag(tag)}>
                     {tag}
                   </button>

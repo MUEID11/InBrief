@@ -30,7 +30,7 @@ const Main = () => {
         <Asidebar />
 
         {/* Outlet for dynamic content */}
-        <div className="flex-grow overflow-hidden mb-8">
+        <div className="flex-grow overflow-hidden">
           <Outlet />
         </div>
       </div>
