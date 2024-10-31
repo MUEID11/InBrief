@@ -106,9 +106,9 @@ const NewsCard = ({ article }) => {
           </div>
 
           {/* Headline */}
-          <a href={article.url} target="_blank" rel="noopener noreferrer">
+          <p target="_blank" rel="noopener noreferrer">
             <h3 className="font-bold text-lg mt-2">{article?.title}</h3>
-          </a>
+          </p>
           {/* Date, Category, Region */}
           <div className="flex justify-between items-center mb-2 mt-1">
             <div className="flex gap-3 items-center">
@@ -118,7 +118,7 @@ const NewsCard = ({ article }) => {
             <p className="text-blue-500 font-semibold bg-blue-100 py-1 px-3 rounded-sm text-xs capitalize">{article?.category ? article?.category : "Category"}</p>
           </div>
           {/* Description */}
-          <p className="text-sm text-gray-600 mb-4 flex-grow">{`${article?.description.substring(0, 100)}...`}</p>
+          <p className="text-sm text-gray-600 mb-4 font-semibold flex-grow">{`${article?.description.substring(0, 100)}...`}</p>
         </div>
       </Link>
 
