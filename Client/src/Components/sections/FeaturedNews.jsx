@@ -10,7 +10,6 @@ const FeaturedNews = () => {
   const [error, setError] = useState(false);
 
   const [width, setWidth] = useState(window.innerWidth);
-  console.log(width);
   let url;
   if (width <= 1536 && width >= 1280) {
     url = `${import.meta.env.VITE_API_URL}/articles/featured?limit=6`;
@@ -56,7 +55,6 @@ const FeaturedNews = () => {
       </div>
     );
   }
-  console.log(articles);
 
   return (
     <div className="container mx-auto m-2">

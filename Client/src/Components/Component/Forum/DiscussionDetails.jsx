@@ -4,7 +4,6 @@ import LazyLoad from "react-lazyload";
 import PlaceholderImg from "../PlaceholderImg";
 
 const DiscussionDetails = ({ discussion }) => {
-  console.log(discussion);
   return (
     <div className="p-4 border-b h-full mb-4">
       <Link to={`forum-details/${discussion?._id}`} className="flex flex-col h-full">
