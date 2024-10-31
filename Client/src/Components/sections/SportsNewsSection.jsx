@@ -8,7 +8,6 @@ const SportsNewsSection = ({ isHomeSection = false }) => {
   const [error, setError] = useState(false);
 
   const [width, setWidth] = useState(window.innerWidth);
-  console.log(width);
   let url;
   // let url = `${import.meta.env.VITE_API_URL}/articles?category=sports`;
 
@@ -43,7 +42,7 @@ const SportsNewsSection = ({ isHomeSection = false }) => {
         setLoading(false);
       });
   }, [url]);
-  console.log(articles);
+  // console.log(articles);
   if (loading) {
     return (
       <div className="flex items-center justify-center p-4">

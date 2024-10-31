@@ -159,10 +159,7 @@ NewsCard.propTypes = {
     description: PropTypes.string,
     author: PropTypes.string,
     date: PropTypes.string,
-    source: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      url: PropTypes.string,
-    }).isRequired,
+    source: PropTypes.string.isRequired,
     region: PropTypes.string,
     image: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
