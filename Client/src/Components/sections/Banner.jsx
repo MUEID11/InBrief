@@ -2,7 +2,7 @@ import Headline from "./Headline";
 
 const Banner = () => {
   return (
-    <section className="container w-full mx-auto md:mb-8 my-6">
+    <section className="container w-full mx-auto md:mb-8 my-6 font-gsans">
       <div className="px-2 sm:px-0">
         <div
           className="w-full mx-auto p-2 sm:p-12 border bg-repeat bg-cover sm:mb-8 mb-4 border-b-4 border-l-4 flex flex-col transition-all duration-200 ease-in-out hover:border-slate-600 rounded-sm"
@@ -11,21 +11,17 @@ const Banner = () => {
           // }}
         >
           <div className="text-center p-4">
-            <h1 className="font-bold max-sm:text-sm text-gray-600 uppercase tracking-[0.3em]">
-              Welcome to InBrief
-            </h1>
+            <h1 className="font-bold max-sm:text-sm text-gray-600 uppercase tracking-[0.3em]">Welcome to InBrief</h1>
             <p className="text-3xl max-sm:text-xl mt-2 text-gray-800 max-w-[620px] mx-auto font-bold leading-10">
-              Crafting stories ✍️ that spark{" "}
-              <span className="text-red-600">inspiration</span> 💡,{" "}
-              <span className="text-red-600">knowledge</span> 📘, and
+              Crafting stories ✍️ that spark <span className="text-red-600">inspiration</span> 💡, <span className="text-red-600">knowledge</span> 📘, and
               <span className="text-red-600"> entertainment</span> 🎥.
             </p>
           </div>
         </div>
       </div>
-<div>
-  <Headline></Headline>
-</div>
+      <div>
+        <Headline></Headline>
+      </div>
 
       {/* Banner */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-sm:mt-5 m-2 sm:m-0">
@@ -34,10 +30,8 @@ const Banner = () => {
           <div
             className="h-52 sm:h-72 bg-cover rounded-sm"
             style={{
-              backgroundImage:
-                "url(https://www.marketresearchintellect.com/images/01-24/global-shake-machines-market-size-and-forecast.webp)",
-            }}
-          ></div>
+              backgroundImage: "url(https://www.marketresearchintellect.com/images/01-24/global-shake-machines-market-size-and-forecast.webp)",
+            }}></div>
         </div>
 
         {/* News Section */}
@@ -50,11 +44,10 @@ const Banner = () => {
             {/* <h2 className="mt-2 text-xl sm:text-2xl font-bold text-gray-900">
               News HEADLINES
             </h2> */}
-            <h2 className="mt-2 text-3xl font-bold text-gray-900">
-            Major Tech Merger Shakes Global Markets
-            </h2>
-            <p className="mt-3 texts-sm text-gray-600">
-            Two leading tech giants announce a historic merger, sending shockwaves through the global market. The deal is expected to reshape the tech landscape and impact millions of users worldwide.
+            <h2 className="mt-2 text-3xl font-bold text-gray-900">Major Tech Merger Shakes Global Markets</h2>
+            <p className="mt-3 text-xl font-medium text-gray-600">
+              Two leading tech giants announce a historic merger, sending shockwaves through the global market. The deal is expected to reshape the tech landscape and impact
+              millions of users worldwid.
             </p>
             {/* <p className="mt-2 text-gray-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.

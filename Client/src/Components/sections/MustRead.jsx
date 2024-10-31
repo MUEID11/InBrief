@@ -11,41 +11,24 @@ const MustRead = () => {
     <div className="my-2 p-2 container mx-auto mt-4 sm:mt-12 max-sm:px-2">
       {/* Must read title */}
       <div className="flex justify-start items-center rounded-sm">
-        <h2 className="text-2xl md:text-3xl font-inter font-semibold  ">
-          Must read
-        </h2>
+        <h2 className="text-2xl md:text-3xl text-neutral-900 font-inter font-bold">Must read</h2>
       </div>
       {/* must read cards */}
-      <div
-        data-aos="fade-up"
-        data-aos-duration="2000"
-        className="my-6 grid grid-cols-1  lg:grid-cols-3 gap-6"
-      >
+      <div data-aos="fade-up" data-aos-duration="2000" className="my-6 grid grid-cols-1  lg:grid-cols-3 gap-6">
         {/* 1st part */}
         <div className="">
-          <img
-            src="https://images.pexels.com/photos/20258/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
-            className="w-full rounded-sm"
-            alt=""
-          />
+          <img src="https://images.pexels.com/photos/20258/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600" className="w-full rounded-sm" alt="" />
 
           <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
-            <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">
-              CNN
-            </button>
+            <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">CNN</button>
             <p>CNN.</p>
             <p>10 hours ago</p>
           </div>
 
-          <h3 className="text-xl font-semibold font-inter">
-            Ukraine`s slience along southern front fuels counteroffensive...
-          </h3>
-          <p className="text-sm mt-1 text-gray-600 font-medium">
-            Ukraine CNN -
-          </p>
+          <h3 className="text-xl font-semibold font-inter">Ukraine`s slience along southern front fuels counteroffensive...</h3>
+          <p className="text-sm mt-1 text-gray-600 font-medium">Ukraine CNN -</p>
           <p className="text-[13px] mb-1 text-gray-600 font-medium">
-            Miles of empty feilds where ou might expect a build up of army Tanks
-            tracks that emerge in the mud frome nowhere...
+            Miles of empty feilds where ou might expect a build up of army Tanks tracks that emerge in the mud frome nowhere...
           </p>
           <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
             <p className="text-red-600 text-sm">War.</p>
@@ -64,20 +47,13 @@ const MustRead = () => {
           <div className="relative p-4 h-full flex items-end">
             <div>
               <div className="flex gap-2 text-sm my-2 text-white">
-                <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">
-                  CNN
-                </button>
+                <button className="bg-red-600 text-white rounded-full size-6   text-[9px]">CNN</button>
                 <p className="opacity-70">CNN.</p>
                 <p className="opacity-70">10 hours ago</p>
               </div>
-              <h2 className="text-2xl font-serif font-semibold text-white">
-                John Legend is sending a poweful message to woman on the Eras
-                ...
-              </h2>
+              <h2 className="text-2xl font-serif font-semibold text-white">John Legend is sending a poweful message to woman on the Eras ...</h2>
               <p className="text-white  text-[13px] line-clamp-2  ">
-                My first singing of discomfort at jhon legend show in Las vegas
-                hit after the infected beast faded from fan favourite crual
-                summer the...
+                My first singing of discomfort at jhon legend show in Las vegas hit after the infected beast faded from fan favourite crual summer the...
               </p>
               <div className="flex gap-2 text-[13px] text-white opacity-50">
                 <p>Entertainment :</p>
@@ -90,11 +66,7 @@ const MustRead = () => {
         <div className="gap-6 grid grid-row-2 grid-cols-1 rounded-sm">
           <div className="row-span-1 flex items-center justify-center space-x-4 min-h-full">
             <div className="relative h-full w-full rounded-sm">
-              <img
-                src="https://business.itn.co.uk/wp-content/uploads/2024/04/keyclimatedates.jpg"
-                className="h-full w-full object-cover rounded-sm"
-                alt=""
-              />
+              <img src="https://business.itn.co.uk/wp-content/uploads/2024/04/keyclimatedates.jpg" className="h-full w-full object-cover rounded-sm" alt="" />
             </div>
             <div className="p-2 flex-col space-y-2 justify-between">
               <div className="flex items-center space-x-3 text-sm">
@@ -102,16 +74,9 @@ const MustRead = () => {
                 <p>CNN.</p>
                 <p>10 hours ago</p>
               </div>
-              <h3 className="text-sm font-semibold font-inter">
-                Global Climate Summit 2024: Key Decisions Made
-              </h3>
-              <p className="text-sm mt-1 text-gray-600 font-medium">
-                Ukraine CNN -
-              </p>
-              <p className="text-xs mb-1 text-gray-600 font-medium">
-                World leaders gather at the Global Climate Summit to tackle
-                pressing environmental issues.
-              </p>
+              <h3 className="text-sm font-semibold font-inter">Global Climate Summit 2024: Key Decisions Made</h3>
+              <p className="text-sm mt-1 text-gray-600 font-medium">Ukraine CNN -</p>
+              <p className="text-xs mb-1 text-gray-600 font-medium">World leaders gather at the Global Climate Summit to tackle pressing environmental issues.</p>
               <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
                 <p className="text-red-600 text-sm">War.</p>
                 <p>8 min read</p>
@@ -120,11 +85,7 @@ const MustRead = () => {
           </div>
           <div className="row-span-1 flex items-center justify-center space-x-4 min-h-full">
             <div className="relative h-full w-full">
-              <img
-                src="https://www.kevinmd.com/wp-content/uploads/unnamed-42.jpg"
-                className="h-full w-full object-cover rounded-sm"
-                alt=""
-              />
+              <img src="https://www.kevinmd.com/wp-content/uploads/unnamed-42.jpg" className="h-full w-full object-cover rounded-sm" alt="" />
             </div>
             <div className="p-2 flex-col space-y-2">
               <div className="flex items-center space-x-3 text-sm">
@@ -132,16 +93,9 @@ const MustRead = () => {
                 <p>CNN.</p>
                 <p>10 hours ago</p>
               </div>
-              <h3 className="text-sm font-semibold font-inter">
-                Revolutionary AI Tool Transforms Healthcare
-              </h3>
-              <p className="text-sm mt-1 text-gray-600 font-medium">
-                Ukraine CNN -
-              </p>
-              <p className="text-xs mb-1 text-gray-600 font-medium">
-                A new AI-powered tool is set to revolutionize healthcare,
-                promising faster diagnostics.
-              </p>
+              <h3 className="text-sm font-semibold font-inter">Revolutionary AI Tool Transforms Healthcare</h3>
+              <p className="text-sm mt-1 text-gray-600 font-medium">Ukraine CNN -</p>
+              <p className="text-xs mb-1 text-gray-600 font-medium">A new AI-powered tool is set to revolutionize healthcare, promising faster diagnostics.</p>
               <div className="flex gap-2 text-sm my-2 text-gray-600 font-medium">
                 <p className="text-red-600 text-sm">War.</p>
                 <p>8 min read</p>
