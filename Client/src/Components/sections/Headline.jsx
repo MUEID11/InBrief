@@ -35,8 +35,8 @@ const Headline = () => {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center p-4">
-        <p className="text-xl text-red-600">Failed to load headlines. Please try again later.</p>
+      <div className="flex items-center justify-center sm:p-4 p-4">
+        <p className="sm:text-xl text-sm  text-red-600">Failed to load headlines. Please try again later.</p>
       </div>
     );
   }

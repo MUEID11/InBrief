@@ -36,10 +36,10 @@ const EditorPicks = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-6 px-2">
-          {news.length > 0 &&
+          {news?.length > 0 &&
             news?.map((n) => (
               <div
-                key={n.uuid}
+                key={n?.uuid}
                 className="shadow-lg p-5 border  border-r-2 border-b-2 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:bg-gray-200 hover:scale-102  rounded-sm text-white group hover:text-neutral-900">
                 <Link to={n?.url} className="">
                   {/* Link wrapping Image */}

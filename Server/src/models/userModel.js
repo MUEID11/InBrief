@@ -38,3 +38,4 @@ userSchema.plugin(mongooseUniqueValidator, {
 
 const userModel = model("users", userSchema);
 module.exports = userModel;
+                                                        
