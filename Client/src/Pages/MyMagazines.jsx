@@ -3,16 +3,15 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { PiEmptyBold } from "react-icons/pi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaPlusCircle } from "react-icons/fa";
 import ProfileLoadingTest from "../Components/Component/ProfileLoadingTest";
 
-const Magazine = () => {
+const MyMagazines = () => {
   const [showModal, setShowModal] = useState(false);
   const { user } = useSelector((state) => state.user);
   const [magazines, setMagazines] = useState([]);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleCreateMagazine = async (e) => {
     e.preventDefault();
@@ -68,7 +67,6 @@ const Magazine = () => {
         throw new Error("Magazine creation failed");
       }
       setLoading(false);
-      navigate("/my-magazines");
     } catch (error) {
       setLoading(false);
       console.error("Error creating magazine:", error);
@@ -92,7 +90,7 @@ const Magazine = () => {
   const getData = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/magazines`);
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/magazines?creatorId=${user?._id}`);
       console.log(data);
       setMagazines(data);
       setLoading(false);
@@ -109,9 +107,9 @@ const Magazine = () => {
       {/* Magazine header */}
       <div className="flex justify-between items-end mb-6">
         <div>
-          <h3 className="text-xl md:text-2xl font-inter font-medium mb-2">All Magazines</h3>
+          <h3 className="text-xl md:text-2xl font-inter font-medium mb-2">My Magazines</h3>
           <p className="text-neutral-600 max-w-[600px] text-sm">
-            Explore a world of topics brought together by our community. Find and follow curated magazines that reflect the passions, trends, and events that matter most.
+            Your curated universe of magazines—whether private or shared with the world, each collection reflects your unique interests and passions
           </p>
         </div>
         <button className="text-sm px-3 py-2 flex items-center gap-2 border border-red-500 text-red-500 rounded-lg mb-4" onClick={() => setShowModal(true)}>
@@ -131,10 +129,7 @@ const Magazine = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
                 <div className="px-1 text-white absolute bottom-8 ">
                   <h3 className="text-2xl font-semibold px-1 mb-1">{magazine?.title}</h3>
-                  <h3 className="font-medium text-neutral-200 text-sm px-1">
-                    {magazine?.description?.length > 70 ? magazine?.description?.substring(0, 70) : magazine?.description}
-                    {magazine?.description?.length > 70 && "..."}
-                  </h3>
+                  <h3 className="font-medium text-neutral-200 text-sm px-1">{`${magazine?.description.substring(0, 70)}${magazine?.description?.length > 70 && "..."}`}</h3>
                 </div>
               </div>
             </Link>
@@ -177,8 +172,20 @@ const Magazine = () => {
         </div>
       )}
       {loading && <ProfileLoadingTest />}
+      {!magazines?.length > 0 && (
+        <>
+          <h3 className="text-center text-xl mt-20 font-medium text-red-500 flex justify-center items-center gap-2">
+            {" "}
+            <span>
+              {" "}
+              <PiEmptyBold />
+            </span>{" "}
+            <span>No Magazine Found</span>
+          </h3>
+        </>
+      )}
     </div>
   );
 };
 
-export default Magazine;
+export default MyMagazines;

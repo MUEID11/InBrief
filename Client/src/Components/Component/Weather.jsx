@@ -37,7 +37,7 @@ const WeatherCard = () => {
 
   return (
     <div className="flex justify-center items-center bg-primary-black shadow-lg">
-      <div className="bg-white/10 backdrop-blur-md rounded-sm p-6 shadow-lg w-full">
+      <div className="bg-white/10 backdrop-blur-md rounded-sm p-2 shadow-lg w-full">
         <div className="flex items-center bg-white/20 px-3 py-2 mb-5">
           <input
             type="text"
@@ -72,7 +72,7 @@ const WeatherCard = () => {
         )}
 
         {weather && (
-          <div className="flex justify-between mt-5 text-white/80 text-sm">
+          <div className="flex justify-between mt-5 text-white/80 text-xs">
             <div className="flex items-center space-x-1.5">
               <span>Humidity:</span>
               <span>{weather.main.humidity}%</span>

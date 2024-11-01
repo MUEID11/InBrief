@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 const ArticleForm = () => {
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
-
   const [articleData, setArticleData] = useState({
     title: "",
     description: "",
@@ -20,7 +19,33 @@ const ArticleForm = () => {
 
   // State to manage if the input is focused (clicked)
   const [isFocused, setIsFocused] = useState(false);
-
+  const handleImageChange = async (e) => {
+    e.preventDefault();
+    const articleImage = e.target.files[0];
+    const image = new FormData();
+    if (!image) {
+      return;
+    }
+    image.append("file", articleImage);
+    image.append("upload_preset", "a4roznw9");
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${
+        import.meta.env.VITE_CLOUD_NAME
+      }/image/upload`,
+      {
+        method: "POST",
+        body: image,
+      }
+    );
+    const data = await response.json();
+    const url = data.secure_url;
+    console.log(url);
+    if (!url) {
+      return alert("image upload failed");
+    } else {
+      setArticleData({ ...articleData, image: url });
+    }
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setArticleData({ ...articleData, [name]: value });
@@ -38,7 +63,10 @@ const ArticleForm = () => {
         status: "pending", // Set the initial status to 'pending'
       };
 
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/articles`, updatedArticleData);
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/articles`,
+        updatedArticleData
+      );
       if (response.status === 201) {
         toast.success("Article submitted for approval");
         navigate("/dashboard/user/my-posts");
@@ -62,13 +90,18 @@ const ArticleForm = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-lg rounded-sm mt-10 relative overflow-hidden">
-      <h2 className="text-4xl font-bold text-center text-gray-800 mb-8 relative z-10">Create New Article</h2>
+    <div className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-lg rounded-sm mt-6 relative overflow-hidden">
+      <h2 className="sm:text-3xl text-2xl  font-bold text-center text-gray-800 mb-4 relative z-10">
+        Create New Article
+      </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+      <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
         {/* Title Input */}
         <div className="flex flex-col transform transition-all duration-300">
-          <label className="text-lg font-semibold text-gray-800 mb-1">Title</label>
+          <label className="text-lg font-semibold text-gray-800 mb-1">
+            Title
+          </label>
+
           <input
             type="text"
             name="title"
@@ -78,14 +111,20 @@ const ArticleForm = () => {
             onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`}
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
+                isFocused
+                  ? "border-gradient-to-r from-red-500 to-pink-500"
+                  : "border-gray-300"
+              }`}
             placeholder="Enter article title"
           />
         </div>
 
         {/* Description Input */}
         <div className="flex flex-col transform transition-all duration-300">
-          <label className="text-lg font-semibold text-gray-800 mb-1">Description</label>
+          <label className="text-lg font-semibold text-gray-800 mb-1">
+            Description
+          </label>
           <textarea
             name="description"
             value={articleData.description}
@@ -94,7 +133,11 @@ const ArticleForm = () => {
             onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`}
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
+                isFocused
+                  ? "border-gradient-to-r from-red-500 to-pink-500"
+                  : "border-gray-300"
+              }`}
             rows="4"
             placeholder="Enter article description"
           />
@@ -102,24 +145,30 @@ const ArticleForm = () => {
 
         {/* Image URL Input */}
         <div className="flex flex-col transform transition-all duration-300">
-          <label className="text-lg font-semibold text-gray-800 mb-1">Image URL</label>
+          <label className="text-lg font-semibold text-gray-800 mb-1">
+            Image URL
+          </label>
           <input
-            type="text"
-            name="image"
-            value={articleData.image}
-            onChange={handleChange}
+            type="file"
+            onChange={handleImageChange}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`}
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
+                isFocused
+                  ? "border-gradient-to-r from-red-500 to-pink-500"
+                  : "border-gray-300"
+              }`}
             placeholder="Enter image URL"
           />
         </div>
 
         {/* Source Input */}
         <div className="flex flex-col transform transition-all duration-300">
-          <label className="text-lg font-semibold text-gray-800 mb-1">Source</label>
+          <label className="text-lg font-semibold text-gray-800 mb-1">
+            News Source
+          </label>
           <input
             type="text"
             name="source"
@@ -129,14 +178,20 @@ const ArticleForm = () => {
             onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`}
-            placeholder="Enter source name"
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
+                isFocused
+                  ? "border-gradient-to-r from-red-500 to-pink-500"
+                  : "border-gray-300"
+              }`}
+            placeholder="e.g CNN | BBC"
           />
         </div>
 
         {/* URL Input */}
         <div className="flex flex-col transform transition-all duration-300">
-          <label className="text-lg font-semibold text-gray-800 mb-1">URL</label>
+          <label className="text-lg font-semibold text-gray-800 mb-1">
+            Link To News
+          </label>
           <input
             type="text"
             name="url"
@@ -146,14 +201,20 @@ const ArticleForm = () => {
             onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`}
-            placeholder="Enter source URL"
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
+                isFocused
+                  ? "border-gradient-to-r from-red-500 to-pink-500"
+                  : "border-gray-300"
+              }`}
+            placeholder="Enter News URL"
           />
         </div>
 
         {/* Category Input */}
         <div className="flex flex-col transform transition-all duration-300">
-          <label className="text-lg font-semibold text-gray-800 mb-1">Category</label>
+          <label className="text-lg font-semibold text-gray-800 mb-1">
+            Category
+          </label>
           <input
             type="text"
             name="category"
@@ -163,14 +224,20 @@ const ArticleForm = () => {
             onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`}
-            placeholder="Enter article category"
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
+                isFocused
+                  ? "border-gradient-to-r from-red-500 to-pink-500"
+                  : "border-gray-300"
+              }`}
+            placeholder="e.g War | Politics | Human Rights"
           />
         </div>
 
         {/* Region Input */}
         <div className="flex flex-col transform transition-all duration-300">
-          <label className="text-lg font-semibold text-gray-800 mb-1">Region</label>
+          <label className="text-lg font-semibold text-gray-800 mb-1">
+            Region
+          </label>
           <input
             type="text"
             name="region"
@@ -180,15 +247,20 @@ const ArticleForm = () => {
             onBlur={() => setIsFocused(false)}
             required
             className={`border-2 rounded-sm p-3 bg-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none 
-              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${isFocused ? "border-gradient-to-r from-red-500 to-pink-500" : "border-gray-300"}`}
-            placeholder="Enter article region"
+              focus:ring-2 focus:ring-red-500 transition-all duration-300 ${
+                isFocused
+                  ? "border-gradient-to-r from-red-500 to-pink-500"
+                  : "border-gray-300"
+              }`}
+            placeholder="e.g Bangladesh | England | Palestine"
           />
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full p-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-sm shadow-lg hover:from-red-800 hover:to-pink-300 transition-all duration-300">
+          className="w-full p-3 bg-red-600 rounded-sm text-white font-semibold  shadow-lg transition-all duration-300"
+        >
           Submit Article
         </button>
       </form>

@@ -18,19 +18,9 @@ const SignIn = () => {
     const password = form.password.value;
     try {
       await dispatch(signInByEmailAndPass({ email, password }));
-      // const response = await fetch(`${import.meta.env.VITE_API_URL}/users/signin`, {
-      //   method: "POST",
-      //   headers: { "content-type": "application/json" },
-      //   body: JSON.stringify({ email, password }),
-      // });
-      // const data = await response.json();
-      // console.log(data);
-      // const token = localStorage.setItem("token", data);
-      // console.log(token);
-      // console.log(response.ok);
 
       if (error) {
-        const msg = error.split(':')[1]
+        const msg = error.split(":")[1];
         toast(msg, {
           icon: "❌",
           style: {
@@ -65,7 +55,7 @@ const SignIn = () => {
   };
 
   return (
-    <section className="container mx-auto  flex items-center justify-center mt-2 ">
+    <section className="container mx-auto h-full flex items-center justify-center">
       <div className="flex w-full max-w-sm overflow-hidden bg-white shadow-lg sm:max-w-4xl">
         {/* Left side - Background Image */}
         <div
@@ -135,7 +125,7 @@ const SignIn = () => {
                 type="password"
               />
             </div>
-            <div className="mb-4 mt-2">
+            {/* <div className="mb-4 mt-2">
               <input type="checkbox" id="terms" className="mr-2" />
               <label htmlFor="terms">
                 I agree to all the statements in
@@ -143,7 +133,7 @@ const SignIn = () => {
                   Terms of service
                 </a>
               </label>
-            </div>
+            </div> */}
 
             {/* Sign In Button */}
             <div className="mt-6">

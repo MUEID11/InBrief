@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
-import NewsSection from './NewsSection';
+import { useEffect, useState } from "react";
+import NewsSection from "./NewsSection";
 
 const SportsNewsSection = ({ isHomeSection = false }) => {
   const [articles, setArticles] = useState([]);
@@ -8,12 +8,11 @@ const SportsNewsSection = ({ isHomeSection = false }) => {
   const [error, setError] = useState(false);
 
   const [width, setWidth] = useState(window.innerWidth);
-  console.log(width);
   let url;
   // let url = `${import.meta.env.VITE_API_URL}/articles?category=sports`;
 
   if (isHomeSection) {
-    if (width <= 1536 && width >= 1280) {
+    if (width <= 1500 && width >= 1280) {
       url = `${import.meta.env.VITE_API_URL}/articles?category=sports&limit=3`;
     } else if (width >= 1024 && width <= 1280) {
       url = `${import.meta.env.VITE_API_URL}/articles?category=sports&limit=2`;
@@ -29,7 +28,7 @@ const SportsNewsSection = ({ isHomeSection = false }) => {
     fetch(url)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json();
       })
@@ -38,12 +37,11 @@ const SportsNewsSection = ({ isHomeSection = false }) => {
         setLoading(false);
       })
       .catch((err) => {
-        console.error('Error fetching Business News:', err);
+        console.error("Error fetching Business News:", err);
         setError(true);
         setLoading(false);
       });
   }, [url]);
-  console.log(articles);
   if (loading) {
     return (
       <div className="flex items-center justify-center p-4">

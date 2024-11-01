@@ -92,12 +92,6 @@ const MyVotesArticle = () => {
                         >
                           <span>Category </span>
                         </th>
-                        <th
-                          scope="col"
-                          className="py-3.5 pl-8 text-sm font-normal text-left rtl:text-right text-gray-500"
-                        >
-                          <span>Status </span>
-                        </th>
 
                         <th
                           scope="col"
@@ -129,41 +123,6 @@ const MyVotesArticle = () => {
 
                           <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
                             {votedArticle?.category}
-                          </td>
-                          <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                            <div
-                              className={`inline-flex items-center px-3 py-1 rounded-full gap-x-2 ${
-                                votedArticle?.status === "pending" &&
-                                "bg-yellow-100/60 text-yellow-500"
-                              }
-                                 ${
-                                  votedArticle?.status === "approved" &&
-                                   "bg-emerald-100/60 text-emerald-500"
-                                 } 
-                                 ${
-                                  votedArticle?.status === "rejected" &&
-                                   "bg-emerald-100/60 text-red-500"
-                                 } 
-                                `}
-                            >
-                              <span
-                                className={`h-1.5 w-1.5 rounded-full ${
-                                  votedArticle?.status === "pending" &&
-                                  "bg-yellow-500"
-                                }  ${
-                                  votedArticle?.status === "approved" &&
-                                  "bg-green-500"
-                                }  
-                                  ${
-                                    votedArticle?.status === "rejected" &&
-                                    "bg-red-500"
-                                  }  
-                                  `}
-                              ></span>
-                              <h2 className="text-sm font-normal ">
-                                { votedArticle?.status}
-                              </h2>
-                            </div>
                           </td>
 
                           <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
@@ -208,7 +167,7 @@ const MyVotesArticle = () => {
             {" "}
             <span>
               {" "}
-              <PiEmptyBold/>
+              <PiEmptyBold />
             </span>{" "}
             <span>No voted Article Found Yet!</span>
           </h3>

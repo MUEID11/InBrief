@@ -1,26 +1,32 @@
-// import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// export const infoUpdateApi = createApi({
-//   reducerPath: "infoUpdateApi",
-//   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
-//   tagTypes: ["infoUpdate"],
-//   endPoints: (builder) => ({
-//     getInfo: builder.query({
-//       query: (userId) => ({
-//         url: `/users/${userId}/users`,
-//         method: "GET",
-//       }),
-//       providesTags: ["infoUpdate"],
-//     }),
-//     addInfo: builder.mutation({
-//       query: ({ userId, data }) => ({
-//         url: `/users/${userId}/updateInfo`,
-//         method: "PATCH",
-//         body: data,
-//       }),
-//       invalidatesTags: ["infoUpdate"],
-//     }),
-//   }),
-// });
+export const infoUpdateApi  = createApi({
+  reducerPath: "infoUpdateApi",
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
+  tagTypes: ["infoUpdate"],
+  endpoints: (builder) => ({
+    getInfo: builder.query({
+      query: (userId) => ({
+        url: `/users/${userId}`,
+        method: "GET",
+      }),
+      providesTags: ["infoUpdate"],
+    }),
 
-// export const { useGetInfoQuery, useAddInfoMutation } = infoUpdateApi;
+    addInfo: builder.mutation({
+      query: ({ userId, data }) => {
+        return {
+            url: `/users/${userId}/updateInfo`,
+            method: "PATCH",
+            body: data,
+        };
+      },
+      invalidatesTags: ["infoUpdate"],
+    }),
+
+  }),
+});
+
+export const {
+useGetInfoQuery,useAddInfoMutation
+} = infoUpdateApi ;

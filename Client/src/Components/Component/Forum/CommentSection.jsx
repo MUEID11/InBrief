@@ -8,7 +8,6 @@ const CommentSection = ({ discussionId }) => {
   const { user } = useSelector((state) => state.user);
   const [addForumComment] = useAddForumCommentMutation() || {};
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,7 +24,6 @@ const CommentSection = ({ discussionId }) => {
           userEmail: user?.email,
         },
       });
-      console.log('forum Comment Added:', response);
       setComment("");
       e.target.reset();
     } catch (error) {
@@ -44,16 +42,12 @@ const CommentSection = ({ discussionId }) => {
           />
           <h1 className="font-semibold">{user?.name}</h1>
         </div> */}
-        <textarea
-          onChange={(e) => setComment(e.target.value)}
-          className="w-full mt-1 p-2 border border-gray-300 rounded-sm"
-                  rows="2"
-                  placeholder="Write a comment..."></textarea>
-                <div className="flex justify-end ">
-                  <button type="submit" className="mt-2 bg-red-500 text-white px-2 py-1 rounded-sm  ">
-                    Comment
-                  </button>
-                </div>
+        <textarea onChange={(e) => setComment(e.target.value)} className="w-full mt-1 p-2 border border-gray-300 rounded-sm" rows="2" placeholder="Write a comment..."></textarea>
+        <div className="flex justify-end ">
+          <button type="submit" className="mt-2 bg-red-500 text-white px-2 py-1 rounded-sm  ">
+            Comment
+          </button>
+        </div>
       </form>
       {/* <div>{data}</div> */}
     </div>

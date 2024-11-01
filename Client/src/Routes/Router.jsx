@@ -30,6 +30,9 @@ import BookDetails from "../Pages/BookDetails";
 import CreatorArticles from "../Pages/CreatorArticles";
 import Magazine from "../Pages/Magazine";
 import MagazineDetails from "../Pages/MagazineDetails";
+import MyMagazines from "../Pages/MyMagazines";
+import TermsAndConditions from "../Pages/TermsAndConditions";
+import PrivacyPolicy from "../Pages/PrivacyPolicy";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -72,7 +75,7 @@ const router = createBrowserRouter([
         path: "sports",
         element: <SportsNewsSection />,
       },
-    
+
       {
         path: "forum",
         element: <ForumPage />,
@@ -95,6 +98,14 @@ const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
+        path: "terms",
+        element: <TermsAndConditions />,
+      },
+      {
+        path: "privacy",
+        element: <PrivacyPolicy />,
+      },
+      {
         path: "submit-article",
         element: (
           <ProtectedRoute>
@@ -106,7 +117,15 @@ const router = createBrowserRouter([
         path: "/magazine",
         element: (
           <ProtectedRoute>
-           <Magazine/>
+            <Magazine />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/my-magazines",
+        element: (
+          <ProtectedRoute>
+            <MyMagazines />
           </ProtectedRoute>
         ),
       },
@@ -123,7 +142,7 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Dashboard />
-           </ProtectedRoute>
+          </ProtectedRoute>
         ),
       },
       {
@@ -131,7 +150,7 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <UserDashboard />
-           </ProtectedRoute>
+          </ProtectedRoute>
         ),
       },
       {
@@ -170,7 +189,7 @@ const router = createBrowserRouter([
         path: "/articles/creator/:email",
         element: (
           <ProtectedRoute>
-          <CreatorArticles/>
+            <CreatorArticles />
           </ProtectedRoute>
         ),
       },

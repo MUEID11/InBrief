@@ -6,6 +6,7 @@ export default {
     extend: {
       fontFamily: {
         inter: ["Inter", "sans-serif"],
+        // gsans: ["General Sans", "sans-serif"],
       },
       colors: {
         "primary-black": "#252525", // Custom soft black

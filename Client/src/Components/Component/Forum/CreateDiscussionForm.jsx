@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import toast from "react-hot-toast";
+import { ImSpinner9 } from "react-icons/im";
 
 const CreateDiscussion = ({ onCreate }) => {
   const [title, setTitle] = useState("");
@@ -10,7 +12,6 @@ const CreateDiscussion = ({ onCreate }) => {
   const [image, setImage] = useState(null);
   const { user } = useSelector((state) => state.user);
 
-  console.log(image);
   const handleChange = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -32,7 +33,6 @@ const CreateDiscussion = ({ onCreate }) => {
     );
     const data = await response.json();
     const url = data.secure_url;
-    console.log(url);
     if (!url) {
       setLoading(false);
       return alert("image upload failed");
@@ -44,19 +44,10 @@ const CreateDiscussion = ({ onCreate }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const formData = new FormData();
-    // formData.append('title', title);
-    // formData.append('content', content);
-    // formData.append('image', image);
-    // formData.append('username', user?.name);
-    // formData.append('userImage', user?.imageUrl);
-
     const obj = { title, content };
     obj.image = image;
     obj.username = user?.name;
     obj.userImage = user?.imageUrl;
-
-    console.log("megh", obj);
 
     try {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/forum`, obj, {
@@ -65,9 +56,19 @@ const CreateDiscussion = ({ onCreate }) => {
         },
       });
       onCreate(response.data);
+
       setImage(null);
       setTitle("");
       setContent("");
+      toast("Discussion Create Successfully", {
+        icon: "✅",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+      e.target.reset();
     } catch (error) {
       console.error("Error creating discussion", error);
     }
@@ -101,13 +102,17 @@ const CreateDiscussion = ({ onCreate }) => {
         className="mb-4 border p-2 w-full"
       />
       <div className="flex justify-end">
-        <button
-          type="submit"
-          disabled={loading}
-          className="bg-blue-500 text-white p-2"
-        >
-          Create Discussion
-        </button>
+        {loading ? (
+          <ImSpinner9 className="animate-spin text-blue-500 mr-20" />
+        ) : (
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-blue-500 text-white p-2"
+          >
+            Create Discussion
+          </button>
+        )}
       </div>
     </form>
   );

@@ -13,6 +13,8 @@ import {
 import toast from "react-hot-toast";
 import { useAddBookmarkMutation } from "../../services/bookmarksApi";
 import { useAddVotesMutation } from "../../services/Votes/votesApi";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const NewsCard = ({ article }) => {
   const navigate = useNavigate();
@@ -25,9 +27,12 @@ const NewsCard = ({ article }) => {
   const [addBookmark, { isError, error, data: toggleBookmarkMsg, isSuccess }] =
     useAddBookmarkMutation();
   const [addVotes] = useAddVotesMutation();
+  useEffect(() => {
+    Aos.init();
+  });
 
   const handleLike = async (id) => {
-    if (!user.email) {
+    if (!user?.email) {
       navigate("/signin");
       return;
     }
@@ -48,16 +53,15 @@ const NewsCard = ({ article }) => {
   };
 
   const handleBookmark = (id) => {
-    if (!user.email) {
-      navigate("/signin");
+    if (!user?.email) {
+      toast.error("Plese Sign In");
       return;
+    } else {
+      addBookmark({ id, userEmail: user?.email })
+        .unwrap()
+        .then((payload) => console.log("fulfilled", payload))
+        .catch((error) => console.error("rejected", error));
     }
-
-    addBookmark({ id, userEmail: user?.email })
-      .unwrap()
-      .then((payload) => console.log("fulfilled", payload))
-      .catch((error) => console.error("rejected", error));
-      
   };
 
   useEffect(() => {
@@ -74,7 +78,6 @@ const NewsCard = ({ article }) => {
     }
 
     if (isError) {
-      
       toast(error.data.message || "Something went wrong", {
         icon: "❌",
         style: {
@@ -87,32 +90,25 @@ const NewsCard = ({ article }) => {
   }, [error, isError, isSuccess, toggleBookmarkMsg]);
 
   return (
-    <article className="shadow-lg p-5 border  border-r-2 border-b-2 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:scale-102 h-full rounded-sm">
+    <article
+      className="shadow-lg p-5 border  border-r-2 border-b-2 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:bg-gray-200 hover:scale-102 h-full rounded-sm"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
       <Link to={`/articles/${article?._id}`} className="flex-1">
         {/* Link wrapping Image */}
-        <a
-          href={article.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Read more about ${article.title}`}
-        >
-          <img
-            src={article.image}
-            alt={article.title}
-            className="h-56 object-cover w-full"
-            loading="lazy"
-          />
-        </a>
+
+        <img
+          src={article.image}
+          alt={article.title}
+          className="h-56 object-cover w-full"
+          loading="lazy"
+        />
 
         {/* Info Section */}
         <div className="mt-4 flex flex-col flex-grow">
           {/* Source Section */}
           <div className="flex gap-2 items-center">
-            {/* <img
-                src="https://via.placeholder.com/20" // Placeholder for the source icon
-                className="size-5 bg-red-700 rounded-full object-cover"
-                alt={`${article?.source?.url}`}
-              /> */}
             <div className="size-2 bg-red-600 rounded-full"></div>
             <span className="text-sm text-gray-600">
               {article?.source?.name || article.source}
@@ -120,9 +116,9 @@ const NewsCard = ({ article }) => {
           </div>
 
           {/* Headline */}
-          <a href={article.url} target="_blank" rel="noopener noreferrer">
+          <p target="_blank" rel="noopener noreferrer">
             <h3 className="font-bold text-lg mt-2">{article?.title}</h3>
-          </a>
+          </p>
           {/* Date, Category, Region */}
           <div className="flex justify-between items-center mb-2 mt-1">
             <div className="flex gap-3 items-center">
@@ -138,7 +134,7 @@ const NewsCard = ({ article }) => {
             </p>
           </div>
           {/* Description */}
-          <p className="text-sm text-gray-600 mb-4 flex-grow">{`${article?.description.substring(
+          <p className="text-sm text-gray-600 mb-4 font-semibold flex-grow">{`${article?.description.substring(
             0,
             100
           )}...`}</p>
@@ -178,9 +174,11 @@ const NewsCard = ({ article }) => {
             </div>
           </div>
           {/* Read More Button */}
-          <Link to={`/articles/${article?._id}`}><button className="text-red-600 self-end font-medium">
-            Read More
-          </button></Link>
+          <Link to={`/articles/${article?._id}`}>
+            <button className="text-red-600 self-end font-medium">
+              Read More
+            </button>
+          </Link>
         </div>
       </div>
     </article>
@@ -196,10 +194,7 @@ NewsCard.propTypes = {
     description: PropTypes.string,
     author: PropTypes.string,
     date: PropTypes.string,
-    source: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      url: PropTypes.string,
-    }).isRequired,
+    source: PropTypes.string.isRequired,
     region: PropTypes.string,
     image: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,

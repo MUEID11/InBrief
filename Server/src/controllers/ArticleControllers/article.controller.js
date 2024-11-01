@@ -27,6 +27,7 @@ const postArticle = async (req, res) => {
 const updateStatus = async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
+  console.log(id, status);
   try {
     const article = await Article.findByIdAndUpdate(id, { status }, { new: true });
     if (!article) {
@@ -73,6 +74,50 @@ const getArticles = async (req, res) => {
     res.status(200).json({ success: true, count: articles.length, data: articles });
   } catch (error) {
     res.status(500).json({ success: false, error });
+  }
+};
+
+const getAllArticles = async (req, res) => {
+  try {
+    const articles = await Article.find().sort({
+      createdAt: "desc",
+    });
+
+    if (articles.length === 0) {
+      return res.status(404).json({ message: "No Articles found " });
+    }
+
+    res.status(200).json({ success: true, count: articles.length, data: articles });
+  } catch (error) {
+    console.error("Error fetching Articles:", error);
+    res.status(500).json({ message: "Internal Server Error", error });
+  }
+};
+
+const getAllFeaturedArticles = async (req, res) => {
+  try {
+    const queryLimit = req.query?.limit;
+    let limit = 3;
+    if (queryLimit) {
+      limit = parseInt(queryLimit);
+    }
+    const featuredArticles = await Article.aggregate([
+      {
+        $addFields: {
+          voteCount: { $size: "$likes" },
+        },
+      },
+      {
+        $sort: { voteCount: -1 },
+      },
+      {
+        $limit: limit,
+      },
+    ]);
+    res.status(200).json({ success: true, count: featuredArticles.length, data: featuredArticles });
+  } catch (error) {
+    console.error("Error fetching featured Articles:", error);
+    res.status(500).json({ message: "Internal Server Error", error });
   }
 };
 
@@ -205,12 +250,12 @@ const getArticlesByEmail = async (req, res) => {
     const articles = await Article.find({ postedBy: email }).populate("createdBy");
 
     if (articles.length === 0) {
-      return res.status(404).json({ message: "No products found for this email" });
+      return res.status(404).json({ message: "No article found for this email" });
     }
 
     res.status(200).json(articles);
   } catch (error) {
-    console.error("Error fetching products:", error);
+    console.error("Error fetching articles:", error);
     res.status(500).json({ message: "Internal Server Error", error });
   }
 };
@@ -256,4 +301,6 @@ module.exports = {
   deleteArticle,
   updateStatus,
   getMyVotesArticles,
+  getAllArticles,
+  getAllFeaturedArticles,
 };

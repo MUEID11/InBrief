@@ -13,6 +13,7 @@ const discussionRouter = require("./routers/ForumRouters/discussionRouter");
 const commentRouters = require("./routers/ForumRouters/commentRouter");
 const magazineHandlers = require("./routers/MagazineRouters/magazineHandlers");
 const magazineCollaboratorHandlers = require("./routers/MagazineRouters/magazineCollaboratorHandlers");
+const newsLettersRoute = require('./routers/newsLettersRoute')
 
 const app = express();
 
@@ -48,6 +49,8 @@ app.use("/forum", commentRouters);
 
 // Comment ROUTES
 app.use("/comments", CommentRoute);
+// Newsletter Route
+app.use("/newsletters", newsLettersRoute);
 // Magazine
 app.use("/magazines", magazineHandlers);
 app.use("/magazineCollab", magazineCollaboratorHandlers);

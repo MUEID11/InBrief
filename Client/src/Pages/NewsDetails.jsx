@@ -27,12 +27,27 @@ import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
 import { FaPlusCircle } from "react-icons/fa";
 import { FaEarthAfrica } from "react-icons/fa6";
 import { FaUserLock } from "react-icons/fa6";
-import WeatherCard from "../Components/Component/Weather";
+import { ImSpinner9 } from "react-icons/im";
 
 const MagazineModal = ({ userId, showModal, setShowModal, articleId }) => {
   const [magazines, setMagazines] = useState([]);
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState([]);
 
+  useEffect(() => {
+    // const mags =
+    const mags = magazines?.filter((m) =>
+      m?.articles?.some((a) => a._id === articleId)
+    );
+    // magazines.map(m => m.articles?.)
+    mags.forEach((m) => {
+      if (!selected.includes(m._id)) {
+        setSelected((prevSelected) => [...prevSelected, m._id]);
+      }
+    });
+    // setSelected(mags);
+  }, [magazines]);
+
+  console.log("firsthah", magazines, selected);
   const fetchMagazines = async () => {
     try {
       const response = await axios.get(
@@ -50,16 +65,21 @@ const MagazineModal = ({ userId, showModal, setShowModal, articleId }) => {
     }
   }, [showModal]);
 
-  const submitModal = async (id) => {
-    console.log(id, userId, articleId, "ajkdhakj");
-    if (selected) {
+  const submitModal = async () => {
+    console.log(selected, userId, articleId, "ajkdhakj");
+    if (selected.length > 0) {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/magazines/addArticle/${id}`,
+        `${import.meta.env.VITE_API_URL}/magazines/addArticle`,
         {
           userId,
           articleId,
+          magazineId: selected,
         }
       );
+      // const response = await axios.post(${import.meta.env.VITE_API_URL}/magazines/addArticle/${selected}, {
+      //   userId,
+      //   articleId,
+      // });
       console.log(response);
       toast.success("Magazine added successfully!");
       setShowModal(false);
@@ -70,42 +90,69 @@ const MagazineModal = ({ userId, showModal, setShowModal, articleId }) => {
 
   return showModal ? (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
-      <div className="bg-white w-full max-w-3xl p-8 rounded-lg shadow-2xl relative mx-4 md:mx-0">
+      <div className="bg-white w-full max-w-xl p-8 rounded-lg shadow-2xl relative mx-4 md:mx-0">
         <button
-          onClick={() => setShowModal(false)}
+          onClick={() => {
+            setShowModal(false);
+          }}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition"
         >
           <span className="text-xl font-bold">✕</span>
         </button>
-        <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-          My Magazines
+        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+          Your Magazines
         </h2>
         <div className="max-h-96 overflow-y-auto">
           {magazines.length > 0 ? (
-            <div className="space-y-4">
-              {magazines.map((magazine) => (
-                <>
+            <>
+              <div className="space-y-4">
+                {magazines.map((magazine) => (
                   <p
-                    onClick={() => setSelected(magazine?.title)}
-                    key={magazine._id}
+                    onClick={async () => {
+                      // setSelected((prevSelected) => (prevSelected.includes(magazine._id) ? prevSelected.filter((id) => id !== magazine._id) : [...prevSelected, magazine._id]));
+                      if (!selected.includes(magazine._id)) {
+                        setSelected((prevSelected) => [
+                          ...prevSelected,
+                          magazine._id,
+                        ]);
+                      } else {
+                        setSelected((prevSelected) =>
+                          prevSelected.filter((id) => id !== magazine._id)
+                        );
+                        const response = await axios.patch(
+                          `${
+                            import.meta.env.VITE_API_URL
+                          }/magazines/removeArticle/${magazine?._id}`,
+                          {
+                            userId,
+                            articleId,
+                          }
+                        );
+                        if (response.status == 200) {
+                          toast.success("Magazine removed successfully!");
+                        }
+                        console.log(response);
+                      }
+                    }}
+                    key={magazine?._id}
                     className={`p-4 cursor-pointer flex justify-between items-center bg-gray-100 ${
-                      selected === magazine.title
-                        ? "bg-blue-400 text-white"
+                      selected.includes(magazine._id)
+                        ? "bg-rose-950 text-white"
                         : "bg-gray-100 text-gray-700"
-                    }  rounded-lg shadow-sm`}
+                    }  rounded-lg shadow-sm transition-all duration-200`}
                   >
-                    <h3 className="text-lg font-lg">{magazine.title}</h3>
+                    <h3 className="">{magazine?.title}</h3>
                     {magazine?.isPublic ? <FaEarthAfrica /> : <FaUserLock />}
                   </p>
-                  <button
-                    onClick={() => submitModal(magazine?._id)}
-                    className="border border-blue-500 hover:bg-blue-500 hover:text-white mt-6 w-full text-blue-500 px-4 py-2 rounded"
-                  >
-                    Save
-                  </button>
-                </>
-              ))}
-            </div>
+                ))}
+              </div>
+              <button
+                onClick={submitModal}
+                className="border border-blue-800 hover:bg-blue-800 hover:text-white mt-6 text-blue-950 transition-all duration-300 px-8 py-2 rounded tracking-widest text-sm"
+              >
+                SAVE
+              </button>
+            </>
           ) : (
             <p className="text-center text-gray-500">No magazines found.</p>
           )}
@@ -118,6 +165,7 @@ const MagazineModal = ({ userId, showModal, setShowModal, articleId }) => {
 const NewsDetails = () => {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
+  const [relatedArticles, setRelatedArticles] = useState([]);
   const [error, setError] = useState(null);
   const { user } = useSelector((state) => state.user);
   const [comment, setComment] = useState("");
@@ -150,6 +198,22 @@ const NewsDetails = () => {
     fetchArticleDetails();
     fetchArticleDetails();
   }, [id]);
+
+  useEffect(() => {
+    const getRelatedData = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/articles/search?category=${
+            article?.category
+          }`
+        );
+        setRelatedArticles(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getRelatedData();
+  }, [article]);
 
   const handleLike = async (id) => {
     if (!user.email) {
@@ -254,7 +318,9 @@ const NewsDetails = () => {
 
   if (!article) {
     return (
-      <div className="text-center mt-10 text-lg text-gray-500">Loading...</div>
+      <div className="flex items-center justify-center min-h-[calc(100vh-100px)]">
+        <ImSpinner9 className="animate-spin text-red-900 text-6xl" />
+      </div>
     );
   }
 
@@ -279,7 +345,7 @@ const NewsDetails = () => {
                 {article?.title}
               </h2>
               <p className="text-base text-gray-600 mb-6 whitespace-pre-wrap">
-                {article?.description.slice(0, 250)} ....
+                {article?.description?.slice(0, 600)} ....
               </p>
               <a
                 href={article?.url}
@@ -308,7 +374,6 @@ const NewsDetails = () => {
                     to={`/articles/creator/${article?.postedBy}`}
                     title="Click Here to get all articles posted by this creator"
                   >
-                    {" "}
                     <span className="font-semibold text-blue-600">
                       {article?.createdBy?.name}
                     </span>
@@ -453,41 +518,40 @@ const NewsDetails = () => {
 
           {/* Sidebar Section */}
           <div className="md:w-1/4">
-            <div className="bg-white shadow-lg rounded-sm p-6 mb-8">
+            <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
               <h3 className="text-xl font-bold text-gray-800 mb-4">
                 Related Articles
               </h3>
 
               <ul className="space-y-4">
-                <li className="hover:underline text-blue-600">
-                  Global Market Updates
-                </li>
-                <li className="hover:underline text-blue-600">
-                  Tech Industry News
-                </li>
-                <li className="hover:underline text-blue-600">
-                  Health & Fitness Trends
-                </li>
-                <li className="hover:underline text-blue-600">
-                  Travel & Tourism
-                </li>
+                {/* <li className="hover:underline text-blue-600">Global Market Updates</li>
+                <li className="hover:underline text-blue-600">Tech Industry News</li>
+                <li className="hover:underline text-blue-600">Health & Fitness Trends</li>
+                <li className="hover:underline text-blue-600">Travel & Tourism</li> */}
+                {relatedArticles?.length > 0 &&
+                  relatedArticles?.map((a) => (
+                    <li key={a._id} className="hover:underline text-blue-600">
+                      <Link to={`/articles/${a?._id}`}>{a.title}</Link>
+                    </li>
+                  ))}
               </ul>
             </div>
 
             {/* Weather  */}
-            <div className="mt-6">
-              <WeatherCard />
-            </div>
             {/* Weather  */}
 
-            {/* <div
+            <div
               className="relative bg-cover bg-no-repeat bg-center shadow-lg rounded-lg p-6 mb-8"
               style={{
-                backgroundImage: "url('https://media.giphy.com/media/xT9IgDEI1iZyb2wqo8/giphy.gif')",
+                backgroundImage:
+                  "url('https://media.giphy.com/media/xT9IgDEI1iZyb2wqo8/giphy.gif')",
                 backgroundBlendMode: "overlay",
                 filter: "brightness(0.7) contrast(1.2)",
-              }}>
-              <h3 className="text-2xl font-bold text-slate-500 mb-4">Weather Forecast</h3>
+              }}
+            >
+              <h3 className="text-2xl font-bold text-slate-500 mb-4">
+                Weather Forecast
+              </h3>
 
               <div className="flex justify-center mb-4">
                 <img
@@ -499,9 +563,11 @@ Example Code Snippet"
               </div>
 
               <div className="text-center">
-                <p className="text-orange-500 text-opacity-80 text-lg">Stay updated with the latest weather trends.</p>
+                <p className="text-orange-500 text-opacity-80 text-lg">
+                  Stay updated with the latest weather trends.
+                </p>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </main>
