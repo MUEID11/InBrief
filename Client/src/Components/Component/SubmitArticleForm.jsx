@@ -94,9 +94,6 @@ const ArticleForm = () => {
       <h2 className="text-4xl font-bold text-center text-gray-800 mb-8 relative z-10">
         Create New Article
       </h2>
-      <h2 className="text-4xl font-bold text-center text-gray-800 mb-8 relative z-10">
-        Create New Article
-      </h2>
 
       <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
         {/* Title Input */}
@@ -104,9 +101,7 @@ const ArticleForm = () => {
           <label className="text-lg font-semibold text-gray-800 mb-1">
             Title
           </label>
-          <label className="text-lg font-semibold text-gray-800 mb-1">
-            Title
-          </label>
+
           <input
             type="text"
             name="title"
