@@ -90,12 +90,12 @@ const ArticleForm = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-lg rounded-sm mt-10 relative overflow-hidden">
-      <h2 className="text-4xl font-bold text-center text-gray-800 mb-8 relative z-10">
+    <div className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-lg rounded-sm mt-6 relative overflow-hidden">
+      <h2 className="sm:text-3xl text-2xl  font-bold text-center text-gray-800 mb-4 relative z-10">
         Create New Article
       </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+      <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
         {/* Title Input */}
         <div className="flex flex-col transform transition-all duration-300">
           <label className="text-lg font-semibold text-gray-800 mb-1">

@@ -40,40 +40,51 @@ const Banner = () => {
       </div>
 
       {/* Banner */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-sm:mt-5 m-2 sm:m-0">
-        {/* Image Section */}
-        <div>
-          <div
-            className="h-52 sm:h-72 bg-cover rounded-sm"
-            style={{
-              backgroundImage:
-                "url(https://www.marketresearchintellect.com/images/01-24/global-shake-machines-market-size-and-forecast.webp)",
-            }}
-          ></div>
-        </div>
+      <a
+        href="https://www.thedailystar.net/sports/football/news/delivered-the-promise-id-bring-saff-3741441"
+        target="_blank"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-sm:mt-8 m-2 sm:m-0">
+          {/* Image Section */}
+          <div className="">
+            <div
+              className="h-52 sm:h-72 bg-cover rounded-sm mr-2"
+              style={{
+                backgroundImage:
+                  "url(https://res.cloudinary.com/duiymk5mu/image/upload/v1730444260/bafufa_cqp5j8.avif)",
+              }}
+            ></div>
+          </div>
 
-        {/* News Section */}
-        <div className="mt-4 max-sm:mt-0 mr-44 border-gray-200 rounded-lg w-full">
-          <div className="px-4 py-3">
-            <div className="flex justify-between items-center text-sm text-gray-500">
-              <span className="font-semibold text-red-600">Netflix</span>
-              <span>12 minutes ago</span>
-            </div>
-            <h2 className="mt-2 text-3xl font-bold text-gray-900">
-              Major Tech Merger Shakes Global Markets
-            </h2>
-            <p className="mt-3 text-xl font-medium text-gray-600">
-              Two leading tech giants announce a historic merger, sending
-              shockwaves through the global market. The deal is expected to
-              reshape the tech landscape and impact millions of users worldwide.
-            </p>
-            <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
-              <span className="font-semibold text-red-600">Movies</span>
-              <span>· 4 min read</span>
+          {/* News Section */}
+          <div className=" mt-1 max-sm:mt-0 mr-44 border-gray-200 rounded-lg w-full">
+            <div className="px-1 py-2">
+              <div className="flex justify-between items-center text-sm text-gray-500">
+                <span>12 minutes ago</span>
+              </div>
+
+              <h2 className="mt-2 sm:text-3xl text-xl font-bold text-gray-900">
+                Delivered on the promise that I'd bring SAFF
+              </h2>
+              <p className="mt-3 font-medium text-gray-600">
+                Bangladesh national women's football team's head coach Peter
+                Butler said he has delivered on the promise of bringing the SAFF
+                Women's Championship title home. Speaking to reporters outside
+                the Hazrat Shahjalal International Airport following the team's
+                triumphant return from Nepal today, the Englishman said he was
+                delighted that the team won playing excellent football through
+                complete teamwork.
+              </p>
+              {/* <p className="mt-2 text-gray-600">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p> */}
+              <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
+                <span>· 4 min read</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </a>
       {/* ---banner */}
     </section>
   );
