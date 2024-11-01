@@ -345,7 +345,9 @@ const NewsDetails = () => {
                 {article?.title}
               </h2>
               <p className="text-base text-gray-600 mb-6 whitespace-pre-wrap">
-                {article?.description?.slice(0, 600)} ....
+                {article?.description > 600
+                  ? article?.description.slice(0, 600) + "...."
+                  : article?.description}{" "}
               </p>
               <a
                 href={article?.url}

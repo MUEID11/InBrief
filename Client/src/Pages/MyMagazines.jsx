@@ -129,7 +129,10 @@ const MyMagazines = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
                 <div className="px-1 text-white absolute bottom-8 ">
                   <h3 className="text-2xl font-semibold px-1 mb-1">{magazine?.title}</h3>
-                  <h3 className="font-medium text-neutral-200 text-sm px-1">{`${magazine?.description.substring(0, 70)}${magazine?.description?.length > 70 && "..."}`}</h3>
+                  <h3 className="font-medium text-neutral-200 text-sm px-1">
+                    {magazine?.description?.length > 70 ? magazine?.description?.substring(0, 70) : magazine?.description}
+                    {magazine?.description?.length > 70 && "..."}
+                  </h3>
                 </div>
               </div>
             </Link>
