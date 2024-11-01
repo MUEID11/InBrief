@@ -44,8 +44,8 @@ const TopCreators = () => {
     <div className="container mx-auto my-14 p-2 max-sm:px-2">
       <section className="">
         <header className="mt-16 mb-8">
-          <h3 className="text-2xl md:text-3xl font-inter font-semibold">Our Team</h3>
-          <p className="text-start font-normal text-neutral-600 mt-3">
+          <h3 className="text-2xl md:text-3xl font-inter font-bold text-neutral-900">Our Team</h3>
+          <p className="text-start font-medium text-neutral-600 mt-3">
             At InBrief, our success stems from the powerful collaboration of our five dedicated team members. Each individual brings unique strengths and talents, allowing us to
             tackle challenges creatively and efficiently. Our commitment to open communication and mutual support has fostered a positive environment where ideas flourish.
             Together, we strive to achieve our shared vision and make a meaningful impact in the world of news aggregation.
@@ -57,11 +57,11 @@ const TopCreators = () => {
               <div className="w-full max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
                 <img className="object-cover w-full h-56" src={data.image} alt="avatar" />
                 <div className="py-5 text-center">
-                  <Link to={data.link} className="text-lg font-medium text-black">
+                  <Link to={data.link} className="text-lg font-semibold text-neutral-900">
                     {data.name}
                   </Link>
                   <br />
-                  <span className="text-sm text-gray-700 dark:text-gray-200">Admin</span>
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-200">Admin</span>
                 </div>
               </div>
             </Link>

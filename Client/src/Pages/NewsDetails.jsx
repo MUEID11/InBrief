@@ -24,6 +24,7 @@ import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
 import { FaPlusCircle } from "react-icons/fa";
 import { FaEarthAfrica } from "react-icons/fa6";
 import { FaUserLock } from "react-icons/fa6";
+import { ImSpinner9 } from "react-icons/im";
 
 const MagazineModal = ({ userId, showModal, setShowModal, articleId }) => {
   const [magazines, setMagazines] = useState([]);
@@ -137,6 +138,7 @@ const MagazineModal = ({ userId, showModal, setShowModal, articleId }) => {
 const NewsDetails = () => {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
+  const [relatedArticles, setRelatedArticles] = useState([]);
   const [error, setError] = useState(null);
   const { user } = useSelector((state) => state.user);
   const [comment, setComment] = useState("");
@@ -162,6 +164,18 @@ const NewsDetails = () => {
     fetchArticleDetails();
     fetchArticleDetails();
   }, [id]);
+
+  useEffect(() => {
+    const getRelatedData = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/articles/search?category=${article?.category}`);
+        setRelatedArticles(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getRelatedData();
+  }, [article]);
 
   const handleLike = async (id) => {
     if (!user.email) {
@@ -257,7 +271,11 @@ const NewsDetails = () => {
   }
 
   if (!article) {
-    return <div className="text-center mt-10 text-lg text-gray-500">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-[calc(100vh-100px)]">
+        <ImSpinner9 className="animate-spin text-red-900 text-6xl" />
+      </div>
+    );
   }
 
   // const shareUrl = 'http://github.com';
@@ -274,7 +292,7 @@ const NewsDetails = () => {
             <div className="bg-white shadow-lg rounded-sm p-6">
               <img className=" w-full h-96 object-cover mb-6" src={article?.image} alt={article?.title} />
               <h2 className="text-2xl font-bold text-gray-800 mb-4">{article?.title}</h2>
-              <p className="text-base text-gray-600 mb-6 whitespace-pre-wrap">{article?.description.slice(0, 250)} ....</p>
+              <p className="text-base text-gray-600 mb-6 whitespace-pre-wrap">{article?.description?.slice(0, 600)} ....</p>
               <a href={article?.url} target="_blank" rel="noopener noreferrer" className="text-center text-blue-600 text-bold  hover:underline hover:transition-transform ">
                 Read full article
               </a>
@@ -294,7 +312,6 @@ const NewsDetails = () => {
                 <p className="text-gray-500">
                   <span className="font-semibold">Posted by: </span>
                   <Link to={`/articles/creator/${article?.postedBy}`} title="Click Here to get all articles posted by this creator">
-                    {" "}
                     <span className="font-semibold text-blue-600">{article?.createdBy?.name}</span>
                   </Link>
                 </p>
@@ -393,10 +410,16 @@ const NewsDetails = () => {
               <h3 className="text-xl font-bold text-gray-800 mb-4">Related Articles</h3>
 
               <ul className="space-y-4">
-                <li className="hover:underline text-blue-600">Global Market Updates</li>
+                {/* <li className="hover:underline text-blue-600">Global Market Updates</li>
                 <li className="hover:underline text-blue-600">Tech Industry News</li>
                 <li className="hover:underline text-blue-600">Health & Fitness Trends</li>
-                <li className="hover:underline text-blue-600">Travel & Tourism</li>
+                <li className="hover:underline text-blue-600">Travel & Tourism</li> */}
+                {relatedArticles?.length > 0 &&
+                  relatedArticles?.map((a) => (
+                    <li key={a._id} className="hover:underline text-blue-600">
+                      <Link to={`/articles/${a?._id}`}>{a.title}</Link>
+                    </li>
+                  ))}
               </ul>
             </div>
 

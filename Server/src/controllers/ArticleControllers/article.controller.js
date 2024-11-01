@@ -94,6 +94,33 @@ const getAllArticles = async (req, res) => {
   }
 };
 
+const getAllFeaturedArticles = async (req, res) => {
+  try {
+    const queryLimit = req.query?.limit;
+    let limit = 3;
+    if (queryLimit) {
+      limit = parseInt(queryLimit);
+    }
+    const featuredArticles = await Article.aggregate([
+      {
+        $addFields: {
+          voteCount: { $size: "$likes" },
+        },
+      },
+      {
+        $sort: { voteCount: -1 },
+      },
+      {
+        $limit: limit,
+      },
+    ]);
+    res.status(200).json({ success: true, count: featuredArticles.length, data: featuredArticles });
+  } catch (error) {
+    console.error("Error fetching featured Articles:", error);
+    res.status(500).json({ message: "Internal Server Error", error });
+  }
+};
+
 const getArticlesByPreferences = async (req, res) => {
   const id = req.params?.id;
   const sort = req.query?.sort;
@@ -275,4 +302,5 @@ module.exports = {
   updateStatus,
   getMyVotesArticles,
   getAllArticles,
+  getAllFeaturedArticles,
 };

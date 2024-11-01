@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
-import NewsSection from './NewsSection';
+import { useEffect, useState } from "react";
+import NewsSection from "./NewsSection";
 
 const BusinessNewsSection = ({ isHomeSection = false }) => {
   const [articles, setArticles] = useState([]);
@@ -26,7 +26,7 @@ const BusinessNewsSection = ({ isHomeSection = false }) => {
     fetch(url)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok!');
+          throw new Error("Network response was not ok!");
         }
         return response.json();
       })
@@ -35,12 +35,11 @@ const BusinessNewsSection = ({ isHomeSection = false }) => {
         setLoading(false);
       })
       .catch((err) => {
-        console.error('Error fetching Business News:', err);
+        console.error("Error fetching Business News:", err);
         setError(true);
         setLoading(false);
       });
   }, [url]);
-  console.log(articles);
 
   if (loading) {
     return (

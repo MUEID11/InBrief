@@ -20,8 +20,21 @@ exports.createDiscussion = async (req, res) => {
 
 exports.getAllDiscussions = async (req, res) => {
   try {
+    const { sort } = req?.query;
+
+    let sortOption = {};
+    if (sort) {
+      if (sort === "asc") {
+        sortOption = { createdAt: 1 };
+      } else if (sort === "desc") {
+        sortOption = { createdAt: -1 };
+      }
+    } else {
+      sortOption = { createdAt: -1 };
+    }
+
     // const discussions = await Discussion.find();
-    const discussions = await Discussion.find().populate("comments");
+    const discussions = await Discussion.find().sort(sortOption).populate("comments");
     // console.log(discussions);
     res.status(200).json(discussions);
   } catch (error) {
@@ -33,9 +46,7 @@ exports.getAllDiscussions = async (req, res) => {
 exports.getDiscussionById = async (req, res) => {
   const id = req.params.id;
   try {
-    const discussion = await Discussion.findOne({ _id: id }).populate(
-      "comments"
-    );
+    const discussion = await Discussion.findOne({ _id: id }).populate("comments");
     console.log(discussion);
     res.status(200).json(discussion);
   } catch (error) {

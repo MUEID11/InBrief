@@ -8,7 +8,6 @@ const SportsNewsSection = ({ isHomeSection = false }) => {
   const [error, setError] = useState(false);
 
   const [width, setWidth] = useState(window.innerWidth);
-  console.log(width);
   let url;
   // let url = `${import.meta.env.VITE_API_URL}/articles?category=sports`;
 
@@ -43,7 +42,6 @@ const SportsNewsSection = ({ isHomeSection = false }) => {
         setLoading(false);
       });
   }, [url]);
-  console.log(articles);
   if (loading) {
     return (
       <div className="flex items-center justify-center p-4">
@@ -55,21 +53,14 @@ const SportsNewsSection = ({ isHomeSection = false }) => {
   if (error) {
     return (
       <div className="flex items-center justify-center p-4">
-        <p className="text-xl text-red-600">
-          Failed to load Sports News. Please try again later.
-        </p>
+        <p className="text-xl text-red-600">Failed to load Sports News. Please try again later.</p>
       </div>
     );
   }
 
   return (
     <div className="container mx-auto">
-      <NewsSection
-        isHomeSection={isHomeSection}
-        title="Sports"
-        articles={articles}
-        link="/sports"
-      />
+      <NewsSection isHomeSection={isHomeSection} title="Sports" articles={articles} link="/sports" />
     </div>
   );
 };
