@@ -7,12 +7,10 @@ const EditorPicks = () => {
   const [news, setNews] = useState([]);
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch(
-        "https://api.thenewsapi.com/v1/news/top?api_token=cRmpyn5euxvcffLIe0LNikgEOy3UHDuqKGaYP4iW&locale=us&limit=3"
-      );
+      const res = await fetch("https://dev.to/api/articles?per_page=3&top=3");
       const data = await res.json();
       console.log(data);
-      setNews(data.data);
+      setNews(data);
     };
 
     getData();
@@ -30,7 +28,7 @@ const EditorPicks = () => {
       style={{ backgroundSize: "cover", backgroundPosition: "center" }} // Ensuring the image covers and is centered
     >
       <div className="bg-black/40 rounded-sm">
-        <div className="pt-24 space-y-7 text-white mb-8 overflow-auto px-6">
+        <div className="pt-8 space-y-7 text-white mb-8 overflow-auto px-6">
           <h1 className="text-lg sm:text-3xl font-bold  ">
             Editor&apos;s Picks
           </h1>
@@ -45,16 +43,16 @@ const EditorPicks = () => {
           {news?.length > 0 &&
             news?.map((n) => (
               <div
-                key={n.uuid}
-                className="shadow-lg p-5 border bg-slate-500/30 backdrop-blur-sm hover:backdrop-blur-none border-b-2 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:bg-gray-200 rounded-sm text-white group hover:text-neutral-900"
+                key={n?.id}
+                className="shadow-lg p-5 bg-gray-800/30 backdrop-blur-lg hover:backdrop-blur-none border border-gray-500 flex flex-col transition-all duration-300 ease-in-out hover:border-gray-600 hover:bg-gray-200 rounded-sm text-white group hover:text-neutral-900"
               >
                 <Link to={n?.url} className="">
                   {/* Link wrapping Image */}
 
                   <img
-                    src={n.image_url}
+                    src={n.social_image}
                     alt={n.title}
-                    className="h-56 object-cover w-full"
+                    className="h-56 object-cover rounded-sm w-full"
                     loading="lazy"
                   />
 
@@ -63,9 +61,12 @@ const EditorPicks = () => {
                     {/* Source Section */}
                     <div className="flex gap-2 items-center">
                       <div className="size-2 bg-red-600 rounded-full"></div>
-                      <span className="text-sm text-gray-100 group-hover:text-neutral-600">
-                        {n?.source}
-                      </span>
+                      <Link
+                        to="https://dev.to/"
+                        className="text-sm text-gray-100 group-hover:text-neutral-600"
+                      >
+                        Dev.to
+                      </Link>
                     </div>
 
                     {/* Headline */}
@@ -75,16 +76,11 @@ const EditorPicks = () => {
                     {/* Date, Category, Region */}
                     <div className="flex justify-between items-center mb-2 mt-1">
                       <div className="flex gap-3 items-center">
-                        <p className="text-black-primary text-sm font-semibold">
-                          {n?.locale}
-                        </p>
                         <span className="text-xs text-neutral-300 group-hover:text-neutral-600">
                           {new Date(n?.published_at).toLocaleDateString()}
                         </span>
                       </div>
-                      <p className="text-blue-500 font-semibold bg-blue-100 py-1 px-3 rounded-sm text-xs capitalize">
-                        {n?.categories[0]}
-                      </p>
+                      {/* <p className="text-blue-500 font-semibold bg-blue-100 py-1 px-3 rounded-sm text-xs capitalize">{n?.categories[0]}</p> */}
                     </div>
                     {/* Description */}
                     <p className="text-sm mb-4 text-gray-300 group-hover:text-gray-700 font-semibold flex-grow">
