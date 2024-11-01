@@ -16,7 +16,7 @@ import toast from "react-hot-toast";
 import { BsNewspaper } from "react-icons/bs";
 import { PiBooks } from "react-icons/pi";
 import Weather from "./Weather";
-import defaultImage from '../../../public/profile.jpg'
+import defaultImage from './../../assets/profile.jpg'
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
