@@ -194,6 +194,12 @@ const router = createBrowserRouter([
         ),
       },
       {
+          path:"/privacy",
+          element:(
+          <Privacy></Privacy>
+          ),
+      },
+      {
         path: "profile",
         element: (
           <ProtectedRoute>
