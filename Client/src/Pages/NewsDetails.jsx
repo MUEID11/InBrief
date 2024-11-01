@@ -138,6 +138,7 @@ const MagazineModal = ({ userId, showModal, setShowModal, articleId }) => {
 const NewsDetails = () => {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
+  const [relatedArticles, setRelatedArticles] = useState([]);
   const [error, setError] = useState(null);
   const { user } = useSelector((state) => state.user);
   const [comment, setComment] = useState("");
@@ -163,6 +164,18 @@ const NewsDetails = () => {
     fetchArticleDetails();
     fetchArticleDetails();
   }, [id]);
+
+  useEffect(() => {
+    const getRelatedData = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/articles/search?category=${article?.category}`);
+        setRelatedArticles(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getRelatedData();
+  }, [article]);
 
   const handleLike = async (id) => {
     if (!user.email) {
@@ -397,10 +410,16 @@ const NewsDetails = () => {
               <h3 className="text-xl font-bold text-gray-800 mb-4">Related Articles</h3>
 
               <ul className="space-y-4">
-                <li className="hover:underline text-blue-600">Global Market Updates</li>
+                {/* <li className="hover:underline text-blue-600">Global Market Updates</li>
                 <li className="hover:underline text-blue-600">Tech Industry News</li>
                 <li className="hover:underline text-blue-600">Health & Fitness Trends</li>
-                <li className="hover:underline text-blue-600">Travel & Tourism</li>
+                <li className="hover:underline text-blue-600">Travel & Tourism</li> */}
+                {relatedArticles?.length > 0 &&
+                  relatedArticles?.map((a) => (
+                    <li key={a._id} className="hover:underline text-blue-600">
+                      <Link to={`/articles/${a?._id}`}>{a.title}</Link>
+                    </li>
+                  ))}
               </ul>
             </div>
 
