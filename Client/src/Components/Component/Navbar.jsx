@@ -16,7 +16,7 @@ import toast from "react-hot-toast";
 import { BsNewspaper } from "react-icons/bs";
 import { PiBooks } from "react-icons/pi";
 import Weather from "./Weather";
-import defaultImage from './../../assets/profile.jpg'
+import defaultImage from "./../../assets/profile.jpg";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
@@ -137,7 +137,11 @@ const Navbar = () => {
                 {isDropDownOpen ? (
                   <img
                     className="relative size-10 hover:scale-105 transition ease-in-out duration-200 rounded-full border-2 p-[2px]  border-green-600 cursor-pointer"
-                    src={user?.imageUrl ? user?.imageUrl || user?.photoURL : defaultImage}
+                    src={
+                      user?.imageUrl
+                        ? user?.imageUrl || user?.photoURL
+                        : defaultImage
+                    }
                     referrerPolicy="no-referer"
                     alt="Medium avatar"
                   />
@@ -315,27 +319,6 @@ const Navbar = () => {
                 <span className="mx-2 text-sm font-medium">My Magazines</span>
               </Link>
 
-              {/* About us */}
-              <Link
-                to="/about"
-                className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-                  pathname === "/about" && "bg-gray-200 text-gray-700"
-                }`}
-              >
-                <SlPeople />
-                <span className="mx-2 text-sm font-medium">About Us</span>
-              </Link>
-              {/* Contact us */}
-              <Link
-                to="/contact"
-                className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-                  pathname === "/contact" && "bg-gray-200 text-gray-700"
-                }`}
-              >
-                <FiPhoneCall />
-                <span className="mx-2 text-sm font-medium">Contact Us </span>
-              </Link>
-
               <Link
                 to="/forum"
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
@@ -363,6 +346,26 @@ const Navbar = () => {
               >
                 <PiBooks />
                 <span className="mx-2 text-sm font-medium">Featured Books</span>
+              </Link>
+              {/* About us */}
+              <Link
+                to="/about"
+                className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
+                  pathname === "/about" && "bg-gray-200 text-gray-700"
+                }`}
+              >
+                <SlPeople />
+                <span className="mx-2 text-sm font-medium">About Us</span>
+              </Link>
+              {/* Contact us */}
+              <Link
+                to="/contact"
+                className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
+                  pathname === "/contact" && "bg-gray-200 text-gray-700"
+                }`}
+              >
+                <FiPhoneCall />
+                <span className="mx-2 text-sm font-medium">Contact Us </span>
               </Link>
             </nav>
 

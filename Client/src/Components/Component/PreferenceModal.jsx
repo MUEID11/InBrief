@@ -76,20 +76,20 @@ const PreferenceModal = ({ modalOpen, setModalOpen, trigger }) => {
         >
           <div
             ref={modal}
-            className="w-full max-w-[600px] rounded-[20px] bg-white px-8 py-12 text-center md:px-[70px] md:pt-[60px] "
+            className="w-full max-w-[600px] rounded-sm bg-white px-8 py-12 text-center md:px-[70px] md:pt-[60px] "
           >
             <h3 className="pb-[18px] text-xl font-bold text-gray-800 sm:text-4xl">
               Select Your Favorite Topics
             </h3>
             <span
-              className={`mx-auto mb-6 inline-block h-1 w-[90px] rounded bg-red-500`}
+              className={`mx-auto mb-6 inline-block h-1 w-[90px] rounded-sm bg-red-500`}
             ></span>
             {user?.preferences && (
               <div className="flex items-center justify-center flex-wrap gap-4">
                 {tags.map((tag) => (
                   <button
                     key={tag}
-                    className={`px-4 py-2 capitalize rounded-full border border-gray-500 text-white transition 
+                    className={`px-4 py-2 capitalize rounded-sm border border-gray-500 text-white transition 
             ${
               selectedTags.includes(tag)
                 ? "bg-rose-500 border-rose-500 shadow-lg shadow-red-900"
@@ -109,7 +109,7 @@ const PreferenceModal = ({ modalOpen, setModalOpen, trigger }) => {
                     setSelectedTags(user?.preferences || []);
                     setModalOpen(false);
                   }}
-                  className="block w-full rounded-md border border-red-600 p-3 text-center text-base font-medium text-red-600 transition hover:border-red-600 hover:bg-red-600 hover:text-white "
+                  className="block w-full rounded-sm border border-red-600 p-3 text-center text-base font-medium text-red-600 transition hover:border-red-600 hover:bg-red-600 hover:text-white "
                 >
                   Cancel
                 </button>
@@ -117,7 +117,7 @@ const PreferenceModal = ({ modalOpen, setModalOpen, trigger }) => {
               <div className="w-1/2 px-3">
                 <button
                   onClick={prefSubmit}
-                  className="block w-full rounded-md border border-gray-800 bg-gray-800 p-3 text-center text-base font-medium text-white transition hover:bg-gray-700"
+                  className="block w-full rounded-sm border border-gray-800 bg-gray-800 p-3 text-center text-base font-medium text-white transition hover:bg-gray-700"
                 >
                   <p> Submit </p>
                 </button>
