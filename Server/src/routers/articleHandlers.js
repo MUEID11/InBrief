@@ -13,6 +13,7 @@ const {
   updateStatus,
   getMyVotesArticles,
   getAllArticles,
+  getAllFeaturedArticles,
 } = require("../controllers/ArticleControllers/article.controller");
 const { searchByCategory } = require("../controllers/searchController");
 
@@ -23,6 +24,7 @@ const router = express.Router();
 
 router.get("/", getArticles);
 router.get("/allArticles", getAllArticles);
+router.get("/featured", getAllFeaturedArticles);
 router.post("/", postArticle);
 router.get("/getArticleByPreferences/:id", getArticlesByPreferences);
 router.patch("/addBookmark", addToBookmark);

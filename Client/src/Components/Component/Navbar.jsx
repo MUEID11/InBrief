@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect, useRef } from "react";
 // import { FaRegPenToSquare } from 'react-icons/fa6';
-import { FaBars, FaTimes } from "react-icons/fa";
+import { SlPeople } from "react-icons/sl";
+import { FiPhoneCall } from "react-icons/fi";
+import { MdOutlineFeed, MdOutlineForum } from "react-icons/md";
+import { AiOutlineFileAdd } from "react-icons/ai";
 import logo from "./../../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import userThunk, { firebaseLogout } from "../../Features/thunks/userThunks";
@@ -9,13 +12,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { resetUser } from "../../Features/Authenticate/userSlice";
 import { RiMenu3Line } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
-import { SlPeople } from "react-icons/sl";
 import toast from "react-hot-toast";
-import { IoMdBook } from "react-icons/io";
-import { FiPhoneCall } from "react-icons/fi";
-import { MdOutlineForum, MdOutlineSpaceDashboard } from "react-icons/md";
-import { TbBookmarks } from "react-icons/tb";
-import { AiOutlineFileAdd } from "react-icons/ai";
 import { BsNewspaper } from "react-icons/bs";
 import { PiBooks } from "react-icons/pi";
 import Weather from "./Weather";
@@ -241,7 +238,7 @@ const Navbar = () => {
           id="dropdown"
           className={`absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-full max-h-screen overflow-y-auto overflow-x-hidden dark:bg-gray-600 ${
             !isOpen ? "-left-full" : "left-0"
-          } transition-all duration-300 `}
+          } transition-all duration-300 overflow-hidden`}
         >
           <div className="flex flex-col justify-between flex-1 mt-4 h-[calc(100vh-90px)]">
             <nav className=" space-y-3">
@@ -290,7 +287,6 @@ const Navbar = () => {
               {/* My Feed */}
               <Link
                 to={"/my-feed"}
-                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/my-feed" && "bg-gray-200 text-gray-700"
                 }`}
@@ -298,21 +294,30 @@ const Navbar = () => {
                 <BsNewspaper />
                 <span className="mx-2 text-sm font-medium">My Feed</span>
               </Link>
-              {/* Stories */}
+              {/* Magazine*/}
               <Link
-                to="/blogs"
-                onClick={() => setIsOpen(false)}
+                to={"/magazine"}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-                  pathname === "/blogs" && "bg-gray-200 text-gray-700"
+                  pathname === "/magazine" && "bg-gray-200 text-gray-700"
                 }`}
               >
-                <IoMdBook />
-                <span className="mx-2 text-sm font-medium">Blogs</span>
+                <MdOutlineFeed className="text-[19px]" />
+                <span className="mx-2 text-sm font-medium">All Magazines</span>
               </Link>
+
+              <Link
+                to={"/my-magazines"}
+                className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
+                  pathname === "/my-magazines" && "bg-gray-200 text-gray-700"
+                }`}
+              >
+                <MdOutlineFeed className="text-[19px]" />
+                <span className="mx-2 text-sm font-medium">My Magazines</span>
+              </Link>
+
               {/* About us */}
               <Link
                 to="/about"
-                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/about" && "bg-gray-200 text-gray-700"
                 }`}
@@ -323,7 +328,6 @@ const Navbar = () => {
               {/* Contact us */}
               <Link
                 to="/contact"
-                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/contact" && "bg-gray-200 text-gray-700"
                 }`}
@@ -331,21 +335,9 @@ const Navbar = () => {
                 <FiPhoneCall />
                 <span className="mx-2 text-sm font-medium">Contact Us </span>
               </Link>
-              {/* Dashboard */}
-              <Link
-                to="/dashboard"
-                onClick={() => setIsOpen(false)}
-                className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-                  pathname === "/dashboard/my-posts" &&
-                  "bg-gray-200 text-gray-700"
-                }`}
-              >
-                <MdOutlineSpaceDashboard />
-                <span className="mx-2 text-sm font-medium">Dashboard</span>
-              </Link>
+
               <Link
                 to="/forum"
-                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/forum" && "bg-gray-200 text-gray-700"
                 }`}
@@ -353,19 +345,9 @@ const Navbar = () => {
                 <MdOutlineForum />
                 <span className="mx-2 text-sm font-medium">Forum</span>
               </Link>
-              <Link
-                to={"/bookmarks"}
-                onClick={() => setIsOpen(false)}
-                className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
-                  pathname === "/bookmarks" && "bg-gray-200 text-gray-700"
-                }`}
-              >
-                <TbBookmarks />
-                <span className="mx-2 text-sm font-medium">Bookmarks</span>
-              </Link>
+
               <Link
                 to={"/submit-article"}
-                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/submit-article" && "bg-gray-200 text-gray-700"
                 }`}
@@ -375,7 +357,6 @@ const Navbar = () => {
               </Link>
               <Link
                 to={"/featured-books"}
-                onClick={() => setIsOpen(false)}
                 className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
                   pathname === "/featured-books" && "bg-gray-200 text-gray-700"
                 }`}

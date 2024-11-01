@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-// src/Components/LatestNewsSection.jsx
+// src/Components/FeaturedNews.jsx
 
 import { useEffect, useState } from "react";
 import NewsSection from "./NewsSection";
 
-const LatestNewsSection = () => {
+const FeaturedNews = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -12,14 +12,15 @@ const LatestNewsSection = () => {
   const [width, setWidth] = useState(window.innerWidth);
   let url;
   if (width <= 1536 && width >= 1280) {
-    url = `${import.meta.env.VITE_API_URL}/articles?sort=dsc&limit=3`;
+    url = `${import.meta.env.VITE_API_URL}/articles/featured?limit=6`;
   } else if (width >= 1024 && width <= 1280) {
-    url = `${import.meta.env.VITE_API_URL}/articles?sort=dsc&limit=2`;
+    url = `${import.meta.env.VITE_API_URL}/articles/featured?limit=4`;
+  } else if (width >= 1536) {
+    url = `${import.meta.env.VITE_API_URL}/articles/featured?limit=8`;
   } else {
-    url = `${import.meta.env.VITE_API_URL}/articles?sort=dsc&limit=4`;
+    url = `${import.meta.env.VITE_API_URL}/articles/featured?limit=4`;
   }
 
-  // Fetch Latest News data from fakedata.json
   useEffect(() => {
     fetch(url)
       .then((response) => {
@@ -29,11 +30,11 @@ const LatestNewsSection = () => {
         return response.json();
       })
       .then((data) => {
-        setArticles(data.latestNews);
+        setArticles(data?.data);
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching Latest News:", err);
+        console.error("Error fetching Featured News:", err);
         setError(true);
         setLoading(false);
       });
@@ -42,7 +43,7 @@ const LatestNewsSection = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center p-4">
-        <p className="text-xl">Loading Latest News...</p>
+        <p className="text-xl">Loading Featured News...</p>
       </div>
     );
   }
@@ -50,16 +51,16 @@ const LatestNewsSection = () => {
   if (error) {
     return (
       <div className="flex items-center justify-center p-4">
-        <p className="text-xl text-red-600">Failed to load Latest News. Please try again later.</p>
+        <p className="text-xl text-red-600">Failed to load Featured News. Please try again later.</p>
       </div>
     );
   }
 
   return (
     <div className="container mx-auto m-2">
-      <NewsSection title="Latest News" articles={articles} link="/latest-news" />
+      <NewsSection title="Featured News" articles={articles} link="/latest-news" isHomeSection={false} />
     </div>
   );
 };
 
-export default LatestNewsSection;
+export default FeaturedNews;

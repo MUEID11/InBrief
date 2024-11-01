@@ -19,7 +19,7 @@ const Main = () => {
     return <ProfileLoadingTest />;
   }
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen font-inter">
       <ScrollRestoration />
       {/* Navbar */}
       <Navbar />
@@ -30,7 +30,7 @@ const Main = () => {
         <Asidebar />
 
         {/* Outlet for dynamic content */}
-        <div className="flex-grow overflow-hidden mb-8">
+        <div className="flex-grow overflow-hidden">
           <Outlet />
         </div>
       </div>

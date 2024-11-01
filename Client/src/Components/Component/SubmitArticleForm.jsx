@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 const ArticleForm = () => {
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
-
   const [articleData, setArticleData] = useState({
     title: "",
     description: "",
@@ -20,7 +19,33 @@ const ArticleForm = () => {
 
   // State to manage if the input is focused (clicked)
   const [isFocused, setIsFocused] = useState(false);
-
+  const handleImageChange = async (e) => {
+    e.preventDefault();
+    const articleImage = e.target.files[0];
+    const image = new FormData();
+    if (!image) {
+      return;
+    }
+    image.append("file", articleImage);
+    image.append("upload_preset", "a4roznw9");
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${
+        import.meta.env.VITE_CLOUD_NAME
+      }/image/upload`,
+      {
+        method: "POST",
+        body: image,
+      }
+    );
+    const data = await response.json();
+    const url = data.secure_url;
+    console.log(url);
+    if (!url) {
+      return alert("image upload failed");
+    } else {
+      setArticleData({ ...articleData, image: url });
+    }
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setArticleData({ ...articleData, [name]: value });
@@ -69,10 +94,16 @@ const ArticleForm = () => {
       <h2 className="text-4xl font-bold text-center text-gray-800 mb-8 relative z-10">
         Create New Article
       </h2>
+      <h2 className="text-4xl font-bold text-center text-gray-800 mb-8 relative z-10">
+        Create New Article
+      </h2>
 
       <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
         {/* Title Input */}
         <div className="flex flex-col transform transition-all duration-300">
+          <label className="text-lg font-semibold text-gray-800 mb-1">
+            Title
+          </label>
           <label className="text-lg font-semibold text-gray-800 mb-1">
             Title
           </label>
@@ -123,10 +154,8 @@ const ArticleForm = () => {
             Image URL
           </label>
           <input
-            type="text"
-            name="image"
-            value={articleData.image}
-            onChange={handleChange}
+            type="file"
+            onChange={handleImageChange}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             required
@@ -143,7 +172,7 @@ const ArticleForm = () => {
         {/* Source Input */}
         <div className="flex flex-col transform transition-all duration-300">
           <label className="text-lg font-semibold text-gray-800 mb-1">
-            Source
+            News Source
           </label>
           <input
             type="text"
@@ -159,14 +188,14 @@ const ArticleForm = () => {
                   ? "border-gradient-to-r from-red-500 to-pink-500"
                   : "border-gray-300"
               }`}
-            placeholder="Enter source name"
+            placeholder="e.g CNN | BBC"
           />
         </div>
 
         {/* URL Input */}
         <div className="flex flex-col transform transition-all duration-300">
           <label className="text-lg font-semibold text-gray-800 mb-1">
-            URL
+            Link To News
           </label>
           <input
             type="text"
@@ -182,7 +211,7 @@ const ArticleForm = () => {
                   ? "border-gradient-to-r from-red-500 to-pink-500"
                   : "border-gray-300"
               }`}
-            placeholder="Enter source URL"
+            placeholder="Enter News URL"
           />
         </div>
 
@@ -205,7 +234,7 @@ const ArticleForm = () => {
                   ? "border-gradient-to-r from-red-500 to-pink-500"
                   : "border-gray-300"
               }`}
-            placeholder="Enter article category"
+            placeholder="e.g War | Politics | Human Rights"
           />
         </div>
 
@@ -228,14 +257,14 @@ const ArticleForm = () => {
                   ? "border-gradient-to-r from-red-500 to-pink-500"
                   : "border-gray-300"
               }`}
-            placeholder="Enter article region"
+            placeholder="e.g Bangladesh | England | Palestine"
           />
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full p-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-sm shadow-lg transition-all duration-300"
+          className="w-full p-3 bg-red-600 rounded-sm text-white font-semibold  shadow-lg transition-all duration-300"
         >
           Submit Article
         </button>

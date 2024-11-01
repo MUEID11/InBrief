@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { TbBookmark, TbEdit, TbPlus } from "react-icons/tb";
 import { useGetBookmarksQuery } from "../services/bookmarksApi";
@@ -9,24 +9,33 @@ import { GoTrash } from "react-icons/go";
 import DltConfirmationModal from "../Components/Component/DltConfirmationModal";
 import { toast } from "react-hot-toast";
 import { FaRegSquarePlus } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";;
 
 const Profile = () => {
   const { user } = useSelector((state) => state.user);
+  // const dispatch = useDispatch()
   const { data, isLoading, isError } = useGetBookmarksQuery(user?.email);
   const bookmarks = data?.data;
   const [magazines, setMagazines] = useState([]);
   const [isDltMagazineModalOpen, setIsDltMagazineModalOpen] = useState(false);
   const [isCreateMagazineModalOpen, setIsCreateMagazineModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  // const [updatedName, setUpdatedName] = useState('')
   const navigate = useNavigate();
 
-  console.log("bookmarksRTK=>", bookmarks);
   const [isEditing, setIsEditing] = useState({
     education: false,
     about: false,
-    skills: false,
+    interests: false,
+    name: false,
   });
+
+  //update user
+
+  // const handleUpdate =(e) =>{
+  //   dispatch(updateUser({ ...user}));
+
+  // }
 
   const [formData, setFormData] = useState({
     education: [{ institution: "Example University", degree: "Bachelor's in CS", year: "2020" }],
@@ -35,10 +44,13 @@ const Profile = () => {
       { title: "Contact", value: "+123456789" },
       { title: "Address", value: "123, Street, City" },
     ],
-    skills: [
+    interests: [
       { category: "Programming Languages", items: ["JavaScript", "Python"] },
       { category: "Frameworks", items: ["React", "Express"] },
     ],
+    name: [
+     { title: "username", value: user?.name}
+    ]
   });
   console.log(formData);
   const handleToggleEdit = (field) => {
@@ -165,10 +177,23 @@ const Profile = () => {
 
         {/* User Info Card */}
         <div className="col-span-2 p-6 shadow-md rounded-sm bg-white space-y-5">
-          <h5 className="font-semibold flex items-center text-neutral-900">
+        <h5 className="font-semibold flex items-center text-neutral-900">
             <span className="text-neutral-700 mr-1">User Name: </span> {user?.name || user?.displayName}
-            <TbEdit className="ml-4 text-blue-500 cursor-pointer" />
           </h5>
+        {/* <TbEdit className="text-blue-500 cursor-pointer" onClick={() => handleToggleEdit("name")} />
+          {isEditing.name ?
+             formData.name.map((userName, index) => <div key={index}>
+              <input
+                    type="text"
+                    placeholder="User Name"
+                    value={userName.title}
+                    onChange={(e) => handleChange("name", index, "title", e.target.value)}
+                    className="w-full border rounded-sm p-2"
+                  />
+            </div>) : <h5 className="font-semibold flex items-center text-neutral-900">
+            <span className="text-neutral-700 mr-1">User Name: </span> {user?.name || user?.displayName}
+          </h5>
+          } */}
           <h5 className="font-semibold text-neutral-900">
             <span className="text-neutral-700">User Email:</span> {user?.email}
           </h5>
@@ -352,35 +377,35 @@ const Profile = () => {
               ))}
         </div>
 
-        {/* Skills Section */}
+        {/* interests Section */}
         <div className="p-6 shadow-md rounded-sm bg-white">
           <div className="flex justify-between items-center mb-4">
             <h4 className="text-lg font-semibold text-red-800">Interest Area</h4>
-            <TbEdit className="text-blue-500 cursor-pointer" onClick={() => handleToggleEdit("skills")} />
+            <TbEdit className="text-blue-500 cursor-pointer" onClick={() => handleToggleEdit("interests")} />
           </div>
-          {isEditing.skills
-            ? formData.skills.map((skill, index) => (
+          {isEditing.interests
+            ? formData.interests.map((interest, index) => (
                 <div key={index} className="space-y-2 mb-4">
                   <input
                     type="text"
                     placeholder="Category"
-                    value={skill.category}
-                    onChange={(e) => handleChange("skills", index, "category", e.target.value)}
+                    value={interest.category}
+                    onChange={(e) => handleChange("interests", index, "category", e.target.value)}
                     className="w-full border rounded-sm p-2"
                   />
                   <input
                     type="text"
                     placeholder="Items (comma-separated)"
-                    value={skill.items.join(", ")}
-                    onChange={(e) => handleChange("skills", index, "items", e.target.value.split(", "))}
+                    value={interest.items.join(", ")}
+                    onChange={(e) => handleChange("interests", index, "items", e.target.value.split(", "))}
                     className="w-full border rounded-sm p-2"
                   />
                 </div>
               ))
-            : formData.skills.map((skill, index) => (
+            : formData.interests.map((interest, index) => (
                 <div key={index} className="mb-4">
-                  <p className="text-lg font-medium text-neutral-800">{skill.category}</p>
-                  <p className="text-neutral-700">{skill.items.join(", ")}</p>
+                  <p className="text-lg font-medium text-neutral-800">{interest.category}</p>
+                  <p className="text-neutral-700">{interest.items.join(", ")}</p>
                 </div>
               ))}
         </div>

@@ -8,6 +8,7 @@ import SportsNewsSection from "../Components/sections/SportsNewsSection";
 import TopCreators from "../Components/sections/TopCreators";
 import Newsletter from "../Components/sections/Newsletter";
 import Faq from "../Components/sections/Faq";
+import FeaturedNews from "../Components/sections/FeaturedNews";
 // import LatestNewsSection from '../Components/sections/LatestNewsSection';
 // import { useState } from 'react';
 
@@ -21,6 +22,7 @@ const Home = () => {
         {/* welcome message and the card under it */}
         {/* latest news */}
         <TopLatestNews isHomeSection={true} />
+        <FeaturedNews />
         {/* <LatestNewsSection /> */}
         {/* bulletin news/sponsors */}
         <Sponsors />

@@ -4,7 +4,6 @@ import LazyLoad from "react-lazyload";
 import PlaceholderImg from "../PlaceholderImg";
 
 const DiscussionDetails = ({ discussion }) => {
-  console.log(discussion);
   return (
     <div className="p-4 border-b h-full mb-4">
       <Link
@@ -22,7 +21,7 @@ const DiscussionDetails = ({ discussion }) => {
             <h1 className="font-semibold">{discussion?.username}</h1>
           </div>
           <h2 className="text-xl font-bold mb-2">{discussion.title}</h2>
-          <p className="text-sm text-neutral-700">
+          <p className="text-sm text-neutral-700 font-bold">
             {discussion.content.slice(0, 220)}
             {discussion.content.length > 220 && " ....."}
           </p>

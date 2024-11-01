@@ -9,7 +9,7 @@ import ProfileLoadingTest from "../Components/Component/ProfileLoadingTest";
 const MyFeed = () => {
   const [sort, setSort] = useState("DSC");
   const { user } = useSelector((state) => state.user);
-  console.log("first", user);
+  // console.log("first", user);
   const dispatch = useDispatch();
   // Get user's preferred articles from Redux state
 

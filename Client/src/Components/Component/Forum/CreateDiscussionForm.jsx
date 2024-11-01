@@ -12,7 +12,6 @@ const CreateDiscussion = ({ onCreate }) => {
   const [image, setImage] = useState(null);
   const { user } = useSelector((state) => state.user);
 
-  console.log(image);
   const handleChange = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -34,7 +33,6 @@ const CreateDiscussion = ({ onCreate }) => {
     );
     const data = await response.json();
     const url = data.secure_url;
-    console.log(url);
     if (!url) {
       setLoading(false);
       return alert("image upload failed");
@@ -51,18 +49,12 @@ const CreateDiscussion = ({ onCreate }) => {
     obj.username = user?.name;
     obj.userImage = user?.imageUrl;
 
-    console.log("megh", obj);
-
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/forum`,
-        obj,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/forum`, obj, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       onCreate(response.data);
 
       setImage(null);
