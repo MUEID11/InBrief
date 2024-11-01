@@ -125,7 +125,7 @@ const SignIn = () => {
                 type="password"
               />
             </div>
-            <div className="mb-4 mt-2">
+            {/* <div className="mb-4 mt-2">
               <input type="checkbox" id="terms" className="mr-2" />
               <label htmlFor="terms">
                 I agree to all the statements in
@@ -133,7 +133,7 @@ const SignIn = () => {
                   Terms of service
                 </a>
               </label>
-            </div>
+            </div> */}
 
             {/* Sign In Button */}
             <div className="mt-6">

@@ -69,7 +69,7 @@ const Footer = () => {
                   <ul className=" dark: font-medium">
                     <li className="mb-4">
                       <Link
-                        to={'/aboutus'}
+                        to={'/about'}
                         className="hover:underline "
                       >
                        About Us
@@ -77,7 +77,7 @@ const Footer = () => {
                     </li>
                     <li>
                       <Link
-                        href="https://discord.gg/4eeurUVvTy"
+                        to={"/contact"}
                         className="hover:underline"
                       >
                         Contact Us
@@ -91,12 +91,12 @@ const Footer = () => {
                   </h2>
                   <ul className=" dark: font-medium">
                     <li className="mb-4">
-                      <a href="#" className="hover:underline">
+                    <Link to="privacy" className="hover:underline">
                         Privacy Policy
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <Link to="tearm" className="hover:underline">
+                      <Link to="terms" className="hover:underline">
                         Terms &amp; Conditions
                       </Link>
                     </li>
