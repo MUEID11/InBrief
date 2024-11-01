@@ -1,8 +1,5 @@
 // import { FaFacebook, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
-import {
-  FaDiscord,
-  FaTwitter,
-} from "react-icons/fa6";
+import { FaDiscord, FaTwitter } from "react-icons/fa6";
 import logo from "./../../assets/whitelogo.png";
 import { Link } from "react-router-dom";
 
@@ -11,10 +8,13 @@ const Footer = () => {
     <>
       <div className="p-4 bg-secondary-black">
         <footer className="text">
-          <div className="w-full p-12 lg:py-8">
+          <div className="w-full sm:p-12 p-2 lg:py-8">
             <div className="md:flex md:justify-between">
               <div className="mb-6 md:mb-0">
-                <a href="https://inbrief-3d9ce.web.app/" className="flex items-center">
+                <a
+                  href="https://inbrief-3d9ce.web.app/"
+                  className="flex items-center"
+                >
                   <img src={logo} />
                 </a>
                 <p className="mt-4 text-lg font-medium text-neutral-300 max-w-96">
@@ -41,7 +41,7 @@ const Footer = () => {
               <div className="grid grid-cols-2 gap-8 lg:gap-16 sm:grid-cols-3 text-neutral-300">
                 <div>
                   <h2 className="mb-6 text-lg font-bold  uppercase dark:text-white">
-                   Help Center
+                    Help Center
                   </h2>
                   <ul className=" dark: font-medium">
                     <li className="mb-4">
@@ -49,7 +49,7 @@ const Footer = () => {
                         href="https://x.com/Meghla1505"
                         className="hover:underline "
                       >
-                       twitterX
+                        twitterX
                       </a>
                     </li>
                     <li>
@@ -68,18 +68,12 @@ const Footer = () => {
                   </h2>
                   <ul className=" dark: font-medium">
                     <li className="mb-4">
-                      <Link
-                        to={'/about'}
-                        className="hover:underline "
-                      >
-                       About Us
+                      <Link to={"/about"} className="hover:underline ">
+                        About Us
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        to={"/contact"}
-                        className="hover:underline"
-                      >
+                      <Link to={"/contact"} className="hover:underline">
                         Contact Us
                       </Link>
                     </li>
@@ -91,7 +85,7 @@ const Footer = () => {
                   </h2>
                   <ul className=" dark: font-medium">
                     <li className="mb-4">
-                    <Link to="privacy" className="hover:underline">
+                      <Link to="privacy" className="hover:underline">
                         Privacy Policy
                       </Link>
                     </li>
@@ -108,7 +102,10 @@ const Footer = () => {
             <div className="flex items-center justify-between text-neutral-300">
               <span className="text-sm  sm:text-center mx-auto">
                 © 2023{" "}
-                <a href="https://inbrief-3d9ce.web.app/" className="hover:underline">
+                <a
+                  href="https://inbrief-3d9ce.web.app/"
+                  className="hover:underline"
+                >
                   Inbrief™
                 </a>
                 . All Rights Reserved.
