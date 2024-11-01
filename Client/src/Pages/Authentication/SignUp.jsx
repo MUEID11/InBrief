@@ -289,7 +289,6 @@ const SignUp = () => {
                 <Link to={"/terms"} className="hover:underline text-blue-600">
                   Terms &amp; Conditions
                 </Link>
-                s
               </label>
             </div>
 
