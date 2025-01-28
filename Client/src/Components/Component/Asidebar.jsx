@@ -7,8 +7,11 @@ import { BsNewspaper } from "react-icons/bs";
 import { PiBooks } from "react-icons/pi";
 import Weather from "./Weather";
 import { HiOutlineNewspaper } from "react-icons/hi";
+import { useSelector } from "react-redux";
 const Asidebar = () => {
   const { pathname } = useLocation();
+  const { user } = useSelector((state) => state.user);
+
   return (
     <div className="sticky top-[85px] min-w-60 p-4 flex flex-col md:max-w-52 h-[calc(100vh-70px)] overflow-y-auto bg-gray-100 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 max-lg:hidden overflow-hidden no-scrollbar">
       <div className="flex flex-col justify-between flex-1 mt-4">
@@ -36,8 +39,11 @@ const Asidebar = () => {
             </svg>
             <span className="mx-2 text-sm font-semibold">Home</span>
           </Link>
+
+          {/* Conditionaly Rendered My Feed, My Megazines and Add Article option based on user state */}
+          {user ? <>
           {/* My Feed */}
-          <Link
+         <Link
             to={"/my-feed"}
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
               pathname === "/my-feed" && "bg-gray-200 text-gray-700"
@@ -46,7 +52,8 @@ const Asidebar = () => {
             <BsNewspaper />
             <span className="mx-2 text-sm font-semibold">My Feed</span>
           </Link>
-          {/* Magazine*/}
+          
+          {/* All Magazine*/}
           <Link
             to={"/magazine"}
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
@@ -56,7 +63,8 @@ const Asidebar = () => {
             <MdOutlineFeed className="text-[19px]" />
             <span className="mx-2 text-sm font-semibold">All Magazines</span>
           </Link>
-
+            
+          {/* My Megazines */}
           <Link
             to={"/my-magazines"}
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
@@ -65,8 +73,9 @@ const Asidebar = () => {
           >
             <HiOutlineNewspaper className="text-[19px]" />
             <span className="mx-2 text-sm font-semibold">My Magazines</span>
-          </Link>
+            </Link>
 
+          {/* Add Article */}
           <Link
             to={"/submit-article"}
             className={`flex items-center px-3 py-2 text-gray-600 transition-all duration-500 transform rounded-sm dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:translate-x-2 hover:scale-105 hover:rounded-lg ${
@@ -76,6 +85,10 @@ const Asidebar = () => {
             <AiOutlineFileAdd />
             <span className="mx-2 text-sm font-semibold">Add Article</span>
           </Link>
+          </>
+            :
+            <></>}
+          
           {/* forum */}
           <Link
             to="/forum"
